@@ -1,0 +1,24 @@
+<apex:page standardController="Informacion_comite__c" extensions="CalificacionCtrl">
+   
+    <script>
+        Calificar();
+    </script>
+    <apex:detail relatedList="false"/>
+    <apex:pageBlock title="Modelo de Otorgamiento">
+        <apex:pageBlockSection >
+            <apex:form >
+                <apex:actionFunction action="{!Calificar}" name="Calificar" rerender="showstate"></apex:actionFunction>
+                <apex:commandButton value="Calificar" onclick="Calificar()"/>    
+            </apex:form>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection >
+            <apex:pageBlockTable value="{!lstCalificaciones}" var="c">
+                    <apex:column value="{!c.Name}" />
+                    <apex:column value="{!c.createdDate}"/>
+                   
+                    <apex:column value="{!c.Calificacion__c}" />
+                    <apex:column value="{!c.Eximido_de_calificacion__c}" />
+                </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

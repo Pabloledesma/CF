@@ -1,0 +1,9 @@
+<apex:page standardController="Referenciacion_y_verificacion__c" extensions="RefinanReferenGestionarRadCredito_ctr">
+	<apex:form >
+		<apex:actionFunction name="actionOnLoad" action="{!StartProcess}" rerender="nada"/> 
+	</apex:form>
+	<script language="JavaScript">
+		window.onload = actionOnLoad();
+	</script>
+ 
+</apex:page>

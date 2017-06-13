@@ -1,0 +1,4 @@
+<apex:page standardController="Account">
+  <apex:outputField value="{!Account.Name}"/>
+  <apex:outputField value="{!Account.Numero_de_documento__c}"/>
+</apex:page>

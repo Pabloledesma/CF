@@ -1,0 +1,802 @@
+<apex:page showheader="false" standardController="Cifin__c"
+		   applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false">
+<html>
+<head>
+<style type="text/css">
+
+@page {
+	margin: 0.1cm;
+	size: landscape;
+}
+
+.ritz .waffle a {
+	color: inherit;
+}
+
+.ritz .waffle .s22 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: middle;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s9 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s27 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #c4cfb6;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s10 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s11 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s12 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s4 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	font-weight: bold;
+	color: #ffffff;
+	background-color: #008000;
+	font-family: 'Calibri', Arial;
+	font-size: 10pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s13 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s18 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s25 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: right;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 11pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s26 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s0 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #ffffff;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s2 {
+	border-bottom: 1px SOLID #ffffff;
+	border-right: 1px SOLID #ffffff;
+	text-align: left;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s23 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 11pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s3 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #ffffff;
+	text-align: left;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s7 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s17 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s8 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 10pt;
+	vertical-align: middle;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s21 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s19 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: right;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s24 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #c4cfb6;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s5 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: middle;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s15 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s1 {
+	border-bottom: 1px SOLID #ffffff;
+	border-right: 1px SOLID #ffffff;
+	text-align: right;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 20pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s6 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s14 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #c4cfb6;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s20 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s16 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+</style>
+</head>
+<body>
+	<div class="ritz grid-container" dir="ltr">
+	<table class="waffle" cellspacing="0" cellpadding="0">
+		<tbody>
+			<tr>
+				<td class="s0" colspan="3" rowspan="5"><apex:image url="{!$Resource.LogoConsultas}" width="238" height="106"/></td>
+				<td class="s1" colspan="7" rowspan="3">INFORMACIÓN COMERCIAL CIFIN</td>
+			</tr>
+			<tr style='height: 19px;'>
+			</tr>
+			<tr style='height: 19px;'>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s2"></td>
+				<td class="s2"></td>
+				<td class="s2 softmerge">
+				<div class="softmerge-inner" style="width: 71px; left: -1px;">Consultado
+				por.</div>
+				</td>
+				<td class="s2" colspan="2">{!Cifin__c.Consultado_por__c}</td>
+				<td class="s2">Fecha</td>
+				<td class="s2">{!Cifin__c.Fecha_Consulta__c}</td>
+			</tr>
+			<tr style='height: 25px;'>
+				<td class="s3"></td>
+				<td class="s3"></td>
+				<td class="s3"></td>
+				<td class="s3" colspan="2">{!Cifin__c.Nombre_Asesor__c}</td>
+				<td class="s3">Hora</td>
+				<td class="s3">{!Cifin__c.Hora_Consulta__c}</td>
+			</tr>
+			<tr style='height: 28px;'>
+				<td class="s4" colspan="10">INFORMACIÓN BÁSICA</td>
+			</tr>
+			<tr style='height: 31px;'>
+				<td class="s5">Tipo de documento</td>
+				<td class="s6">{!Cifin__c.Tipo_Documento__c}</td>
+				<td class="s5">Número</td>
+				<td class="s6">{!Cifin__c.Numero_Documento__c}</td>
+				<td class="s5">Estado Del documento</td>
+				<td class="s7" colspan="2">{!Cifin__c.Estado_Documento__c}</td>
+				<td class="s8">No. Informe</td>
+				<td class="s9" colspan="2">{!Cifin__c.Numero_Informe__c}</td>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s5">Nombre</td>
+				<td class="s9" colspan="3">{!Cifin__c.Nombre_Cliente__c}</td>
+				<td class="s5">Rando de edad</td>
+				<td class="s9" colspan="2">{!Cifin__c.Rango_Edad__c}</td>
+				<td class="s8">CIIU</td>
+				<td class="s9" colspan="2">{!Cifin__c.Ciiu__c}</td>
+			</tr>
+			<tr style='height: 28px;'>
+				<td class="s4" colspan="10">RESUMEN ENDEUDAMIENTO</td>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s10" rowspan="2" valign="middle">RESUMEN DE<br/>OBLIGACIONES</td>
+				<td class="s10" colspan="4">COMO PRINCIPAL</td>
+				<td class="s10" colspan="5">COMO CODEUDOR Y OTROS</td>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s12">Tarjetas de Credito:</td>
+				<td class="s12">Sector Financiero:</td>
+				<td class="s12">Sector Real:</td>
+				<td class="s12">SUBTOTAL PRINCIPAL</td>
+				<td class="s12">Tarjetas de Credito:</td>
+				<td class="s12">Sector Financiero:</td>
+				<td class="s12">Sector Real:</td>
+				<td class="s12">SUBTOTAL PRINCIPAL</td>
+				<td class="s13">Total</td>
+			</tr>
+			<apex:repeat var="Obligacion" value="{!Cifin__c.Obligaciones__r}">
+				<tr style="height: 19px; display: {!IF(Obligacion.Titulo__c != '', 'table-row', 'none')};">
+					<td class="s14" colspan="10">{!Obligacion.Titulo__c}</td>
+				</tr>
+				<tr style='height: 19px;'>
+					<td class="s15">{!Obligacion.Subtitulo__c}</td>
+					<td class="s11">{!Obligacion.Tarjeta_de_Credito__c}</td>
+					<td class="s11">{!Obligacion.Sector_Financiero__c}</td>
+					<td class="s11">{!Obligacion.Sector_Real__c}</td>
+					<td class="s11">{!Obligacion.Subtotal__c}</td>
+					<td class="s11">{!Obligacion.Tarjeta_de_Credito_2__c}</td>
+					<td class="s11">{!Obligacion.Sector_Financiero_2__c}</td>
+					<td class="s11">{!Obligacion.Sector_Real_2__c}</td>
+					<td class="s11">{!Obligacion.Subtotal_2__c}</td>
+					<td class="s11">{!Obligacion.Total__c}</td>
+				</tr>
+			</apex:repeat>
+			<tr style='height: 28px;'>
+				<td class="s4" colspan="10">INFORME DETALLADO</td>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s14" colspan="10">INFORMACIÓN DE CUENTAS</td>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s16">Fecha corte</td>
+				<td class="s16">Tipo contrato</td>
+				<td class="s16">No. Cuenta</td>
+				<td class="s16">Estado</td>
+				<td class="s16">Tipo ENT</td>
+				<td class="s17" colspan="2">Entidad</td>
+				<td class="s16">Ciudad</td>
+				<td class="s16">Sucursal</td>
+				<td class="s16">Fecha Apertura</td>
+			</tr>
+			<tr style='height: 32px;'>
+				<td class="s16">Cupo sobregiro</td>
+				<td class="s16">Dias autor</td>
+				<td class="s16">Fecha permanencia</td>
+				<td class="s16">Che Devueltos último mes</td>
+				<td class="s18" colspan="6"></td>
+			</tr>
+			<tr style='height: 5px;'>
+				<td class="s14" colspan="10"></td>
+			</tr>
+			<apex:repeat var="Cuenta" value="{!Cifin__c.Cuentas__r}">
+				<tr style="height: 19px; display: {!IF(Cuenta.Titulo__c != '', 'table-row', 'none')};">
+					<td class="s13" colspan="10">{!Cuenta.Titulo__c}</td>
+				</tr>
+				<tr style='height: 30px;'>
+					<td class="s19">{!Cuenta.Fecha_Corte__c}</td>
+					<td class="s20">{!Cuenta.Tipo_Contrato__c}</td>
+					<td class="s19">{!Cuenta.Numero_Cuenta__c}</td>
+					<td class="s20">{!Cuenta.Estado__c}</td>
+					<td class="s20">{!Cuenta.Tipo_Entidad__c}</td>
+					<td class="s21" colspan="2">{!Cuenta.Entidad__c}</td>
+					<td class="s20">{!Cuenta.Ciudad__c}</td>
+					<td class="s20">{!Cuenta.Sucursal__c}</td>
+					<td class="s19">{!Cuenta.Fecha_Apertura__c}</td>
+				</tr>
+				<tr style='height: 19px;'>
+					<td class="s20">{!Cuenta.Cupo_Sobregiro__c}</td>
+					<td class="s20">{!Cuenta.Dias__c}</td>
+					<td class="s20">{!Cuenta.Fecha_Permanencia__c}</td>
+					<td class="s20">{!Cuenta.Cheques_Devueltos__c}</td>
+					<td class="s21" colspan="6"></td>
+				</tr>
+				<tr style='height: 5px;'>
+					<td class="s14" colspan="10"></td>
+				</tr>
+			</apex:repeat>
+			<apex:repeat var="Obligacion" value="{!Cifin__c.Detalles_Obligaciones__r}">
+				<tr style="height: 19px; display: {!IF(Obligacion.Sector__c == 'SectorFinanciero', 'table-row', 'none')};">
+					<td class="s14" colspan="10">INFORMACIÓN ENDEUDAMIENTO EN
+					SECTORES FINANCIERO, ASEGURADOR Y SOLIDARIO</td>
+				</tr>
+				<tr style="height: 31px; display: {!IF(Obligacion.Sector__c == 'SectorFinanciero', 'table-row', 'none')};">
+					<td class="s22">FECHA<br/>
+					CORTE</td>
+					<td class="s12">MODA</td>
+					<td class="s12">No.<br/>
+					OBLIG</td>
+					<td class="s22">TIPO-<br/>
+					ENT</td>
+					<td class="s22">NOMBRE<br/>
+					ENTIDAD</td>
+					<td class="s12">CIUDAD</td>
+					<td class="s12">CAL</td>
+					<td class="s12">MRC</td>
+					<td class="s22">TIPO-<br/>
+					GAR</td>
+					<td class="s12">F INICIO</td>
+				</tr>
+				<tr style="height: 47px; display: {!IF(Obligacion.Sector__c == 'SectorFinanciero', 'table-row', 'none')};">
+					<td class="s12">PAC</td>
+					<td class="s12">PAG</td>
+					<td class="s22">MOR</td>
+					<td class="s22">CUPO<br/>
+					APROBVLR<br/>
+					INIC</td>
+					<td class="s22">PAGO<br/>
+					MINIMVLR<br/>
+					CUOTA</td>
+					<td class="s22">SIT<br/>
+					OBLIG</td>
+					<td class="s22">NATU<br/>
+					REES</td>
+					<td class="s22">No.<br/>
+					REE</td>
+					<td class="s12">TIP PAG</td>
+					<td class="s22">F PAGOF<br/>
+					EXTIN</td>
+				</tr>
+				<tr style="height: 31px; display: {!IF(Obligacion.Sector__c == 'SectorFinanciero', 'table-row', 'none')};">
+					<td class="s22">TIPO<br/>
+					CONT</td>
+					<td class="s12">PADE</td>
+					<td class="s12">LCRE</td>
+					<td class="s22">EST.<br/>
+					CONTR</td>
+					<td class="s12">CLF</td>
+					<td class="s22">ORIGEN<br/>
+					CARTERA</td>
+					<td class="s12">SUCURSAL</td>
+					<td class="s22">EST<br/>
+					TITU</td>
+					<td class="s12">CLS</td>
+					<td class="s22">COB<br/>
+					GAR</td>
+				</tr>
+				<tr style="height: 47px; display: {!IF(Obligacion.Sector__c == 'SectorFinanciero', 'table-row', 'none')};">
+					<td class="s12">F TERM</td>
+					<td class="s12">PER</td>
+					<td class="s22">CUPO<br/>
+					UTILISALDO<br/>
+					CORT</td>
+					<td class="s22">VALOR<br/>
+					MORA</td>
+					<td class="s12">REES</td>
+					<td class="s12">MOR MAX</td>
+					<td class="s22">MOD<br/>
+					EXT</td>
+					<td class="s22">F<br/>
+					PERMAN</td>
+					<td class="s12" colspan="2">Comportamientos</td>
+				</tr>
+				<tr style="height: 5px; display: {!IF(Obligacion.Sector__c == 'SectorFinanciero', 'table-row', 'none')};">
+					<td class="s14" colspan="10"></td>
+				</tr>
+				<tr style="height: 19px; display: {!IF(Obligacion.Sector__c == 'SectorReal', 'table-row', 'none')};">
+					<td class="s24" colspan="10">INFORMACIÓN ENDEUDAMIENTO EN
+					SECTOR REAL</td>
+				</tr>
+				<tr style="height: 31px; display: {!IF(Obligacion.Sector__c == 'SectorReal', 'table-row', 'none')};">
+					<td class="s22">FECHA<br/>
+					CORTE</td>
+					<td class="s12">TIPO CONT</td>
+					<td class="s12">No.<br/>
+					OBLIG</td>
+					<td class="s22">NOMBRE<br/>
+					ENTIDAD</td>
+					<td class="s12">CIUDAD</td>
+					<td class="s12">CALD</td>
+					<td class="s12">VIG</td>
+					<td class="s22">CLA<br/>
+					PER</td>
+					<td class="s12">F INICIO</td>
+					<td class="s12">PAC</td>
+				</tr>
+				<tr style="height: 47px; display: {!IF(Obligacion.Sector__c == 'SectorReal', 'table-row', 'none')};">
+					<td class="s12">PAG</td>
+					<td class="s22">MOR</td>
+					<td class="s22">CUPO<br/>
+					APROBVLR<br/>
+					INIC</td>
+					<td class="s22">PAGO<br/>
+					MINIMVLR<br/>
+					CUOTA</td>
+					<td class="s22">SIT<br/>
+					OBLIG</td>
+					<td class="s22">TIPAG</td>
+					<td class="s22">REF</td>
+					<td class="s22">F PAGOF<br/>
+					EXTIN</td>
+					<td class="s22">CATELCRE</td>
+					<td class="s22">EST.<br/>
+					CONTR</td>
+				</tr>
+				<tr style="height: 47px; display: {!IF(Obligacion.Sector__c == 'SectorReal', 'table-row', 'none')};">
+					<td class="s22">TIPO EMPR</td>
+					<td class="s12">SUCURSAL</td>
+					<td class="s22">EST<br/>
+					TITU</td>
+					<td class="s22">MES</td>
+					<td class="s12">F TERM</td>
+					<td class="s12">PER</td>
+					<td class="s22">CUPO<br/>
+					UTILISALDO<br/>
+					CORT</td>
+					<td class="s22">VALOR CARGO FIJO</td>
+					<td class="s22">VALOR<br/>
+					MORA</td>
+					<td class="s22">MOD<br/>
+					EXT</td>
+				</tr>
+				<tr style="height: 31px; display: {!IF(Obligacion.Sector__c == 'SectorReal', 'table-row', 'none')};">
+					<td class="s12">MOR MAX</td>
+					<td class="s22">F<br/>
+					PERMAN</td>
+					<td class="s12" colspan="8">Comportamientos</td>
+				</tr>
+				<tr style="height: 5px; display: {!IF(Obligacion.Sector__c == 'SectorReal', 'table-row', 'none')};">
+					<td class="s14" colspan="10"></td>
+				</tr>
+				<tr style="height: 19px; display: {!IF(Obligacion.Titulo__c != '', 'table-row', 'none')};">
+					<td class="s13" colspan="10">{!Obligacion.Titulo__c}</td>
+				</tr>
+				<tr style='height: 19px;'>
+					<td class="s9">{!MID(Obligacion.Detalle__c, FIND("[1]", Obligacion.Detalle__c, 0)+3, FIND("[/1]", Obligacion.Detalle__c, 0) - FIND("[1]", Obligacion.Detalle__c, 0) - 3)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[2]", Obligacion.Detalle__c, 0)+3, FIND("[/2]", Obligacion.Detalle__c, 0) - FIND("[2]", Obligacion.Detalle__c, 0) - 3)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[3]", Obligacion.Detalle__c, 0)+3, FIND("[/3]", Obligacion.Detalle__c, 0) - FIND("[3]", Obligacion.Detalle__c, 0) - 3)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[4]", Obligacion.Detalle__c, 0)+3, FIND("[/4]", Obligacion.Detalle__c, 0) - FIND("[4]", Obligacion.Detalle__c, 0) - 3)}</td>
+					<td class="s9">{!MID(Obligacion.Detalle__c, FIND("[5]", Obligacion.Detalle__c, 0)+3, FIND("[/5]", Obligacion.Detalle__c, 0) - FIND("[5]", Obligacion.Detalle__c, 0) - 3)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[6]", Obligacion.Detalle__c, 0)+3, FIND("[/6]", Obligacion.Detalle__c, 0) - FIND("[6]", Obligacion.Detalle__c, 0) - 3)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[7]", Obligacion.Detalle__c, 0)+3, FIND("[/7]", Obligacion.Detalle__c, 0) - FIND("[7]", Obligacion.Detalle__c, 0) - 3)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[8]", Obligacion.Detalle__c, 0)+3, FIND("[/8]", Obligacion.Detalle__c, 0) - FIND("[8]", Obligacion.Detalle__c, 0) - 3)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[9]", Obligacion.Detalle__c, 0)+3, FIND("[/9]", Obligacion.Detalle__c, 0) - FIND("[9]", Obligacion.Detalle__c, 0) - 3)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[10]", Obligacion.Detalle__c, 0)+4, FIND("[/10]", Obligacion.Detalle__c, 0) - FIND("[10]", Obligacion.Detalle__c, 0) - 4)}</td>
+				</tr>
+				<tr style='height: 19px;'>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[11]", Obligacion.Detalle__c, 0)+4, FIND("[/11]", Obligacion.Detalle__c, 0) - FIND("[11]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[12]", Obligacion.Detalle__c, 0)+4, FIND("[/12]", Obligacion.Detalle__c, 0) - FIND("[12]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[13]", Obligacion.Detalle__c, 0)+4, FIND("[/13]", Obligacion.Detalle__c, 0) - FIND("[13]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[14]", Obligacion.Detalle__c, 0)+4, FIND("[/14]", Obligacion.Detalle__c, 0) - FIND("[14]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s9">{!MID(Obligacion.Detalle__c, FIND("[15]", Obligacion.Detalle__c, 0)+4, FIND("[/15]", Obligacion.Detalle__c, 0) - FIND("[15]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[16]", Obligacion.Detalle__c, 0)+4, FIND("[/16]", Obligacion.Detalle__c, 0) - FIND("[16]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s9">{!MID(Obligacion.Detalle__c, FIND("[17]", Obligacion.Detalle__c, 0)+4, FIND("[/17]", Obligacion.Detalle__c, 0) - FIND("[17]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[18]", Obligacion.Detalle__c, 0)+4, FIND("[/18]", Obligacion.Detalle__c, 0) - FIND("[18]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s9">{!MID(Obligacion.Detalle__c, FIND("[19]", Obligacion.Detalle__c, 0)+4, FIND("[/19]", Obligacion.Detalle__c, 0) - FIND("[19]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s9">{!MID(Obligacion.Detalle__c, FIND("[20]", Obligacion.Detalle__c, 0)+4, FIND("[/20]", Obligacion.Detalle__c, 0) - FIND("[20]", Obligacion.Detalle__c, 0) - 4)}</td>
+				</tr>
+				<tr style='height: 29px;'>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[21]", Obligacion.Detalle__c, 0)+4, FIND("[/21]", Obligacion.Detalle__c, 0) - FIND("[21]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[22]", Obligacion.Detalle__c, 0)+4, FIND("[/22]", Obligacion.Detalle__c, 0) - FIND("[22]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s9">{!MID(Obligacion.Detalle__c, FIND("[23]", Obligacion.Detalle__c, 0)+4, FIND("[/23]", Obligacion.Detalle__c, 0) - FIND("[23]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[24]", Obligacion.Detalle__c, 0)+4, FIND("[/24]", Obligacion.Detalle__c, 0) - FIND("[24]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s9">{!MID(Obligacion.Detalle__c, FIND("[25]", Obligacion.Detalle__c, 0)+4, FIND("[/25]", Obligacion.Detalle__c, 0) - FIND("[25]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[26]", Obligacion.Detalle__c, 0)+4, FIND("[/26]", Obligacion.Detalle__c, 0) - FIND("[26]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s9">{!MID(Obligacion.Detalle__c, FIND("[27]", Obligacion.Detalle__c, 0)+4, FIND("[/27]", Obligacion.Detalle__c, 0) - FIND("[27]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[28]", Obligacion.Detalle__c, 0)+4, FIND("[/28]", Obligacion.Detalle__c, 0) - FIND("[28]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s9">{!MID(Obligacion.Detalle__c, FIND("[29]", Obligacion.Detalle__c, 0)+4, FIND("[/29]", Obligacion.Detalle__c, 0) - FIND("[29]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[30]", Obligacion.Detalle__c, 0)+4, FIND("[/30]", Obligacion.Detalle__c, 0) - FIND("[30]", Obligacion.Detalle__c, 0) - 4)}</td>
+				</tr>
+				<tr style='height: 29px;'>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[31]", Obligacion.Detalle__c, 0)+4, FIND("[/31]", Obligacion.Detalle__c, 0) - FIND("[31]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[32]", Obligacion.Detalle__c, 0)+4, FIND("[/32]", Obligacion.Detalle__c, 0) - FIND("[32]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[33]", Obligacion.Detalle__c, 0)+4, FIND("[/33]", Obligacion.Detalle__c, 0) - FIND("[33]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[34]", Obligacion.Detalle__c, 0)+4, FIND("[/34]", Obligacion.Detalle__c, 0) - FIND("[34]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[35]", Obligacion.Detalle__c, 0)+4, FIND("[/35]", Obligacion.Detalle__c, 0) - FIND("[35]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[36]", Obligacion.Detalle__c, 0)+4, FIND("[/36]", Obligacion.Detalle__c, 0) - FIND("[36]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[37]", Obligacion.Detalle__c, 0)+4, FIND("[/37]", Obligacion.Detalle__c, 0) - FIND("[37]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s7">{!MID(Obligacion.Detalle__c, FIND("[38]", Obligacion.Detalle__c, 0)+4, FIND("[/38]", Obligacion.Detalle__c, 0) - FIND("[38]", Obligacion.Detalle__c, 0) - 4)}</td>
+					<td class="s9" colspan="2">{!MID(Obligacion.Detalle__c, FIND("[39]", Obligacion.Detalle__c, 0)+4, FIND("[/39]", Obligacion.Detalle__c, 0) - FIND("[39]", Obligacion.Detalle__c, 0) - 4)}</td>
+				</tr>
+				<tr style='height: 5px;'>
+					<td class="s14" colspan="10"></td>
+				</tr>
+			</apex:repeat>
+			<tr style='height: 19px;'>
+				<td class="s27" colspan="10">HUELLA DE CONSULTA ÚLTIMOS SEIS
+				MESES</td>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s13" colspan="3">Entidad</td>
+				<td class="s13" colspan="2">Fecha</td>
+				<td class="s13" colspan="3">Sucursal</td>
+				<td class="s13" colspan="2">Ciudad</td>
+			</tr>
+			<apex:repeat var="Consulta" value="{!Cifin__c.Consultas_cifin__r}">
+				<tr style='height: 19px;'>
+					<td class="s21" colspan="3">{!Consulta.Entidad__c}</td>
+					<td class="s11" colspan="2">{!Consulta.Fecha__c}</td>
+					<td class="s21" colspan="3">{!Consulta.Sucursal__c}</td>
+					<td class="s11" colspan="2">{!Consulta.Ciudad__c}</td>
+				</tr>
+			</apex:repeat>
+		</tbody>
+	</table>
+	</div>
+</body>
+</html>
+</apex:page>

@@ -1,0 +1,6 @@
+<apex:page showHeader="false" showChat="false" sidebar="false">
+    <iframe width="560" height="315"
+        src="https://www.youtube.com/watch?v=BokEjSmKnZ0"
+        frameborder="0" allowfullscreen="true">
+    </iframe>
+</apex:page>

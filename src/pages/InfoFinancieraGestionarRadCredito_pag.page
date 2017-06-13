@@ -1,0 +1,10 @@
+<apex:page standardController="Informacion_financiera__c" extensions="InfoFinancieraGestionarRadCredito_Ctrl">
+	<apex:form >
+		<apex:actionFunction name="actionOnLoad" action="{!StartProcess}" rerender="nada"/> 
+	</apex:form>
+	<script language="JavaScript">
+		window.onload = actionOnLoad();
+	</script>
+    
+ 
+</apex:page>

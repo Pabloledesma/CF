@@ -1,0 +1,820 @@
+<apex:page showheader="false" standardController="Datacredito__c"
+		   applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false">
+<html>
+<head>
+	<style type="text/css">
+
+@page {
+	margin: 0.1cm;
+	size: landscape;
+}
+
+.ritz .waffle a {
+	color: inherit;
+}
+
+.ritz .waffle 
+.s17 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	font-weight: bold;
+	color: #ffffff;
+	background-color: #008000;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s26 {
+	border-bottom: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s1 {
+	border-bottom: 1px SOLID #ffffff;
+	border-right: 1px SOLID #ffffff;
+	text-align: right;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 24pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s12 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: middle;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s11 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s29 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #c4cfb6;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s30 {
+	text-align: left;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s16 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s19 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s24 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	color: #000000;
+	background-color: #c4cfb6;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s21 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #c4cfb6;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s4 {
+	border-bottom: 1px SOLID #ffffff;
+	border-right: 1px SOLID #ffffff;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s25 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: right;
+	color: #000000;
+	background-color: #c4cfb6;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s18 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #c4cfb6;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s10 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 18pt;
+	vertical-align: middle;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s27 {
+	border-bottom: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s14 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s28 {
+	border-bottom: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s0 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #ffffff;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s2 {
+	border-bottom: 1px SOLID #ffffff;
+	border-right: 1px SOLID #ffffff;
+	text-align: left;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s23 {
+	border-left: none;
+	text-align: left;
+	color: #000000;
+	background-color: #c4cfb6;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s3 {
+	border-bottom: 1px SOLID #ffffff;
+	border-right: 1px SOLID #ffffff;
+	text-align: left;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s5 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #ffffff;
+	text-align: left;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s9 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s15 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: center;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: bottom;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s20 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s7 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: middle;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s22 {
+	border-right: none;
+	text-align: left;
+	color: #000000;
+	background-color: #c4cfb6;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: bottom;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s8 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	color: #000000;
+	background-color: #ffffff;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	overflow: hidden;
+	word-wrap: break-word;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s13 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	font-weight: bold;
+	color: #000000;
+	background-color: #c4cfb6;
+	font-family: 'Calibri', Arial;
+	font-size: 9pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+
+.ritz .waffle .s6 {
+	border-bottom: 1px SOLID #c4cfb6;
+	border-right: 1px SOLID #c4cfb6;
+	text-align: left;
+	font-weight: bold;
+	color: #ffffff;
+	background-color: #008000;
+	font-family: 'Calibri', Arial;
+	font-size: 8pt;
+	vertical-align: middle;
+	white-space: normal;
+	direction: ltr;
+	padding: 0px 3px 0px 3px;
+}
+</style>
+</head>
+<body>
+	<div class="ritz grid-container" dir="ltr">
+	<table class="waffle" cellspacing="0" cellpadding="0">
+		<tbody>
+			<tr>
+				<td class="s0" colspan="3" rowspan="5"><apex:image url="{!$Resource.LogoConsultas}" height="106"/></td>
+				<td class="s1" colspan="7" rowspan="3">Historia de Crédito+</td>
+			</tr>
+			<tr style='height: 19px;'>
+			</tr>
+			<tr style='height: 19px;'>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s2"></td>
+				<td class="s2"></td>
+				<td class="s2 softmerge">
+				<div class="softmerge-inner" style="left: -1px;">Consultado
+				por:</div>
+				</td>
+				<td class="s3" colspan="2">{!Datacredito__c.Nombre_Asesor__c}</td>
+				<td class="s4" colspan="2">{!Datacredito__c.Fecha_y_Hora_Consulta__c}</td>
+			</tr>
+			<tr style='height: 25px;'>
+				<td class="s5"></td>
+				<td class="s5"></td>
+				<td class="s5"></td>
+				<td class="s5"></td>
+				<td class="s5"></td>
+				<td class="s5"></td>
+				<td class="s5"></td>
+			</tr>
+			<tr style='height: 25px;'>
+				<td class="s6" colspan="10">INFORMACIÓN BÁSICA</td>
+			</tr>
+			<tr style='height: 31px;'>
+				<td class="s7">Tipo de documento</td>
+				<td class="s8">{!Datacredito__c.Tipo_Documento__c}</td>
+				<td class="s7">Número</td>
+				<td class="s8">{!Datacredito__c.Numero_Documento__c}</td>
+				<td class="s7">Estado Del documento</td>
+				<td class="s9" colspan="2">{!Datacredito__c.Estado_Documento__c}</td>
+				<td class="s10" colspan="2" rowspan="2">PUNTAJE</td>
+				<td class="s11" rowspan="2">{!Datacredito__c.Puntaje__c}</td>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s7">Nombre</td>
+				<td class="s11" colspan="3">{!Datacredito__c.Nombre_Cliente__c}</td>
+				<td class="s7">Rando de edad</td>
+				<td class="s11" colspan="2">{!Datacredito__c.Rango_Edad__c}</td>
+			</tr>
+			<tr style='height: 25px;'>
+				<td class="s6" colspan="10">ARTICULO 14 LEY 1266 DE 2008</td>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s11" colspan="10" rowspan="2">&quot;{!Datacredito__c.Articulo__c}&quot;</td>
+			</tr>
+			<tr style='height: 19px;'>
+			</tr>
+			<tr style='height: 25px;'>
+				<td class="s6" colspan="10">ALERTAS</td>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s12" colspan="2">Fuente</td>
+				<td class="s12" colspan="2">Fecha</td>
+				<td class="s12">Novedad</td>
+				<td class="s12" colspan="5">Descripción</td>
+			</tr>
+			<apex:repeat var="Alerta" value="{!Datacredito__c.Alertas__r}">
+				<tr style='height: 19px;'>
+					<td class="s11" colspan="2">{!Alerta.Fuente__c}</td>
+					<td class="s11" colspan="2">{!Alerta.Fecha__c}</td>
+					<td class="s11">{!Alerta.Novedad__c}</td>
+					<td class="s11" colspan="5">{!Alerta.Descripcion__c}</td>
+				</tr>
+			</apex:repeat>
+			<tr style='height: 25px;'>
+				<td class="s6" colspan="10">RESUMEN</td>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s13" colspan="10">Perfil General</td>
+			</tr>
+			<tr style='height: 47px;'>
+				<td class="s12" colspan="3">Sectores</td>
+				<td class="s7">Sector Financiero</td>
+				<td class="s7">Sector Cooperativo</td>
+				<td class="s7">Sector Real</td>
+				<td class="s7">Sector Telcos</td>
+				<td class="s7">Total Sectores</td>
+				<td class="s7">Totoal como principal</td>
+				<td class="s7">Total como codeudor y otros</td>
+			</tr>
+			<apex:repeat var="DatosSectores" value="{!Datacredito__c.Datacreditos_Sectores__r}">
+				<tr style='height: 19px;'>
+					<td class="s14" colspan="3">{!DatosSectores.Nombre__c}</td>
+					<td class="s11">{!DatosSectores.Sector_Financiero__c}</td>
+					<td class="s11">{!DatosSectores.Sector_Cooperativo__c}</td>
+					<td class="s11">{!DatosSectores.Sector_Real__c}</td>
+					<td class="s11">{!DatosSectores.Sector_Telcos__c}</td>
+					<td class="s11">{!DatosSectores.Total_Sectores__c}</td>
+					<td class="s11">{!DatosSectores.Total_como_principal__c}</td>
+					<td class="s11">{!DatosSectores.Total_como_codeudor_y_otros__c}</td>
+				</tr>
+			</apex:repeat>
+			<tr style='height: 19px;'>
+				<td class="s13" colspan="10">Tendencias de endeudamiento</td>
+			</tr>
+			<tr style='height: 63px;'>
+				<td class="s12" colspan="2">Saldos y moras</td>
+				<td class="s7">Saldos Deudas Totales en Mora (en miles)</td>
+				<td class="s7">Saldos Deudas Totales (en miles)</td>
+				<td class="s7">Moras máx sector Financiero</td>
+				<td class="s7">Moras máx sector Real</td>
+				<td class="s12">Moras máx sector Telcos</td>
+				<td class="s12">Total Moras Máximas</td>
+				<td class="s7">Núm crédotos con mora = 30</td>
+				<td class="s7">Núm crédotos con mora &gt;= 60</td>
+			</tr>
+			<apex:repeat var="Endeudamientos" value="{!Datacredito__c.Tendencias_Endeudamiento__r}">
+				<tr style='height: 19px;'>
+					<td class="s11" colspan="2">{!Endeudamientos.Fecha__c}</td>
+					<td class="s9">{!Endeudamientos.Saldos_Totales_Mora__c}</td>
+					<td class="s9">{!Endeudamientos.Saldos_Totales_Miles__c}</td>
+					<td class="s9">{!Endeudamientos.Moras_Max_Financiero__c}</td>
+					<td class="s9">{!Endeudamientos.Moras_Max_Real__c}</td>
+					<td class="s9">{!Endeudamientos.Moras_Max_Telcos__c}</td>
+					<td class="s9">{!Endeudamientos.Total_Moras_Max__c}</td>
+					<td class="s9">{!Endeudamientos.Creditos_Mora_30__c}</td>
+					<td class="s9">{!Endeudamientos.Creditos_Mora_60__c}</td>
+				</tr>
+			</apex:repeat>
+			<tr style='height: 25px;'>
+				<td class="s17" colspan="10">Endeudamiento Actual</td>
+			</tr>
+			<apex:repeat var="Cartera" value="{!Datacredito__c.Carteras_Actuales_Financieras__r}">
+				<tr style="height: 19px; display: {!IF(ISBLANK(Cartera.Sector__c), 'none', 'table-row')};">
+					<td class="s18" colspan="10">{!Cartera.Sector__c}</td>
+				</tr>
+				<tr style="height: 19px; display: {!IF(Cartera.Es_Total__c == false, 'table-row', 'none')};">
+					<td class="s19">Cartera</td>
+					<td class="s9" colspan="3">{!Cartera.Tipo__c}</td>
+					<td class="s20"></td>
+					<td class="s20"></td>
+					<td class="s20"></td>
+					<td class="s20"></td>
+					<td class="s20"></td>
+					<td class="s20"></td>
+				</tr>
+				<tr style="height: 31px; display: {!IF(Cartera.Es_Total__c == false, 'table-row', 'none')};">
+					<td class="s7">calidad</td>
+					<td class="s7">Núm</td>
+					<td class="s7">Estado actual</td>
+					<td class="s7">Claf</td>
+					<td class="s7">Vlr o cupo inicial</td>
+					<td class="s7">Saldo actual</td>
+					<td class="s7">Saldo en Mora</td>
+					<td class="s7">Valor Cuota</td>
+					<td class="s7">% Part</td>
+					<td class="s7">% Deuda</td>
+				</tr>
+				<tr style="height: 19px; display: {!IF(Cartera.Es_Total__c == false, 'table-row', 'none')};">
+					<td class="s14">{!Cartera.Calidad__c}</td>
+					<td class="s14">{!Cartera.Numero__c}</td>
+					<td class="s14">{!Cartera.Estado__c}</td>
+					<td class="s14">{!Cartera.Claf__c}</td>
+					<td class="s14">{!Cartera.Valor_Inicial__c}</td>
+					<td class="s14">{!Cartera.Saldo_Actual__c}</td>
+					<td class="s14">{!Cartera.Saldo_Mora__c}</td>
+					<td class="s14">{!Cartera.Valor_Cuota__c}</td>
+					<td class="s14">{!Cartera.Porcentaje_Part__c}</td>
+					<td class="s14">{!Cartera.Porcentaje_Deuda__c}</td>
+				</tr>
+				<tr style="height: 5px; display: {!IF(Cartera.Es_Total__c == false, 'table-row', 'none')};">
+					<td class="s21" colspan="10"></td>
+				</tr>
+				<tr style="height: 19px; display: {!IF(Cartera.Es_Total__c == true, 'table-row', 'none')};">
+					<td class="s16" colspan="2">TOTAL {!Cartera.Name}</td>
+					<td class="s20"></td>
+					<td class="s20"></td>
+					<td class="s14">{!Cartera.Total_Valor_Inicial__c}</td>
+					<td class="s14">{!Cartera.Total_Saldo_Actual__c}</td>
+					<td class="s14">{!Cartera.Total_Saldo_Mora__c}</td>
+					<td class="s14">{!Cartera.Total_Valor_Cuota__c}</td>
+					<td class="s14">{!Cartera.Total_Porcentaje_Part__c}</td>
+					<td class="s14">{!Cartera.Total_Porcentaje_Deuda__c}</td>
+				</tr>
+			</apex:repeat>
+			<tr style='height: 19px;'>
+				<td class="s22 softmerge">
+				<div class="softmerge-inner" style="left: -1px;">TOTAL
+				Sectores</div>
+				</td>
+				<td class="s23"></td>
+				<td class="s23"></td>
+				<td class="s24"></td>
+				<td class="s25">{!Datacredito__c.Total_Valor_Inicial__c}</td>
+				<td class="s25">{!Datacredito__c.Total_Saldo_Actual__c}</td>
+				<td class="s25">{!Datacredito__c.Total_Saldo_Mora__c}</td>
+				<td class="s25">{!Datacredito__c.Total_Valor_Cuota__c}</td>
+				<td class="s25">{!Datacredito__c.Total_Porcentaje_Part__c}</td>
+				<td class="s25">{!Datacredito__c.Total_Porcentaje_Deuda__c}</td>
+			</tr>
+			<tr style='height: 25px;'>
+				<td class="s17" colspan="10">HÁBITO DE PAGO DE OBLIGACIONES
+				ABIERTAS/VIGENTES</td>
+			</tr>
+			<tr style='height: 31px;'>
+				<td class="s12" colspan="2">Entidad informante</td>
+				<td class="s12">Tipo Cuenta</td>
+				<td class="s12">Núm Cta 9 dijitos</td>
+				<td class="s12">Calf</td>
+				<td class="s12">Estado de la Obligacion</td>
+				<td class="s12">Fecha Actualizacíon</td>
+				<td class="s12" colspan="3" rowspan="2">47 meses</td>
+			</tr>
+			<tr style='height: 44px;'>
+				<td class="s12">Adjetivo-fecha</td>
+				<td class="s12">Fecha Apertura</td>
+				<td class="s12">Fecha Vencimiento</td>
+				<td class="s12">Mora Máxima</td>
+				<td class="s12">Desacuerdos con la inform.</td>
+				<td class="s12">Estado del Titular</td>
+				<td class="s12">Marca/Clase</td>
+			</tr>
+			<tr style='height: 31px;'>
+				<td class="s12">Tipo Garantia</td>
+				<td class="s12">Vlr o Cupo inicila</td>
+				<td class="s12">Saldo Actual (Miles $)</td>
+				<td class="s12">Saldos en Mora</td>
+				<td class="s12">Valor Cuota (Miles $)</td>
+				<td class="s12">Fechas Limite Pago</td>
+				<td class="s12">Fechas del Pago</td>
+				<td class="s12">Perm.</td>
+				<td class="s12">No. Cheq Devueltos</td>
+				<td class="s12">Cuotas/M /Vigenccia</td>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s12">% deuda</td>
+				<td class="s26" colspan="2">Ofician / Deudor</td>
+				<td class="s12" colspan="7"></td>
+			</tr>
+			<apex:repeat var="Cartera" value="{!Datacredito__c.Carteras_Vigentes__r}">
+				<tr style="height: 19px; display: {!IF(Cartera.Sector__c != '', 'table-row', 'none')};">
+					<td class="s13" colspan="10">{!Cartera.Sector__c}</td>
+				</tr>
+				<tr style="height: 5px; display: {!IF(Cartera.Sector__c == '', 'table-row', 'none')};">
+					<td class="s21" colspan="10"></td>
+				</tr>
+				<tr style='height: 29px;'>
+					<td class="s11" colspan="2">{!Cartera.Entidad__c}</td>
+					<td class="s11">{!Cartera.Tipo_Cuenta__c}</td>
+					<td class="s11">{!Cartera.Numero_Cuenta__c}</td>
+					<td class="s11">{!Cartera.Calf__c}</td>
+					<td class="s11">{!Cartera.Estado_Obligacion__c	}</td>
+					<td class="s11">{!Cartera.Fecha_Actualizacion__c}</td>
+					<td class="s11" colspan="3" rowspan="2" style="font-size: 10pt">{!Cartera.Tiempo__c}</td>
+				</tr>
+				<tr style='height: 19px;'>
+					<td class="s11">{!Cartera.Adjetivo_Fecha__c}</td>
+					<td class="s11">{!Cartera.Fecha_Apertura__c}</td>
+					<td class="s11">{!Cartera.Fecha_Vencimiento__c}</td>
+					<td class="s11">{!Cartera.Mora_Maxima__c}</td>
+					<td class="s11">{!Cartera.Desacuerdos__c}</td>
+					<td class="s11">{!Cartera.Estado_Titular__c}</td>
+					<td class="s11">{!Cartera.Marca_Clase__c}</td>
+				</tr>
+				<tr style='height: 19px;'>
+					<td class="s11">{!Cartera.Tipo_Garantia__c}</td>
+					<td class="s11">{!Cartera.Valor_Cupo_Inicial__c}</td>
+					<td class="s11">{!Cartera.Saldo_Actual__c}</td>
+					<td class="s11">{!Cartera.Saldos_Mora__c}</td>
+					<td class="s11">{!Cartera.Valor_Cuota__c}</td>
+					<td class="s11">{!Cartera.Fechas_Limite_Pago__c}</td>
+					<td class="s11">{!Cartera.Fechas_del_Pago__c}</td>
+					<td class="s11">{!Cartera.Perm__c}</td>
+					<td class="s11">{!Cartera.Cheques_Devueltos__c}</td>
+					<td class="s11">{!Cartera.Cuotas__c}</td>
+				</tr>
+				<tr style='height: 19px;'>
+					<td class="s11">{!Cartera.Porcentaje_Deuda__c}</td>
+					<td class="s27" colspan="2">{!Cartera.Oficina__c}</td>
+					<td class="s11" colspan="7"></td>
+				</tr>
+			</apex:repeat>
+			<tr style='height: 25px;'>
+				<td class="s17" colspan="10">HÁBITO DE PAGO DE OBLIGACIONES
+				CERRADAS/INACTIVAS</td>
+			</tr>
+			<tr style='height: 31px;'>
+				<td class="s12" colspan="2">Entidad Informante</td>
+				<td class="s12">Tipo Cuenta</td>
+				<td class="s12">Estado de la Obligacion</td>
+				<td class="s12">Calf</td>
+				<td class="s12">Adjetivo Fecha</td>
+				<td class="s12">Num Cta 9 digitos</td>
+				<td class="s12" colspan="3" rowspan="2">47 meses</td>
+			</tr>
+			<tr style='height: 31px;'>
+				<td class="s12">Fecha Apertura</td>
+				<td class="s12">Fecha Cierre</td>
+				<td class="s12">Vrl o cupo inicial</td>
+				<td class="s12">Ciudad Fecha</td>
+				<td class="s12" colspan="2">oficina/Deudor</td>
+				<td class="s12">Desacuerdo con la inform.</td>
+			</tr>
+			<apex:repeat var="Cartera" value="{!Datacredito__c.Carteras_Cerradas__r}">
+				<tr style="height: 19px; display: {!IF(Cartera.Sector__c != '', 'table-row', 'none')};">
+					<td class="s13" colspan="10">{!Cartera.Sector__c}</td>
+				</tr>
+				<tr style="height: 5px; display: {!IF(Cartera.Sector__c == '', 'table-row', 'none')};">
+					<td class="s21" colspan="10"></td>
+				</tr>
+				<tr style='height: 29px;'>
+					<td class="s11" colspan="2">{!Cartera.Entidad__c}</td>
+					<td class="s11">{!Cartera.Tipo_Cuenta__c}</td>
+					<td class="s11">{!Cartera.Estado_Obligacion__c}</td>
+					<td class="s11">{!Cartera.Calf__c}</td>
+					<td class="s11">{!Cartera.Adjetivo_Fecha__c}</td>
+					<td class="s11">{!Cartera.Numero_Cuenta__c}</td>
+					<td class="s11" colspan="3" rowspan="2" style="font-size: 10pt">{!Cartera.Tiempo__c}</td>
+				</tr>
+				<tr style='height: 29px;'>
+					<td class="s11">{!Cartera.Fecha_Apertura__c}</td>
+					<td class="s11">{!Cartera.Fecha_Cierre__c}</td>
+					<td class="s11">{!Cartera.Valor_Cupo_Inicial__c}</td>
+					<td class="s11">{!Cartera.Ciudad_Fecha__c}</td>
+					<td class="s11" colspan="2">{!Cartera.Oficina_Deudor__c}</td>
+					<td class="s11">{!Cartera.Desacuerdo__c}</td>
+				</tr>
+			</apex:repeat>
+			<tr style='height: 25px;'>
+				<td class="s17" colspan="10">HISTÓRICO DE CONSULTAS</td>
+			</tr>
+			<tr style='height: 19px;'>
+				<td class="s29" colspan="4">Fecha Ult. Consulta</td>
+				<td class="s29" colspan="3">Consultante</td>
+				<td class="s29" colspan="3">No. De Consultas mes</td>
+			</tr>
+			<apex:repeat var="Consulta" value="{!Datacredito__c.Consultas_Datacredito__r}">
+				<tr style='height: 19px;'>
+					<td class="s16" colspan="4">{!Consulta.Fecha__c}</td>
+					<td class="s16" colspan="3">{!Consulta.Consultante__c}</td>
+					<td class="s16" colspan="3">{!Consulta.Consultas_Mes__c}</td>
+				</tr>
+			</apex:repeat>
+		</tbody>
+	</table>
+	</div>
+</body>
+</html>
+</apex:page>
