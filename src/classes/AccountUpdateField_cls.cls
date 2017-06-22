@@ -1,9 +1,5 @@
 public class AccountUpdateField_cls 
 {
-    public AccountUpdateField_cls()
-    {
-        
-    }
     
     public static void setAccountUpdate(List<Account> lstAcc)
     {
@@ -19,7 +15,7 @@ public class AccountUpdateField_cls
         for(Account objAccount:lstAcc)
         {
         	//System.debug('1');
-            
+            //System.debug('RecordType: ' + Label.AccountRecordTypeId);
             if(objAccount.RecordTypeId==Label.AccountRecordTypeId && !stIds.contains(objAccount.Cliente_deudor__c))
             {
         		//System.debug('3');
@@ -30,16 +26,12 @@ public class AccountUpdateField_cls
                     Account objAcc= new Account(Id=objAccount.Cliente_deudor__c,Valida_aporta_ingresos__c=objAccount.Aporta_ingresos__c);
                     lstcodeudores.add(objAcc);
                 }
-                else
-                {
-		        	//System.debug('5');
-                    mpAcc.get(objAccount.Cliente_deudor__c).Valida_aporta_ingresos__c=objAccount.Aporta_ingresos__c;
-                }
-                
             }
         }
         //System.debug('Debuline 24: lstcodeudores: '+lstcodeudores);
-        update lstcodeudores;
+        //if(lstcodeudores.size() > 0){
+        //    upsert lstcodeudores;
+        //}
     }
     
 }

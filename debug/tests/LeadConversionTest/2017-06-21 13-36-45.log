@@ -1,0 +1,274 @@
+39.0 APEX_CODE,DEBUG;APEX_PROFILING,NONE;CALLOUT,NONE;DB,INFO;SYSTEM,NONE;VALIDATION,NONE;VISUALFORCE,NONE;WAVE,INFO;WORKFLOW,NONE
+13:36:34.2 (2957992)|USER_INFO|[EXTERNAL]|005P0000001bRWF|pcledesma@credifamilia.com|Colombia Time|GMT-05:00
+13:36:34.2 (3019082)|EXECUTION_STARTED
+13:36:34.2 (3025857)|CODE_UNIT_STARTED|[EXTERNAL]|01pP0000000H0MG|LeadConversionTest.conversion_de_lead_con_un_codeudor
+13:36:34.2 (21127736)|DML_BEGIN|[44]|Op:Insert|Type:Lead|Rows:1
+13:36:34.323 (323094355)|ENTERING_MANAGED_PKG|MC4SF
+13:36:34.323 (359486939)|SOQL_EXECUTE_BEGIN|[37]|Aggregations:0|SELECT Id, Email2__c FROM MC_Subscriber__c 
+13:36:34.323 (369236990)|SOQL_EXECUTE_END|[37]|Rows:0
+13:36:34.2 (375617280)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000009BAj|Conversion on Lead trigger event BeforeInsert for [new]
+13:36:34.2 (376868163)|CODE_UNIT_FINISHED|Conversion on Lead trigger event BeforeInsert for [new]
+13:36:34.2 (380284560)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000008xwP|ConteoLeads on Lead trigger event BeforeInsert for [new]
+13:36:34.2 (380647526)|SOQL_EXECUTE_BEGIN|[5]|Aggregations:0|SELECT COUNT() FROM Lead WHERE Concepto_del_candidato__c=: Consulta
+13:36:34.2 (389703892)|SOQL_EXECUTE_END|[5]|Rows:0
+13:36:34.2 (390887016)|CODE_UNIT_FINISHED|ConteoLeads on Lead trigger event BeforeInsert for [new]
+13:36:34.2 (501531511)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Lead:new
+13:36:34.2 (510889911)|CODE_UNIT_FINISHED|Validation:Lead:new
+13:36:34.2 (566940421)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:Lead
+13:36:34.624 (624062268)|ENTERING_MANAGED_PKG|MC4SF
+13:36:34.2 (627650188)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000008xwP|ConteoLeads on Lead trigger event BeforeUpdate for [00QP0000006z9P2]
+13:36:34.2 (627891547)|SOQL_EXECUTE_BEGIN|[5]|Aggregations:0|SELECT COUNT() FROM Lead WHERE Concepto_del_candidato__c=: Consulta
+13:36:34.2 (630808456)|SOQL_EXECUTE_END|[5]|Rows:0
+13:36:34.2 (631913526)|CODE_UNIT_FINISHED|ConteoLeads on Lead trigger event BeforeUpdate for [00QP0000006z9P2]
+13:36:34.653 (653200677)|ENTERING_MANAGED_PKG|MC4SF
+13:36:34.2 (665155645)|CODE_UNIT_FINISHED|Workflow:Lead
+13:36:34.2 (665392722)|DML_END|[44]
+13:36:34.2 (666175683)|DML_BEGIN|[66]|Op:Insert|Type:Codeudor__c|Rows:1
+13:36:34.2 (696896370)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000009BAy|Codeudor on Codeudor trigger event BeforeInsert for [new]
+13:36:34.2 (697482394)|SOQL_EXECUTE_BEGIN|[5]|Aggregations:0|SELECT Id FROM RecordType WHERE (Name = 'Codeudores' AND SobjectType = 'Account')
+13:36:34.2 (703988631)|SOQL_EXECUTE_END|[5]|Rows:1
+13:36:34.2 (704592719)|SOQL_EXECUTE_BEGIN|[6]|Aggregations:0|SELECT Numero_de_documento__c FROM Account WHERE (RecordTypeId = :tmpVar1 AND Numero_de_documento__c = :tmpVar2)
+13:36:34.2 (713503847)|SOQL_EXECUTE_END|[6]|Rows:0
+13:36:34.2 (713822590)|SOQL_EXECUTE_BEGIN|[19]|Aggregations:0|SELECT Id FROM Codeudor__c WHERE Candidato__c = :tmpVar1
+13:36:34.2 (717745600)|SOQL_EXECUTE_END|[19]|Rows:0
+13:36:34.2 (718861524)|CODE_UNIT_FINISHED|Codeudor on Codeudor trigger event BeforeInsert for [new]
+13:36:34.2 (774768933)|DML_END|[66]
+13:36:34.2 (777222107)|SOQL_EXECUTE_BEGIN|[172]|Aggregations:0|SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted = TRUE LIMIT 1
+13:36:34.2 (780870591)|SOQL_EXECUTE_END|[172]|Rows:1
+13:36:34.2 (781222459)|DML_BEGIN|[175]|Op:ConvertLead|Type:LeadConvertResult|Rows:1
+13:36:37.754 (3754019795)|ENTERING_MANAGED_PKG|MC4SF
+13:36:37.754 (3767414224)|SOQL_EXECUTE_BEGIN|[43]|Aggregations:0|SELECT Id, Email2__c FROM MC_Subscriber__c 
+13:36:37.754 (3771403415)|SOQL_EXECUTE_END|[43]|Rows:0
+13:36:37.776 (3776147823)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1la|AccountUpdateField on PersonAccount trigger event BeforeInsert for [new]
+13:36:37.776 (3813649385)|CODE_UNIT_FINISHED|AccountUpdateField on PersonAccount trigger event BeforeInsert for [new]
+13:36:38.39 (4039654421)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000009BB8|LeadConversion on PersonAccount trigger event AfterInsert for [001P000001LHCC2]
+13:36:38.39 (4040420599)|SOQL_EXECUTE_BEGIN|[2]|Aggregations:0|SELECT COUNT() FROM Lead WHERE Numero_de_identificacion__c = :tmpVar1
+13:36:38.39 (4045510268)|SOQL_EXECUTE_END|[2]|Rows:1
+13:36:38.39 (4045758855)|SOQL_EXECUTE_BEGIN|[3]|Aggregations:0|SELECT Id, Name FROM RecordType WHERE (Name = 'Cliente deudor' AND SobjectType = 'Account')
+13:36:38.39 (4049470105)|SOQL_EXECUTE_END|[3]|Rows:1
+13:36:38.39 (4049688229)|USER_DEBUG|[8]|DEBUG|LeadConversion Trigger -> Trigger.new: 
+13:36:38.39 (4056564463)|USER_DEBUG|[9]|DEBUG|Account:{Id=001P000001LHCC2IAP, IsDeleted=false, MasterRecordId=null, Salutation=null, FirstName=TestName, LastName=Test, MiddleName=null, InformalName=null, Suffix=null, Name=null, Type=null, RecordTypeId=012o0000000Gl0NAAS, ParentId=null, BillingStreet=null, BillingCity=null, BillingState=null, BillingPostalCode=null, BillingCountry=United States, BillingStateCode=null, BillingCountryCode=US, BillingLatitude=null, BillingLongitude=null, BillingGeocodeAccuracy=null, ShippingStreet=null, ShippingCity=null, ShippingState=null, ShippingPostalCode=null, ShippingCountry=United States, ShippingStateCode=null, ShippingCountryCode=US, ShippingLatitude=null, ShippingLongitude=null, ShippingGeocodeAccuracy=null, Phone=1234567, Fax=null, AccountNumber=null, Website=null, PhotoUrl=null, Sic=null, Industry=null, AnnualRevenue=null, NumberOfEmployees=null, Ownership=null, TickerSymbol=null, Description=null, Rating=null, Site=null, OwnerId=005P0000001bRWFIA2, CreatedDate=2017-06-21 18:36:38, CreatedById=005P0000001bRWFIA2, LastModifiedDate=2017-06-21 18:36:38, LastModifiedById=005P0000001bRWFIA2, SystemModstamp=2017-06-21 18:36:38, LastActivityDate=null, LastViewedDate=null, LastReferencedDate=null, PersonContactId=003P0000019tspGIAQ, IsPersonAccount=true, PersonMailingStreet=null, PersonMailingCity=null, PersonMailingState=null, PersonMailingPostalCode=null, PersonMailingCountry=United States, PersonMailingStateCode=null, PersonMailingCountryCode=US, PersonMailingLatitude=null, PersonMailingLongitude=null, PersonMailingGeocodeAccuracy=null, PersonOtherStreet=null, PersonOtherCity=null, PersonOtherState=null, PersonOtherPostalCode=null, PersonOtherCountry=United States, PersonOtherStateCode=null, PersonOtherCountryCode=US, PersonOtherLatitude=null, PersonOtherLongitude=null, PersonOtherGeocodeAccuracy=null, PersonMobilePhone=null, PersonHomePhone=null, PersonOtherPhone=null, PersonAssistantPhone=null, PersonEmail=test@test.com, PersonTitle=null, PersonDepartment=null, PersonAssistantName=null, PersonLeadSource=null, PersonBirthdate=null, PersonHasOptedOutOfEmail=false, PersonHasOptedOutOfFax=false, PersonDoNotCall=false, PersonLastCURequestDate=null, PersonLastCUUpdateDate=null, PersonEmailBouncedReason=null, PersonEmailBouncedDate=null, Jigsaw=null, JigsawCompanyId=null, AccountSource=null, SicDesc=null, Acierta__c=null, Ano_inicio_de_empleo_o_negocio__c=null, Aporta_ingresos__c=null, Aporte_cliente__c=null, Asunto__c=Convenio clientes, Bonos__c=null, C_digo_ciiu__c=null, Camara_de_comercio__c=No, Cargo_que_desempena__c=null, Causal_de_negacion__c=null, Cesantias__c=null, Circulo_notaria__c=null, Ciudad__c=null, Ciudad_de_residencia__c=null, Ciudad_laboral__c=null, Clear__c=null, Cliente_deudor__c=null, Cliente_prevalidado__c=null, Compromisos_de_pago__c=null, Consecutivo__c=47927, Consecutivo_convenio__c=null, Convenio__c=null, Convenio_firmado__c=No, Credito_aprobado__c=null, Credito_solicitado__c=null, Detalle_de_la_solicitud__c=null, Direccion_oficina__c=null, Edad__c=null, Endeudamiento_financiero__c=null, Endeudamiento_financiero_mas_cuota__c=null, Estado_civil__c=null, Estado_de_aprobacion_Riesgos__c=Solicitud de aprobación, Estado_del_cliente__c=null, Estado_del_credito__c=null, Excepcion__c=null, Extension_laboral__c=null, Fecha_de_cambio_de_condiciones__c=null, Fecha_de_carta_definitiva__c=null, Fecha_de_comite__c=null, Fecha_de_desembolso__c=null, Fecha_de_desistido__c=null, Fecha_de_entrega__c=null, Fecha_de_escritura__c=null, Fecha_de_expedicion_cc__c=null, Fecha_de_nacimiento__c=null, Fng__c=null, Fotocopia_Rut_persona_juridica__c=No, Fotocopia_Rut_persona_natural__c=null, Fotocopia_cedula_de_ciudadania__c=No, Fotocopia_cedula_representante_legal__c=null, Gastos_financieros__c=null, Gastos_personales__c=null, Ind_cuota_ingreso_ingreso_neto_dispon__c=null, Ingresos_mes__c=null, Lugar_de_expedicion__c=null, Lugar_de_nacimiento__c=null, Monto__c=null, Motivo_no_viable__c=null, N_escritura__c=null, No_acta__c=null, No_pagare__c=null, Nombre_empresa_negocio__c=null, Notaria_escritura__c=null, Numero_de_credito__c=null, Numero_de_documento__c=-1236392535, Numero_de_empleados__c=null, Numero_de_telefono_celular__c=null, Observaciones__c=null, Personas_a_cargo__c=null, Plazo__c=null, Precio_inmueble__c=null, Referencias_comerciales__c=No, Relacion_cuota_ingreso__c=null, Resultado_prevalidador__c=null, Salario__c=null, Score_interno__c=null, Score_prevalidador__c=null, Sector_economico__c=null, Seguros__c=null, Sexo__c=null, Sistema_amortizacion__c=null, Solicitud_al_gerente_comercial__c=null, Subsidio__c=null, Telefono_laboral__c=null, Tipo__c=null, Tipo_de_cliente__c=null, Tipo_de_contrato__c=null, Tipo_de_documento__c=Cédula ciudadanía, Tipo_de_inmueble__c=null, Tipo_de_ocupacion__c=null, Tipo_de_producto_que_le_interesa__c=null, Tipo_de_vivienda__c=null, Valida_aporta_ingresos__c=null, Validar_apellido__c=null, Validar_direccion_de_oficina__c=null, Validar_direccion_de_residencia__c=null, Validar_nombre__c=null, Validar_numero_de_celular__c=null, Validar_numero_de_documento__c=null, Validar_telefono_de_oficina__c=null, Validar_telefono_residencia__c=null, Valor_activos__c=null, Valor_aprobado_previo__c=null, Valor_arriendo__c=null, Valor_cuota_sugerida__c=null, ltv__c=null, Canal_digital__c=Si, Nombre_de_la_inmobiliaria__c=null, Aprobado_con_programa_MI_CASA_YA__c=null, Propietario_de_la_cuenta__c=Pablo  Ledesma, Codigo_Familia__c=null, Estado_de_la_solicitud__c=null, Tipo_de_registro_de_cuenta__c=Cliente deudor, Fecha_de_ingreso_a_empleo_actual__c=null, Ciudad_de_radicacion__c=null, Check_VIGIA__c=true, Ganada__c=false, Ext_1__c=null, Ingresos_Familiares__c=null, Numero_de_celular_1__c=null, Numero_de_celular_2__c=null, Telefono__c=null, Telefono_2__c=null, Direccion_de_residencia__c=null, Barrio__c=null, Correo_electronico_1__c=null, Correspondencia__c=null, Actividad_economica__c=null, Tipo_de_pcto_credito_de_vivienda_nueva__c=0, Tipo_de_pcto_asignacion_de_cupo__c=0, Tipo_de_pcto_credito_de_vivienda_usada__c=0, Tipo_de_pcto_mejoramiento_de_vivienda__c=0, Tipo_de_pcto_leasing_vivienda_usada__c=0, Tipo_de_pcto_leasing_vivienda_nueva__c=0, Tipo_de_pcto_cuenta_de_ahorros__c=0, Tipo_de_pcto_CDT__c=0, Departamento_actualizacion_datos__c=null, Ciudad_actualizacion_datos__c=null, Indicativo_numero_telefonico__c=0, Direccion_residencia__c=null, Antiguedad_en_la_actividad__c=null, Numero_de_solicitantes__c=null, Codeudores__c=null, MC4SF__MC_Subscriber__pc=null}
+13:36:38.39 (4064595342)|SOQL_EXECUTE_BEGIN|[11]|Aggregations:0|SELECT Id, Name FROM RecordType WHERE (Name = 'Codeudores' AND SobjectType = 'Account')
+13:36:38.39 (4068509491)|SOQL_EXECUTE_END|[11]|Rows:1
+13:36:38.39 (4069270477)|SOQL_EXECUTE_BEGIN|[12]|Aggregations:0|SELECT Id, isConverted, LastName, FirstName, Canal_digital__c, Tipo_de_documento__c, Numero_de_identificacion__c, Ciudad_de_residencia__c, Tipo_de_ocupacion__c, Fecha_de_nacimiento__c, Lugar_de_nacimiento__c, Fecha_de_expedicion_cc__c, Lugar_de_expedicion__c, Estado_civil__c, Numero_de_celular__c, Tipo_de_producto_que_le_interesa__c, Tipo_de_vivienda_residencia__c, Antiguedad_en_la_vivienda_actual_en_a_o__c, Direccion_residencia__c, Phone, Estrato__c, Tipo_de_contrato__c, Fecha_de_ingreso_del_empleo_actual__c, Nombre_entidad_empleadora_o_negocio__c, Direccion_de_la_empresa__c, Tiempo_de_experiencia_en_anos__c, Ciudad_laboral_Actividad_Economica_c__c, Cargo_actual__c, Telefono_Actividad_Economica__c, Familiar_Nombre_y_Apellido__c, Parentesco__c, Direccion_Referencia_Familiar__c, Telefono_referencia_familiar__c, Ciudad_referencia_familiar__c, Personal_Nombre_y_Apellido__c, Relacion__c, Direccion_referencia_personal__c, Telefono_referencia_personal__c, Ciudad_referencia_personal__c FROM Lead WHERE Numero_de_identificacion__c = :tmpVar1
+13:36:38.39 (4075310182)|SOQL_EXECUTE_END|[12]|Rows:1
+13:36:38.39 (4076082684)|SOQL_EXECUTE_BEGIN|[58]|Aggregations:0|SELECT RecordTypeId, Name, Apellidos__c, Apellidos_Ref_Familiar__c, Apellidos_Ref_Personal__c, Barrio_de_residencia_Ref_Familiar__c, Barrio_de_residencia_Ref_Personal__c, Candidato__c, Cargo_actual__c, Celular_Ref_Familiar__c, Celular_Ref_Personal__c, Ciudad_en_la_que_labora__c, Ciudad_de_residencia__c, Direccion_de_la_empresa__c, Estado_civil__c, Experiencia__c, Fecha_de_expedicion__c, Fecha_de_ingreso__c, Fecha_de_nacimiento__c, Lugar_de_expedicion__c, Lugar_de_nacimiento__c, Nivel_de_educaci_n__c, Nombre_entidad_empleadora__c, Nombres_Ref_Familiar__c, Nombres_Ref_Personal__c, Numero_de_celular__c, Ocupacion__c, Parentesco_Ref_Familiar__c, Profesion_u_oficio__c, Telefono_de_la_oficina__c, Telefono_fijo__c, Tipo_de_contrato__c, Tipo_de_documento__c FROM Codeudor__c WHERE Candidato__c = :tmpVar1
+13:36:38.39 (4081584512)|SOQL_EXECUTE_END|[58]|Rows:1
+13:36:38.39 (4082279336)|DML_BEGIN|[131]|Op:Insert|Type:Account|Rows:1
+13:36:38.89 (4089253496)|ENTERING_MANAGED_PKG|MC4SF
+13:36:38.39 (4093030053)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1la|AccountUpdateField on PersonAccount trigger event BeforeInsert for [new]
+13:36:38.39 (4094559817)|CODE_UNIT_FINISHED|AccountUpdateField on PersonAccount trigger event BeforeInsert for [new]
+13:36:38.39 (4109380555)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:PersonAccount:new
+13:36:38.39 (4110765003)|CODE_UNIT_FINISHED|Validation:PersonAccount:new
+13:36:38.39 (4145540687)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000009BB8|LeadConversion on PersonAccount trigger event AfterInsert for [001P000001LHCC3]
+13:36:38.39 (4146072243)|SOQL_EXECUTE_BEGIN|[2]|Aggregations:0|SELECT COUNT() FROM Lead WHERE Numero_de_identificacion__c = :tmpVar1
+13:36:38.39 (4148951753)|SOQL_EXECUTE_END|[2]|Rows:0
+13:36:38.39 (4149185460)|SOQL_EXECUTE_BEGIN|[3]|Aggregations:0|SELECT Id, Name FROM RecordType WHERE (Name = 'Cliente deudor' AND SobjectType = 'Account')
+13:36:38.39 (4153210974)|SOQL_EXECUTE_END|[3]|Rows:1
+13:36:38.39 (4154429431)|CODE_UNIT_FINISHED|LeadConversion on PersonAccount trigger event AfterInsert for [001P000001LHCC3]
+13:36:38.39 (4154528722)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:Account
+13:36:38.39 (4207261295)|CODE_UNIT_FINISHED|Workflow:Account
+13:36:38.39 (4210953165)|DML_END|[131]
+13:36:38.39 (4211400083)|USER_DEBUG|[134]|DEBUG|Se creó el codeudor exitosamente: 001P000001LHCC3IAP
+13:36:38.39 (4211592600)|FATAL_ERROR|System.NullPointerException: Attempt to de-reference a null object
+
+Class.LeadConversionHelper.createAccounts: line 135, column 1
+Class.LeadConversionHelper.<init>: line 97, column 1
+Trigger.LeadConversion: line 10, column 1
+13:36:38.39 (4211613249)|FATAL_ERROR|System.NullPointerException: Attempt to de-reference a null object
+
+Class.LeadConversionHelper.createAccounts: line 135, column 1
+Class.LeadConversionHelper.<init>: line 97, column 1
+Trigger.LeadConversion: line 10, column 1
+13:36:38.39 (4213379080)|CODE_UNIT_FINISHED|LeadConversion on PersonAccount trigger event AfterInsert for [001P000001LHCC2]
+13:36:38.221 (4221551121)|DML_END|[298]
+13:36:38.221 (4221635574)|EXCEPTION_THROWN|[298]|System.DmlException: Insert failed. First exception on row 0; first error: CANNOT_INSERT_UPDATE_ACTIVATE_ENTITY, LeadConversion: execution of AfterInsert
+
+caused by: System.NullPointerException: Attempt to de-reference a null object
+
+Class.LeadConversionHelper.createAccounts: line 135, column 1
+Class.LeadConversionHelper.<init>: line 97, column 1
+Trigger.LeadConversion: line 10, column 1: []
+13:36:38.225 (4225536472)|DML_END|[175]
+13:36:38.225 (4225580392)|EXCEPTION_THROWN|[175]|System.DmlException: ConvertLead failed. First exception on row 0; first error: UNKNOWN_EXCEPTION, System.DmlException: Insert failed. First exception on row 0; first error: CANNOT_INSERT_UPDATE_ACTIVATE_ENTITY, LeadConversion: execution of AfterInsert
+
+caused by: System.NullPointerException: Attempt to de-reference a null object
+
+Class.LeadConversionHelper.createAccounts: line 135, column 1
+Class.LeadConversionHelper.<init>: line 97, column 1
+Trigger.LeadConversion: line 10, column 1: []
+
+(System Code)
+: []
+13:36:38.225 (4226041602)|FATAL_ERROR|System.DmlException: ConvertLead failed. First exception on row 0; first error: UNKNOWN_EXCEPTION, System.DmlException: Insert failed. First exception on row 0; first error: CANNOT_INSERT_UPDATE_ACTIVATE_ENTITY, LeadConversion: execution of AfterInsert
+
+caused by: System.NullPointerException: Attempt to de-reference a null object
+
+Class.LeadConversionHelper.createAccounts: line 135, column 1
+Class.LeadConversionHelper.<init>: line 97, column 1
+Trigger.LeadConversion: line 10, column 1: []
+
+(System Code)
+: []
+
+Class.TestDataFactory.leadConversion: line 175, column 1
+Class.LeadConversionTest.conversion_de_lead_con_un_codeudor: line 54, column 1
+13:36:38.225 (4226063729)|FATAL_ERROR|System.DmlException: ConvertLead failed. First exception on row 0; first error: UNKNOWN_EXCEPTION, System.DmlException: Insert failed. First exception on row 0; first error: CANNOT_INSERT_UPDATE_ACTIVATE_ENTITY, LeadConversion: execution of AfterInsert
+
+caused by: System.NullPointerException: Attempt to de-reference a null object
+
+Class.LeadConversionHelper.createAccounts: line 135, column 1
+Class.LeadConversionHelper.<init>: line 97, column 1
+Trigger.LeadConversion: line 10, column 1: []
+
+(System Code)
+: []
+
+Class.TestDataFactory.leadConversion: line 175, column 1
+Class.LeadConversionTest.conversion_de_lead_con_un_codeudor: line 54, column 1
+13:36:38.225 (4226089957)|CODE_UNIT_FINISHED|LeadConversionTest.conversion_de_lead_con_un_codeudor
+13:36:38.225 (4227232750)|EXECUTION_FINISHED
+13:36:38.918 (4918425400)|USER_INFO|[EXTERNAL]|005P0000001bRWF|pcledesma@credifamilia.com|Colombia Time|GMT-05:00
+13:36:38.918 (4918466877)|EXECUTION_STARTED
+13:36:38.918 (4918473922)|CODE_UNIT_STARTED|[EXTERNAL]|01pP0000000H0MG|LeadConversionTest.conversion_de_lead_sin_codeudor
+13:36:38.918 (4919254637)|DML_BEGIN|[17]|Op:Insert|Type:Lead|Rows:1
+13:36:38.922 (4922936429)|ENTERING_MANAGED_PKG|MC4SF
+13:36:38.922 (4924134456)|SOQL_EXECUTE_BEGIN|[37]|Aggregations:0|SELECT Id, Email2__c FROM MC_Subscriber__c 
+13:36:38.922 (4927958200)|SOQL_EXECUTE_END|[37]|Rows:0
+13:36:38.918 (4932044048)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000009BAj|Conversion on Lead trigger event BeforeInsert for [new]
+13:36:38.918 (4933047112)|CODE_UNIT_FINISHED|Conversion on Lead trigger event BeforeInsert for [new]
+13:36:38.918 (4934691314)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000008xwP|ConteoLeads on Lead trigger event BeforeInsert for [new]
+13:36:38.918 (4934976760)|SOQL_EXECUTE_BEGIN|[5]|Aggregations:0|SELECT COUNT() FROM Lead WHERE Concepto_del_candidato__c=: Consulta
+13:36:38.918 (4936507489)|SOQL_EXECUTE_END|[5]|Rows:0
+13:36:38.918 (4937594208)|CODE_UNIT_FINISHED|ConteoLeads on Lead trigger event BeforeInsert for [new]
+13:36:38.918 (4940939697)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Lead:new
+13:36:38.918 (4941380280)|CODE_UNIT_FINISHED|Validation:Lead:new
+13:36:38.918 (4967209932)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:Lead
+13:36:38.976 (4976204756)|ENTERING_MANAGED_PKG|MC4SF
+13:36:38.918 (4979817695)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000008xwP|ConteoLeads on Lead trigger event BeforeUpdate for [00QP0000006z9P3]
+13:36:38.918 (4980147537)|SOQL_EXECUTE_BEGIN|[5]|Aggregations:0|SELECT COUNT() FROM Lead WHERE Concepto_del_candidato__c=: Consulta
+13:36:38.918 (4982922047)|SOQL_EXECUTE_END|[5]|Rows:0
+13:36:38.918 (4983961909)|CODE_UNIT_FINISHED|ConteoLeads on Lead trigger event BeforeUpdate for [00QP0000006z9P3]
+13:36:39.0 (5000498593)|ENTERING_MANAGED_PKG|MC4SF
+13:36:38.918 (5003661775)|CODE_UNIT_FINISHED|Workflow:Lead
+13:36:38.918 (5003800933)|DML_END|[17]
+13:36:38.918 (5006067172)|SOQL_EXECUTE_BEGIN|[172]|Aggregations:0|SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted = TRUE LIMIT 1
+13:36:38.918 (5010128875)|SOQL_EXECUTE_END|[172]|Rows:1
+13:36:38.918 (5010316122)|DML_BEGIN|[175]|Op:ConvertLead|Type:LeadConvertResult|Rows:1
+13:36:39.70 (5070526672)|ENTERING_MANAGED_PKG|MC4SF
+13:36:39.70 (5072643208)|SOQL_EXECUTE_BEGIN|[43]|Aggregations:0|SELECT Id, Email2__c FROM MC_Subscriber__c 
+13:36:39.70 (5076483940)|SOQL_EXECUTE_END|[43]|Rows:0
+13:36:39.80 (5080038671)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1la|AccountUpdateField on PersonAccount trigger event BeforeInsert for [new]
+13:36:39.80 (5081336344)|CODE_UNIT_FINISHED|AccountUpdateField on PersonAccount trigger event BeforeInsert for [new]
+13:36:39.131 (5131231304)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000009BB8|LeadConversion on PersonAccount trigger event AfterInsert for [001P000001LHCC4]
+13:36:39.131 (5131686015)|SOQL_EXECUTE_BEGIN|[2]|Aggregations:0|SELECT COUNT() FROM Lead WHERE Numero_de_identificacion__c = :tmpVar1
+13:36:39.131 (5136621449)|SOQL_EXECUTE_END|[2]|Rows:1
+13:36:39.131 (5136904329)|SOQL_EXECUTE_BEGIN|[3]|Aggregations:0|SELECT Id, Name FROM RecordType WHERE (Name = 'Cliente deudor' AND SobjectType = 'Account')
+13:36:39.131 (5140568754)|SOQL_EXECUTE_END|[3]|Rows:1
+13:36:39.131 (5140781406)|USER_DEBUG|[8]|DEBUG|LeadConversion Trigger -> Trigger.new: 
+13:36:39.131 (5143538478)|USER_DEBUG|[9]|DEBUG|Account:{Id=001P000001LHCC4IAP, IsDeleted=false, MasterRecordId=null, Salutation=null, FirstName=TestName, LastName=Test, MiddleName=null, InformalName=null, Suffix=null, Name=null, Type=null, RecordTypeId=012o0000000Gl0NAAS, ParentId=null, BillingStreet=null, BillingCity=null, BillingState=null, BillingPostalCode=null, BillingCountry=United States, BillingStateCode=null, BillingCountryCode=US, BillingLatitude=null, BillingLongitude=null, BillingGeocodeAccuracy=null, ShippingStreet=null, ShippingCity=null, ShippingState=null, ShippingPostalCode=null, ShippingCountry=United States, ShippingStateCode=null, ShippingCountryCode=US, ShippingLatitude=null, ShippingLongitude=null, ShippingGeocodeAccuracy=null, Phone=1234567, Fax=null, AccountNumber=null, Website=null, PhotoUrl=null, Sic=null, Industry=null, AnnualRevenue=null, NumberOfEmployees=null, Ownership=null, TickerSymbol=null, Description=null, Rating=null, Site=null, OwnerId=005P0000001bRWFIA2, CreatedDate=2017-06-21 18:36:39, CreatedById=005P0000001bRWFIA2, LastModifiedDate=2017-06-21 18:36:39, LastModifiedById=005P0000001bRWFIA2, SystemModstamp=2017-06-21 18:36:39, LastActivityDate=null, LastViewedDate=null, LastReferencedDate=null, PersonContactId=003P0000019tspIIAQ, IsPersonAccount=true, PersonMailingStreet=null, PersonMailingCity=null, PersonMailingState=null, PersonMailingPostalCode=null, PersonMailingCountry=United States, PersonMailingStateCode=null, PersonMailingCountryCode=US, PersonMailingLatitude=null, PersonMailingLongitude=null, PersonMailingGeocodeAccuracy=null, PersonOtherStreet=null, PersonOtherCity=null, PersonOtherState=null, PersonOtherPostalCode=null, PersonOtherCountry=United States, PersonOtherStateCode=null, PersonOtherCountryCode=US, PersonOtherLatitude=null, PersonOtherLongitude=null, PersonOtherGeocodeAccuracy=null, PersonMobilePhone=null, PersonHomePhone=null, PersonOtherPhone=null, PersonAssistantPhone=null, PersonEmail=test@test.com, PersonTitle=null, PersonDepartment=null, PersonAssistantName=null, PersonLeadSource=null, PersonBirthdate=null, PersonHasOptedOutOfEmail=false, PersonHasOptedOutOfFax=false, PersonDoNotCall=false, PersonLastCURequestDate=null, PersonLastCUUpdateDate=null, PersonEmailBouncedReason=null, PersonEmailBouncedDate=null, Jigsaw=null, JigsawCompanyId=null, AccountSource=null, SicDesc=null, Acierta__c=null, Ano_inicio_de_empleo_o_negocio__c=null, Aporta_ingresos__c=null, Aporte_cliente__c=null, Asunto__c=Convenio clientes, Bonos__c=null, C_digo_ciiu__c=null, Camara_de_comercio__c=No, Cargo_que_desempena__c=null, Causal_de_negacion__c=null, Cesantias__c=null, Circulo_notaria__c=null, Ciudad__c=null, Ciudad_de_residencia__c=null, Ciudad_laboral__c=null, Clear__c=null, Cliente_deudor__c=null, Cliente_prevalidado__c=null, Compromisos_de_pago__c=null, Consecutivo__c=47929, Consecutivo_convenio__c=null, Convenio__c=null, Convenio_firmado__c=No, Credito_aprobado__c=null, Credito_solicitado__c=null, Detalle_de_la_solicitud__c=null, Direccion_oficina__c=null, Edad__c=null, Endeudamiento_financiero__c=null, Endeudamiento_financiero_mas_cuota__c=null, Estado_civil__c=null, Estado_de_aprobacion_Riesgos__c=Solicitud de aprobación, Estado_del_cliente__c=null, Estado_del_credito__c=null, Excepcion__c=null, Extension_laboral__c=null, Fecha_de_cambio_de_condiciones__c=null, Fecha_de_carta_definitiva__c=null, Fecha_de_comite__c=null, Fecha_de_desembolso__c=null, Fecha_de_desistido__c=null, Fecha_de_entrega__c=null, Fecha_de_escritura__c=null, Fecha_de_expedicion_cc__c=null, Fecha_de_nacimiento__c=null, Fng__c=null, Fotocopia_Rut_persona_juridica__c=No, Fotocopia_Rut_persona_natural__c=null, Fotocopia_cedula_de_ciudadania__c=No, Fotocopia_cedula_representante_legal__c=null, Gastos_financieros__c=null, Gastos_personales__c=null, Ind_cuota_ingreso_ingreso_neto_dispon__c=null, Ingresos_mes__c=null, Lugar_de_expedicion__c=null, Lugar_de_nacimiento__c=null, Monto__c=null, Motivo_no_viable__c=null, N_escritura__c=null, No_acta__c=null, No_pagare__c=null, Nombre_empresa_negocio__c=null, Notaria_escritura__c=null, Numero_de_credito__c=null, Numero_de_documento__c=1333805509, Numero_de_empleados__c=null, Numero_de_telefono_celular__c=null, Observaciones__c=null, Personas_a_cargo__c=null, Plazo__c=null, Precio_inmueble__c=null, Referencias_comerciales__c=No, Relacion_cuota_ingreso__c=null, Resultado_prevalidador__c=null, Salario__c=null, Score_interno__c=null, Score_prevalidador__c=null, Sector_economico__c=null, Seguros__c=null, Sexo__c=null, Sistema_amortizacion__c=null, Solicitud_al_gerente_comercial__c=null, Subsidio__c=null, Telefono_laboral__c=null, Tipo__c=null, Tipo_de_cliente__c=null, Tipo_de_contrato__c=null, Tipo_de_documento__c=Cédula ciudadanía, Tipo_de_inmueble__c=null, Tipo_de_ocupacion__c=null, Tipo_de_producto_que_le_interesa__c=null, Tipo_de_vivienda__c=null, Valida_aporta_ingresos__c=null, Validar_apellido__c=null, Validar_direccion_de_oficina__c=null, Validar_direccion_de_residencia__c=null, Validar_nombre__c=null, Validar_numero_de_celular__c=null, Validar_numero_de_documento__c=null, Validar_telefono_de_oficina__c=null, Validar_telefono_residencia__c=null, Valor_activos__c=null, Valor_aprobado_previo__c=null, Valor_arriendo__c=null, Valor_cuota_sugerida__c=null, ltv__c=null, Canal_digital__c=Si, Nombre_de_la_inmobiliaria__c=null, Aprobado_con_programa_MI_CASA_YA__c=null, Propietario_de_la_cuenta__c=Pablo  Ledesma, Codigo_Familia__c=null, Estado_de_la_solicitud__c=null, Tipo_de_registro_de_cuenta__c=Cliente deudor, Fecha_de_ingreso_a_empleo_actual__c=null, Ciudad_de_radicacion__c=null, Check_VIGIA__c=true, Ganada__c=false, Ext_1__c=null, Ingresos_Familiares__c=null, Numero_de_celular_1__c=null, Numero_de_celular_2__c=null, Telefono__c=null, Telefono_2__c=null, Direccion_de_residencia__c=null, Barrio__c=null, Correo_electronico_1__c=null, Correspondencia__c=null, Actividad_economica__c=null, Tipo_de_pcto_credito_de_vivienda_nueva__c=0, Tipo_de_pcto_asignacion_de_cupo__c=0, Tipo_de_pcto_credito_de_vivienda_usada__c=0, Tipo_de_pcto_mejoramiento_de_vivienda__c=0, Tipo_de_pcto_leasing_vivienda_usada__c=0, Tipo_de_pcto_leasing_vivienda_nueva__c=0, Tipo_de_pcto_cuenta_de_ahorros__c=0, Tipo_de_pcto_CDT__c=0, Departamento_actualizacion_datos__c=null, Ciudad_actualizacion_datos__c=null, Indicativo_numero_telefonico__c=0, Direccion_residencia__c=null, Antiguedad_en_la_actividad__c=null, Numero_de_solicitantes__c=null, Codeudores__c=null, MC4SF__MC_Subscriber__pc=null}
+13:36:39.131 (5144504168)|SOQL_EXECUTE_BEGIN|[11]|Aggregations:0|SELECT Id, Name FROM RecordType WHERE (Name = 'Codeudores' AND SobjectType = 'Account')
+13:36:39.131 (5147443948)|SOQL_EXECUTE_END|[11]|Rows:1
+13:36:39.131 (5148140477)|SOQL_EXECUTE_BEGIN|[12]|Aggregations:0|SELECT Id, isConverted, LastName, FirstName, Canal_digital__c, Tipo_de_documento__c, Numero_de_identificacion__c, Ciudad_de_residencia__c, Tipo_de_ocupacion__c, Fecha_de_nacimiento__c, Lugar_de_nacimiento__c, Fecha_de_expedicion_cc__c, Lugar_de_expedicion__c, Estado_civil__c, Numero_de_celular__c, Tipo_de_producto_que_le_interesa__c, Tipo_de_vivienda_residencia__c, Antiguedad_en_la_vivienda_actual_en_a_o__c, Direccion_residencia__c, Phone, Estrato__c, Tipo_de_contrato__c, Fecha_de_ingreso_del_empleo_actual__c, Nombre_entidad_empleadora_o_negocio__c, Direccion_de_la_empresa__c, Tiempo_de_experiencia_en_anos__c, Ciudad_laboral_Actividad_Economica_c__c, Cargo_actual__c, Telefono_Actividad_Economica__c, Familiar_Nombre_y_Apellido__c, Parentesco__c, Direccion_Referencia_Familiar__c, Telefono_referencia_familiar__c, Ciudad_referencia_familiar__c, Personal_Nombre_y_Apellido__c, Relacion__c, Direccion_referencia_personal__c, Telefono_referencia_personal__c, Ciudad_referencia_personal__c FROM Lead WHERE Numero_de_identificacion__c = :tmpVar1
+13:36:39.131 (5154117804)|SOQL_EXECUTE_END|[12]|Rows:1
+13:36:39.131 (5154825470)|SOQL_EXECUTE_BEGIN|[58]|Aggregations:0|SELECT RecordTypeId, Name, Apellidos__c, Apellidos_Ref_Familiar__c, Apellidos_Ref_Personal__c, Barrio_de_residencia_Ref_Familiar__c, Barrio_de_residencia_Ref_Personal__c, Candidato__c, Cargo_actual__c, Celular_Ref_Familiar__c, Celular_Ref_Personal__c, Ciudad_en_la_que_labora__c, Ciudad_de_residencia__c, Direccion_de_la_empresa__c, Estado_civil__c, Experiencia__c, Fecha_de_expedicion__c, Fecha_de_ingreso__c, Fecha_de_nacimiento__c, Lugar_de_expedicion__c, Lugar_de_nacimiento__c, Nivel_de_educaci_n__c, Nombre_entidad_empleadora__c, Nombres_Ref_Familiar__c, Nombres_Ref_Personal__c, Numero_de_celular__c, Ocupacion__c, Parentesco_Ref_Familiar__c, Profesion_u_oficio__c, Telefono_de_la_oficina__c, Telefono_fijo__c, Tipo_de_contrato__c, Tipo_de_documento__c FROM Codeudor__c WHERE Candidato__c = :tmpVar1
+13:36:39.131 (5157189085)|SOQL_EXECUTE_END|[58]|Rows:0
+13:36:39.131 (5157459456)|SOQL_EXECUTE_BEGIN|[147]|Aggregations:0|SELECT id, name FROM RecordType WHERE SobjectType = 'Solicitud_de_credito__c'
+13:36:39.131 (5160760752)|SOQL_EXECUTE_END|[147]|Rows:3
+13:36:39.131 (5161338654)|DML_BEGIN|[166]|Op:Insert|Type:Solicitud_de_credito__c|Rows:1
+13:36:39.131 (5383043952)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1lh|SolicitudCredito_tgr on Solicitud_de_credito trigger event BeforeInsert for [new]
+13:36:39.131 (5387504735)|SOQL_EXECUTE_BEGIN|[5]|Aggregations:0|SELECT Account.Name, Cliente_deudor__c, Codeudor_1__c, Codeudor_2__c, Codeudor_3__c FROM Opportunity WHERE Id = :tmpVar1
+13:36:39.131 (5395832052)|SOQL_EXECUTE_END|[5]|Rows:0
+13:36:39.131 (5398209112)|CODE_UNIT_FINISHED|SolicitudCredito_tgr on Solicitud_de_credito trigger event BeforeInsert for [new]
+13:36:39.131 (5400171520)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000009B0t|LinkMetaToSolicitudDeCredito on Solicitud_de_credito trigger event BeforeInsert for [new]
+13:36:39.131 (5400489478)|SOQL_EXECUTE_BEGIN|[2]|Aggregations:0|SELECT Id FROM Meta__c LIMIT 1
+13:36:39.131 (5406605700)|SOQL_EXECUTE_END|[2]|Rows:0
+13:36:39.131 (5407691653)|CODE_UNIT_FINISHED|LinkMetaToSolicitudDeCredito on Solicitud_de_credito trigger event BeforeInsert for [new]
+13:36:39.131 (5729579785)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Solicitud_de_credito:new
+13:36:39.131 (5734409435)|CODE_UNIT_FINISHED|Validation:Solicitud_de_credito:new
+13:36:39.131 (5764856273)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1lh|SolicitudCredito_tgr on Solicitud_de_credito trigger event AfterInsert for [a00P0000003nxi5]
+13:36:39.131 (5778444260)|SOQL_EXECUTE_BEGIN|[13]|Aggregations:0|SELECT Campo_destino__c, Campo_llave__c, Campo_origen__c, CreatedById, CreatedDate, Id, Id_externo__c, IsDeleted, LastModifiedById, LastModifiedDate, Name, Objeto_destino__c, Objeto_origen__c, SetupOwnerId, SystemModstamp FROM Actualizacionderegistros__c WHERE (Objeto_origen__c = :tmpVar1 AND Id_externo_destino__c = NULL)
+13:36:39.131 (5782988635)|SOQL_EXECUTE_END|[13]|Rows:0
+13:36:39.131 (5784531602)|CODE_UNIT_FINISHED|SolicitudCredito_tgr on Solicitud_de_credito trigger event AfterInsert for [a00P0000003nxi5]
+13:36:39.131 (5784600320)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:01Io0000000nq3Z
+13:36:39.131 (5870762907)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1lh|SolicitudCredito_tgr on Solicitud_de_credito trigger event BeforeUpdate for [a00P0000003nxi5]
+13:36:39.131 (5872234872)|SOQL_EXECUTE_BEGIN|[5]|Aggregations:0|SELECT Account.Name, Cliente_deudor__c, Codeudor_1__c, Codeudor_2__c, Codeudor_3__c FROM Opportunity WHERE Id = :tmpVar1
+13:36:39.131 (5874861530)|SOQL_EXECUTE_END|[5]|Rows:0
+13:36:39.131 (5876519355)|CODE_UNIT_FINISHED|SolicitudCredito_tgr on Solicitud_de_credito trigger event BeforeUpdate for [a00P0000003nxi5]
+13:36:39.131 (5900459492)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1lh|SolicitudCredito_tgr on Solicitud_de_credito trigger event AfterUpdate for [a00P0000003nxi5]
+13:36:39.131 (5901840096)|SOQL_EXECUTE_BEGIN|[13]|Aggregations:0|SELECT Campo_destino__c, Campo_llave__c, Campo_origen__c, CreatedById, CreatedDate, Id, Id_externo__c, IsDeleted, LastModifiedById, LastModifiedDate, Name, Objeto_destino__c, Objeto_origen__c, SetupOwnerId, SystemModstamp FROM Actualizacionderegistros__c WHERE (Objeto_origen__c = :tmpVar1 AND Id_externo_destino__c = NULL)
+13:36:39.131 (5906180900)|SOQL_EXECUTE_END|[13]|Rows:0
+13:36:39.131 (5907347746)|CODE_UNIT_FINISHED|SolicitudCredito_tgr on Solicitud_de_credito trigger event AfterUpdate for [a00P0000003nxi5]
+13:36:39.131 (5915493252)|CODE_UNIT_FINISHED|Workflow:01Io0000000nq3Z
+13:36:39.131 (5916111493)|DML_END|[166]
+13:36:39.131 (5916320168)|USER_DEBUG|[169]|DEBUG|Se creó la Solicitud de credito: a00P0000003nxi5IAA
+13:36:39.131 (5917331657)|DML_BEGIN|[220]|Op:Insert|Type:Radicacion_de_credito__c|Rows:1
+13:36:39.131 (6092963849)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1lf|RadicacionCredito_tgr on Radicacion_de_credito trigger event BeforeInsert for [new]
+13:36:39.131 (6095946264)|CODE_UNIT_FINISHED|RadicacionCredito_tgr on Radicacion_de_credito trigger event BeforeInsert for [new]
+13:36:40.356 (6356324813)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Radicacion_de_credito:new
+13:36:40.356 (6363888992)|CODE_UNIT_FINISHED|Validation:Radicacion_de_credito:new
+13:36:40.356 (6406983123)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1lf|RadicacionCredito_tgr on Radicacion_de_credito trigger event AfterInsert for [a01P0000005xgBk]
+13:36:40.356 (6408239822)|SOQL_EXECUTE_BEGIN|[13]|Aggregations:0|SELECT Campo_destino__c, Campo_llave__c, Campo_origen__c, CreatedById, CreatedDate, Id, Id_externo__c, IsDeleted, LastModifiedById, LastModifiedDate, Name, Objeto_destino__c, Objeto_origen__c, SetupOwnerId, SystemModstamp FROM Actualizacionderegistros__c WHERE (Objeto_origen__c = :tmpVar1 AND Id_externo_destino__c = NULL)
+13:36:40.356 (6412819195)|SOQL_EXECUTE_END|[13]|Rows:0
+13:36:40.356 (6413651250)|SOQL_EXECUTE_BEGIN|[13]|Aggregations:0|SELECT Campo_destino__c, Campo_llave__c, Campo_origen__c, CreatedById, CreatedDate, Id, Id_externo__c, IsDeleted, LastModifiedById, LastModifiedDate, Name, Objeto_destino__c, Objeto_origen__c, SetupOwnerId, SystemModstamp FROM Actualizacionderegistros__c WHERE (Objeto_origen__c = :tmpVar1 AND Id_externo_destino__c = NULL)
+13:36:40.356 (6417244000)|SOQL_EXECUTE_END|[13]|Rows:0
+13:36:40.356 (6418815888)|CODE_UNIT_FINISHED|RadicacionCredito_tgr on Radicacion_de_credito trigger event AfterInsert for [a01P0000005xgBk]
+13:36:40.356 (6418899716)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:01Io0000000nq4c
+13:36:40.356 (6479953103)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1lf|RadicacionCredito_tgr on Radicacion_de_credito trigger event BeforeUpdate for [a01P0000005xgBk]
+13:36:40.356 (6482543507)|CODE_UNIT_FINISHED|RadicacionCredito_tgr on Radicacion_de_credito trigger event BeforeUpdate for [a01P0000005xgBk]
+13:36:40.356 (6521254485)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1lf|RadicacionCredito_tgr on Radicacion_de_credito trigger event AfterUpdate for [a01P0000005xgBk]
+13:36:40.356 (6522938672)|SOQL_EXECUTE_BEGIN|[13]|Aggregations:0|SELECT Campo_destino__c, Campo_llave__c, Campo_origen__c, CreatedById, CreatedDate, Id, Id_externo__c, IsDeleted, LastModifiedById, LastModifiedDate, Name, Objeto_destino__c, Objeto_origen__c, SetupOwnerId, SystemModstamp FROM Actualizacionderegistros__c WHERE (Objeto_origen__c = :tmpVar1 AND Id_externo_destino__c = NULL)
+13:36:40.356 (6530608334)|SOQL_EXECUTE_END|[13]|Rows:0
+13:36:40.356 (6531175157)|SOQL_EXECUTE_BEGIN|[13]|Aggregations:0|SELECT Campo_destino__c, Campo_llave__c, Campo_origen__c, CreatedById, CreatedDate, Id, Id_externo__c, IsDeleted, LastModifiedById, LastModifiedDate, Name, Objeto_destino__c, Objeto_origen__c, SetupOwnerId, SystemModstamp FROM Actualizacionderegistros__c WHERE (Objeto_origen__c = :tmpVar1 AND Id_externo_destino__c = NULL)
+13:36:40.356 (6535024819)|SOQL_EXECUTE_END|[13]|Rows:0
+13:36:40.356 (6536697100)|CODE_UNIT_FINISHED|RadicacionCredito_tgr on Radicacion_de_credito trigger event AfterUpdate for [a01P0000005xgBk]
+13:36:40.356 (6540035344)|CODE_UNIT_FINISHED|Workflow:01Io0000000nq4c
+13:36:40.356 (6541324922)|DML_END|[220]
+13:36:40.356 (6541513812)|USER_DEBUG|[223]|DEBUG|Se creó la radicación de credito: a01P0000005xgBkIAI
+13:36:40.356 (6543377636)|CODE_UNIT_FINISHED|LeadConversion on PersonAccount trigger event AfterInsert for [001P000001LHCC4]
+13:36:40.559 (6559656158)|ENTERING_MANAGED_PKG|MC4SF
+13:36:40.567 (6567429392)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1la|AccountUpdateField on PersonAccount trigger event BeforeUpdate for [001P000001LHCC4]
+13:36:40.567 (6569042944)|CODE_UNIT_FINISHED|AccountUpdateField on PersonAccount trigger event BeforeUpdate for [001P000001LHCC4]
+13:36:40.617 (6617122989)|ENTERING_MANAGED_PKG|MC4SF
+13:36:40.620 (6620394389)|DML_END|[298]
+13:36:40.714 (6714519467)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000009B0P|LinkMetaToOpportunity on Opportunity trigger event BeforeInsert for [new]
+13:36:40.714 (6714880853)|SOQL_EXECUTE_BEGIN|[3]|Aggregations:0|SELECT Id FROM Meta__c LIMIT 1
+13:36:40.714 (6716744125)|SOQL_EXECUTE_END|[3]|Rows:0
+13:36:40.714 (6717842093)|CODE_UNIT_FINISHED|LinkMetaToOpportunity on Opportunity trigger event BeforeInsert for [new]
+13:36:40.720 (6720847999)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1ld|Opportunity_UpdateParent_trg on Opportunity trigger event BeforeInsert for [new]
+13:36:40.720 (6721532280)|SOQL_EXECUTE_BEGIN|[13]|Aggregations:0|SELECT Campo_destino__c, Campo_llave__c, Campo_origen__c, CreatedById, CreatedDate, Id, Id_externo__c, IsDeleted, LastModifiedById, LastModifiedDate, Name, Objeto_destino__c, Objeto_origen__c, SetupOwnerId, SystemModstamp FROM Actualizacionderegistros__c WHERE (Objeto_origen__c = :tmpVar1 AND Id_externo_destino__c = NULL)
+13:36:40.720 (6725241362)|SOQL_EXECUTE_END|[13]|Rows:0
+13:36:40.720 (6726431426)|CODE_UNIT_FINISHED|Opportunity_UpdateParent_trg on Opportunity trigger event BeforeInsert for [new]
+13:36:40.956 (6956956566)|CODE_UNIT_STARTED|[EXTERNAL]|01qo0000000g1ld|Opportunity_UpdateParent_trg on Opportunity trigger event BeforeUpdate for [006P0000008ZEJC]
+13:36:40.956 (6957856711)|SOQL_EXECUTE_BEGIN|[13]|Aggregations:0|SELECT Campo_destino__c, Campo_llave__c, Campo_origen__c, CreatedById, CreatedDate, Id, Id_externo__c, IsDeleted, LastModifiedById, LastModifiedDate, Name, Objeto_destino__c, Objeto_origen__c, SetupOwnerId, SystemModstamp FROM Actualizacionderegistros__c WHERE (Objeto_origen__c = :tmpVar1 AND Id_externo_destino__c = NULL)
+13:36:40.956 (6962653375)|SOQL_EXECUTE_END|[13]|Rows:0
+13:36:40.956 (6963902954)|CODE_UNIT_FINISHED|Opportunity_UpdateParent_trg on Opportunity trigger event BeforeUpdate for [006P0000008ZEJC]
+13:36:40.620 (7011616143)|DML_END|[413]
+13:36:41.158 (7158180631)|ENTERING_MANAGED_PKG|MC4SF
+13:36:41.161 (7161576246)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000008xwP|ConteoLeads on Lead trigger event BeforeUpdate for [00QP0000006z9P3]
+13:36:41.161 (7161849959)|SOQL_EXECUTE_BEGIN|[5]|Aggregations:0|SELECT COUNT() FROM Lead WHERE Concepto_del_candidato__c=: Consulta
+13:36:41.161 (7164892429)|SOQL_EXECUTE_END|[5]|Rows:0
+13:36:41.161 (7166015468)|CODE_UNIT_FINISHED|ConteoLeads on Lead trigger event BeforeUpdate for [00QP0000006z9P3]
+13:36:41.208 (7208882537)|ENTERING_MANAGED_PKG|MC4SF
+13:36:41.222 (7222017770)|ENTERING_MANAGED_PKG|MC4SF
+13:36:41.225 (7225250390)|CODE_UNIT_STARTED|[EXTERNAL]|01qP00000008xwP|ConteoLeads on Lead trigger event BeforeUpdate for [00QP0000006z9P3]
+13:36:41.225 (7225540833)|SOQL_EXECUTE_BEGIN|[5]|Aggregations:0|SELECT COUNT() FROM Lead WHERE Concepto_del_candidato__c=: Consulta
+13:36:41.225 (7227653881)|SOQL_EXECUTE_END|[5]|Rows:0
+13:36:41.225 (7228839032)|CODE_UNIT_FINISHED|ConteoLeads on Lead trigger event BeforeUpdate for [00QP0000006z9P3]
+13:36:41.244 (7244496002)|ENTERING_MANAGED_PKG|MC4SF
+13:36:40.620 (7247686639)|DML_END|[1567]
+13:36:41.273 (7273470392)|DML_END|[175]
+13:36:41.273 (7274013832)|USER_DEBUG|[18]|DEBUG|Registros creados en la conversión
+13:36:41.273 (7275022188)|USER_DEBUG|[19]|DEBUG|Account: 001P000001LHCC4IAP
+13:36:41.273 (7275557165)|USER_DEBUG|[20]|DEBUG|Contact: 003P0000019tspIIAQ
+13:36:41.273 (7276063321)|USER_DEBUG|[21]|DEBUG|Opportunity: 006P0000008ZEJCIA4
+13:36:41.273 (7276497840)|SOQL_EXECUTE_BEGIN|[27]|Aggregations:0|SELECT Id FROM Account WHERE Numero_de_documento__c = :tmpVar1
+13:36:41.273 (7282921326)|SOQL_EXECUTE_END|[27]|Rows:1
+13:36:41.273 (7283157707)|SOQL_EXECUTE_BEGIN|[30]|Aggregations:0|SELECT COUNT() FROM Account WHERE Numero_de_documento__c = :tmpVar1
+13:36:41.273 (7286549516)|SOQL_EXECUTE_END|[30]|Rows:1
+13:36:41.273 (7286798727)|SOQL_EXECUTE_BEGIN|[36]|Aggregations:0|SELECT COUNT() FROM Solicitud_de_credito__c WHERE Cliente_deudor__c = :tmpVar1
+13:36:41.273 (7300904325)|SOQL_EXECUTE_END|[36]|Rows:1
+13:36:41.273 (7301179131)|SOQL_EXECUTE_BEGIN|[42]|Aggregations:0|SELECT COUNT() FROM Radicacion_de_credito__c WHERE Cliente_deudor__c = :tmpVar1
+13:36:41.273 (7318913367)|SOQL_EXECUTE_END|[42]|Rows:1
+13:36:41.273 (7320366254)|CODE_UNIT_FINISHED|LeadConversionTest.conversion_de_lead_sin_codeudor
+13:36:41.273 (7321431907)|EXECUTION_FINISHED

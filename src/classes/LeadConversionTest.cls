@@ -1,12 +1,161 @@
 @isTest
 private class LeadConversionTest {
 	
-	@isTest static void test_method_one() {
-		// Implement test code
+	@isTest static void conversion_de_lead_sin_codeudor() {
+		Lead lead = TestDataFactory.createLead();
+		System.assert(lead.Id != null, 'El candidato no fué insertado.');
+		Test.startTest();
+		
+		Database.LeadConvertResult lcr = TestDataFactory.leadConversion(lead.Id);
+		
+		if(lcr.getErrors().size() > 0){
+			System.debug('Errores al convertir el candidato: ');
+			for(Database.Error error : lcr.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		} else {
+			System.debug('Registros creados en la conversión');
+			System.debug('Account: ' + lcr.getAccountId());
+			System.debug('Contact: ' + lcr.getContactId());
+			System.debug('Opportunity: ' + lcr.getOpportunityId());
+		}
+
+		System.assert(lcr.isSuccess()); 
+		
+		//Se creó la cuenta?
+		Account acc = [select Id from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c];
+
+		System.assert(
+			[select count() from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c] == 1, 
+			'Debe existir una cuenta con el número de indentificación del lead'
+		);
+
+		//Verificar que exista la solicitud de crédito con su información respectiva
+		System.assert(
+			[select count() from Solicitud_de_credito__c where Cliente_deudor__c = :acc.Id] == 1, 
+			'Debe existir una Solicitud de credito'
+		);
+
+		//Verificar que exista la radicación de crédito con su información respectiva
+		System.assert(
+			[select count() from Radicacion_de_credito__c where Cliente_deudor__c = :acc.Id] == 1, 
+			'Debe existir una radicación de crédito'
+		);
+		Test.stopTest();
+		 
 	}
 	
-	@isTest static void test_method_two() {
-		// Implement test code
+	@isTest static void conversion_de_lead_con_un_codeudor() {
+		Lead lead = TestDataFactory.createLead();
+		Id codeudorId = TestDataFactory.createCodeudor(lead.Id);
+		Test.startTest();
+			
+			Database.LeadConvertResult lcr = TestDataFactory.leadConversion(lead.Id);
+			
+			if(lcr.getErrors().size() > 0){
+				System.debug('Errores al convertir el candidato: ');
+				for(Database.Error error : lcr.getErrors()){
+	                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+	                System.debug('Verificar los siguientes campos: ' + error.getFields());
+	            }
+			} 
+				
+			//System.assert(lcr.isSuccess());
+
+			//Existe un deudor principal?
+			Account acc = [select Id from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c];
+
+			System.assert(
+				[select count() from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c] == 1, 
+				'Debe existir una cuenta con el número de indentificación del lead'
+			);
+
+			//Se creó el codeudor?
+			Codeudor__c codeudor = [select Numero_de_documento__c from Codeudor__c where Id = :codeudorId];
+			System.assert(
+				[select count() from Account where Numero_de_documento__c = :String.valueOf(codeudor.Numero_de_documento__c)] == 1,
+				'Debe existir un codeudor'
+			);
+
+			//Verificar que exista la solicitud de crédito con su información respectiva
+
+			//Verificar que exista la radicación de crédito con su información respectiva
+		Test.stopTest();
+	}
+
+	@isTest static void conversion_de_lead_con_dos_codeudores() {
+		Lead lead = TestDataFactory.createLead();
+		TestDataFactory.createCodeudor(lead.Id);
+		TestDataFactory.createCodeudor(lead.Id);
+		Test.startTest();
+		 
+			Database.LeadConvertResult lcr = TestDataFactory.leadConversion(lead.Id);
+
+			if(lcr.getErrors().size() > 0){
+				System.debug('Errores al convertir el candidato: ');
+				for(Database.Error error : lcr.getErrors()){
+	                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+	                System.debug('Verificar los siguientes campos: ' + error.getFields());
+	            }
+			} 
+
+			System.assert(lcr.isSuccess(), 'La conversión no fué exitosa.');
+
+			//Existen 2 cuentas de tipo codeudor?
+			System.assert(
+				[select count() from Account where Cliente_deudor__c = :lcr.getAccountId()] == 2,
+				'Se esperaba encontrar 2 cuentas de tipo codeudor'
+			);
+		 
+		Test.stopTest();
+	}
+
+	@isTest static void conversion_de_lead_con_tres_codeudores() {
+		Lead lead = TestDataFactory.createLead();
+		TestDataFactory.createCodeudor(lead.Id);
+		TestDataFactory.createCodeudor(lead.Id);
+		TestDataFactory.createCodeudor(lead.Id);
+		Test.startTest();
+			Database.LeadConvertResult lcr = TestDataFactory.leadConversion(lead.Id);
+			
+			if(lcr.getErrors().size() > 0){
+				System.debug('Errores al convertir el candidato: ');
+				for(Database.Error error : lcr.getErrors()){
+	                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+	                System.debug('Verificar los siguientes campos: ' + error.getFields());
+	            }
+			} 
+
+			System.assert(lcr.isSuccess(), 'La conversión no fué exitosa.');
+
+			//Existen 2 cuentas de tipo codeudor?
+			System.assert(
+				[select count() from Account where Cliente_deudor__c = :lcr.getAccountId()] == 3,
+				'Se esperaba encontrar 3 cuentas de tipo codeudor'
+			);
+		
+		Test.stopTest();
+	}
+
+	@isTest static void conversion_de_lead_con_cuatro_codeudores() {
+		Lead lead = TestDataFactory.createLead();
+		TestDataFactory.createCodeudor(lead.Id);
+		TestDataFactory.createCodeudor(lead.Id);
+		TestDataFactory.createCodeudor(lead.Id);
+		Test.startTest();
+			try {
+				TestDataFactory.createCodeudor(lead.Id);
+			} catch(Exception e){
+				System.debug(e.getMessage());
+			}
+
+			System.assert(
+				[select count() from Codeudor__c where Candidato__c = :lead.id] == 3,
+				'Se esperaba encontrar 3 codeudores'
+			);
+		Test.stopTest();
+		
 	}
 	
 }

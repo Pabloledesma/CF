@@ -1,0 +1,3 @@
+<apex:page showHeader="true" sidebar="true" standardController="Radicacion_de_credito__c">
+	<apex:detail />
+</apex:page>

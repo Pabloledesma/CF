@@ -6,11 +6,11 @@ trigger SolicitudCredito_tgr on Solicitud_de_credito__c (before insert, before u
 	
 	 Sobject objTrigger=trigger.new[0];
 	 
-	system.debug('\n\n----------Trigger Soliitud de credito----------\n\n'+objTrigger); 
+	//system.debug('\n\n----------Trigger Soliitud de credito----------\n\n'+objTrigger); 
 	
 	if(Trigger.isBefore)
 	{
-		system.debug('\n\n----------Trigger Soliitud de credito----------\n\n'+objTrigger);
+		//system.debug('\n\n----------Trigger Soliitud de credito----------\n\n'+objTrigger);
 		if(!Banderas_cls.ValidarEjecucion('BeforeSolicitudCredito'))
 		{	
 			if(trigger.new.size()==1)
@@ -22,7 +22,7 @@ trigger SolicitudCredito_tgr on Solicitud_de_credito__c (before insert, before u
 				
 				SolicitudCreditoVerifyProfile classSolicitudCreditoVerifyProfile= new SolicitudCreditoVerifyProfile();
                 
-                system.debug('\n\n----------Trigger Soliitud de credito----------\n\n'+objTrigger);
+                //system.debug('\n\n----------Trigger Soliitud de credito----------\n\n'+objTrigger);
                 
                 if(trigger.isUpdate&&trigger.old[0].Estado_de_la_solicitud__c<>trigger.new[0].Estado_de_la_solicitud__c)
                 {
@@ -39,7 +39,7 @@ trigger SolicitudCredito_tgr on Solicitud_de_credito__c (before insert, before u
 	}
 	else if(Trigger.isAfter && trigger.new.size()==1)
 	{
-		system.debug('\n\n----------Trigger Soliitud de credito isAfter----------\n\n'+objTrigger);
+		//system.debug('\n\n----------Trigger Soliitud de credito isAfter----------\n\n'+objTrigger);
 		classUpdateRegistersLookUp.setRegister(objTrigger,'Solicitud_de_credito__c');
 	}
 }

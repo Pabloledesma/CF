@@ -15,7 +15,7 @@ public class UpdateRegistersLookUp_cls
                                                                               SetupOwnerId,SystemModstamp FROM Actualizacionderegistros__c 
                                                                               where  Objeto_origen__c=:strNameOfTheObject and Id_externo_destino__c = null];
        
-       system.debug('\n\n----------Configuracion personalzizada----------\n\n'+lstActualizacionderegistros);                                                                      
+       //system.debug('\n\n----------Configuracion personalzizada----------\n\n'+lstActualizacionderegistros);                                                                      
 //       LogDepuracion_cls.setLog(18,'UpdateRegistersLookUp_cls', 'Configuracion personalzizada----------\n\n'+lstActualizacionderegistros,'',true); KYP01
                                                                        
        for(Actualizacionderegistros__c objActualizacionderegistros:lstActualizacionderegistros)
@@ -51,8 +51,8 @@ public class UpdateRegistersLookUp_cls
                 }
             }
        }
-        System.debug('DebuLine34: '+mapList);
-        System.debug('mapList.Values()-->  '+mapList.Values());
+        //System.debug('DebuLine34: '+mapList);
+        //System.debug('mapList.Values()-->  '+mapList.Values());
       try
       {
        Database.SaveResult[] srList = Database.update(mapList.Values(),true);
