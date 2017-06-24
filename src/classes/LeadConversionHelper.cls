@@ -230,23 +230,6 @@ public with sharing class LeadConversionHelper {
         }
         
     }
-
-    public void updateOpportunity()
-    {
-        // Seleccionar los codeudores enlazados al cliente principal
-        List<Account> codeudores = new List<Account>();
-        codeudores = [select Id from Account where Cliente_deudor__c = :this.clienteDeudor.id];
-        System.debug('updateOpportunity -> codeudores:');
-        system.debug(codeudores);
-        System.debug('updateOpportunity -> cliente deudor:' + this.clienteDeudor.id);
-
-        List<Opportunity> op = [select Id, Account.Id from Opportunity where Account.Id = :this.clienteDeudor.id]; 
-            
-        System.debug('updateOpportunity -> oportunidad: ');
-        System.debug(op);
-        // Y si el cliente tiene mas de una oportunidad, como saber cual es la que debemos actualizar?
-      
-
-    }
+  
 }
 

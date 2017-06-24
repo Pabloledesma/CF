@@ -10,7 +10,7 @@ trigger LinkCodeudorToOpportunity on Opportunity (before insert) {
 			from 
 				Account 
 			where Cliente_deudor__c = :Trigger.new[0].AccountId 
-			//AND Canal_digital__c = 'Si'
+			AND Canal_digital__c = 'Si'
 			AND RecordTypeId = :rt.Id];
 
 		System.debug('LinkCodeudorToOpportunity -> codeudores:');
