@@ -10,10 +10,25 @@ public class UpdateRegistersLookUp_cls
     {
         Map<String, sObject> mapList= new Map<String, sObject>();
         
-        List<Actualizacionderegistros__c> lstActualizacionderegistros=[SELECT Campo_destino__c,Campo_llave__c,Campo_origen__c,CreatedById,CreatedDate,Id,Id_externo__c,
-                                                                              IsDeleted,LastModifiedById,LastModifiedDate,Name,Objeto_destino__c,Objeto_origen__c,
-                                                                              SetupOwnerId,SystemModstamp FROM Actualizacionderegistros__c 
-                                                                              where  Objeto_origen__c=:strNameOfTheObject and Id_externo_destino__c = null];
+        List<Actualizacionderegistros__c> lstActualizacionderegistros=[
+          SELECT 
+            Campo_destino__c,
+            Campo_llave__c,
+            Campo_origen__c,
+            CreatedById,
+            CreatedDate,
+            Id,
+            Id_externo__c,
+            IsDeleted,
+            LastModifiedById,
+            LastModifiedDate,
+            Name,
+            Objeto_destino__c,
+            Objeto_origen__c,
+            SetupOwnerId,
+            SystemModstamp 
+          FROM Actualizacionderegistros__c 
+          where Objeto_origen__c = :strNameOfTheObject and Id_externo_destino__c = null];
        
        //system.debug('\n\n----------Configuracion personalzizada----------\n\n'+lstActualizacionderegistros);                                                                      
 //       LogDepuracion_cls.setLog(18,'UpdateRegistersLookUp_cls', 'Configuracion personalzizada----------\n\n'+lstActualizacionderegistros,'',true); KYP01
@@ -22,10 +37,15 @@ public class UpdateRegistersLookUp_cls
        {
             if(mapList.containskey(objActualizacionderegistros.Objeto_origen__c+'-'+objActualizacionderegistros.Campo_llave__c))
             {
-                sObject objMap=mapList.get(objActualizacionderegistros.Objeto_origen__c+'-'+objActualizacionderegistros.Campo_llave__c);
+                sObject objMap = mapList.get(
+                  objActualizacionderegistros.Objeto_origen__c+'-'+objActualizacionderegistros.Campo_llave__c
+                );
                 
-                mapList.put(objActualizacionderegistros.Objeto_origen__c+'-'+objActualizacionderegistros.Campo_llave__c,this.createObject(objMap,sobjOrigen,objActualizacionderegistros));
-                system.debug('\n\n----------El map tiene mapList----------\n\n'+mapList);
+                mapList.put(
+                  objActualizacionderegistros.Objeto_origen__c+'-'+objActualizacionderegistros.Campo_llave__c,
+                  this.createObject(objMap,sobjOrigen,objActualizacionderegistros)
+                );
+                //system.debug('\n\n----------El map tiene mapList----------\n\n'+mapList);
 //               listLog.add( LogDepuracion_cls.setWrap(28,'UpdateRegistersLookUp_cls', 'El map tiene mapList----------\n\n'+mapList,'',true)); KYP01
             }
             else
@@ -41,13 +61,16 @@ public class UpdateRegistersLookUp_cls
                   }
                   
                   
-                  mapList.put(objActualizacionderegistros.Objeto_origen__c+'-'+objActualizacionderegistros.Campo_llave__c,this.createObject(objsObject,sobjOrigen,objActualizacionderegistros));
-                  system.debug('\n\n----------El mapList tiene mapList----------\n\n'+mapList);
+                  mapList.put(
+                    objActualizacionderegistros.Objeto_origen__c+'-'+objActualizacionderegistros.Campo_llave__c,
+                    this.createObject(objsObject,sobjOrigen,objActualizacionderegistros)
+                  );
+                  //system.debug('\n\n----------El mapList tiene mapList----------\n\n'+mapList);
 //                  listLog.add( LogDepuracion_cls.setWrap(45,'UpdateRegistersLookUp_cls', 'El mapList tiene mapList----------\n\n'+mapList,'',true)); KYP01
                 }
                 catch(System.Exception e)
                 {
-                  System.debug('DebugLine40: e: '+e.GetMessage());
+                  System.debug('UpdateRegistersLookup_cls exception: '+e.GetMessage());
                 }
             }
        }

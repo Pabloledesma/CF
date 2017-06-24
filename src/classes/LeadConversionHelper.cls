@@ -1,8 +1,8 @@
+
 public with sharing class LeadConversionHelper {
     
     public List<Lead> lstLead;
     public Account clienteDeudor;    //Trigger.new[0]
-    //public List<Id> codeudoresCreados;
     public List<Codeudor__c> lstCodeudores;
     public RecordType rt;
 
@@ -98,8 +98,8 @@ public with sharing class LeadConversionHelper {
 
         if(this.lstCodeudores.size() > 0){
             this.createAccounts();
+           // this.updateOpportunity();
         }
-
         
     }
 
@@ -123,17 +123,18 @@ public with sharing class LeadConversionHelper {
                 Estado_civil__c                     = c.Estado_civil__c,
                 Numero_de_telefono_celular__c       = c.Numero_de_celular__c,
                 Telefono__c                         = c.Telefono_fijo__c,
-                Fecha_de_ingreso_a_empleo_actual__c = c.Fecha_de_ingreso__c
+                Fecha_de_ingreso_a_empleo_actual__c = c.Fecha_de_ingreso__c,
+                Canal_digital__c                    = 'Si'
             ));
         }
         
-        //System.debug('LeadConversionHelper.createAccounts -> lstAccounts: ');
-        //System.debug(lstAccounts);
+        
+        //List<Id> codeudoresCreados = new List<Id>();
         Database.SaveResult[] srList = Database.insert(lstAccounts, false);
         for(Database.SaveResult sr : srList){
             if(sr.isSuccess()){
                 System.debug('Se creó el codeudor exitosamente: ' + sr.getId());
-                //this.codeudoresCreados.add(sr.getId());
+                //codeudoresCreados.add(sr.getId());
             } else {
                 for(Database.Error error : sr.getErrors()){
                     System.debug('Errores al insertar cuentas de tipo codeudor: ');
@@ -142,6 +143,10 @@ public with sharing class LeadConversionHelper {
                 }
             }
         }
+        //System.debug('LeadConversionHelper.createAccounts -> codeudoresCreados: ');
+        //System.debug(codeudoresCreados);
+        //if(codeudoresCreados.size() > 0) updateOpportunity(codeudoresCreados);
+        
         //System.debug('Codeudores creados: ');
         //System.debug(codeudoresCreados);
     }
@@ -225,4 +230,23 @@ public with sharing class LeadConversionHelper {
         }
         
     }
+
+    public void updateOpportunity()
+    {
+        // Seleccionar los codeudores enlazados al cliente principal
+        List<Account> codeudores = new List<Account>();
+        codeudores = [select Id from Account where Cliente_deudor__c = :this.clienteDeudor.id];
+        System.debug('updateOpportunity -> codeudores:');
+        system.debug(codeudores);
+        System.debug('updateOpportunity -> cliente deudor:' + this.clienteDeudor.id);
+
+        List<Opportunity> op = [select Id, Account.Id from Opportunity where Account.Id = :this.clienteDeudor.id]; 
+            
+        System.debug('updateOpportunity -> oportunidad: ');
+        System.debug(op);
+        // Y si el cliente tiene mas de una oportunidad, como saber cual es la que debemos actualizar?
+      
+
+    }
 }
+

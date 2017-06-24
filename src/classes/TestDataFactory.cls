@@ -11,7 +11,8 @@ public class TestDataFactory {
             Phone = '1234567',
             Telefono_Actividad_Economica__c = '123456789',
             Telefono_referencia_familiar__c = '12345678',
-            Telefono_referencia_personal__c = '12345678'
+            Telefono_referencia_personal__c = '12345678',
+            Canal_digital__c = 'Si'
 		);
 		
 		Database.SaveResult result = Database.insert(lead, false);
@@ -38,6 +39,7 @@ public class TestDataFactory {
             Telefono_Actividad_Economica__c = '123456789',
             Telefono_referencia_familiar__c = '12345678',
             Telefono_referencia_personal__c = '12345678',
+            Canal_digital__c = 'Si',
             Tipo_de_producto_que_le_interesa__c = tipoDeProducto
 		);
 		
@@ -53,6 +55,24 @@ public class TestDataFactory {
 		}
 		return lead;
 	}
+
+	public static User createUser(Id profileId){
+		User u = new User(
+			Alias = 'testUser', 
+			Email='TESTuSERUNIQUE@testorg.com',
+			EmailEncodingKey='ISO-8859-1', 
+			LastName='Testing', 
+			LanguageLocaleKey='es',
+			LocaleSidKey='en_US', 
+			ProfileId = profileId,
+			TimeZoneSidKey='America/Bogota', 
+			UserName='TESTuSERUNIQUE@testorg.com'
+		);
+
+		return u;
+	}
+
+
 	
 	public static Id createCodeudor(Id leadId) {
  
@@ -118,6 +138,7 @@ public class TestDataFactory {
 			Correo_electronico_1__c = 'test@test.com',
 			Tipo_de_ocupacion__c = 'Empleado',
 			Aporta_ingresos__c = 'No',
+			Canal_digital__c = 'Si',
 			Estado_del_cliente__c = 'Prospecto'
 		);
 		Database.SaveResult result = Database.insert(acc, false);
@@ -151,6 +172,7 @@ public class TestDataFactory {
 			Correo_electronico_1__c = 'test@test.com',
 			Tipo_de_ocupacion__c = 'Empleado',
 			Aporta_ingresos__c = 'No',
+			Canal_digital__c = 'Si',
 			Estado_del_cliente__c = 'Prospecto'
 		);
 

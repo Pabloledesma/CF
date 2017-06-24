@@ -7,8 +7,8 @@ trigger LeadConversion on Account (after insert) {
     	[select count() from Lead where Numero_de_identificacion__c = :Trigger.new[0].Numero_de_documento__c] > 0 && 
     	Trigger.new[0].RecordTypeId == rt[0].Id
     ){
-	    System.debug('LeadConversion Trigger -> Trigger.new: ');
-	    System.debug(Trigger.new[0]);
+	    //System.debug('LeadConversion Trigger -> Trigger.new: ');
+	    //System.debug(Trigger.new[0]);
         LeadConversionHelper leadConversionHelper = new LeadConversionHelper(Trigger.new[0]); 
     }
 }

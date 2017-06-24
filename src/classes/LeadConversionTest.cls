@@ -1,6 +1,6 @@
 @isTest
 private class LeadConversionTest {
-	
+
 	@isTest static void conversion_de_lead_sin_codeudor() {
 		Lead lead = TestDataFactory.createLead();
 		System.assert(lead.Id != null, 'El candidato no fué insertado.');
@@ -61,10 +61,10 @@ private class LeadConversionTest {
 	            }
 			} 
 				
-			//System.assert(lcr.isSuccess());
-
 			//Existe un deudor principal?
-			Account acc = [select Id from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c];
+			Account deudorPrincipal = [select Id, Canal_digital__c from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c];
+			System.debug('conversion_de_lead_con_un_codeudor -> deudorPrincipal: ' + deudorPrincipal.Id);
+			System.assertEquals(deudorPrincipal.Canal_digital__c, 'Si', 'La cuenta no se está creando con el identificador de canal digital');
 
 			System.assert(
 				[select count() from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c] == 1, 
@@ -78,9 +78,20 @@ private class LeadConversionTest {
 				'Debe existir un codeudor'
 			);
 
-			//Verificar que exista la solicitud de crédito con su información respectiva
+			//Se creo la oportunidad?
+			 Opportunity op = [select Id, AccountId, Codeudor_1__c from Opportunity where AccountId = :lcr.getAccountId()];
+			 System.debug('conversion_de_lead_con_un_codeudor -> oportunidad creada');
+			 System.debug(op);
+			 System.assertEquals(op.Id, lcr.getOpportunityId(), 'No se creó la oportunidad en la conversión del candidato.');
+			 System.assertEquals(op.AccountId, lcr.getAccountId(), 'La oportunidad no está enlazada a la cuenta principal');
 
-			//Verificar que exista la radicación de crédito con su información respectiva
+
+			// Se actualizo correctamente el codeudor en la oportunidad?
+			Account cuentaTipoCodeudor = [select Id from Account where Numero_de_documento__c = :String.valueOf(codeudor.Numero_de_documento__c)];
+			 System.debug('conversion_de_lead_con_un_codeudor -> cuentaTipoCodeudor: ' + cuentaTipoCodeudor.Id);
+			System.assertEquals(op.Codeudor_1__c, cuentaTipoCodeudor.Id, 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
+
+
 		Test.stopTest();
 	}
 
