@@ -81,8 +81,8 @@ private class LeadConversionTest {
 
 			//Se creo la oportunidad?
 			 Opportunity op = [select Id, AccountId, Codeudor_1__c from Opportunity where AccountId = :lcr.getAccountId()];
-			 System.debug('conversion_de_lead_con_un_codeudor -> oportunidad creada');
-			 System.debug(op);
+//			 System.debug('conversion_de_lead_con_un_codeudor -> oportunidad creada');
+//			 System.debug(op);
 			 System.assertEquals(op.Id, lcr.getOpportunityId(), 'No se creó la oportunidad en la conversión del candidato.');
 			 System.assertEquals(op.AccountId, lcr.getAccountId(), 'La oportunidad no está enlazada a la cuenta principal');
 
@@ -101,8 +101,9 @@ private class LeadConversionTest {
 
 	@isTest static void conversion_de_lead_con_dos_codeudores() {
 		Lead lead = TestDataFactory.createLead();
-		Id codeudor1 = TestDataFactory.createCodeudor(lead.Id);
-		Id codeudor2 = TestDataFactory.createCodeudor(lead.Id);
+		Set<Id> setCodeudores = new Set<Id>();
+		setCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
+		setCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
 
 		Test.startTest();
 		 
@@ -124,6 +125,20 @@ private class LeadConversionTest {
 				'Se esperaba encontrar 2 cuentas de tipo codeudor'
 			);
 
+			//El codeudor está enlazado a la cuenta principal?
+			List<Codeudor__c> lstCodeudors = new List<Codeudor__c>();
+			lstCodeudors = [select Numero_de_documento__c from Codeudor__c where Id IN :setCodeudores];
+			Set<String> cedulasCodeudores = new Set<String>();
+			for(Codeudor__c cod: lstCodeudors){
+				cedulasCodeudores.add(cod.Numero_de_documento__c);
+			}
+			List<Account> accounts = new List<Account>();
+			accounts = [select Id, Cliente_deudor__c, Numero_de_documento__c from Account where Numero_de_documento__c IN :cedulasCodeudores];
+			System.assertEquals(
+					accounts.size(), 2,
+					'Los codeudores no están enlazados a la cuenta del cliente plrincipal'
+			);
+
 			//Se creo la oportunidad?
 			Opportunity op = [select Id, AccountId, Codeudor_1__c, Codeudor_2__c from Opportunity where AccountId = :lcr.getAccountId()];
 			//System.debug('conversion_de_lead_con_dos_codeudores -> oportunidad creada');
@@ -137,16 +152,23 @@ private class LeadConversionTest {
 			Map<Id, Account> mapCodeudores = new Map<Id, Account>(lstCodeudores);
 			System.assert(mapCodeudores.containsKey(op.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
 			System.assert(mapCodeudores.containsKey(op.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
-		 
+
+			//Se creo la radicación de crédito?
+			Radicacion_de_credito__c rc = [select Id, Codeudor_1__c, Codeudor_2__c, Cliente_deudor__c from Radicacion_de_credito__c where Cliente_deudor__c = :lcr.getAccountId()];
+			System.assert(mapCodeudores.containsKey(rc.Codeudor_1__c), 'La radicación no esta enlazada al codeudor 1');
+			System.assert(mapCodeudores.containsKey(rc.Codeudor_2__c), 'La radicación no esta enlazada al codeudor 2');
+
 		Test.stopTest();
 	}
 
 	@isTest static void conversion_de_lead_con_tres_codeudores() {
+
 		Lead lead = TestDataFactory.createLead();
 
-		Id codeudor1 = TestDataFactory.createCodeudor(lead.Id);
-		Id codeudor2 = TestDataFactory.createCodeudor(lead.Id);
-		Id codeudor3 = TestDataFactory.createCodeudor(lead.Id);
+		Set<Id> idCodeudores = new Set<Id>();
+		idCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
+		idCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
+		idCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
 
 		Test.startTest();
 			Database.LeadConvertResult lcr = TestDataFactory.leadConversion(lead.Id);
@@ -161,7 +183,7 @@ private class LeadConversionTest {
 
 			System.assert(lcr.isSuccess(), 'La conversión no fué exitosa.');
 
-			//Existen 2 cuentas de tipo codeudor?
+			//Existen 3 cuentas de tipo codeudor?
 			System.assert(
 				[select count() from Account where Cliente_deudor__c = :lcr.getAccountId()] == 3,
 				'Se esperaba encontrar 3 cuentas de tipo codeudor'
@@ -181,7 +203,23 @@ private class LeadConversionTest {
 			System.assert(mapCodeudores.containsKey(op.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
 			System.assert(mapCodeudores.containsKey(op.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
 			System.assert(mapCodeudores.containsKey(op.Codeudor_3__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
-		
+
+			//Se creo la radicación de crédito?
+			Radicacion_de_credito__c rc =
+			[
+					select
+							Id,
+							Codeudor_1__c,
+							Codeudor_2__c,
+							Codeudor_3__c,
+							Cliente_deudor__c
+					from Radicacion_de_credito__c
+					where Cliente_deudor__c = :lcr.getAccountId()
+			];
+			System.assert(mapCodeudores.containsKey(rc.Codeudor_1__c), 'La radicación no esta enlazada al codeudor 1');
+			System.assert(mapCodeudores.containsKey(rc.Codeudor_2__c), 'La radicación no esta enlazada al codeudor 2');
+			System.assert(mapCodeudores.containsKey(rc.Codeudor_3__c), 'La radicación no esta enlazada al codeudor 3');
+
 		Test.stopTest();
 	}
 

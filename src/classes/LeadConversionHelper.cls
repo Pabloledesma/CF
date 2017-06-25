@@ -102,7 +102,6 @@ public with sharing class LeadConversionHelper {
 
         if(this.lstCodeudores.size() > 0){
             this.createAccounts();
-           //
         }
 
     }
