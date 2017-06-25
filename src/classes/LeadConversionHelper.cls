@@ -1,4 +1,3 @@
-
 public with sharing class LeadConversionHelper {
     
     public List<Lead> lstLead;
@@ -9,53 +8,58 @@ public with sharing class LeadConversionHelper {
     public LeadConversionHelper(Account newAccount) {
         this.clienteDeudor = newAccount;
         this.rt = [select Id, Name from RecordType where Name = 'Codeudores' and SobjectType='Account'];
-        this.lstLead = [select
-                Id, 
-                isConverted,
-                LastName,
-                FirstName, 
-                Canal_digital__c,
-                Tipo_de_documento__c,
-                Numero_de_identificacion__c,
-                Ciudad_de_residencia__c,
-                Tipo_de_ocupacion__c,
-                Fecha_de_nacimiento__c,
-                Lugar_de_nacimiento__c,
-                Fecha_de_expedicion_cc__c,
-                Lugar_de_expedicion__c,
-                Estado_civil__c,
-                Numero_de_celular__c,
-                Tipo_de_producto_que_le_interesa__c,
-                //Informaciòn de residencia
-                Tipo_de_vivienda_residencia__c,
-                Antiguedad_en_la_vivienda_actual_en_a_o__c,
-                Direccion_residencia__c,
-                Phone,
-                Estrato__c,
-                // Informaciòn laboral
-                Tipo_de_contrato__c,
-                Fecha_de_ingreso_del_empleo_actual__c,
-                Nombre_entidad_empleadora_o_negocio__c,
-                Direccion_de_la_empresa__c,
-                Tiempo_de_experiencia_en_anos__c,
-                Ciudad_laboral_Actividad_Economica_c__c,
-                Cargo_actual__c,
-                Telefono_Actividad_Economica__c,
-                // Referencia familiar
-                Familiar_Nombre_y_Apellido__c,
-                Parentesco__c,
-                Direccion_Referencia_Familiar__c,
-                Telefono_referencia_familiar__c,
-                Ciudad_referencia_familiar__c,
-                // Referencia personal 
-                Personal_Nombre_y_Apellido__c,
-                Relacion__c,
-                Direccion_referencia_personal__c,
-                Telefono_referencia_personal__c,
-                Ciudad_referencia_personal__c
+        this.lstLead =
+        [
+                select
+                    Id,
+                    isConverted,
+                    LastName,
+                    FirstName,
+                    Canal_digital__c,
+                    Tipo_de_documento__c,
+                    Numero_de_identificacion__c,
+                    Ciudad_de_residencia__c,
+                    Tipo_de_ocupacion__c,
+                    Fecha_de_nacimiento__c,
+                    Lugar_de_nacimiento__c,
+                    Fecha_de_expedicion_cc__c,
+                    Lugar_de_expedicion__c,
+                    Estado_civil__c,
+                    Numero_de_celular__c,
+                    Tipo_de_producto_que_le_interesa__c,
+                    //Informaciòn de residencia
+                    Tipo_de_vivienda_residencia__c,
+                    Antiguedad_en_la_vivienda_actual_en_a_o__c,
+                    Direccion_residencia__c,
+                    Phone,
+                    Estrato__c,
+                    // Informaciòn laboral
+                    Tipo_de_contrato__c,
+                    Fecha_de_ingreso_del_empleo_actual__c,
+                    Nombre_entidad_empleadora_o_negocio__c,
+                    Direccion_de_la_empresa__c,
+                    Tiempo_de_experiencia_en_anos__c,
+                    Ciudad_laboral_Actividad_Economica_c__c,
+                    Cargo_actual__c,
+                    Telefono_Actividad_Economica__c,
+                    // Referencia familiar
+                    Familiar_Nombre_y_Apellido__c,
+                    Parentesco__c,
+                    Direccion_Referencia_Familiar__c,
+                    Telefono_referencia_familiar__c,
+                    Ciudad_referencia_familiar__c,
+                    // Referencia personal
+                    Personal_Nombre_y_Apellido__c,
+                    Relacion__c,
+                    Direccion_referencia_personal__c,
+                    Telefono_referencia_personal__c,
+                    Ciudad_referencia_personal__c
             from Lead 
-            where Numero_de_identificacion__c = :clienteDeudor.Numero_de_documento__c];
-        this.lstCodeudores = [select 
+            where Numero_de_identificacion__c = :clienteDeudor.Numero_de_documento__c
+        ];
+        this.lstCodeudores =
+        [
+                select
                 RecordTypeId,
                 Name,
                 Apellidos__c,
@@ -98,9 +102,9 @@ public with sharing class LeadConversionHelper {
 
         if(this.lstCodeudores.size() > 0){
             this.createAccounts();
-           // this.updateOpportunity();
+           //
         }
-        
+
     }
 
     public void createAccounts(){
@@ -232,4 +236,3 @@ public with sharing class LeadConversionHelper {
     }
   
 }
-

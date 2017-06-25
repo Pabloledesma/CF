@@ -1,4 +1,3 @@
-
 trigger LinkCodeudorToOpportunity on Opportunity (before insert) {
 	if(Trigger.new.size() == 1 && Trigger.new[0].AccountId != null){
 
