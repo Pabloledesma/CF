@@ -97,8 +97,9 @@ public with sharing class LeadConversionHelper {
             from Codeudor__c 
             where Candidato__c = :this.lstLead[0].Id];
 
-        this.createSolicitud();
-        this.createRadicacion();
+        Id idSolicitud = this.createSolicitud();
+        if(idSolicitud != null)
+        this.createRadicacion(idSolicitud);
 
         if(this.lstCodeudores.size() > 0){
             this.createAccounts();
@@ -154,7 +155,10 @@ public with sharing class LeadConversionHelper {
         //System.debug(codeudoresCreados);
     }
 
-    public void createSolicitud(){
+    public Id createSolicitud(){
+
+        // Seleccionar la oportunidad
+
         List<RecordType> lstRt = [select id, name from RecordType where SobjectType = 'Solicitud_de_credito__c'];
         Map<String, Id> mapRt = new Map<String, Id>();
         for(RecordType rt : lstRt){
@@ -164,60 +168,63 @@ public with sharing class LeadConversionHelper {
         Solicitud_de_credito__c sc = new Solicitud_de_credito__c();
 
         if(this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Crédito de vivienda nueva' ||
-            this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Asignación de cupo')
-            sc.RecordTypeId = mapRt.get('Vivienda Nueva');
+        this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Asignación de cupo')
+        sc.RecordTypeId = mapRt.get('Vivienda Nueva');
         else if(this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Crédito de vivienda usada' ||
-            this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Mejoramiento de vivienda')
-            sc.RecordTypeId = mapRt.get('Vivienda Usada / Mejoramiento');
+        this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Mejoramiento de vivienda')
+        sc.RecordTypeId = mapRt.get('Vivienda Usada / Mejoramiento');
         else if(this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Compra de cartera')
-            sc.RecordTypeId = mapRt.get('Compra de cartera hipotecaria');
+        sc.RecordTypeId = mapRt.get('Compra de cartera hipotecaria');
+        sc.Cliente_deudor__c = this.clienteDeudor.Id;
 
-            sc.Cliente_deudor__c = this.clienteDeudor.Id;
-      
         Database.SaveResult result = Database.insert(sc, false);
         
         if(result.isSuccess()){
-            System.debug('Se creó la Solicitud de credito: ' + result.getId());
+            System.debug('createSolicitud -> Se creó la Solicitud de credito: ' + result.getId());
+            return result.getId();
         } else {
             for(Database.Error error : result.getErrors()){
                 System.debug('Errores al insertar la solicitud de crédito: ');
                 System.debug(error.getStatusCode() + ': ' + error.getMessage());
                 System.debug('Verificar los siguientes campos: ' + error.getFields());
             }
+            return null;
         }
     }
 
-    public void createRadicacion(){
+    public void createRadicacion(Id solicitud_de_credito_id){
+
         Radicacion_de_credito__c rc = new Radicacion_de_credito__c(
-            Cliente_deudor__c                           = this.clienteDeudor.id,
-            // Información de residencia
-            Tipo_de_vivienda__c                         = this.lstLead[0].Tipo_de_vivienda_residencia__c,
-            Antiguedad_en_la_vivienda_actual_en_ano__c  = this.lstLead[0].Antiguedad_en_la_vivienda_actual_en_a_o__c,
-            Direccion_residencia__c                     = this.lstLead[0].Direccion_residencia__c,
-            Telefono_residencia__c                      = this.lstLead[0].Phone,
-            Estrato__c                                  = this.lstLead[0].Estrato__c,
-            // Información laboral 
-            Tipo_de_contrato__c                         = this.lstLead[0].Tipo_de_contrato__c,
-            Nombre_entidad_empleadora_o_negocio__c      = this.lstLead[0].Nombre_entidad_empleadora_o_negocio__c,
-            Direccion_comercial__c                      = this.lstLead[0].Direccion_de_la_empresa__c,
-            Tiempo_de_experiencia_en_anos__c            = this.lstLead[0].Tiempo_de_experiencia_en_anos__c,
-            Profesion_u_oficio__c                       = this.lstLead[0].Tipo_de_contrato__c,
-            Ciudad_Laboral__c                           = this.lstLead[0].Ciudad_laboral_Actividad_Economica_c__c,
-            Cargo_actual__c                             = this.lstLead[0].Cargo_actual__c,
-            Telefono_oficina__c                         = this.lstLead[0].Telefono_Actividad_Economica__c,
-            Telefono_actividad_economica__c             = this.lstLead[0].Telefono_Actividad_Economica__c,
-            // Referencia Familiar
-            Familiar_Nombre_y_Apellido__c               = this.lstLead[0].Familiar_Nombre_y_Apellido__c,
-            Parentesco_familiar__c                      = this.lstLead[0].Parentesco__c,
-            Direccion_parentesco_familiar__c            = this.lstLead[0].Direccion_Referencia_Familiar__c,
-            Telefono_parentesco_familiar__c             = this.lstLead[0].Telefono_referencia_familiar__c,
-            Ciudad_parentesco_familiar__c               = this.lstLead[0].Ciudad_referencia_familiar__c,
-            // Referencia personal
-            Personal_Nombre_y_Apellido__c               = this.lstLead[0].Personal_Nombre_y_Apellido__c,
-            Parentesco_personal__c                      = this.lstLead[0].Relacion__c,
-            Direccion_parentesco_personal__c            = this.lstLead[0].Direccion_referencia_personal__c,
-            Ciudad_parentesco_personal__c               = this.lstLead[0].Ciudad_referencia_personal__c,
-            Telefono_parentesco_personal__c             = this.lstLead[0].Telefono_referencia_personal__c
+                Solicitud_de_credito__c                     = solicitud_de_credito_id,
+                Cliente_deudor__c                           = this.clienteDeudor.id,
+                // Información de residencia
+                Tipo_de_vivienda__c                         = this.lstLead[0].Tipo_de_vivienda_residencia__c,
+                Antiguedad_en_la_vivienda_actual_en_ano__c  = this.lstLead[0].Antiguedad_en_la_vivienda_actual_en_a_o__c,
+                Direccion_residencia__c                     = this.lstLead[0].Direccion_residencia__c,
+                Telefono_residencia__c                      = this.lstLead[0].Phone,
+                Estrato__c                                  = this.lstLead[0].Estrato__c,
+                // Información laboral
+                Tipo_de_contrato__c                         = this.lstLead[0].Tipo_de_contrato__c,
+                Nombre_entidad_empleadora_o_negocio__c      = this.lstLead[0].Nombre_entidad_empleadora_o_negocio__c,
+                Direccion_comercial__c                      = this.lstLead[0].Direccion_de_la_empresa__c,
+                Tiempo_de_experiencia_en_anos__c            = this.lstLead[0].Tiempo_de_experiencia_en_anos__c,
+                Profesion_u_oficio__c                       = this.lstLead[0].Tipo_de_contrato__c,
+                Ciudad_Laboral__c                           = this.lstLead[0].Ciudad_laboral_Actividad_Economica_c__c,
+                Cargo_actual__c                             = this.lstLead[0].Cargo_actual__c,
+                Telefono_oficina__c                         = this.lstLead[0].Telefono_Actividad_Economica__c,
+                Telefono_actividad_economica__c             = this.lstLead[0].Telefono_Actividad_Economica__c,
+                // Referencia Familiar
+                Familiar_Nombre_y_Apellido__c               = this.lstLead[0].Familiar_Nombre_y_Apellido__c,
+                Parentesco_familiar__c                      = this.lstLead[0].Parentesco__c,
+                Direccion_parentesco_familiar__c            = this.lstLead[0].Direccion_Referencia_Familiar__c,
+                Telefono_parentesco_familiar__c             = this.lstLead[0].Telefono_referencia_familiar__c,
+                Ciudad_parentesco_familiar__c               = this.lstLead[0].Ciudad_referencia_familiar__c,
+                // Referencia personal
+                Personal_Nombre_y_Apellido__c               = this.lstLead[0].Personal_Nombre_y_Apellido__c,
+                Parentesco_personal__c                      = this.lstLead[0].Relacion__c,
+                Direccion_parentesco_personal__c            = this.lstLead[0].Direccion_referencia_personal__c,
+                Ciudad_parentesco_personal__c               = this.lstLead[0].Ciudad_referencia_personal__c,
+                Telefono_parentesco_personal__c             = this.lstLead[0].Telefono_referencia_personal__c
         );
 
         Database.SaveResult result = Database.insert(rc, false);

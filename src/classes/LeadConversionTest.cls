@@ -31,15 +31,27 @@ private class LeadConversionTest {
 			'Debe existir una cuenta con el número de indentificación del lead'
 		);
 
-		//Verificar que exista la solicitud de crédito con su información respectiva
-		System.assert(
-			[select count() from Solicitud_de_credito__c where Cliente_deudor__c = :acc.Id] == 1, 
-			'Debe existir una Solicitud de credito'
+		//Verificar que exista la solicitud de crédito y esté enlazada a la oportunidad
+		List<Solicitud_de_credito__c> sc =
+		[
+				select
+						Id,
+						Oportunidad__c
+				from Solicitud_de_credito__c
+				where Oportunidad__c = :lcr.getOpportunityId()
+		];
+
+		System.assertEquals(sc.size(), 1, 'Debe existir una Solicitud de credito');
+
+		System.assertEquals(
+				sc[0].Oportunidad__c,
+				lcr.getOpportunityId(),
+				'La solicitud de crédito no está enlazada a la oportunidad'
 		);
 
-		//Verificar que exista la radicación de crédito con su información respectiva
+		//Verificar que exista la radicación de crédito y esté enlazada a la solicitud de crédito
 		System.assert(
-			[select count() from Radicacion_de_credito__c where Cliente_deudor__c = :acc.Id] == 1, 
+				[select count() from Radicacion_de_credito__c where Solicitud_de_credito__c = :sc[0].Id] == 1,
 			'Debe existir una radicación de crédito'
 		);
 		Test.stopTest();

@@ -1,8 +1,11 @@
-trigger LinkCodeudorToOpportunity on Opportunity (before insert) {
-	if(Trigger.new.size() == 1 && Trigger.new[0].AccountId != null){
+trigger LinkCodeudorToOpportunity on Opportunity (before insert, after insert) {
+	/**
+	* Enlaza los codeudeudores a la oportunidad
+	**/
+	if(Trigger.new.size() == 1 && Trigger.new[0].AccountId != null && Trigger.isBefore){
 
 		RecordType rt = [select Id, Name from RecordType where Name = 'Codeudores' and SobjectType='Account'];
-		
+
 		//La cuenta tiene codeudores?
 		List<Account> codeudores =
 		[
@@ -35,5 +38,19 @@ trigger LinkCodeudorToOpportunity on Opportunity (before insert) {
 				}
             }
         }
+	}
+
+	/**
+	* Enlaza la oportunidad a la solicitud de crédito
+	**/
+	if(Trigger.isAfter && Trigger.new.size() == 1 && Trigger.new[0].AccountId != null){
+		List<Solicitud_de_credito__c> sc = [select Id, Oportunidad__c from Solicitud_de_credito__c where Cliente_deudor__c = :Trigger.new[0].AccountId ];
+		if(sc.size() > 0){
+			sc[0].Oportunidad__c = Trigger.new[0].Id;
+			//System.debug('Oportunidad enlazada: ' + sc);
+			update sc[0];
+		} else {
+			System.debug('LinkCodeudor to opportunity: No se ha creado la solicitud!');
+		}
 	}
 }
