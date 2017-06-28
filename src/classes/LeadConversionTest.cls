@@ -74,14 +74,16 @@ private class LeadConversionTest {
 			} 
 				
 			//Existe un deudor principal?
-			Account deudorPrincipal = [select Id, Canal_digital__c, Numero_de_documento__c from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c];
-			System.debug('conversion_de_lead_con_un_codeudor -> deudorPrincipal: ' + deudorPrincipal.Id);
-			System.assertEquals(deudorPrincipal.Canal_digital__c, 'Si', 'La cuenta no se está creando con el identificador de canal digital');
-
 			System.assert(
-				[select count() from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c] == 1, 
+				[select count() from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c] == 1,
 				'Debe existir una cuenta con el número de indentificación del lead'
 			);
+
+			Account deudorPrincipal = [select Id, Canal_digital__c, Numero_de_documento__c from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c];
+			//System.debug('conversion_de_lead_con_un_codeudor -> deudorPrincipal: ' + deudorPrincipal.Id);
+			System.assertEquals(deudorPrincipal.Canal_digital__c, 'Si', 'La cuenta no se está creando con el identificador de canal digital');
+
+
 
 			//El codeudor está enlazado a la cuenta principal?
 			Codeudor__c cod = [select Numero_de_documento__c from Codeudor__c where Id = :codeudorId];
@@ -102,6 +104,29 @@ private class LeadConversionTest {
 			Account cuentaTipoCodeudor = [select Id from Account where Numero_de_documento__c = :String.valueOf(codeudor.Numero_de_documento__c)];
 			System.debug('conversion_de_lead_con_un_codeudor -> cuentaTipoCodeudor: ' + cuentaTipoCodeudor.Id);
 			System.assertEquals(op.Codeudor_1__c, cuentaTipoCodeudor.Id, 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
+
+			List<Solicitud_de_credito__c> sc =
+			[
+					select
+							Id,
+							Oportunidad__c
+					from Solicitud_de_credito__c
+					where Oportunidad__c = :lcr.getOpportunityId()
+			];
+
+			System.assertEquals(sc.size(), 1, 'Debe existir una Solicitud de credito');
+
+			System.assertEquals(
+					sc[0].Oportunidad__c,
+					lcr.getOpportunityId(),
+					'La solicitud de crédito no está enlazada a la oportunidad'
+			);
+
+			//Verificar que exista la radicación de crédito y esté enlazada a la solicitud de crédito
+			System.assert(
+					[select count() from Radicacion_de_credito__c where Solicitud_de_credito__c = :sc[0].Id] == 1,
+					'Debe existir una radicación de crédito'
+			);
 
 			//Se creo la radicación de crédito?
 			Radicacion_de_credito__c rc = [select Id, Codeudor_1__c, Cliente_deudor__c from Radicacion_de_credito__c where Cliente_deudor__c = :lcr.getAccountId()];
@@ -165,6 +190,29 @@ private class LeadConversionTest {
 			System.assert(mapCodeudores.containsKey(op.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
 			System.assert(mapCodeudores.containsKey(op.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
 
+			List<Solicitud_de_credito__c> sc =
+			[
+					select
+							Id,
+							Oportunidad__c
+					from Solicitud_de_credito__c
+					where Oportunidad__c = :lcr.getOpportunityId()
+			];
+
+			System.assertEquals(sc.size(), 1, 'Debe existir una Solicitud de credito');
+
+			System.assertEquals(
+					sc[0].Oportunidad__c,
+					lcr.getOpportunityId(),
+					'La solicitud de crédito no está enlazada a la oportunidad'
+			);
+
+			//Verificar que exista la radicación de crédito y esté enlazada a la solicitud de crédito
+			System.assert(
+					[select count() from Radicacion_de_credito__c where Solicitud_de_credito__c = :sc[0].Id] == 1,
+					'Debe existir una radicación de crédito'
+			);
+
 			//Se creo la radicación de crédito?
 			Radicacion_de_credito__c rc = [select Id, Codeudor_1__c, Codeudor_2__c, Cliente_deudor__c from Radicacion_de_credito__c where Cliente_deudor__c = :lcr.getAccountId()];
 			System.assert(mapCodeudores.containsKey(rc.Codeudor_1__c), 'La radicación no esta enlazada al codeudor 1');
@@ -216,6 +264,30 @@ private class LeadConversionTest {
 			System.assert(mapCodeudores.containsKey(op.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
 			System.assert(mapCodeudores.containsKey(op.Codeudor_3__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
 
+			// Se creó la solicitud de credito?
+			List<Solicitud_de_credito__c> sc =
+			[
+					select
+							Id,
+							Oportunidad__c
+					from Solicitud_de_credito__c
+					where Oportunidad__c = :lcr.getOpportunityId()
+			];
+
+			System.assertEquals(sc.size(), 1, 'Debe existir una Solicitud de credito');
+
+			System.assertEquals(
+					sc[0].Oportunidad__c,
+					lcr.getOpportunityId(),
+					'La solicitud de crédito no está enlazada a la oportunidad'
+			);
+
+			//Verificar que exista la radicación de crédito y esté enlazada a la solicitud de crédito
+			System.assert(
+					[select count() from Radicacion_de_credito__c where Solicitud_de_credito__c = :sc[0].Id] == 1,
+					'Debe existir una radicación de crédito'
+			);
+
 			//Se creo la radicación de crédito?
 			Radicacion_de_credito__c rc =
 			[
@@ -253,6 +325,69 @@ private class LeadConversionTest {
 			);
 		Test.stopTest();
 		
+	}
+
+	@isTest
+	static void conversion_de_lead_asignado_a_un_asesor(){
+		//User asesorComercialCD = TestDataFactory.createUser('00eo0000000TUb1');
+		//System.debug('conversion_de_lead_asignado_a_un_asesor -> usuario: ' + asesorComercialCD);
+		TestDataFactory.createMeta();
+		Test.startTest();
+		Id asesorId = '005o0000002P5KY';
+		Lead lead = TestDataFactory.createLead(asesorId);
+
+		User asesorComercial = [select Id from User where Id = '005o0000002P5KY'];
+		System.runAs(asesorComercial){
+
+			Database.LeadConvertResult lcr = TestDataFactory.leadConversion(lead.Id);
+
+			if(lcr.getErrors().size() > 0){
+				System.debug('Errores al convertir el candidato: ');
+				for(Database.Error error : lcr.getErrors()){
+					System.debug(error.getStatusCode() + ': ' + error.getMessage());
+					System.debug('Verificar los siguientes campos: ' + error.getFields());
+				}
+			}
+
+			System.assert(lcr.isSuccess(), 'La conversión no fué exitosa.');
+
+			//Se creó la cuenta?
+			Account acc = [select Id from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c];
+
+			System.assert(
+					[select count() from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c] == 1,
+					'Debe existir una cuenta con el número de indentificación del lead'
+			);
+
+			//Verificar que exista la solicitud de crédito y esté enlazada a la oportunidad
+			List<Solicitud_de_credito__c> sc =
+			[
+					select
+							Id,
+							Oportunidad__c
+					from Solicitud_de_credito__c
+					where Oportunidad__c = :lcr.getOpportunityId()
+			];
+
+			System.assertEquals(sc.size(), 1, 'Debe existir una Solicitud de credito');
+
+			System.assertEquals(
+					sc[0].Oportunidad__c,
+					lcr.getOpportunityId(),
+					'La solicitud de crédito no está enlazada a la oportunidad'
+			);
+
+			//Verificar que exista la radicación de crédito y esté enlazada a la solicitud de crédito
+			System.assert(
+					[select count() from Radicacion_de_credito__c where Solicitud_de_credito__c = :sc[0].Id] == 1,
+					'Debe existir una radicación de crédito'
+			);
+		}
+
+		System.debug('conversion_de_lead_asignado_a_un_asesor -> lead: ' + lead);
+
+
+		Test.stopTest();
 	}
 	
 }

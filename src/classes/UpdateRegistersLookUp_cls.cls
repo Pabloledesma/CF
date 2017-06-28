@@ -56,7 +56,7 @@ public class UpdateRegistersLookUp_cls
                   if(objActualizacionderegistros.Campo_llave__c != null)
                   {
                     objsObject.put('Id',sobjOrigen.get(objActualizacionderegistros.Campo_llave__c));
-                    system.debug('\n\n----------El objeto tiene objsObject----------\n\n'+objsObject);
+                   // system.debug('\n\n----------El objeto tiene objsObject----------\n\n'+objsObject);
 //                    listLog.add( LogDepuracion_cls.setWrap(39,'UpdateRegistersLookUp_cls', 'El objeto tiene objsObject----------\n\n'+objsObject,'',true)); KYP01
                   }
                   
@@ -116,12 +116,12 @@ public class UpdateRegistersLookUp_cls
     
     public sObject createObject(sObject objToSet,sObject objRadicaciondecredito,Actualizacionderegistros__c objActualizacionderegistros)
     {
-        system.debug('\n\n----------El createObject----------\n\n'+objToSet+'\n\n'+objRadicaciondecredito+'\n\n'+objActualizacionderegistros);
+        //system.debug('\n\n----------El createObject----------\n\n'+objToSet+'\n\n'+objRadicaciondecredito+'\n\n'+objActualizacionderegistros);
 //        listLog.add( LogDepuracion_cls.setWrap(96,'UpdateRegistersLookUp_cls','El createObject----------\n\n'+objToSet+'\n\n'+objRadicaciondecredito+'\n\n'+objActualizacionderegistros,'',true)); KYP01
         
         sObject sobjOrigen=objRadicaciondecredito;
         objToSet.put(objActualizacionderegistros.Campo_destino__c,sobjOrigen.get(objActualizacionderegistros.Campo_origen__c));
-        system.debug('\n\n----------El objToSet devuelto es----------\n\n'+objToSet);
+        //system.debug('\n\n----------El objToSet devuelto es----------\n\n'+objToSet);
 //        listLog.add( LogDepuracion_cls.setWrap(101,'UpdateRegistersLookUp_cls','El objToSet devuelto es----------\n\n'+objToSet,'',true)); KYP01
         
         return objToSet;

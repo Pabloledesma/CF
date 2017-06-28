@@ -1,26 +1,6 @@
 @isTest
 private class TestLinkMeta {
-    
-    static Id createMeta(){
-        
-        Meta__c meta = new Meta__c();
-        Database.SaveResult results = Database.insert(meta);
-        
-        if(results.isSuccess()){
-            //System.debug('Successfully insertion of Meta id: ' + results.getId());
-            return results.getId();
-        } else {
-            for(Database.Error err : results.getErrors()) {
-                System.debug('The following error has occurred.');                   
-                System.debug(err.getStatusCode() + ': ' + err.getMessage());
-                System.debug('Meta fields that affected this error: ' + err.getFields());
-        	}
-            
-            return '012o0000000Gl0LAAS';
 
-        }
-    }
-    
     static Id createAccount(){
         Account acct = new Account(Name='Test Account', RecordTypeId='012o0000000Gl0KAAS');
         Database.SaveResult rs = Database.insert(acct);
@@ -41,7 +21,7 @@ private class TestLinkMeta {
 
     @isTest static void linkMetaToOneOpportunity(){
       	
-       Id metaId = createMeta();
+       Id metaId = TestDataFactory.createMeta();
        Id accountId = createAccount();
        
    		Opportunity objOpportunity= new Opportunity(
@@ -65,7 +45,7 @@ private class TestLinkMeta {
     
     @isTest static void LinkMetaToManyOpportunities(){
         
-       Id metaId = createMeta();
+       Id metaId = TestDataFactory.createMeta();
        Id accountId = createAccount();
 
         List<Opportunity> lstOpportunities = new List<Opportunity>();
@@ -93,7 +73,7 @@ private class TestLinkMeta {
     }
     
     @isTest static void LinkMetaToOneSolicitudDeCredito(){
-		Id metaId = createMeta();
+		Id metaId = TestDataFactory.createMeta();
         Id accountId = createAccount();
         
    		Opportunity op = new Opportunity(
@@ -117,7 +97,7 @@ private class TestLinkMeta {
     }
     
     @isTest static void LinkMetaToManySolicitudDeCredito(){
-        Id metaId = createMeta();
+        Id metaId = TestDataFactory.createMeta();
         Id accountId = createAccount();
         
    		Opportunity op = new Opportunity(

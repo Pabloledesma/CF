@@ -28,6 +28,34 @@ public class TestDataFactory {
 		return lead;
 	}
 
+	public static Lead createLead(Id ownerId) {
+		Lead lead = new Lead(
+				FirstName = 'TestName',
+				LastName = 'Test',
+				Numero_de_identificacion__c = String.valueOf(Crypto.getRandomInteger()),
+				Email = 'test@test.com',
+				Tipo_de_documento__c = 'Cédula ciudadanía',
+				Phone = '1234567',
+				Telefono_Actividad_Economica__c = '123456789',
+				Telefono_referencia_familiar__c = '12345678',
+				Telefono_referencia_personal__c = '12345678',
+				Canal_digital__c = 'Si',
+				OwnerId = ownerId
+		);
+
+		Database.SaveResult result = Database.insert(lead, false);
+		if(result.isSuccess()){
+			lead.Id = result.getId();
+		} else {
+			System.debug('Errores al insertar el candidato: ');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+		}
+		return lead;
+	}
+
 	public static Lead createLead(String tipoDeProducto) {
 		Lead lead = new Lead(
 			FirstName = 'TestName',
@@ -66,10 +94,22 @@ public class TestDataFactory {
 			LocaleSidKey='en_US', 
 			ProfileId = profileId,
 			TimeZoneSidKey='America/Bogota', 
-			UserName='TESTuSERUNIQUE@testorg.com'
+			UserName='testUserUnique@testorg.com'
 		);
-
 		return u;
+		/*Database.SaveResult result = Database.insert(u, false);
+		if(result.isSuccess()){
+			u.Id = result.getId();
+			return u;
+		} else {
+			System.debug('Errores al insertar el usuario: ');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+			return null;
+		}*/
+
 	}
 
 
@@ -185,6 +225,26 @@ public class TestDataFactory {
             }
 		}
 		return acc.Id;
+	}
+
+	public static Id createMeta(){
+
+		Meta__c meta = new Meta__c();
+		Database.SaveResult results = Database.insert(meta);
+
+		if(results.isSuccess()){
+			//System.debug('Successfully insertion of Meta id: ' + results.getId());
+			return results.getId();
+		} else {
+			for(Database.Error err : results.getErrors()) {
+				System.debug('The following error has occurred.');
+				System.debug(err.getStatusCode() + ': ' + err.getMessage());
+				System.debug('Meta fields that affected this error: ' + err.getFields());
+			}
+
+			return null;
+
+		}
 	}
 
 	public static Database.LeadConvertResult leadConversion(Id leadId){

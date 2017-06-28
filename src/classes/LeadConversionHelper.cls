@@ -1,4 +1,4 @@
-public with sharing class LeadConversionHelper {
+public without sharing class LeadConversionHelper {
     
     public List<Lead> lstLead;
     public Account clienteDeudor;    //Trigger.new[0]
@@ -156,8 +156,6 @@ public with sharing class LeadConversionHelper {
     }
 
     public Id createSolicitud(){
-
-        // Seleccionar la oportunidad
 
         List<RecordType> lstRt = [select id, name from RecordType where SobjectType = 'Solicitud_de_credito__c'];
         Map<String, Id> mapRt = new Map<String, Id>();
