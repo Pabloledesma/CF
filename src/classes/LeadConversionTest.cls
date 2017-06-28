@@ -5,57 +5,11 @@ private class LeadConversionTest {
 		Lead lead = TestDataFactory.createLead();
 		System.assert(lead.Id != null, 'El candidato no fué insertado.');
 		Test.startTest();
-		
-		Database.LeadConvertResult lcr = TestDataFactory.leadConversion(lead.Id);
-		
-		if(lcr.getErrors().size() > 0){
-			System.debug('Errores al convertir el candidato: ');
-			for(Database.Error error : lcr.getErrors()){
-                System.debug(error.getStatusCode() + ': ' + error.getMessage());
-                System.debug('Verificar los siguientes campos: ' + error.getFields());
-            }
-		} else {
-			System.debug('Registros creados en la conversión');
-			System.debug('Account: ' + lcr.getAccountId());
-			System.debug('Contact: ' + lcr.getContactId());
-			System.debug('Opportunity: ' + lcr.getOpportunityId());
-		}
-
-		System.assert(lcr.isSuccess()); 
-		
-		//Se creó la cuenta?
-		Account acc = [select Id from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c];
-
-		System.assert(
-			[select count() from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c] == 1, 
-			'Debe existir una cuenta con el número de indentificación del lead'
-		);
-
-		//Verificar que exista la solicitud de crédito y esté enlazada a la oportunidad
-		List<Solicitud_de_credito__c> sc =
-		[
-				select
-						Id,
-						Oportunidad__c
-				from Solicitud_de_credito__c
-				where Oportunidad__c = :lcr.getOpportunityId()
-		];
-
-		System.assertEquals(sc.size(), 1, 'Debe existir una Solicitud de credito');
-
-		System.assertEquals(
-				sc[0].Oportunidad__c,
-				lcr.getOpportunityId(),
-				'La solicitud de crédito no está enlazada a la oportunidad'
-		);
-
-		//Verificar que exista la radicación de crédito y esté enlazada a la solicitud de crédito
-		System.assert(
-				[select count() from Radicacion_de_credito__c where Solicitud_de_credito__c = :sc[0].Id] == 1,
-			'Debe existir una radicación de crédito'
-		);
+			Database.LeadConvertResult lcr = convertLead(lead.Id);
+			verificarCuenta(lead);
+			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+			verificarRadicacionDeCredito(sc);
 		Test.stopTest();
-		 
 	}
 	
 	@isTest static void conversion_de_lead_con_un_codeudor() {
@@ -63,27 +17,25 @@ private class LeadConversionTest {
 		Id codeudorId = TestDataFactory.createCodeudor(lead.Id);
 		Test.startTest();
 			
-			Database.LeadConvertResult lcr = TestDataFactory.leadConversion(lead.Id);
-			
-			if(lcr.getErrors().size() > 0){
-				System.debug('Errores al convertir el candidato: ');
-				for(Database.Error error : lcr.getErrors()){
-	                System.debug(error.getStatusCode() + ': ' + error.getMessage());
-	                System.debug('Verificar los siguientes campos: ' + error.getFields());
-	            }
-			} 
+			Database.LeadConvertResult lcr = convertLead(lead.Id);
 				
-			//Existe un deudor principal?
-			System.assert(
-				[select count() from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c] == 1,
-				'Debe existir una cuenta con el número de indentificación del lead'
-			);
+			verificarCuenta(Lead);
 
-			Account deudorPrincipal = [select Id, Canal_digital__c, Numero_de_documento__c from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c];
+			Account deudorPrincipal =
+			[
+					SELECT
+							Id,
+							Canal_digital__c,
+							Numero_de_documento__c
+					FROM Account
+					WHERE Numero_de_documento__c = :lead.Numero_de_identificacion__c
+			];
 			//System.debug('conversion_de_lead_con_un_codeudor -> deudorPrincipal: ' + deudorPrincipal.Id);
-			System.assertEquals(deudorPrincipal.Canal_digital__c, 'Si', 'La cuenta no se está creando con el identificador de canal digital');
-
-
+			System.assertEquals(
+					deudorPrincipal.Canal_digital__c,
+					'Si',
+					'La cuenta no se está creando con el identificador de canal digital'
+			);
 
 			//El codeudor está enlazado a la cuenta principal?
 			Codeudor__c cod = [select Numero_de_documento__c from Codeudor__c where Id = :codeudorId];
@@ -93,45 +45,22 @@ private class LeadConversionTest {
 				'El codeudor no está enlazado al cliente plrincipal'
 			);
 
-			//Se creo la oportunidad?
-			 Opportunity op = [select Id, AccountId, Codeudor_1__c from Opportunity where AccountId = :lcr.getAccountId()];
-//			 System.debug('conversion_de_lead_con_un_codeudor -> oportunidad creada');
-//			 System.debug(op);
-			 System.assertEquals(op.Id, lcr.getOpportunityId(), 'No se creó la oportunidad en la conversión del candidato.');
-			 System.assertEquals(op.AccountId, lcr.getAccountId(), 'La oportunidad no está enlazada a la cuenta principal');
+			Opportunity op = verificarOportunidad(lcr);
 
 			// Se actualizo correctamente el codeudor en la oportunidad?
 			Account cuentaTipoCodeudor = [select Id from Account where Numero_de_documento__c = :String.valueOf(codeudor.Numero_de_documento__c)];
-			System.debug('conversion_de_lead_con_un_codeudor -> cuentaTipoCodeudor: ' + cuentaTipoCodeudor.Id);
-			System.assertEquals(op.Codeudor_1__c, cuentaTipoCodeudor.Id, 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
-
-			List<Solicitud_de_credito__c> sc =
-			[
-					select
-							Id,
-							Oportunidad__c
-					from Solicitud_de_credito__c
-					where Oportunidad__c = :lcr.getOpportunityId()
-			];
-
-			System.assertEquals(sc.size(), 1, 'Debe existir una Solicitud de credito');
-
+			//System.debug('conversion_de_lead_con_un_codeudor -> cuentaTipoCodeudor: ' + cuentaTipoCodeudor.Id);
 			System.assertEquals(
-					sc[0].Oportunidad__c,
-					lcr.getOpportunityId(),
-					'La solicitud de crédito no está enlazada a la oportunidad'
+					op.Codeudor_1__c,
+					cuentaTipoCodeudor.Id,
+					'El codeudor 1 no fué actualizado correctamente en la oportunidad'
 			);
 
-			//Verificar que exista la radicación de crédito y esté enlazada a la solicitud de crédito
-			System.assert(
-					[select count() from Radicacion_de_credito__c where Solicitud_de_credito__c = :sc[0].Id] == 1,
-					'Debe existir una radicación de crédito'
-			);
+			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
 
-			//Se creo la radicación de crédito?
-			Radicacion_de_credito__c rc = [select Id, Codeudor_1__c, Cliente_deudor__c from Radicacion_de_credito__c where Cliente_deudor__c = :lcr.getAccountId()];
+			Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
+
 			System.assertEquals(rc.Codeudor_1__c, codeudor.Id, 'La radicación no esta enlazada al codeudor');
-
 
 		Test.stopTest();
 	}
@@ -144,17 +73,7 @@ private class LeadConversionTest {
 
 		Test.startTest();
 		 
-			Database.LeadConvertResult lcr = TestDataFactory.leadConversion(lead.Id);
-
-			if(lcr.getErrors().size() > 0){
-				System.debug('Errores al convertir el candidato: ');
-				for(Database.Error error : lcr.getErrors()){
-	                System.debug(error.getStatusCode() + ': ' + error.getMessage());
-	                System.debug('Verificar los siguientes campos: ' + error.getFields());
-	            }
-			} 
-
-			System.assert(lcr.isSuccess(), 'La conversión no fué exitosa.');
+			Database.LeadConvertResult lcr = convertLead(lead.Id);
 
 			//Existen 2 cuentas de tipo codeudor enlazadas a la cuenta principal?
 			System.assert(
@@ -176,13 +95,7 @@ private class LeadConversionTest {
 					'Los codeudores no están enlazados a la cuenta del cliente plrincipal'
 			);
 
-			//Se creo la oportunidad?
-			Opportunity op = [select Id, AccountId, Codeudor_1__c, Codeudor_2__c from Opportunity where AccountId = :lcr.getAccountId()];
-			//System.debug('conversion_de_lead_con_dos_codeudores -> oportunidad creada');
-			//System.debug(op);
-			System.assertEquals(op.Id, lcr.getOpportunityId(), 'No se creó la oportunidad en la conversión del candidato.');
-			System.assertEquals(op.AccountId, lcr.getAccountId(), 'La oportunidad no está enlazada a la cuenta principal');
-
+			Opportunity op = verificarOportunidad(lcr);
 
 			// Se actualizaron correctamente los codeudores en la oportunidad?
 			List<Account> lstCodeudores = [select Id from Account where Cliente_deudor__c = :lcr.getAccountId()]; 
@@ -190,31 +103,10 @@ private class LeadConversionTest {
 			System.assert(mapCodeudores.containsKey(op.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
 			System.assert(mapCodeudores.containsKey(op.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
 
-			List<Solicitud_de_credito__c> sc =
-			[
-					select
-							Id,
-							Oportunidad__c
-					from Solicitud_de_credito__c
-					where Oportunidad__c = :lcr.getOpportunityId()
-			];
+			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
 
-			System.assertEquals(sc.size(), 1, 'Debe existir una Solicitud de credito');
+			Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
 
-			System.assertEquals(
-					sc[0].Oportunidad__c,
-					lcr.getOpportunityId(),
-					'La solicitud de crédito no está enlazada a la oportunidad'
-			);
-
-			//Verificar que exista la radicación de crédito y esté enlazada a la solicitud de crédito
-			System.assert(
-					[select count() from Radicacion_de_credito__c where Solicitud_de_credito__c = :sc[0].Id] == 1,
-					'Debe existir una radicación de crédito'
-			);
-
-			//Se creo la radicación de crédito?
-			Radicacion_de_credito__c rc = [select Id, Codeudor_1__c, Codeudor_2__c, Cliente_deudor__c from Radicacion_de_credito__c where Cliente_deudor__c = :lcr.getAccountId()];
 			System.assert(mapCodeudores.containsKey(rc.Codeudor_1__c), 'La radicación no esta enlazada al codeudor 1');
 			System.assert(mapCodeudores.containsKey(rc.Codeudor_2__c), 'La radicación no esta enlazada al codeudor 2');
 
@@ -231,17 +123,7 @@ private class LeadConversionTest {
 		idCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
 
 		Test.startTest();
-			Database.LeadConvertResult lcr = TestDataFactory.leadConversion(lead.Id);
-			
-			if(lcr.getErrors().size() > 0){
-				System.debug('Errores al convertir el candidato: ');
-				for(Database.Error error : lcr.getErrors()){
-	                System.debug(error.getStatusCode() + ': ' + error.getMessage());
-	                System.debug('Verificar los siguientes campos: ' + error.getFields());
-	            }
-			} 
-
-			System.assert(lcr.isSuccess(), 'La conversión no fué exitosa.');
+			Database.LeadConvertResult lcr = convertLead(lead.Id);
 
 			//Existen 3 cuentas de tipo codeudor?
 			System.assert(
@@ -249,13 +131,7 @@ private class LeadConversionTest {
 				'Se esperaba encontrar 3 cuentas de tipo codeudor'
 			);
 
-			//Se creo la oportunidad?
-			Opportunity op = [select Id, AccountId, Codeudor_1__c, Codeudor_2__c, Codeudor_3__c from Opportunity where AccountId = :lcr.getAccountId()];
-			//System.debug('conversion_de_lead_con_dos_codeudores -> oportunidad creada');
-			//System.debug(op);
-			System.assertEquals(op.Id, lcr.getOpportunityId(), 'No se creó la oportunidad en la conversión del candidato.');
-			System.assertEquals(op.AccountId, lcr.getAccountId(), 'La oportunidad no está enlazada a la cuenta principal');
-
+			Opportunity op = verificarOportunidad(lcr);
 
 			// Se actualizaron correctamente los codeudores en la oportunidad?
 			List<Account> lstCodeudores = [select Id from Account where Cliente_deudor__c = :lcr.getAccountId()]; 
@@ -264,42 +140,11 @@ private class LeadConversionTest {
 			System.assert(mapCodeudores.containsKey(op.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
 			System.assert(mapCodeudores.containsKey(op.Codeudor_3__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
 
-			// Se creó la solicitud de credito?
-			List<Solicitud_de_credito__c> sc =
-			[
-					select
-							Id,
-							Oportunidad__c
-					from Solicitud_de_credito__c
-					where Oportunidad__c = :lcr.getOpportunityId()
-			];
+			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
 
-			System.assertEquals(sc.size(), 1, 'Debe existir una Solicitud de credito');
+			//se actualizaron los codeudores en la radicación?
+			Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
 
-			System.assertEquals(
-					sc[0].Oportunidad__c,
-					lcr.getOpportunityId(),
-					'La solicitud de crédito no está enlazada a la oportunidad'
-			);
-
-			//Verificar que exista la radicación de crédito y esté enlazada a la solicitud de crédito
-			System.assert(
-					[select count() from Radicacion_de_credito__c where Solicitud_de_credito__c = :sc[0].Id] == 1,
-					'Debe existir una radicación de crédito'
-			);
-
-			//Se creo la radicación de crédito?
-			Radicacion_de_credito__c rc =
-			[
-					select
-							Id,
-							Codeudor_1__c,
-							Codeudor_2__c,
-							Codeudor_3__c,
-							Cliente_deudor__c
-					from Radicacion_de_credito__c
-					where Cliente_deudor__c = :lcr.getAccountId()
-			];
 			System.assert(mapCodeudores.containsKey(rc.Codeudor_1__c), 'La radicación no esta enlazada al codeudor 1');
 			System.assert(mapCodeudores.containsKey(rc.Codeudor_2__c), 'La radicación no esta enlazada al codeudor 2');
 			System.assert(mapCodeudores.containsKey(rc.Codeudor_3__c), 'La radicación no esta enlazada al codeudor 3');
@@ -331,7 +176,7 @@ private class LeadConversionTest {
 	static void conversion_de_lead_asignado_a_un_asesor(){
 		//User asesorComercialCD = TestDataFactory.createUser('00eo0000000TUb1');
 		//System.debug('conversion_de_lead_asignado_a_un_asesor -> usuario: ' + asesorComercialCD);
-		TestDataFactory.createMeta();
+		//TestDataFactory.createMeta();
 		Test.startTest();
 		Id asesorId = '005o0000002P5KY';
 		Lead lead = TestDataFactory.createLead(asesorId);
@@ -339,49 +184,11 @@ private class LeadConversionTest {
 		User asesorComercial = [select Id from User where Id = '005o0000002P5KY'];
 		System.runAs(asesorComercial){
 
-			Database.LeadConvertResult lcr = TestDataFactory.leadConversion(lead.Id);
-
-			if(lcr.getErrors().size() > 0){
-				System.debug('Errores al convertir el candidato: ');
-				for(Database.Error error : lcr.getErrors()){
-					System.debug(error.getStatusCode() + ': ' + error.getMessage());
-					System.debug('Verificar los siguientes campos: ' + error.getFields());
-				}
-			}
-
-			System.assert(lcr.isSuccess(), 'La conversión no fué exitosa.');
-
-			//Se creó la cuenta?
-			Account acc = [select Id from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c];
-
-			System.assert(
-					[select count() from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c] == 1,
-					'Debe existir una cuenta con el número de indentificación del lead'
-			);
-
-			//Verificar que exista la solicitud de crédito y esté enlazada a la oportunidad
-			List<Solicitud_de_credito__c> sc =
-			[
-					select
-							Id,
-							Oportunidad__c
-					from Solicitud_de_credito__c
-					where Oportunidad__c = :lcr.getOpportunityId()
-			];
-
-			System.assertEquals(sc.size(), 1, 'Debe existir una Solicitud de credito');
-
-			System.assertEquals(
-					sc[0].Oportunidad__c,
-					lcr.getOpportunityId(),
-					'La solicitud de crédito no está enlazada a la oportunidad'
-			);
-
-			//Verificar que exista la radicación de crédito y esté enlazada a la solicitud de crédito
-			System.assert(
-					[select count() from Radicacion_de_credito__c where Solicitud_de_credito__c = :sc[0].Id] == 1,
-					'Debe existir una radicación de crédito'
-			);
+			Database.LeadConvertResult lcr = convertLead(lead.id);
+			verificarCuenta(lead);
+			verificarOportunidad(lcr);
+			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+			verificarRadicacionDeCredito(sc);
 		}
 
 		System.debug('conversion_de_lead_asignado_a_un_asesor -> lead: ' + lead);
@@ -389,5 +196,115 @@ private class LeadConversionTest {
 
 		Test.stopTest();
 	}
-	
+
+	@isTest public static void solicitud_de_vivienda_nueva()
+	{
+		Lead viviendaNueva = TestDataFactory.createLead('Crédito de vivienda nueva');
+		Lead asignacionDeCupo = TestDataFactory.createLead('Asignación de cupo');
+		Test.startTest();
+			Database.LeadConvertResult lcr = convertLead(viviendaNueva.id);
+
+		Test.stopTest();
+	}
+
+	public static Database.LeadConvertResult convertLead(Id leadId)
+	{
+		Database.LeadConvertResult lcr = TestDataFactory.leadConversion(leadId);
+
+		if(lcr.getErrors().size() > 0){
+			System.debug('Errores al convertir el candidato: ');
+			for(Database.Error error : lcr.getErrors()){
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+		}
+
+		System.assert(lcr.isSuccess(), 'La conversión no fué exitosa.');
+		return lcr;
+	}
+
+	/**
+	* Verificar que exista la solicitud de crédito y esté enlazada a la oportunidad
+	**/
+	public static Solicitud_de_credito__c verificarSolicitud(Database.LeadConvertResult lcr)
+	{
+
+		Solicitud_de_credito__c sc =
+		[
+				SELECT
+						Id,
+						Oportunidad__c,
+						Codeudor_1__c,
+						Codeudor_2__c,
+						Codeudor_3__c
+				FROM Solicitud_de_credito__c
+				WHERE Oportunidad__c = :lcr.getOpportunityId()
+				LIMIT 1
+		];
+
+		System.assert(sc != null, 'Debe existir una Solicitud de credito');
+
+		System.assertEquals(
+				sc.Oportunidad__c,
+				lcr.getOpportunityId(),
+				'La solicitud de crédito no está enlazada a la oportunidad'
+		);
+
+		return sc;
+	}
+
+	public static Radicacion_de_credito__c verificarRadicacionDeCredito(Solicitud_de_credito__c sc)
+	{
+		//Verificar que exista la radicación de crédito y esté enlazada a la solicitud de crédito
+		System.assert(
+				[select count() from Radicacion_de_credito__c where Solicitud_de_credito__c = :sc.Id] == 1,
+				'Debe existir una radicación de crédito'
+		);
+
+		Radicacion_de_credito__c rc =
+		[
+				SELECT
+						Id,
+						Codeudor_1__c,
+						Codeudor_2__c,
+						Codeudor_3__c,
+						Solicitud_de_credito__c
+				FROM Radicacion_de_credito__c
+				WHERE Solicitud_de_credito__c = :sc.Id
+				LIMIT 1
+		];
+
+		return rc;
+	}
+
+	public static void verificarCuenta(Lead lead)
+	{
+		Account acc = [select Id from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c];
+
+		System.assert(
+				[select count() from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c] == 1,
+				'Debe existir una cuenta con el número de indentificación del lead'
+		);
+
+	}
+
+	public static Opportunity verificarOportunidad(Database.LeadConvertResult lcr)
+	{
+
+		Opportunity op =
+		[
+				SELECT
+						Id,
+						AccountId,
+						Codeudor_1__c,
+						Codeudor_2__c,
+						Codeudor_3__c
+				FROM Opportunity
+				WHERE AccountId = :lcr.getAccountId()
+		];
+		System.assertEquals(op.Id, lcr.getOpportunityId(), 'No se creó la oportunidad en la conversión del candidato.');
+		System.assertEquals(op.AccountId, lcr.getAccountId(), 'La oportunidad no está enlazada a la cuenta principal');
+
+		return op;
+	}
 }

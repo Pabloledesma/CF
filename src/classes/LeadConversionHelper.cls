@@ -165,13 +165,18 @@ public without sharing class LeadConversionHelper {
 
         Solicitud_de_credito__c sc = new Solicitud_de_credito__c();
 
-        if(this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Crédito de vivienda nueva' ||
-        this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Asignación de cupo')
-        sc.RecordTypeId = mapRt.get('Vivienda Nueva');
+        if( this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Crédito de vivienda nueva' ||
+            this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Asignación de cupo')
+
+            sc.RecordTypeId = mapRt.get('Vivienda Nueva');
+
         else if(this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Crédito de vivienda usada' ||
         this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Mejoramiento de vivienda')
-        sc.RecordTypeId = mapRt.get('Vivienda Usada / Mejoramiento');
+
+            sc.RecordTypeId = mapRt.get('Vivienda Usada / Mejoramiento');
+
         else if(this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Compra de cartera')
+
         sc.RecordTypeId = mapRt.get('Compra de cartera hipotecaria');
         sc.Cliente_deudor__c = this.clienteDeudor.Id;
 
