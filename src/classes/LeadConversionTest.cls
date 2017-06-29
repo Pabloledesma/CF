@@ -15,8 +15,10 @@ private class LeadConversionTest {
 	@isTest static void conversion_de_lead_con_un_codeudor() {
 		Lead lead = TestDataFactory.createLead();
 		Id codeudorId = TestDataFactory.createCodeudor(lead.Id);
+		//El codeudor está enlazado a la cuenta principal?
+		Codeudor__c cod = [select Numero_de_documento__c from Codeudor__c where Id = :codeudorId];
 		Test.startTest();
-			
+
 			Database.LeadConvertResult lcr = convertLead(lead.Id);
 				
 			verificarCuenta(Lead);
@@ -37,8 +39,6 @@ private class LeadConversionTest {
 					'La cuenta no se está creando con el identificador de canal digital'
 			);
 
-			//El codeudor está enlazado a la cuenta principal?
-			Codeudor__c cod = [select Numero_de_documento__c from Codeudor__c where Id = :codeudorId];
 			Account codeudor = [select Id, Cliente_deudor__c, Numero_de_documento__c from Account where Numero_de_documento__c = :String.valueOf(cod.Numero_de_documento__c)];
 			System.assertEquals(
 				 deudorPrincipal.Id, codeudor.Cliente_deudor__c,
@@ -66,28 +66,35 @@ private class LeadConversionTest {
 	}
 
 	@isTest static void conversion_de_lead_con_dos_codeudores() {
-		Lead lead = TestDataFactory.createLead();
+		Id asesorId = '005o0000002P5KY';
+		Lead lead = TestDataFactory.createLead(asesorId);
+
+		User asesorComercial = [select Id from User where Id = '005o0000002P5KY'];
 		Set<Id> setCodeudores = new Set<Id>();
 		setCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
 		setCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
 
+		//El codeudor está enlazado a la cuenta principal?
+		List<Codeudor__c> lstCodeudors = new List<Codeudor__c>();
+		lstCodeudors = [select Numero_de_documento__c from Codeudor__c where Id IN :setCodeudores];
+		Set<String> cedulasCodeudores = new Set<String>();
+		for(Codeudor__c cod: lstCodeudors){
+			cedulasCodeudores.add(cod.Numero_de_documento__c);
+		}
+
 		Test.startTest();
 		 
+		System.runAs(asesorComercial){
+
 			Database.LeadConvertResult lcr = convertLead(lead.Id);
 
 			//Existen 2 cuentas de tipo codeudor enlazadas a la cuenta principal?
 			System.assert(
-				[select count() from Account where Cliente_deudor__c = :lcr.getAccountId()] == 2,
-				'Se esperaba encontrar 2 cuentas de tipo codeudor'
+					[select count() from Account where Cliente_deudor__c = :lcr.getAccountId()] == 2,
+					'Se esperaba encontrar 2 cuentas de tipo codeudor'
 			);
 
-			//El codeudor está enlazado a la cuenta principal?
-			List<Codeudor__c> lstCodeudors = new List<Codeudor__c>();
-			lstCodeudors = [select Numero_de_documento__c from Codeudor__c where Id IN :setCodeudores];
-			Set<String> cedulasCodeudores = new Set<String>();
-			for(Codeudor__c cod: lstCodeudors){
-				cedulasCodeudores.add(cod.Numero_de_documento__c);
-			}
+			//Los codeudores están enlazados a la cuenta principal?
 			List<Account> accounts = new List<Account>();
 			accounts = [select Id, Cliente_deudor__c, Numero_de_documento__c from Account where Numero_de_documento__c IN :cedulasCodeudores];
 			System.assertEquals(
@@ -98,20 +105,21 @@ private class LeadConversionTest {
 			Opportunity op = verificarOportunidad(lcr);
 
 			// Se actualizaron correctamente los codeudores en la oportunidad?
-			List<Account> lstCodeudores = [select Id from Account where Cliente_deudor__c = :lcr.getAccountId()]; 
+			List<Account> lstCodeudores = [select Id from Account where Cliente_deudor__c = :lcr.getAccountId()];
 			Map<Id, Account> mapCodeudores = new Map<Id, Account>(lstCodeudores);
-		System.assert(mapCodeudores.containsKey(op.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
-		System.assert(mapCodeudores.containsKey(op.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
+			System.assert(mapCodeudores.containsKey(op.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
+			System.assert(mapCodeudores.containsKey(op.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
 
-		Solicitud_de_credito__c sc = verificarSolicitud(lcr);
-		System.assert(mapCodeudores.containsKey(sc.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la Solicitud');
-		System.assert(mapCodeudores.containsKey(sc.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la Solicitud');
+			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+			System.assert(mapCodeudores.containsKey(sc.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la Solicitud');
+			System.assert(mapCodeudores.containsKey(sc.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la Solicitud');
 
 
 			Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
 
 			System.assert(mapCodeudores.containsKey(rc.Codeudor_1__c), 'La radicación no esta enlazada al codeudor 1');
 			System.assert(mapCodeudores.containsKey(rc.Codeudor_2__c), 'La radicación no esta enlazada al codeudor 2');
+		}
 
 		Test.stopTest();
 	}
@@ -194,7 +202,7 @@ private class LeadConversionTest {
 			verificarRadicacionDeCredito(sc);
 		}
 
-		System.debug('conversion_de_lead_asignado_a_un_asesor -> lead: ' + lead);
+		//System.debug('conversion_de_lead_asignado_a_un_asesor -> lead: ' + lead);
 
 
 		Test.stopTest();
@@ -331,6 +339,54 @@ private class LeadConversionTest {
 					'La Solicitud de crédito se debe crear manualmente en el canal constructor'
 				);
 			}
+	    Test.stopTest();
+	}
+
+	@isTest public static void los_codeudores_se_eliminan_despues_de_la_conversion()
+	{
+		Id asesorId = '005o0000002P5KY';
+		Lead lead = TestDataFactory.createLead(asesorId);
+
+		User asesorComercial = [select Id from User where Id = '005o0000002P5KY'];
+		Set<Id> setCodeudores = new Set<Id>();
+		setCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
+		setCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
+
+		Test.startTest();
+	       System.runAs(asesorComercial){
+
+			   Database.LeadConvertResult lcr = convertLead(lead.id);
+			   //Existen 2 cuentas de tipo codeudor enlazadas a la cuenta principal?
+			   System.assert(
+					   [select count() from Account where Cliente_deudor__c = :lcr.getAccountId()] == 2,
+					   'Se esperaba encontrar 2 cuentas de tipo codeudor'
+			   );
+
+			   Opportunity op = verificarOportunidad(lcr);
+
+			   // Se actualizaron correctamente los codeudores en la oportunidad?
+			   List<Account> lstCodeudores = [select Id from Account where Cliente_deudor__c = :lcr.getAccountId()];
+			   Map<Id, Account> mapCodeudores = new Map<Id, Account>(lstCodeudores);
+			   System.assert(mapCodeudores.containsKey(op.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
+			   System.assert(mapCodeudores.containsKey(op.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
+
+			   Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+			   System.assert(mapCodeudores.containsKey(sc.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la Solicitud');
+			   System.assert(mapCodeudores.containsKey(sc.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la Solicitud');
+
+
+			   Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
+
+			   System.assert(mapCodeudores.containsKey(rc.Codeudor_1__c), 'La radicación no esta enlazada al codeudor 1');
+			   System.assert(mapCodeudores.containsKey(rc.Codeudor_2__c), 'La radicación no esta enlazada al codeudor 2');
+
+			   //Los codeudores se eliminaron?
+			   List<Codeudor__c> codeudores = new List<Codeudor__c>();
+			   codeudores = [SELECT Id FROM Codeudor__c WHERE Candidato__c = :lead.Id];
+			   System.assertEquals(codeudores.size(), 0, 'Los codeudores se deben eliminar despues de la conversión');
+		   }
+
+
 	    Test.stopTest();
 	}
 
