@@ -100,10 +100,13 @@ private class LeadConversionTest {
 			// Se actualizaron correctamente los codeudores en la oportunidad?
 			List<Account> lstCodeudores = [select Id from Account where Cliente_deudor__c = :lcr.getAccountId()]; 
 			Map<Id, Account> mapCodeudores = new Map<Id, Account>(lstCodeudores);
-			System.assert(mapCodeudores.containsKey(op.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
-			System.assert(mapCodeudores.containsKey(op.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
+		System.assert(mapCodeudores.containsKey(op.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
+		System.assert(mapCodeudores.containsKey(op.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
 
-			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+		Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+		System.assert(mapCodeudores.containsKey(sc.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la Solicitud');
+		System.assert(mapCodeudores.containsKey(sc.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la Solicitud');
+
 
 			Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
 
@@ -197,14 +200,155 @@ private class LeadConversionTest {
 		Test.stopTest();
 	}
 
-	@isTest public static void solicitud_de_vivienda_nueva()
+	@isTest
+	public static void solicitud_de_vivienda_nueva()
 	{
 		Lead viviendaNueva = TestDataFactory.createLead('Crédito de vivienda nueva');
-		Lead asignacionDeCupo = TestDataFactory.createLead('Asignación de cupo');
+		Map<String, Id> mapRt = new Map<String, Id>();
+		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
 			Database.LeadConvertResult lcr = convertLead(viviendaNueva.id);
+			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
 
+			System.assertEquals(
+					sc.RecordTypeId,
+					mapRt.get('Vivienda Nueva'),
+					'El tipo de registro de la Solicitud no es correcto.'
+			);
 		Test.stopTest();
+	}
+
+	@isTest public static void solicitud_de_asignacion_de_cupo()
+	{
+		Lead asignacionDeCupo = TestDataFactory.createLead('Asignación de cupo');
+		Map<String, Id> mapRt = new Map<String, Id>();
+		mapRt = getRecordTypeFromSolicitud();
+		Test.startTest();
+			Database.LeadConvertResult lcr = convertLead(asignacionDeCupo.id);
+			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+
+			System.assertEquals(
+					sc.RecordTypeId,
+					mapRt.get('Vivienda Nueva'),
+					'El tipo de registro de la Solicitud no es correcto.'
+			);
+	    Test.stopTest();
+	}
+
+	@isTest public static void solicitud_credito_de_vivienda_usada()
+	{
+		Lead lead = TestDataFactory.createLead('Crédito de vivienda usada');
+		Map<String, Id> mapRt = new Map<String, Id>();
+		mapRt = getRecordTypeFromSolicitud();
+		Test.startTest();
+			Database.LeadConvertResult lcr = convertLead(lead.id);
+			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+
+			System.assertEquals(
+					sc.RecordTypeId,
+					mapRt.get('Vivienda Usada / Mejoramiento'),
+					'El tipo de registro de la Solicitud no es correcto.'
+			);
+	    Test.stopTest();
+	}
+
+	@isTest public static void solicitud_mejoramiento_de_vivienda()
+	{
+		Lead lead = TestDataFactory.createLead('Mejoramiento de vivienda');
+		Map<String, Id> mapRt = new Map<String, Id>();
+		mapRt = getRecordTypeFromSolicitud();
+		Test.startTest();
+		Database.LeadConvertResult lcr = convertLead(lead.id);
+		Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+
+		System.assertEquals(
+				sc.RecordTypeId,
+				mapRt.get('Vivienda Usada / Mejoramiento'),
+				'El tipo de registro de la Solicitud no es correcto.'
+		);
+		Test.stopTest();
+	}
+
+	@isTest public static void solicitud_compra_de_cartera_hipotecaria()
+	{
+		Lead lead = TestDataFactory.createLead('Compra de cartera');
+		Map<String, Id> mapRt = new Map<String, Id>();
+		mapRt = getRecordTypeFromSolicitud();
+		Test.startTest();
+		Database.LeadConvertResult lcr = convertLead(lead.id);
+		Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+
+		System.assertEquals(
+				sc.RecordTypeId,
+				mapRt.get('Compra de cartera hipotecaria'),
+				'El tipo de registro de la Solicitud no es correcto.'
+		);
+		Test.stopTest();
+	}
+
+	@isTest public static void conversion_de_lead_con_perfil_comercial()
+	{
+		Lead lead = TestDataFactory.createLead();
+
+		User user = getComercialUser();
+
+		Test.startTest();
+			System.runAs(user)
+			{
+				try {
+					Database.LeadConvertResult lcr = convertLead(lead.id);
+				} catch (DmlException e){
+					System.debug('Error en la conversión del cantidato: ' + e.getMessage());
+					System.assert(
+							e.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'),
+							'Un asesor comercial no puede convertir candidatos'
+					);
+				}
+			}
+	    Test.stopTest();
+	}
+
+	@isTest public static void crear_cuenta_para_canal_constructor_con_perfil_comercial()
+	{
+		User user = getComercialUser();
+		Test.startTest();
+			System.runAs(user)
+			{
+				RecordType rt = [SELECT Id FROM RecordType WHERE Name = 'Cliente deudor' AND sObjectType = 'Account'];
+				Id accId = TestDataFactory.createAccountForConstructorChanel(rt.Id, '12345678');
+
+				// Existe oportunidad?
+				System.assertEquals(
+					[select count() from Opportunity where AccountId = :accId],
+					0,
+					'La oportunidad se debe crear manualmente en el canal constructor'
+				);
+
+				// Existe Solicitud?
+				System.assertEquals(
+					[select count() from Solicitud_de_credito__c where Cliente_deudor__c = :accId],
+					0,
+					'La Solicitud de crédito se debe crear manualmente en el canal constructor'
+				);
+			}
+	    Test.stopTest();
+	}
+
+	public static User getComercialUser()
+	{
+		Profile asesorComercial = [SELECT Id, Name FROM Profile WHERE Name = 'Comercial'];
+		return TestDataFactory.createUser(asesorComercial.Id);
+	}
+
+	public static Map<String, Id> getRecordTypeFromSolicitud()
+	{
+		List<RecordType> lstRt = [select id, name from RecordType where SobjectType = 'Solicitud_de_credito__c'];
+		Map<String, Id> mapRt = new Map<String, Id>();
+		for(RecordType rt : lstRt){
+			mapRt.put(rt.Name, rt.Id);
+		}
+
+		return mapRt;
 	}
 
 	public static Database.LeadConvertResult convertLead(Id leadId)
@@ -233,6 +377,7 @@ private class LeadConversionTest {
 		[
 				SELECT
 						Id,
+						RecordTypeId,
 						Oportunidad__c,
 						Codeudor_1__c,
 						Codeudor_2__c,

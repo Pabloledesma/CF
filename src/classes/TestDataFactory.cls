@@ -1,6 +1,6 @@
 @isTest
 public class TestDataFactory {
-	
+
 	public static Lead createLead() {
 		Lead lead = new Lead(
 			FirstName = 'TestName',
@@ -97,23 +97,8 @@ public class TestDataFactory {
 			UserName='testUserUnique@testorg.com'
 		);
 		return u;
-		/*Database.SaveResult result = Database.insert(u, false);
-		if(result.isSuccess()){
-			u.Id = result.getId();
-			return u;
-		} else {
-			System.debug('Errores al insertar el usuario: ');
-			for(Database.Error error : result.getErrors()){
-				System.debug(error.getStatusCode() + ': ' + error.getMessage());
-				System.debug('Verificar los siguientes campos: ' + error.getFields());
-			}
-			return null;
-		}*/
-
 	}
 
-
-	
 	public static Id createCodeudor(Id leadId) {
  
 		Codeudor__c cod = new Codeudor__c(
@@ -157,7 +142,78 @@ public class TestDataFactory {
 			return null;
 		}
 	}
-	
+
+	public static Id createAccountForConstructorChanel(Id recordTypeId, String numeroDeDocumento){
+		Account acc = new Account(
+				RecordTypeId = recordTypeId,
+				LastName = 'TestLastname',
+				FirstName = 'TestName',
+				Tipo_de_documento__c = 'Cédula ciudadanía',
+				Numero_de_documento__c = numeroDeDocumento,
+				Sexo__c = 'Femenino',
+				Estado_civil__c = 'Soltero',
+				Fecha_de_expedicion_cc__c = Date.newInstance(2016, 2, 2),
+				Fecha_de_nacimiento__c = Date.newInstance(1983, 5, 24),
+				Lugar_de_expedicion__c = 'Bogotá',
+				Lugar_de_nacimiento__c = 'Popayán',
+				Ciudad_de_residencia__c = 'Bogotá',
+				Ciudad_de_radicacion__c = 'Bogotá',
+				Numero_de_telefono_celular__c = '3134665665',
+				Correo_electronico_1__c = 'test@test.com',
+				Tipo_de_ocupacion__c = 'Empleado',
+				Aporta_ingresos__c = 'No',
+				Estado_del_cliente__c = 'Prospecto'
+		);
+		Database.SaveResult result = Database.insert(acc, false);
+		if(!result.isSuccess()){
+			System.debug('Errores al insertar la cuenta: ');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+		}
+		return acc.Id;
+	}
+
+	public static Database.SaveResult insertSOBject(sObject ob, String nameObject)
+	{
+		Database.SaveResult result = Database.insert(ob, false);
+		if(!result.isSuccess()){
+			System.debug('Errores al insertar '+ nameObject +': ');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+		}
+		return result;
+	}
+
+	public static Account createRawAccount(Id recordTypeId, String numeroDeDocumento)
+	{
+		Account acc = new Account(
+				RecordTypeId = recordTypeId,
+				LastName = 'TestLastname',
+				FirstName = 'TestName',
+				Tipo_de_documento__c = 'Cédula ciudadanía',
+				Numero_de_documento__c = numeroDeDocumento,
+				Sexo__c = 'Femenino',
+				Estado_civil__c = 'Soltero',
+				Fecha_de_expedicion_cc__c = Date.newInstance(2016, 2, 2),
+				Fecha_de_nacimiento__c = Date.newInstance(1983, 5, 24),
+				Lugar_de_expedicion__c = 'Bogotá',
+				Lugar_de_nacimiento__c = 'Popayán',
+				Ciudad_de_residencia__c = 'Bogotá',
+				Ciudad_de_radicacion__c = 'Bogotá',
+				Numero_de_telefono_celular__c = '3134665665',
+				Correo_electronico_1__c = 'test@test.com',
+				Tipo_de_ocupacion__c = 'Empleado',
+				Aporta_ingresos__c = 'No',
+				Canal_digital__c = 'Si',
+				Estado_del_cliente__c = 'Prospecto'
+		);
+
+		return acc;
+	}
 
 	public static Id createAccount(Id recordTypeId, String numeroDeDocumento){
 		Account acc = new Account(

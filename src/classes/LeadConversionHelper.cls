@@ -164,14 +164,15 @@ public without sharing class LeadConversionHelper {
         }
 
         Solicitud_de_credito__c sc = new Solicitud_de_credito__c();
-
+        System.debug('createSolicitud -> Tipo de producto: '+this.lstLead[0].Tipo_de_producto_que_le_interesa__c);
         if( this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Crédito de vivienda nueva' ||
-            this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Asignación de cupo')
+            this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Asignación de cupo'){
 
+            System.debug('createSolicitud -> RecordType: ' + mapRt.get('Vivienda Nueva'));
             sc.RecordTypeId = mapRt.get('Vivienda Nueva');
-
-        else if(this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Crédito de vivienda usada' ||
-        this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Mejoramiento de vivienda')
+        } else if(
+                this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Crédito de vivienda usada' ||
+                this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Mejoramiento de vivienda')
 
             sc.RecordTypeId = mapRt.get('Vivienda Usada / Mejoramiento');
 
