@@ -2,25 +2,22 @@
 private class TestLinkMeta {
 
     static Id createAccount(){
-        Account acct = new Account(Name='Test Account', RecordTypeId='012o0000000Gl0KAAS');
-        Database.SaveResult rs = Database.insert(acct);
-        
-        if(rs.isSuccess()){
-            //System.debug('Successfully insertion of Account id: ' + rs.getId());
-            return rs.getId();
-        } else {
-            for(Database.Error err : rs.getErrors()) {
-                System.debug('The following error has occurred.');                   
-                System.debug(err.getStatusCode() + ': ' + err.getMessage());
-                System.debug('Account fields that affected this error: ' + err.getFields());
-        	}
 
-            return '012o0000000Gl0LAAS';
-        }
+        RecordType rt = [
+                SELECT
+                        Id,
+                        Name
+                FROM
+                        RecordType
+                WHERE Name = 'Cliente deudor'
+                AND sObjectType = 'Account'
+        ];
+
+        Id acctId = TestDataFactory.createAccount(rt.Id, '12345678');
+        return acctId;
     }
 
     @isTest static void linkMetaToOneOpportunity(){
-      	
        Id metaId = TestDataFactory.createMeta();
        Id accountId = createAccount();
        

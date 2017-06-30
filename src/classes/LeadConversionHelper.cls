@@ -180,7 +180,6 @@ public without sharing class LeadConversionHelper {
 
         sc.RecordTypeId = mapRt.get('Compra de cartera hipotecaria');
         sc.Cliente_deudor__c = this.clienteDeudor.Id;
-
         Database.SaveResult result = Database.insert(sc, false);
         
         if(result.isSuccess()){
