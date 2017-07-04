@@ -6,7 +6,7 @@ trigger AccountUpdateField on Account (before insert, before update, after inser
     * Actualización de los codeudores en la Radicación de crédito
     **/
 	if( Trigger.isAfter && Trigger.isInsert ){
-    	RecordType rt = [select Id, Name from RecordType where Name = 'Codeudores' and SobjectType='Account'];
+    	RecordType rt = [select Id, Name from RecordType where Name = 'Cliente deudor' and SobjectType='Account'];
 
 		System.debug('AccountUpdateField: Es de tipo codeudor y tiene un cliente deudor asociado');
 

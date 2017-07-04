@@ -4,7 +4,8 @@ trigger LinkCodeudorToOpportunity on Opportunity (before insert, after insert) {
 	**/
 	if(Trigger.new.size() == 1 && Trigger.new[0].AccountId != null && Trigger.isBefore){
 
-		RecordType rt = [select Id, Name from RecordType where Name = 'Codeudores' and SobjectType='Account'];
+
+		RecordType rt = [select Id, Name from RecordType where Name = 'Cliente deudor' and SobjectType='Account'];
 
 		//La cuenta tiene codeudores?
 		List<Account> codeudores =
@@ -44,6 +45,7 @@ trigger LinkCodeudorToOpportunity on Opportunity (before insert, after insert) {
 	* Enlaza la oportunidad a la solicitud de crédito
 	**/
 	if(Trigger.isAfter && Trigger.new.size() == 1 && Trigger.new[0].AccountId != null){
+		System.debug('LinkCodeudorToOpportunity -> Se creó la oportunidad ' + Trigger.new[0].Name);
 		List<Solicitud_de_credito__c> sc = [select Id, Oportunidad__c from Solicitud_de_credito__c where Cliente_deudor__c = :Trigger.new[0].AccountId ];
 		if(sc.size() > 0){
 			sc[0].Oportunidad__c = Trigger.new[0].Id;

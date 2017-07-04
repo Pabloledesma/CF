@@ -39,6 +39,7 @@ trigger SolicitudCredito_tgr on Solicitud_de_credito__c (before insert, before u
     }
     else if(Trigger.isAfter && trigger.new.size()==1)
     {
+        System.debug('SolicitudCredito_trg -> se creó la solicitud ' + Trigger.new[0].Name);
         //system.debug('\n\n----------Trigger Soliitud de credito isAfter----------\n\n'+objTrigger);
         classUpdateRegistersLookUp.setRegister(objTrigger,'Solicitud_de_credito__c');
     }

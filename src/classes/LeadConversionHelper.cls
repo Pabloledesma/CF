@@ -7,7 +7,7 @@ public without sharing class LeadConversionHelper {
 
     public LeadConversionHelper(Account newAccount) {
         this.clienteDeudor = newAccount;
-        this.rt = [select Id, Name from RecordType where Name = 'Codeudores' and SobjectType='Account'];
+        this.rt = [select Id, Name from RecordType where Name = 'Cliente deudor' and SobjectType='Account'];
         this.lstLead = [
                 SELECT
                     Id,

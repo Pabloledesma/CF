@@ -8,6 +8,7 @@ trigger RadicacionCredito_tgr on Radicacion_de_credito__c (before insert, before
     //system.debug('\n\n----------Trigger Radicacion de credito----------\n\n'+objTrigger); 
     if(Trigger.isAfter)
     {
+        System.debug('RadicacionCredito_trg -> se creó la radicación de crédito ' + Trigger.new[0].Name);
         if(!Banderas_cls.ValidarEjecucion('AfterRadicacion'))
         {   
             if(trigger.new.size()==1 && !trigger.new[0].Migrado__c)
