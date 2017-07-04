@@ -3,74 +3,80 @@ private class LeadConversionHelperTest {
 	
 	@isTest public static void conversion_de_lead_codeudor_con_informacion_completa()
 	{
-		Lead lead = TestDataFactory.createLead();
+		Id asesorId = '005o0000002P5KY';
+		Lead lead = TestDataFactory.createLead(asesorId);
+
+		User asesorComercial = [select Id from User where Id = '005o0000002P5KY'];
 		Codeudor__c cod = TestDataFactory.createCodeudorFullInfo('Uno', lead.Id);
 
 		Test.startTest();
-			Database.LeadConvertResult lcr = convertLead(lead.Id);
-			verificarCuenta(lead);
-			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
-			Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
+			System.runAs(asesorComercial){
 
-			System.assertEquals(
-					rc.Familiar_Nombre_y_Apellido_codeudor1__c,
-					cod.Nombres_Ref_Familiar__c + ' ' + cod.Apellidos_Ref_Familiar__c,
-					'El nombre del codeudor no se actualizó correctamente'
-			);
+				Database.LeadConvertResult lcr = convertLead(lead.Id);
+				verificarCuenta(lead);
+				Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+				Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
 
-			System.assertEquals(
-					rc.Parentesco_familiar_codeduor1__c,
-					cod.Parentesco_Ref_Familiar__c,
-					'El Parentesco familiar del codeudor 1 no se actualizó correctamente'
-			);
+				System.assertEquals(
+						rc.Familiar_Nombre_y_Apellido_codeudor1__c,
+						cod.Nombres_Ref_Familiar__c + ' ' + cod.Apellidos_Ref_Familiar__c,
+						'El nombre del codeudor no se actualizó correctamente'
+				);
 
-			System.assertEquals(
-					rc.Direccion_familiar_codeudor1__c,
-					cod.Direccion_referencia_familiar_codeudor__c,
-					'La dirección familiar del codeudor 1 no se actualizó correctamente'
-			);
+				System.assertEquals(
+						rc.Parentesco_familiar_codeduor1__c,
+						cod.Parentesco_Ref_Familiar__c,
+						'El Parentesco familiar del codeudor 1 no se actualizó correctamente'
+				);
 
-			System.assertEquals(
-					rc.Telefono_familiar_codeudor1__c,
-					String.valueOf(cod.Celular_Ref_Familiar__c),
-					'El teléfono de la referencia familiar del codeudor 1 no se actualizó correctamente'
-			);
+				System.assertEquals(
+						rc.Direccion_familiar_codeudor1__c,
+						cod.Direccion_referencia_familiar_codeudor__c,
+						'La dirección familiar del codeudor 1 no se actualizó correctamente'
+				);
 
-			System.assertEquals(
-					rc.Ciudad_familiar_codeudor1__c,
-					cod.Ciudad_Ref_Familiar__c,
-					'La ciudad de la referencia familiar del codeudor 1 no se actualizó correctamente'
-			);
+				System.assertEquals(
+						rc.Telefono_familiar_codeudor1__c,
+						String.valueOf(cod.Celular_Ref_Familiar__c),
+						'El teléfono de la referencia familiar del codeudor 1 no se actualizó correctamente'
+				);
 
-			System.assertEquals(
-					rc.Personal_Nombre_y_Apellido_codeudor1__c,
-					cod.Nombres_Ref_Personal__c + ' ' + cod.Apellidos_Ref_Personal__c,
-					'Los nombres y apellidos de la referencia personal del codeudor 1 no se actualizaron correctamente'
-			);
+				System.assertEquals(
+						rc.Ciudad_familiar_codeudor1__c,
+						cod.Ciudad_Ref_Familiar__c,
+						'La ciudad de la referencia familiar del codeudor 1 no se actualizó correctamente'
+				);
 
-			System.assertEquals(
-					rc.Parentesco_personal_codeudor1__c,
-					cod.Relacion__c,
-					'El parentesco personal del codeudor 1 no se actualizó correctamente'
-			);
+				System.assertEquals(
+						rc.Personal_Nombre_y_Apellido_codeudor1__c,
+						cod.Nombres_Ref_Personal__c + ' ' + cod.Apellidos_Ref_Personal__c,
+						'Los nombres y apellidos de la referencia personal del codeudor 1 no se actualizaron correctamente'
+				);
 
-			System.assertEquals(
-					rc.Direccion_personal_codeudor1__c,
-					cod.Direccion_referencia_personal_codeudor__c,
-					'La dirección de la referencia personal del codeudor 1 no se actualizó correctamente'
-			);
+				System.assertEquals(
+						rc.Parentesco_personal_codeudor1__c,
+						cod.Relacion__c,
+						'El parentesco personal del codeudor 1 no se actualizó correctamente'
+				);
 
-			System.assertEquals(
-					rc.Telefono_personal_codeudor1__c,
-					String.valueOf(cod.Celular_Ref_Personal__c),
-					'El teléfono de la referencia personal del codeudor 1 no se actualizó correctamente'
-			);
+				System.assertEquals(
+						rc.Direccion_personal_codeudor1__c,
+						cod.Direccion_referencia_personal_codeudor__c,
+						'La dirección de la referencia personal del codeudor 1 no se actualizó correctamente'
+				);
 
-			System.assertEquals(
-					rc.Ciudad_personal_codeudor1__c,
-					cod.Ciudad_Ref_Personal__c,
-					'La ciudad de la referencia personal del codeudor 1 no se actualizó correctamente'
-			);
+				System.assertEquals(
+						rc.Telefono_personal_codeudor1__c,
+						String.valueOf(cod.Celular_Ref_Personal__c),
+						'El teléfono de la referencia personal del codeudor 1 no se actualizó correctamente'
+				);
+
+				System.assertEquals(
+						rc.Ciudad_personal_codeudor1__c,
+						cod.Ciudad_Ref_Personal__c,
+						'La ciudad de la referencia personal del codeudor 1 no se actualizó correctamente'
+				);
+			}
 		Test.stopTest();
 
 	}
