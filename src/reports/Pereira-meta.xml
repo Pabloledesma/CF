@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <folderShares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>mcgil1@credifamilia.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </folderShares>
+    <folderShares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>Gte_Cial_Pereira</sharedTo>
+        <sharedToType>Role</sharedToType>
+    </folderShares>
+    <name>036.Pereira</name>
+</ReportFolder>

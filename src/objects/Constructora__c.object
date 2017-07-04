@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <fields>
+        <fullName>Bloqueo_para_desembolso__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Bloqueo para desembolso</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Cedula_de_ciudadania__c</fullName>
+        <externalId>false</externalId>
+        <label>Cédula de ciudadanía</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ciudad__c</fullName>
+        <externalId>false</externalId>
+        <label>Ciudad</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Zona__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Bogotá</fullName>
+                    <default>false</default>
+                    <label>Bogotá</label>
+                </value>
+                <value>
+                    <fullName>Medellín</fullName>
+                    <default>false</default>
+                    <label>Medellín</label>
+                </value>
+                <value>
+                    <fullName>Barranquilla</fullName>
+                    <default>false</default>
+                    <label>Barranquilla</label>
+                </value>
+                <value>
+                    <fullName>Bucaramanga</fullName>
+                    <default>false</default>
+                    <label>Bucaramanga</label>
+                </value>
+                <value>
+                    <fullName>Cali</fullName>
+                    <default>false</default>
+                    <label>Cali</label>
+                </value>
+                <value>
+                    <fullName>Pereira</fullName>
+                    <default>false</default>
+                    <label>Pereira</label>
+                </value>
+                <value>
+                    <fullName>Soacha</fullName>
+                    <default>false</default>
+                    <label>Soacha</label>
+                </value>
+                <value>
+                    <fullName>Funza</fullName>
+                    <default>false</default>
+                    <label>Funza</label>
+                </value>
+                <value>
+                    <fullName>Mosquera</fullName>
+                    <default>false</default>
+                    <label>Mosquera</label>
+                </value>
+                <value>
+                    <fullName>Madrid</fullName>
+                    <default>false</default>
+                    <label>Madrid</label>
+                </value>
+                <value>
+                    <fullName>Facatativá</fullName>
+                    <default>false</default>
+                    <label>Facatativá</label>
+                </value>
+                <value>
+                    <fullName>Zipaquirá</fullName>
+                    <default>false</default>
+                    <label>Zipaquirá</label>
+                </value>
+                <value>
+                    <fullName>Cajicá</fullName>
+                    <default>false</default>
+                    <label>Cajicá</label>
+                </value>
+                <value>
+                    <fullName>Tocancipá</fullName>
+                    <default>false</default>
+                    <label>Tocancipá</label>
+                </value>
+                <value>
+                    <fullName>Gachancipá</fullName>
+                    <default>false</default>
+                    <label>Gachancipá</label>
+                </value>
+                <value>
+                    <fullName>Cota</fullName>
+                    <default>false</default>
+                    <label>Cota</label>
+                </value>
+                <value>
+                    <fullName>Chia</fullName>
+                    <default>false</default>
+                    <label>Chia</label>
+                </value>
+                <value>
+                    <fullName>Sopó</fullName>
+                    <default>false</default>
+                    <label>Sopó</label>
+                </value>
+                <value>
+                    <fullName>Sibaté</fullName>
+                    <default>false</default>
+                    <label>Sibaté</label>
+                </value>
+                <value>
+                    <fullName>Dosquebradas</fullName>
+                    <default>false</default>
+                    <label>Dosquebradas</label>
+                </value>
+                <value>
+                    <fullName>Santa Rosa de Cabal</fullName>
+                    <default>false</default>
+                    <label>Santa Rosa de Cabal</label>
+                </value>
+                <value>
+                    <fullName>Cartago</fullName>
+                    <default>false</default>
+                    <label>Cartago</label>
+                </value>
+                <value>
+                    <fullName>Palmira</fullName>
+                    <default>false</default>
+                    <label>Palmira</label>
+                </value>
+                <value>
+                    <fullName>Yumbo</fullName>
+                    <default>false</default>
+                    <label>Yumbo</label>
+                </value>
+                <value>
+                    <fullName>Jamundí</fullName>
+                    <default>false</default>
+                    <label>Jamundí</label>
+                </value>
+                <value>
+                    <fullName>Candelaria</fullName>
+                    <default>false</default>
+                    <label>Candelaria</label>
+                </value>
+                <value>
+                    <fullName>Santander de Quilichao</fullName>
+                    <default>false</default>
+                    <label>Santander de Quilichao</label>
+                </value>
+                <value>
+                    <fullName>Bello</fullName>
+                    <default>false</default>
+                    <label>Bello</label>
+                </value>
+                <value>
+                    <fullName>Sabaneta</fullName>
+                    <default>false</default>
+                    <label>Sabaneta</label>
+                </value>
+                <value>
+                    <fullName>Envigado</fullName>
+                    <default>false</default>
+                    <label>Envigado</label>
+                </value>
+                <value>
+                    <fullName>Itagui</fullName>
+                    <default>false</default>
+                    <label>Itagui</label>
+                </value>
+                <value>
+                    <fullName>La estrella</fullName>
+                    <default>false</default>
+                    <label>La estrella</label>
+                </value>
+                <value>
+                    <fullName>Rio Negro</fullName>
+                    <default>false</default>
+                    <label>Rio Negro</label>
+                </value>
+                <value>
+                    <fullName>Marinilla</fullName>
+                    <default>false</default>
+                    <label>Marinilla</label>
+                </value>
+                <value>
+                    <fullName>Guarne</fullName>
+                    <default>false</default>
+                    <label>Guarne</label>
+                </value>
+                <value>
+                    <fullName>Girón</fullName>
+                    <default>false</default>
+                    <label>Girón</label>
+                </value>
+                <value>
+                    <fullName>Floridablanca</fullName>
+                    <default>false</default>
+                    <label>Floridablanca</label>
+                </value>
+                <value>
+                    <fullName>Pie de cuesta</fullName>
+                    <default>false</default>
+                    <label>Pie de cuesta</label>
+                </value>
+                <value>
+                    <fullName>Lebrija</fullName>
+                    <default>false</default>
+                    <label>Lebrija</label>
+                </value>
+                <value>
+                    <fullName>Soledad</fullName>
+                    <default>false</default>
+                    <label>Soledad</label>
+                </value>
+                <value>
+                    <fullName>Malambo</fullName>
+                    <default>false</default>
+                    <label>Malambo</label>
+                </value>
+                <value>
+                    <fullName>Galapa</fullName>
+                    <default>false</default>
+                    <label>Galapa</label>
+                </value>
+                <value>
+                    <fullName>Virginia Risaralda</fullName>
+                    <default>false</default>
+                    <label>Virginia Risaralda</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Bogotá</controllingFieldValue>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Bogotá</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antioquia</controllingFieldValue>
+                <valueName>Medellín</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antioquia</controllingFieldValue>
+                <valueName>Bello</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antioquia</controllingFieldValue>
+                <valueName>Sabaneta</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antioquia</controllingFieldValue>
+                <valueName>Envigado</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antioquia</controllingFieldValue>
+                <valueName>Itagui</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antioquia</controllingFieldValue>
+                <valueName>La estrella</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antioquia</controllingFieldValue>
+                <valueName>Rio Negro</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antioquia</controllingFieldValue>
+                <valueName>Marinilla</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Antioquia</controllingFieldValue>
+                <valueName>Guarne</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Costa Atlántica</controllingFieldValue>
+                <valueName>Barranquilla</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Costa Atlántica</controllingFieldValue>
+                <valueName>Soledad</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Costa Atlántica</controllingFieldValue>
+                <valueName>Malambo</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Costa Atlántica</controllingFieldValue>
+                <valueName>Galapa</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Santander</controllingFieldValue>
+                <valueName>Bucaramanga</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Santander</controllingFieldValue>
+                <valueName>Girón</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Santander</controllingFieldValue>
+                <valueName>Floridablanca</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Santander</controllingFieldValue>
+                <valueName>Pie de cuesta</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Santander</controllingFieldValue>
+                <valueName>Lebrija</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Valle</controllingFieldValue>
+                <valueName>Cali</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Valle</controllingFieldValue>
+                <valueName>Palmira</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Valle</controllingFieldValue>
+                <valueName>Yumbo</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Valle</controllingFieldValue>
+                <valueName>Jamundí</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Valle</controllingFieldValue>
+                <valueName>Candelaria</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Valle</controllingFieldValue>
+                <valueName>Santander de Quilichao</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Eje Cafetero</controllingFieldValue>
+                <valueName>Pereira</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Eje Cafetero</controllingFieldValue>
+                <valueName>Dosquebradas</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Eje Cafetero</controllingFieldValue>
+                <valueName>Santa Rosa de Cabal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Eje Cafetero</controllingFieldValue>
+                <valueName>Cartago</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Eje Cafetero</controllingFieldValue>
+                <valueName>Virginia Risaralda</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Soacha</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Funza</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Mosquera</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Madrid</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Facatativá</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Zipaquirá</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Cajicá</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Tocancipá</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Gachancipá</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Cota</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Chia</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Sopó</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Alrededores de Bogotá</controllingFieldValue>
+                <valueName>Sibaté</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Codigo__c</fullName>
+        <externalId>true</externalId>
+        <label>Código</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consecutivo__c</fullName>
+        <displayFormat>{0000}</displayFormat>
+        <externalId>true</externalId>
+        <label>Consecutivo</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Contacto_tramites__c</fullName>
+        <externalId>false</externalId>
+        <label>Contacto trámites</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Detalle_de_la_solicitud__c</fullName>
+        <externalId>false</externalId>
+        <label>Detalle de la solicitud</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Direccion__c</fullName>
+        <externalId>false</externalId>
+        <label>Dirección</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>E_mail__c</fullName>
+        <externalId>false</externalId>
+        <label>E-mail</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Estado_de_aprobacion_Riegos__c</fullName>
+        <externalId>false</externalId>
+        <label>Estado de aprobación Riegos</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Solicitud de aprobación</fullName>
+                    <default>true</default>
+                    <label>Solicitud de aprobación</label>
+                </value>
+                <value>
+                    <fullName>Aprobado</fullName>
+                    <default>false</default>
+                    <label>Aprobado</label>
+                </value>
+                <value>
+                    <fullName>Rechazado</fullName>
+                    <default>false</default>
+                    <label>Rechazado</label>
+                </value>
+                <value>
+                    <fullName>Bloqueado</fullName>
+                    <default>false</default>
+                    <label>Bloqueado</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Experiencia__c</fullName>
+        <externalId>false</externalId>
+        <label>Experiencia (Antigüedad en años)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fax__c</fullName>
+        <externalId>false</externalId>
+        <label>Fax</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Nit__c</fullName>
+        <externalId>true</externalId>
+        <label>Nit</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_Viviendas_ultimos_5_anos__c</fullName>
+        <externalId>false</externalId>
+        <label>No Viviendas últimos 5 años</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Nombre_vendedor__c</fullName>
+        <externalId>false</externalId>
+        <label>Nombre vendedor</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Numero_de_viviendas_en_curso__c</fullName>
+        <externalId>false</externalId>
+        <label>Número de viviendas en curso</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Observaciones__c</fullName>
+        <externalId>false</externalId>
+        <label>Observaciones</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Pagina_web__c</fullName>
+        <externalId>false</externalId>
+        <label>Página web</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Propietario__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.FirstName&amp;&quot;&quot;&amp;Owner:User.MiddleName&amp;&quot;&quot;&amp;Owner:User.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Propietario</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Representantel_legal__c</fullName>
+        <externalId>false</externalId>
+        <label>Representantel legal</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Solicitud_al_Gerente_Comercial__c</fullName>
+        <externalId>false</externalId>
+        <label>Solicitud al Gerente Comercial</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Solicitud</fullName>
+                    <default>false</default>
+                    <label>Solicitud</label>
+                </value>
+                <value>
+                    <fullName>Aprobado</fullName>
+                    <default>false</default>
+                    <label>Aprobado</label>
+                </value>
+                <value>
+                    <fullName>Devuelta</fullName>
+                    <default>false</default>
+                    <label>Devuelta</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Telefono__c</fullName>
+        <externalId>false</externalId>
+        <label>Teléfono</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Video__c</fullName>
+        <externalId>false</externalId>
+        <label>Video</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Zona__c</fullName>
+        <externalId>false</externalId>
+        <label>Zona</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Bogotá</fullName>
+                    <default>false</default>
+                    <label>Bogotá</label>
+                </value>
+                <value>
+                    <fullName>Antioquia</fullName>
+                    <default>false</default>
+                    <label>Antioquia</label>
+                </value>
+                <value>
+                    <fullName>Costa Atlántica</fullName>
+                    <default>false</default>
+                    <label>Costa Atlántica</label>
+                </value>
+                <value>
+                    <fullName>Santander</fullName>
+                    <default>false</default>
+                    <label>Santander</label>
+                </value>
+                <value>
+                    <fullName>Valle</fullName>
+                    <default>false</default>
+                    <label>Valle</label>
+                </value>
+                <value>
+                    <fullName>Eje Cafetero</fullName>
+                    <default>false</default>
+                    <label>Eje Cafetero</label>
+                </value>
+                <value>
+                    <fullName>Alrededores de Bogotá</fullName>
+                    <default>false</default>
+                    <label>Alrededores de Bogotá</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <validationRules>
+        <fullName>Una_solicitud_aprobada_no_puede_ser_modi</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND (
+ISPICKVAL ( Estado_de_aprobacion_Riegos__c , &quot;Aprobado&quot;), 
+ $UserRole.Id  &lt;&gt; &quot;00eo0000000TzBZ&quot;, 
+OR (
+   ISCHANGED( Name),
+   ISCHANGED( Zona__c ),
+   ISCHANGED( Ciudad__c ),
+   ISCHANGED( Nit__c ),
+   ISCHANGED( Direccion__c ),
+   ISCHANGED( Telefono__c ),
+   ISCHANGED( Fax__c ),
+   ISCHANGED( E_mail__c ),
+   ISCHANGED( Experiencia__c ),
+   ISCHANGED( No_Viviendas_ultimos_5_anos__c ),
+   ISCHANGED( Numero_de_viviendas_en_curso__c ),
+   ISCHANGED( Solicitud_al_Gerente_Comercial__c ),
+   ISCHANGED( Estado_de_aprobacion_Riegos__c ),
+   ISCHANGED( Detalle_de_la_solicitud__c ),
+   ISCHANGED( Observaciones__c ),
+   ISCHANGED( Nombre_vendedor__c ),
+   ISCHANGED( Representantel_legal__c ),
+   ISCHANGED( Cedula_de_ciudadania__c ),
+   ISCHANGED( Contacto_tramites__c ),
+   ISCHANGED( Pagina_web__c )
+))</errorConditionFormula>
+        <errorMessage>CON-04 Una solicitud aprobada no puede ser modificada. Solo el Vicepresidente de Riesgos puede realizar esta acción.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Valida_actualizacion_solicitud_a_gerente</fullName>
+        <active>true</active>
+        <description>Valida que solo el gerente comercial pueda actualizar los valores devuelta y aprobado en el campo solicitud al gerente comercial</description>
+        <errorConditionFormula>AND ( 
+$Profile.Name &lt;&gt; &quot;Gerente Comercial&quot;, 
+
+OR ( 
+ISPICKVAL (  Solicitud_al_Gerente_Comercial__c , &quot;Aprobada&quot;), 
+ISPICKVAL (  Solicitud_al_Gerente_Comercial__c, &quot;Devuelta&quot;) 
+))</errorConditionFormula>
+        <errorDisplayField>Solicitud_al_Gerente_Comercial__c</errorDisplayField>
+        <errorMessage>CON-02  Con su perfil no puede aprobar o devolver solicitudes</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Valida_registro_de_observaciones</fullName>
+        <active>true</active>
+        <description>Cuando la solicitud se encuentra en Devuelta, se requiere el registro de la observación</description>
+        <errorConditionFormula>AND ( 
+ ISPICKVAL( Solicitud_al_Gerente_Comercial__c , &quot;Devuelta&quot;), 
+   ISBLANK( Observaciones__c ))</errorConditionFormula>
+        <errorDisplayField>Observaciones__c</errorDisplayField>
+        <errorMessage>CON-01 Para registrar la solicitud con la opción devuelta, debe escribir una observación, explicando el motivo de la devolución.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Valida_registro_numero_Nit</fullName>
+        <active>true</active>
+        <description>Valida que le Nit sea  Numérico</description>
+        <errorConditionFormula>NOT ISNUMBER(  Nit__c  )</errorConditionFormula>
+        <errorDisplayField>Nit__c</errorDisplayField>
+        <errorMessage>CON-03 El campo Nit es solo numérico</errorMessage>
+    </validationRules>
+</CustomObject>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Solicitud_de_credito__c$Name</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Numero_de_documento__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Cliente_deudor__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c.Paz_y_salvos__r$Fecha_paz_y_salvo__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Estado_de_la_solicitud__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Solicitud_de_credito__c.Paz_y_salvos__r$Fecha_paz_y_salvo__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Solicitud_de_credito__c$Estado_de_la_solicitud__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>Desistido</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Fecha Paz y salvo</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>solicitudes_paz_y_salvo__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Solicitud_de_credito__c$Fecha__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Solicitud_de_credito__c.Radicaciones_de_creditos__r$Solicitud_de_credito__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Numero_de_documento__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Cliente_deudor__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Id</field>
+    </columns>
+    <format>Tabular</format>
+    <name>001.Cambio propietario de la solicitud</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Solicitudes_radicaciones_e_inf_comit_incluyente__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Solicitud_de_credito__c$Fecha_Revision_Legal__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

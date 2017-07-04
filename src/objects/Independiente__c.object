@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <fields>
+        <fullName>Conocimiento_que_tiene_del_negocio__c</fullName>
+        <externalId>false</externalId>
+        <label>Conocimiento que tiene del negocio</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Amplio</fullName>
+                    <default>false</default>
+                    <label>Amplio</label>
+                </value>
+                <value>
+                    <fullName>Medio</fullName>
+                    <default>false</default>
+                    <label>Medio</label>
+                </value>
+                <value>
+                    <fullName>Bajo</fullName>
+                    <default>false</default>
+                    <label>Bajo</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Dependencia_de_proveedores_concentracion__c</fullName>
+        <externalId>false</externalId>
+        <label>Dependencia de proveedores concentración</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Alta</fullName>
+                    <default>false</default>
+                    <label>Alta</label>
+                </value>
+                <value>
+                    <fullName>Media</fullName>
+                    <default>false</default>
+                    <label>Media</label>
+                </value>
+                <value>
+                    <fullName>Baja</fullName>
+                    <default>false</default>
+                    <label>Baja</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Diversificacion_del_ingreso_peso__c</fullName>
+        <defaultValue>10</defaultValue>
+        <externalId>false</externalId>
+        <label>Diversificación del ingreso</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ejemplos_de_progreso_del_negocio__c</fullName>
+        <externalId>false</externalId>
+        <label>Ejemplos de progreso del negocio</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Si</fullName>
+                    <default>false</default>
+                    <label>Si</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Estabilidad_peso__c</fullName>
+        <defaultValue>30</defaultValue>
+        <externalId>false</externalId>
+        <label>Estabilidad</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Estado_civil__c</fullName>
+        <externalId>false</externalId>
+        <label>Estado civil</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Soltero</fullName>
+                    <default>false</default>
+                    <label>Soltero</label>
+                </value>
+                <value>
+                    <fullName>Casado</fullName>
+                    <default>false</default>
+                    <label>Casado</label>
+                </value>
+                <value>
+                    <fullName>Separado</fullName>
+                    <default>false</default>
+                    <label>Separado</label>
+                </value>
+                <value>
+                    <fullName>Viudo</fullName>
+                    <default>false</default>
+                    <label>Viudo</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Genero_y_No_de_personas_a_cargo__c</fullName>
+        <externalId>false</externalId>
+        <label>Género y No de personas a cargo</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Mujer con hijos</fullName>
+                    <default>false</default>
+                    <label>Mujer con hijos</label>
+                </value>
+                <value>
+                    <fullName>Mujer sin hijos</fullName>
+                    <default>false</default>
+                    <label>Mujer sin hijos</label>
+                </value>
+                <value>
+                    <fullName>Hombre con hijos</fullName>
+                    <default>false</default>
+                    <label>Hombre con hijos</label>
+                </value>
+                <value>
+                    <fullName>Hombre sin hijos</fullName>
+                    <default>false</default>
+                    <label>Hombre sin hijos</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Gran_total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_habilidad_empresarial__c + Total_estabilidad__c + Total_diversificacion__c + Total_reputacion__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Gran total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Habilidad_empresarial_peso__c</fullName>
+        <defaultValue>50</defaultValue>
+        <externalId>false</externalId>
+        <label>Habilidad empresarial</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_de_personas_que_generan_ingresos__c</fullName>
+        <externalId>false</externalId>
+        <label>No de personas que generan ingresos</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>0 al 30%</fullName>
+                    <default>false</default>
+                    <label>0 al 30%</label>
+                </value>
+                <value>
+                    <fullName>50% al 30%</fullName>
+                    <default>false</default>
+                    <label>50% al 30%</label>
+                </value>
+                <value>
+                    <fullName>100% al 50%</fullName>
+                    <default>false</default>
+                    <label>100% al 50%</label>
+                </value>
+                <value>
+                    <fullName>&gt; 100%</fullName>
+                    <default>false</default>
+                    <label>&gt; 100%</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Registro_de_compras_e_ingresos__c</fullName>
+        <externalId>false</externalId>
+        <label>Registro de compras e ingresos</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Si</fullName>
+                    <default>false</default>
+                    <label>Si</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reputacion__c</fullName>
+        <externalId>false</externalId>
+        <label>Reputación</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Mala reputación con vecinos</fullName>
+                    <default>false</default>
+                    <label>Mala reputación con vecinos</label>
+                </value>
+                <value>
+                    <fullName>Mala reputación con arrendatarios</fullName>
+                    <default>false</default>
+                    <label>Mala reputación con arrendatarios</label>
+                </value>
+                <value>
+                    <fullName>Mala reputación con proveedores</fullName>
+                    <default>false</default>
+                    <label>Mala reputación con proveedores</label>
+                </value>
+                <value>
+                    <fullName>Buena reputación con vecinos</fullName>
+                    <default>false</default>
+                    <label>Buena reputación con vecinos</label>
+                </value>
+                <value>
+                    <fullName>Buena reputación con arrendatarios</fullName>
+                    <default>false</default>
+                    <label>Buena reputación con arrendatarios</label>
+                </value>
+                <value>
+                    <fullName>Buena reputación con proveedores</fullName>
+                    <default>false</default>
+                    <label>Buena reputación con proveedores</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reputacion_peso__c</fullName>
+        <defaultValue>10</defaultValue>
+        <externalId>false</externalId>
+        <label>Reputación</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_conocimiento_del_negocio__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT( Conocimiento_que_tiene_del_negocio__c ) = &quot;Amplio&quot; ,15 ,IF( TEXT( Conocimiento_que_tiene_del_negocio__c ) = &quot;Medio&quot; ,9 ,0)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_dependencia_proveedores__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT(  Dependencia_de_proveedores_concentracion__c  ) = &quot;Media&quot; ,6 ,IF( TEXT(Dependencia_de_proveedores_concentracion__c  ) = &quot;Baja&quot; ,10 ,0) 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_ejemplos_de_progreso_del_negocio__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT( Ejemplos_de_progreso_del_negocio__c ) = &quot;Si&quot; ,5 , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_estado_civil__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT( Estado_civil__c ) = &quot;Casado&quot; ,15, IF( TEXT(Estado_civil__c ) = &quot;Separado&quot; ,9, IF( TEXT( Estado_civil__c ) = &quot;Viudo&quot; ,12,0) 
+))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_genero_personas_a_cargo__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT(  Genero_y_No_de_personas_a_cargo__c ) = &quot;Mujer con hijos&quot; ,15, IF( TEXT(  Genero_y_No_de_personas_a_cargo__c ) = &quot;Mujer sin hijos&quot; ,0, IF( TEXT(  Genero_y_No_de_personas_a_cargo__c ) = &quot;Hombre con hijos&quot; ,10.5,0) 
+))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_personas_que_generan_ingresos__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT( No_de_personas_que_generan_ingresos__c ) = &quot;50% al 30%&quot; ,40, IF( TEXT( No_de_personas_que_generan_ingresos__c) = &quot;100% al 50%&quot; ,70, IF( TEXT( No_de_personas_que_generan_ingresos__c ) = &quot;&gt; 100%&quot; ,100,0) 
+))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_registro_de_compras_e_ingresos__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  TEXT(Registro_de_compras_e_ingresos__c) = &quot;Si&quot; ,5 , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_reputacion__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT( Reputacion__c ) = &quot;Mala reputación con vecinos&quot; ,0, IF( TEXT( Reputacion__c ) = &quot;Mala reputación con arrendatarios&quot; ,0, IF( TEXT( Reputacion__c ) = &quot;Buena reputación con vecinos&quot; ,30,IF( TEXT( Reputacion__c ) = &quot;Buena reputación con arrendatarios&quot; ,50, IF( TEXT( Reputacion__c ) = &quot;Buena reputación con proveedores&quot; ,80,0) 
+))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_tiempo_de_operacion_del_negocio__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT(  Tiempo_de_operacion_del_negocio__c  ) = &quot;De 2 a 3 años&quot; ,24 ,IF( TEXT( Tiempo_de_operacion_del_negocio__c ) = &quot;&gt; 3 años, &lt; 5 años&quot; ,36, IF( TEXT( Tiempo_de_operacion_del_negocio__c ) = &quot;&gt; 5 años, &lt; 10 años&quot; ,48,IF( TEXT( Tiempo_de_operacion_del_negocio__c ) = &quot;&gt; 10 años&quot; ,60,0)
+)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_tipo_de_local__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT( Tipo_de_local__c ) = &quot;Propia menos de 1 año&quot; ,0, IF( TEXT( Tipo_de_local__c ) = &quot;Familiar menos de 1 año&quot; ,0, IF( TEXT( Tipo_de_local__c) = &quot;Propia 1-3 años&quot; ,32, IF( TEXT( Tipo_de_local__c ) = &quot;Familiar 1-3 años&quot; ,20, IF( TEXT( Tipo_de_local__c ) = &quot;Arriendo 1-3 años&quot; ,12, IF( TEXT( Tipo_de_local__c ) = &quot;Propia mas de 3 años&quot; ,40, IF( TEXT( Tipo_de_local__c ) = &quot;Familiar mas de 3 años&quot; ,32, IF( TEXT( Tipo_de_local__c ) = &quot;Arriendo mas de 3 años&quot; ,24,0))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_tipo_de_vivienda__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT( Tipo_de_vivienda__c  ) = &quot;Propia menos de 1 año&quot; ,24, IF( TEXT( Tipo_de_vivienda__c ) = &quot;Familiar menos de 1 año&quot; ,0, IF( TEXT( Tipo_de_vivienda__c ) = &quot;Propia 1-3 años&quot; ,30, IF( TEXT( Tipo_de_vivienda__c ) = &quot;Familiar 1-3 años&quot; ,6, IF( TEXT( Tipo_de_vivienda__c ) = &quot;Arriendo 1-3 años&quot; ,18, IF( TEXT( Tipo_de_vivienda__c ) = &quot;Propia mas de 3 años&quot; ,30, IF( TEXT( Tipo_de_vivienda__c ) = &quot;Familiar mas de 3 años&quot; ,12, IF( TEXT( Tipo_de_vivienda__c ) = &quot;Arriendo mas de 3 años&quot; ,24,0))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_ubicacion_del_negocio__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT( Ubicacion_del_negocio_en_zona_comercial__c ) = &quot;Si&quot; ,5 , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Solicitud_de_credito__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Solicitud de crédito</label>
+        <referenceTo>Solicitud_de_credito__c</referenceTo>
+        <relationshipLabel>Independientes</relationshipLabel>
+        <relationshipName>Independientes</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Tiempo_de_operacion_del_negocio__c</fullName>
+        <externalId>false</externalId>
+        <label>Tiempo de operación del negocio</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Menos de 2 años</fullName>
+                    <default>false</default>
+                    <label>Menos de 2 años</label>
+                </value>
+                <value>
+                    <fullName>De 2 a 3 años</fullName>
+                    <default>false</default>
+                    <label>De 2 a 3 años</label>
+                </value>
+                <value>
+                    <fullName>&gt; 3 años, &lt; 5 años</fullName>
+                    <default>false</default>
+                    <label>&gt; 3 años, &lt; 5 años</label>
+                </value>
+                <value>
+                    <fullName>&gt; 5 años, &lt; 10 años</fullName>
+                    <default>false</default>
+                    <label>&gt; 5 años, &lt; 10 años</label>
+                </value>
+                <value>
+                    <fullName>&gt; 10 años</fullName>
+                    <default>false</default>
+                    <label>&gt; 10 años</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Tipo_de_local__c</fullName>
+        <externalId>false</externalId>
+        <label>Tipo de local</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Propia menos de 1 año</fullName>
+                    <default>false</default>
+                    <label>Propia menos de 1 año</label>
+                </value>
+                <value>
+                    <fullName>Familiar menos de 1 año</fullName>
+                    <default>false</default>
+                    <label>Familiar menos de 1 año</label>
+                </value>
+                <value>
+                    <fullName>Arriendo menos de 1 año</fullName>
+                    <default>false</default>
+                    <label>Arriendo menos de 1 año</label>
+                </value>
+                <value>
+                    <fullName>Propia 1-3 años</fullName>
+                    <default>false</default>
+                    <label>Propia 1-3 años</label>
+                </value>
+                <value>
+                    <fullName>Familiar 1-3 años</fullName>
+                    <default>false</default>
+                    <label>Familiar 1-3 años</label>
+                </value>
+                <value>
+                    <fullName>Arriendo 1-3 años</fullName>
+                    <default>false</default>
+                    <label>Arriendo 1-3 años</label>
+                </value>
+                <value>
+                    <fullName>Propia mas de 3 años</fullName>
+                    <default>false</default>
+                    <label>Propia mas de 3 años</label>
+                </value>
+                <value>
+                    <fullName>Familiar mas de 3 años</fullName>
+                    <default>false</default>
+                    <label>Familiar mas de 3 años</label>
+                </value>
+                <value>
+                    <fullName>Arriendo mas de 3 años</fullName>
+                    <default>false</default>
+                    <label>Arriendo mas de 3 años</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Tipo_de_vivienda__c</fullName>
+        <externalId>false</externalId>
+        <label>Tipo de vivienda</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Propia menos de 1 año</fullName>
+                    <default>false</default>
+                    <label>Propia menos de 1 año</label>
+                </value>
+                <value>
+                    <fullName>Familiar menos de 1 año</fullName>
+                    <default>false</default>
+                    <label>Familiar menos de 1 año</label>
+                </value>
+                <value>
+                    <fullName>Arriendo menos de 1 año</fullName>
+                    <default>false</default>
+                    <label>Arriendo menos de 1 año</label>
+                </value>
+                <value>
+                    <fullName>Propia 1-3 años</fullName>
+                    <default>false</default>
+                    <label>Propia 1-3 años</label>
+                </value>
+                <value>
+                    <fullName>Familiar 1-3 años</fullName>
+                    <default>false</default>
+                    <label>Familiar 1-3 años</label>
+                </value>
+                <value>
+                    <fullName>Arriendo 1-3 años</fullName>
+                    <default>false</default>
+                    <label>Arriendo 1-3 años</label>
+                </value>
+                <value>
+                    <fullName>Propia mas de 3 años</fullName>
+                    <default>false</default>
+                    <label>Propia mas de 3 años</label>
+                </value>
+                <value>
+                    <fullName>Familiar mas de 3 años</fullName>
+                    <default>false</default>
+                    <label>Familiar mas de 3 años</label>
+                </value>
+                <value>
+                    <fullName>Arriendo mas de 3 años</fullName>
+                    <default>false</default>
+                    <label>Arriendo mas de 3 años</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Total_diversificacion__c</fullName>
+        <externalId>false</externalId>
+        <formula>Score_personas_que_generan_ingresos__c * Diversificacion_del_ingreso_peso__c /100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_estabilidad__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Score_estado_civil__c + Score_genero_personas_a_cargo__c + Score_tipo_de_vivienda__c + Score_tipo_de_local__c) * Estabilidad_peso__c / 100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_habilidad_empresarial__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Score_registro_de_compras_e_ingresos__c + Score_conocimiento_del_negocio__c + Score_tiempo_de_operacion_del_negocio__c + Score_ubicacion_del_negocio__c + Score_dependencia_proveedores__c + Score_ejemplos_de_progreso_del_negocio__c ) *  Habilidad_empresarial_peso__c  / 100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_reputacion__c</fullName>
+        <externalId>false</externalId>
+        <formula>Score_reputacion__c * Reputacion_peso__c /100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ubicacion_del_negocio_en_zona_comercial__c</fullName>
+        <externalId>false</externalId>
+        <label>Ubicación del negocio en zona comercial</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Si</fullName>
+                    <default>false</default>
+                    <label>Si</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+</CustomObject>

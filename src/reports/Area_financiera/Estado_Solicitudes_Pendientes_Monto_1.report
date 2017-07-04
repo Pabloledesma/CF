@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Solicitud_de_credito__c.Radicaciones_de_creditos__r$Credito_solicitado_valor_a_financiar__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Solicitud_de_credito__c$Estado_del_credito__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Pendiente</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Solicitud_de_credito__c$Migrado__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Solicitud_de_credito__c$Estado_de_la_solicitud__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Nueva Solicitud,Devuelta</value>
+        </criteriaItems>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Solicitud_de_credito__c$Regional__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Solicitud_de_credito__c$Estado_de_la_solicitud__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>003.Estado Solicitudes Pendientes Monto</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Solicitudes_radicaciones_e_inf_comit_incluyente__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Solicitud_de_credito__c$Fecha_Revision_Legal__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

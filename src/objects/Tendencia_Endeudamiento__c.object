@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Creditos_Mora_30__c</fullName>
+        <externalId>false</externalId>
+        <label>Creditos Mora 30</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Creditos_Mora_60__c</fullName>
+        <externalId>false</externalId>
+        <label>Creditos Mora 60</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Datacredito__c</fullName>
+        <externalId>false</externalId>
+        <label>Datacredito</label>
+        <referenceTo>Datacredito__c</referenceTo>
+        <relationshipLabel>Tendencias Endeudamiento</relationshipLabel>
+        <relationshipName>Tendencias_Endeudamiento</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Fecha__c</fullName>
+        <externalId>false</externalId>
+        <label>Fecha</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Moras_Max_Financiero__c</fullName>
+        <externalId>false</externalId>
+        <label>Moras Max Financiero</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Moras_Max_Real__c</fullName>
+        <externalId>false</externalId>
+        <label>Moras Max Real</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Moras_Max_Telcos__c</fullName>
+        <externalId>false</externalId>
+        <label>Moras Max Telcos</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Saldos_Totales_Miles__c</fullName>
+        <externalId>false</externalId>
+        <label>Saldos Totales Miles</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Saldos_Totales_Mora__c</fullName>
+        <externalId>false</externalId>
+        <label>Saldos Totales Mora</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Moras_Max__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Moras Max</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

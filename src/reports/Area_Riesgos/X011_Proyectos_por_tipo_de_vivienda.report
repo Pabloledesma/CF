@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>Proyecto__c.Ciudad__c</field>
+    </columns>
+    <columns>
+        <field>Proyecto__c.Estado_de_aprobacion_Riegos__c</field>
+    </columns>
+    <columns>
+        <field>Proyecto__c.Vivienda_vip__c</field>
+    </columns>
+    <columns>
+        <field>Proyecto__c.Vivienda_vipa__c</field>
+    </columns>
+    <columns>
+        <field>Proyecto__c.Vivienda_no_vis__c</field>
+    </columns>
+    <columns>
+        <field>Proyecto__c.Vivienda_vis__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>011.Proyectos por tipo de vivienda</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Proyecto__c@Proyecto__c.Constructora__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Proyecto__c.Fecha__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

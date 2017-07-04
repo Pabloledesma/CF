@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Solicitud_de_credito__c$Name</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Proyecto__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Constructora__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Tipo_de_producto__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$RecordType</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Estado_del_credito__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Estado_de_la_solicitud__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Solicitud_de_credito__c$Monto_prestamo_aprobado__c</field>
+    </columns>
+    <description>Preaprobados</description>
+    <filter>
+        <criteriaItems>
+            <column>Solicitud_de_credito__c$Estado_del_credito__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Preaprobado</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Solicitud_de_credito__c$Estado_de_la_solicitud__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Desembolsado,Desembolso verificado,Desembolso por corregir,Desembolso con escritura,Custodia,Cancelado</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Solicitud_de_credito__c$Proyecto__c</column>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Reserva de La Inmaculada</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Month</dateGranularity>
+        <field>Solicitud_de_credito__c.Radicaciones_de_creditos__r.Informacion_comite__r$Fecha_de_comite__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>006.Reserva la inmaculada</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Solicitudes_radicaciones_e_inf_comit_incluyente__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Solicitud_de_credito__c$Fecha_Revision_Legal__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

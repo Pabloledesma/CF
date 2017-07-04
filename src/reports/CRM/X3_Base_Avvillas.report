@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Solicitud_de_credito__c$Numero_de_documento__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Cliente_deudor__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c.Radicaciones_de_creditos__r.Informaciones_financieras__r$Otro_ingreso2__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c.Radicaciones_de_creditos__r.Informaciones_financieras__r$Ingreso_actividad_principal__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c.Radicaciones_de_creditos__r.Informaciones_financieras__r$Gastos_personales__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c.Radicaciones_de_creditos__r.Informaciones_financieras__r$Obligaciones_financieras__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Codeudor_1_N_mero_de_documento__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c$Codeudor_1__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c.Radicaciones_de_creditos__r.Informaciones_financieras__r$Otro_ingreso2_codeudor1__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c.Radicaciones_de_creditos__r.Informaciones_financieras__r$Ingreso_actividad_principal_codeudor1__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c.Radicaciones_de_creditos__r$Gastos_personales_codeudor1__c</field>
+    </columns>
+    <columns>
+        <field>Solicitud_de_credito__c.Radicaciones_de_creditos__r.Informaciones_financieras__r$Obligaciones_financieras_codeudor1__c</field>
+    </columns>
+    <description>Información finaciera</description>
+    <format>Tabular</format>
+    <name>3.Base Avvillas</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Solicitudes_Radicaci_n_Informaci_n_financiera__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>Solicitud_de_credito__c.Radicaciones_de_creditos__r.Informaciones_financieras__r$Ingreso_actividad_principal_codeudor1__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Solicitud_de_credito__c$Fecha__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

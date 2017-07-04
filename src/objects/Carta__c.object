@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Banco__c</fullName>
+        <externalId>false</externalId>
+        <label>Banco</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Fecha_de_aprobacion__c</fullName>
+        <externalId>false</externalId>
+        <label>Fecha de aprobación</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Nit__c</fullName>
+        <description>Nit del Banco</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Nit del Banco</inlineHelpText>
+        <label>Nit</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Solicitud_de_credito__c</fullName>
+        <externalId>false</externalId>
+        <label>Solicitud de crédito</label>
+        <referenceTo>Solicitud_de_credito__c</referenceTo>
+        <relationshipLabel>Cartas</relationshipLabel>
+        <relationshipName>Cartas</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Valor_del_credito_en_letras__c</fullName>
+        <description>Valor del crédito en letras</description>
+        <externalId>false</externalId>
+        <label>Valor del crédito en letras</label>
+        <length>250</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

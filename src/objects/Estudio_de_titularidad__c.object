@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Forma_de_saneamiento__c</fullName>
+        <externalId>false</externalId>
+        <label>Forma de saneamiento</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Limitaciones_al_dominio_o_grav_menes__c</fullName>
+        <externalId>false</externalId>
+        <label>Limitaciones al dominio o gravámenes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Propietario_Registrado__c</fullName>
+        <externalId>false</externalId>
+        <label>Propietario Registrado</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Proyecto__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Proyecto</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Proyecto__c.Estado_de_aprobacion_Riegos__c</field>
+                <operation>equals</operation>
+                <value>Aprobado</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Proyecto__c</referenceTo>
+        <relationshipLabel>Estudios de titularidad</relationshipLabel>
+        <relationshipName>Estudios_de_titularidad</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Tradicion__c</fullName>
+        <externalId>false</externalId>
+        <label>Tradición</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>50</visibleLines>
+    </fields>
+</CustomObject>

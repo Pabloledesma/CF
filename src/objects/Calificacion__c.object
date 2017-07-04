@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Aportes_de_recursos_propios__c</fullName>
+        <externalId>false</externalId>
+        <label>Aportes de recursos propios</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Calificacion__c</fullName>
+        <description>Resultado de la calificación</description>
+        <externalId>false</externalId>
+        <label>Calificación</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>8</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Capacidad_de_pago__c</fullName>
+        <description>Se refiere al indicador de capacidad de pago calculado por fábrica de crédito en el momento de análisis.</description>
+        <externalId>false</externalId>
+        <label>Capacidad de pago</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Disponible__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Verifica si este usuario ya fué calificado en los últimos 60 días</description>
+        <externalId>false</externalId>
+        <label>Disponible</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Eximido_de_calificacion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Eximido de calificación</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Indice_relacion_cuota_ingreso__c</fullName>
+        <externalId>false</externalId>
+        <label>Indice relación cuota ingreso</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Informacion_comite__c</fullName>
+        <externalId>false</externalId>
+        <label>Información comité</label>
+        <referenceTo>Informacion_comite__c</referenceTo>
+        <relationshipLabel>Calificaciones</relationshipLabel>
+        <relationshipName>Calificaciones</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>N_mero_de_cr_ditos_vigentes__c</fullName>
+        <externalId>false</externalId>
+        <label>Número de créditos vigentes</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Numero_de_Consultas__c</fullName>
+        <description>Número de consultas con el sector financiero.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Número de consultas con el sector financiero.</inlineHelpText>
+        <label>Número de Consultas</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Porcentaje_de_utilizacion_tc__c</fullName>
+        <description>Saldo / Cupo</description>
+        <externalId>false</externalId>
+        <label>% utilización tarjeta de credito</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>8</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Relacion_cuota_ingreso__c</fullName>
+        <externalId>false</externalId>
+        <label>Relación cuota ingreso</label>
+        <precision>17</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+</CustomObject>

@@ -1,0 +1,2481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <fields>
+        <fullName>Area__c</fullName>
+        <externalId>false</externalId>
+        <formula>$User.Department</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Área</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Comentarios__c</fullName>
+        <externalId>false</externalId>
+        <label>Comentarios</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>50</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Consecutivo_de_la_solicitud__c</fullName>
+        <externalId>false</externalId>
+        <label>Consecutivo de la solicitud</label>
+        <length>5</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Costo__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Costo total del proyecto</inlineHelpText>
+        <label>Costo</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Cual_1__c</fullName>
+        <externalId>false</externalId>
+        <label>¿Cual?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Kypello</fullName>
+                    <default>false</default>
+                    <label>Kypello</label>
+                </value>
+                <value>
+                    <fullName>Avanxo</fullName>
+                    <default>false</default>
+                    <label>Avanxo</label>
+                </value>
+                <value>
+                    <fullName>ITAC</fullName>
+                    <default>false</default>
+                    <label>ITAC</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Cual__c</fullName>
+        <externalId>false</externalId>
+        <label>¿Cual?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Proveedor__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Kypello</fullName>
+                    <default>false</default>
+                    <label>Kypello</label>
+                </value>
+                <value>
+                    <fullName>Avanxo</fullName>
+                    <default>false</default>
+                    <label>Avanxo</label>
+                </value>
+                <value>
+                    <fullName>ITAC</fullName>
+                    <default>false</default>
+                    <label>ITAC</label>
+                </value>
+                <value>
+                    <fullName>Kypello/CF</fullName>
+                    <default>false</default>
+                    <label>Kypello/CF</label>
+                </value>
+                <value>
+                    <fullName>ITAC/CF</fullName>
+                    <default>false</default>
+                    <label>ITAC/CF</label>
+                </value>
+                <value>
+                    <fullName>Avanxo/CF</fullName>
+                    <default>false</default>
+                    <label>Avanxo/CF</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Si</controllingFieldValue>
+                <valueName>Kypello</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Si</controllingFieldValue>
+                <valueName>Avanxo</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Si</controllingFieldValue>
+                <valueName>ITAC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Si</controllingFieldValue>
+                <valueName>Kypello/CF</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Si</controllingFieldValue>
+                <valueName>ITAC/CF</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Si</controllingFieldValue>
+                <valueName>Avanxo/CF</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Descripcion__c</fullName>
+        <externalId>false</externalId>
+        <label>Descripción</label>
+        <length>500</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Detalle__c</fullName>
+        <externalId>false</externalId>
+        <label>Detalle</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Estado_del_proyecto__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pruebas técnicas</fullName>
+                    <default>false</default>
+                    <label>Pruebas técnicas</label>
+                </value>
+                <value>
+                    <fullName>Pruebas de usuario</fullName>
+                    <default>false</default>
+                    <label>Pruebas de usuario</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Pruebas</controllingFieldValue>
+                <valueName>Pruebas técnicas</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Pruebas</controllingFieldValue>
+                <valueName>Pruebas de usuario</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Email_lider_de_proyecto__c</fullName>
+        <externalId>false</externalId>
+        <label>Email lider de proyecto</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Estado_del_proyecto__c</fullName>
+        <externalId>false</externalId>
+        <label>Estado del proyecto</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Solicitado</fullName>
+                    <default>true</default>
+                    <label>Solicitado</label>
+                </value>
+                <value>
+                    <fullName>Asignado</fullName>
+                    <default>false</default>
+                    <label>Asignado</label>
+                </value>
+                <value>
+                    <fullName>Análisis</fullName>
+                    <default>false</default>
+                    <label>Análisis</label>
+                </value>
+                <value>
+                    <fullName>Análisis (Proveedor)</fullName>
+                    <default>false</default>
+                    <label>Análisis (Proveedor)</label>
+                </value>
+                <value>
+                    <fullName>Diseño del documento</fullName>
+                    <default>false</default>
+                    <label>Diseño del documento</label>
+                </value>
+                <value>
+                    <fullName>Planeación</fullName>
+                    <default>false</default>
+                    <label>Planeación</label>
+                </value>
+                <value>
+                    <fullName>Desarrollo</fullName>
+                    <default>false</default>
+                    <label>Desarrollo</label>
+                </value>
+                <value>
+                    <fullName>Pruebas</fullName>
+                    <default>false</default>
+                    <label>Pruebas</label>
+                </value>
+                <value>
+                    <fullName>Entregado</fullName>
+                    <default>false</default>
+                    <label>Entregado</label>
+                </value>
+                <value>
+                    <fullName>Cerrado</fullName>
+                    <default>false</default>
+                    <label>Cerrado</label>
+                </value>
+                <value>
+                    <fullName>Suspendido</fullName>
+                    <default>false</default>
+                    <label>Suspendido</label>
+                </value>
+                <value>
+                    <fullName>Cancelado</fullName>
+                    <default>false</default>
+                    <label>Cancelado</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Estado_del_requerimiento__c</fullName>
+        <externalId>false</externalId>
+        <label>Estado del requerimiento</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Abierto</fullName>
+                    <default>true</default>
+                    <label>Abierto</label>
+                </value>
+                <value>
+                    <fullName>Cerrado</fullName>
+                    <default>false</default>
+                    <label>Cerrado</label>
+                </value>
+                <value>
+                    <fullName>Reabierto</fullName>
+                    <default>false</default>
+                    <label>Reabierto</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Fecha_de_asignacion__c</fullName>
+        <externalId>false</externalId>
+        <label>Fecha de asignación</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Fecha_de_cierre__c</fullName>
+        <externalId>false</externalId>
+        <label>Fecha de cierre</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Fecha_de_incio__c</fullName>
+        <externalId>false</externalId>
+        <label>Fecha de incio</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Fecha_estimada_de_entrega__c</fullName>
+        <externalId>false</externalId>
+        <label>Fecha estimada de entrega</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Hora_de_finalizacion__c</fullName>
+        <externalId>false</externalId>
+        <label>Hora de finalización</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Hora_de_inicio__c</fullName>
+        <externalId>false</externalId>
+        <label>Hora de inicio</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Lider_del_proyecto__c</fullName>
+        <externalId>false</externalId>
+        <label>Lider del proyecto</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Claudia Angel</fullName>
+                    <default>false</default>
+                    <label>Claudia Angel</label>
+                </value>
+                <value>
+                    <fullName>Juan Uribe</fullName>
+                    <default>false</default>
+                    <label>Juan Uribe</label>
+                </value>
+                <value>
+                    <fullName>Angel</fullName>
+                    <default>false</default>
+                    <label>Angel</label>
+                </value>
+                <value>
+                    <fullName>Hernan Galeano</fullName>
+                    <default>false</default>
+                    <label>Hernan Galeano</label>
+                </value>
+                <value>
+                    <fullName>Cristina Gil</fullName>
+                    <default>false</default>
+                    <label>Cristina Gil</label>
+                </value>
+                <value>
+                    <fullName>Juan Toro</fullName>
+                    <default>false</default>
+                    <label>Juan Toro</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Modulo_de_incidencia__c</fullName>
+        <externalId>false</externalId>
+        <label>Módulo de incidencia</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Candidatos</fullName>
+                    <default>false</default>
+                    <label>Candidatos</label>
+                </value>
+                <value>
+                    <fullName>Clientes/Convenios</fullName>
+                    <default>false</default>
+                    <label>Clientes/Convenios</label>
+                </value>
+                <value>
+                    <fullName>Oportunidades</fullName>
+                    <default>false</default>
+                    <label>Oportunidades</label>
+                </value>
+                <value>
+                    <fullName>Prevalidador</fullName>
+                    <default>false</default>
+                    <label>Prevalidador</label>
+                </value>
+                <value>
+                    <fullName>Solicitud de crédito</fullName>
+                    <default>false</default>
+                    <label>Solicitud de crédito</label>
+                </value>
+                <value>
+                    <fullName>Radicación</fullName>
+                    <default>false</default>
+                    <label>Radicación</label>
+                </value>
+                <value>
+                    <fullName>Información comité</fullName>
+                    <default>false</default>
+                    <label>Información comité</label>
+                </value>
+                <value>
+                    <fullName>Referenciación</fullName>
+                    <default>false</default>
+                    <label>Referenciación</label>
+                </value>
+                <value>
+                    <fullName>Constructoras</fullName>
+                    <default>false</default>
+                    <label>Constructoras</label>
+                </value>
+                <value>
+                    <fullName>Proyecto</fullName>
+                    <default>false</default>
+                    <label>Proyecto</label>
+                </value>
+                <value>
+                    <fullName>Paneles</fullName>
+                    <default>false</default>
+                    <label>Paneles</label>
+                </value>
+                <value>
+                    <fullName>Informes</fullName>
+                    <default>false</default>
+                    <label>Informes</label>
+                </value>
+                <value>
+                    <fullName>Usuarios</fullName>
+                    <default>false</default>
+                    <label>Usuarios</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Nombre_de_la_constructora__c</fullName>
+        <externalId>false</externalId>
+        <label>Nombre de la constructora</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Nombre_del_informe__c</fullName>
+        <externalId>false</externalId>
+        <label>Nombre del informe</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Nombre_del_panel__c</fullName>
+        <externalId>false</externalId>
+        <label>Nombre del panel</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Nombre_del_proyecto_P__c</fullName>
+        <externalId>false</externalId>
+        <label>Nombre del proyecto</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Nombre_del_proyecto__c</fullName>
+        <externalId>false</externalId>
+        <label>Nombre del proyecto</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Nota__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT(Tipo_de_incidencia__c)=&quot;Panel nuevo&quot;,&quot;El tiempo de respuesta varía de acuerdo a la complejidad del requerimiento&quot;,  
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Informes nuevos&quot;, &quot;El tiempo de respuesta varía de acuerdo a la complejidad del requerimiento&quot;, 
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Consulta en espera de Data&quot;,&quot;El tiempo de respuesta varía de acuerdo a la falla de origen.&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Consulta en espera de CIFIN&quot;,&quot;El tiempo de respuesta varía de acuerdo a la falla de origen.&quot;, 
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Consulta en espera de VIGIA&quot;,&quot;El tiempo de respuesta varía de acuerdo a la falla de origen.&quot;, 
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Error Java&quot;,&quot;El tiempo de respuesta varía de acuerdo a la falla de origen.&quot;, NULL
+
+))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Nota</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Numero_documento__c</fullName>
+        <externalId>false</externalId>
+        <label>Número documento</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Observacion__c</fullName>
+        <externalId>false</externalId>
+        <label>Observación</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Porcentaje_de_avance__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Porcentaje avance del proyecto</inlineHelpText>
+        <label>Porcentaje de avance</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>0%</fullName>
+                    <default>false</default>
+                    <label>0%</label>
+                </value>
+                <value>
+                    <fullName>5%</fullName>
+                    <default>false</default>
+                    <label>5%</label>
+                </value>
+                <value>
+                    <fullName>10%</fullName>
+                    <default>false</default>
+                    <label>10%</label>
+                </value>
+                <value>
+                    <fullName>15%</fullName>
+                    <default>false</default>
+                    <label>15%</label>
+                </value>
+                <value>
+                    <fullName>20%</fullName>
+                    <default>false</default>
+                    <label>20%</label>
+                </value>
+                <value>
+                    <fullName>25%</fullName>
+                    <default>false</default>
+                    <label>25%</label>
+                </value>
+                <value>
+                    <fullName>30%</fullName>
+                    <default>false</default>
+                    <label>30%</label>
+                </value>
+                <value>
+                    <fullName>35%</fullName>
+                    <default>false</default>
+                    <label>35%</label>
+                </value>
+                <value>
+                    <fullName>40%</fullName>
+                    <default>false</default>
+                    <label>40%</label>
+                </value>
+                <value>
+                    <fullName>45%</fullName>
+                    <default>false</default>
+                    <label>45%</label>
+                </value>
+                <value>
+                    <fullName>50%</fullName>
+                    <default>false</default>
+                    <label>50%</label>
+                </value>
+                <value>
+                    <fullName>55%</fullName>
+                    <default>false</default>
+                    <label>55%</label>
+                </value>
+                <value>
+                    <fullName>60%</fullName>
+                    <default>false</default>
+                    <label>60%</label>
+                </value>
+                <value>
+                    <fullName>65%</fullName>
+                    <default>false</default>
+                    <label>65%</label>
+                </value>
+                <value>
+                    <fullName>70%</fullName>
+                    <default>false</default>
+                    <label>70%</label>
+                </value>
+                <value>
+                    <fullName>75%</fullName>
+                    <default>false</default>
+                    <label>75%</label>
+                </value>
+                <value>
+                    <fullName>80%</fullName>
+                    <default>false</default>
+                    <label>80%</label>
+                </value>
+                <value>
+                    <fullName>85%</fullName>
+                    <default>false</default>
+                    <label>85%</label>
+                </value>
+                <value>
+                    <fullName>90%</fullName>
+                    <default>false</default>
+                    <label>90%</label>
+                </value>
+                <value>
+                    <fullName>95%</fullName>
+                    <default>false</default>
+                    <label>95%</label>
+                </value>
+                <value>
+                    <fullName>100%</fullName>
+                    <default>false</default>
+                    <label>100%</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Prioridad__c</fullName>
+        <externalId>false</externalId>
+        <label>Prioridad</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Alta</fullName>
+                    <default>false</default>
+                    <label>Alta</label>
+                </value>
+                <value>
+                    <fullName>Media</fullName>
+                    <default>false</default>
+                    <label>Media</label>
+                </value>
+                <value>
+                    <fullName>Baja</fullName>
+                    <default>false</default>
+                    <label>Baja</label>
+                </value>
+                <value>
+                    <fullName>Urgente</fullName>
+                    <default>false</default>
+                    <label>Urgente</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Propietario__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.FirstName&amp;&quot; &quot;&amp;Owner:User.MiddleName&amp;&quot; &quot;&amp;Owner:User.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Propietario</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Proveedor__c</fullName>
+        <externalId>false</externalId>
+        <label>Proveedor</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Si</fullName>
+                    <default>false</default>
+                    <label>Si</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>En búsqueda</fullName>
+                    <default>false</default>
+                    <label>En búsqueda</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Regional__c</fullName>
+        <externalId>false</externalId>
+        <formula>$User.City</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Regional</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Respuesta__c</fullName>
+        <externalId>false</externalId>
+        <label>Respuesta</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Tiempo_EJ__c</fullName>
+        <externalId>false</externalId>
+        <formula>((floor((Hora_de_finalizacion__c -   Hora_de_inicio__c)*24))
++
+(((((Hora_de_finalizacion__c -   Hora_de_inicio__c)*24)-floor((Hora_de_finalizacion__c -   Hora_de_inicio__c)*24))*60)/100))*100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Tiempo EJ</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tiempo_de_ejecucion__c</fullName>
+        <externalId>false</externalId>
+        <label>Tiempo de ejecución</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tiempo_de_respuesta__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT(Tipo_de_incidencia__c)=&quot;Eliminar registro&quot;,&quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Otro&quot;,&quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Cambio tipo de registro&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Marcación canal digital&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Cambio de nombres migrados&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Relacionar codeudores&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Consulta en espera de Data&quot;, &quot;24 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Consulta en espera de CIFIN&quot;, &quot;24 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Consulta en espera de CIFIN&quot;, &quot;24 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Error Java&quot;, &quot;24 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Cambio tipo de registro&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Relación de codeudores&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Cambio de propietario&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;No actualiza datos&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Error de cálculo&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Cambio de correo&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Panel nuevo&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Inconsistencia en la información&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Eliminar panel&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Informes nuevos&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Eliminar informe&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Creación de usuarios&quot;, &quot;8 Hr laborales&quot;,
+IF( TEXT(Tipo_de_incidencia__c)=&quot;Bloqueo de usuarios&quot;, &quot;8 Hr laborales&quot;,NULL
+
+
+)))))))))))))))))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Este campo indica el tiempo máximo de respuesta.</inlineHelpText>
+        <label>Tiempo de respuesta</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tipo_de_incidencia__c</fullName>
+        <externalId>false</externalId>
+        <label>Tipo de incidencia</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Modulo_de_incidencia__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Marcación canal digital</fullName>
+                    <default>false</default>
+                    <label>Marcación canal digital</label>
+                </value>
+                <value>
+                    <fullName>Cambio de nombres migrados</fullName>
+                    <default>false</default>
+                    <label>Cambio de nombres migrados</label>
+                </value>
+                <value>
+                    <fullName>Relacionar codeudores</fullName>
+                    <default>false</default>
+                    <label>Relacionar codeudores</label>
+                </value>
+                <value>
+                    <fullName>Consulta en espera de Data</fullName>
+                    <default>false</default>
+                    <label>Consulta en espera de Data</label>
+                </value>
+                <value>
+                    <fullName>Consulta en espera de CIFIN</fullName>
+                    <default>false</default>
+                    <label>Consulta en espera de CIFIN</label>
+                </value>
+                <value>
+                    <fullName>Consulta en espera de VIGIA</fullName>
+                    <default>false</default>
+                    <label>Consulta en espera de VIGIA</label>
+                </value>
+                <value>
+                    <fullName>Error Java</fullName>
+                    <default>false</default>
+                    <label>Error Java</label>
+                </value>
+                <value>
+                    <fullName>Cambio tipo de registro</fullName>
+                    <default>false</default>
+                    <label>Cambio tipo de registro</label>
+                </value>
+                <value>
+                    <fullName>Relación de codeudores</fullName>
+                    <default>false</default>
+                    <label>Relación de codeudores</label>
+                </value>
+                <value>
+                    <fullName>Cambio de propietario</fullName>
+                    <default>false</default>
+                    <label>Cambio de propietario</label>
+                </value>
+                <value>
+                    <fullName>No actualiza datos</fullName>
+                    <default>false</default>
+                    <label>No actualiza datos</label>
+                </value>
+                <value>
+                    <fullName>Error de cálculo</fullName>
+                    <default>false</default>
+                    <label>Error de cálculo</label>
+                </value>
+                <value>
+                    <fullName>Cambio de correo</fullName>
+                    <default>false</default>
+                    <label>Cambio de correo</label>
+                </value>
+                <value>
+                    <fullName>Panel nuevo</fullName>
+                    <default>false</default>
+                    <label>Panel nuevo</label>
+                </value>
+                <value>
+                    <fullName>Inconsistencia en la información</fullName>
+                    <default>false</default>
+                    <label>Inconsistencia en la información</label>
+                </value>
+                <value>
+                    <fullName>Eliminar panel</fullName>
+                    <default>false</default>
+                    <label>Eliminar panel</label>
+                </value>
+                <value>
+                    <fullName>Informes nuevos</fullName>
+                    <default>false</default>
+                    <label>Informes nuevos</label>
+                </value>
+                <value>
+                    <fullName>Eliminar informe</fullName>
+                    <default>false</default>
+                    <label>Eliminar informe</label>
+                </value>
+                <value>
+                    <fullName>Creación de usuarios</fullName>
+                    <default>false</default>
+                    <label>Creación de usuarios</label>
+                </value>
+                <value>
+                    <fullName>Bloqueo de usuarios</fullName>
+                    <default>false</default>
+                    <label>Bloqueo de usuarios</label>
+                </value>
+                <value>
+                    <fullName>Status asesor</fullName>
+                    <default>false</default>
+                    <label>Status asesor</label>
+                </value>
+                <value>
+                    <fullName>Eliminar registro</fullName>
+                    <default>false</default>
+                    <label>Eliminar registro</label>
+                </value>
+                <value>
+                    <fullName>Otro</fullName>
+                    <default>false</default>
+                    <label>Otro</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Informes</controllingFieldValue>
+                <valueName>Informes nuevos</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Informes</controllingFieldValue>
+                <valueName>Eliminar informe</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Informes</controllingFieldValue>
+                <controllingFieldValue>Usuarios</controllingFieldValue>
+                <controllingFieldValue>Candidatos</controllingFieldValue>
+                <controllingFieldValue>Clientes/Convenios</controllingFieldValue>
+                <controllingFieldValue>Oportunidades</controllingFieldValue>
+                <controllingFieldValue>Prevalidador</controllingFieldValue>
+                <controllingFieldValue>Solicitud de crédito</controllingFieldValue>
+                <controllingFieldValue>Radicación</controllingFieldValue>
+                <controllingFieldValue>Información comité</controllingFieldValue>
+                <controllingFieldValue>Referenciación</controllingFieldValue>
+                <controllingFieldValue>Constructoras</controllingFieldValue>
+                <controllingFieldValue>Paneles</controllingFieldValue>
+                <valueName>Otro</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Usuarios</controllingFieldValue>
+                <valueName>Creación de usuarios</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Usuarios</controllingFieldValue>
+                <valueName>Bloqueo de usuarios</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Usuarios</controllingFieldValue>
+                <valueName>Status asesor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clientes/Convenios</controllingFieldValue>
+                <valueName>Marcación canal digital</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clientes/Convenios</controllingFieldValue>
+                <valueName>Cambio de nombres migrados</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clientes/Convenios</controllingFieldValue>
+                <valueName>Relacionar codeudores</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clientes/Convenios</controllingFieldValue>
+                <controllingFieldValue>Solicitud de crédito</controllingFieldValue>
+                <valueName>Cambio tipo de registro</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clientes/Convenios</controllingFieldValue>
+                <controllingFieldValue>Oportunidades</controllingFieldValue>
+                <controllingFieldValue>Solicitud de crédito</controllingFieldValue>
+                <controllingFieldValue>Radicación</controllingFieldValue>
+                <controllingFieldValue>Información comité</controllingFieldValue>
+                <controllingFieldValue>Referenciación</controllingFieldValue>
+                <controllingFieldValue>Constructoras</controllingFieldValue>
+                <valueName>Eliminar registro</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Prevalidador</controllingFieldValue>
+                <valueName>Consulta en espera de Data</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Prevalidador</controllingFieldValue>
+                <valueName>Consulta en espera de CIFIN</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Prevalidador</controllingFieldValue>
+                <valueName>Consulta en espera de VIGIA</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Prevalidador</controllingFieldValue>
+                <valueName>Error Java</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Radicación</controllingFieldValue>
+                <valueName>Relación de codeudores</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Radicación</controllingFieldValue>
+                <valueName>Cambio de propietario</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Información comité</controllingFieldValue>
+                <valueName>No actualiza datos</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Información comité</controllingFieldValue>
+                <valueName>Error de cálculo</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Constructoras</controllingFieldValue>
+                <valueName>Cambio de correo</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Paneles</controllingFieldValue>
+                <valueName>Panel nuevo</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Paneles</controllingFieldValue>
+                <valueName>Eliminar panel</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Tipo_de_registro__c</fullName>
+        <externalId>false</externalId>
+        <formula>RecordType.DeveloperName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Tipo de registro</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <recordTypes>
+        <fullName>Incidencias</fullName>
+        <active>true</active>
+        <label>Incidencias</label>
+        <picklistValues>
+            <picklist>Cual_1__c</picklist>
+            <values>
+                <fullName>Avanxo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ITAC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kypello</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cual__c</picklist>
+            <values>
+                <fullName>Avanxo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ITAC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kypello</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Detalle__c</picklist>
+            <values>
+                <fullName>Pruebas de usuario</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pruebas técnicas</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Estado_del_proyecto__c</picklist>
+            <values>
+                <fullName>Análisis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Análisis %28Proveedor%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asignado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cerrado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Desarrollo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entregado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planeación</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pruebas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solicitado</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Suspendido</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Estado_del_requerimiento__c</picklist>
+            <values>
+                <fullName>Abierto</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Cerrado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reabierto</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lider_del_proyecto__c</picklist>
+            <values>
+                <fullName>Angel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Claudia Angel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cristina Gil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hernan Galeano</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Juan Toro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Juan Uribe</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Modulo_de_incidencia__c</picklist>
+            <values>
+                <fullName>Candidatos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clientes%2FConvenios</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Constructoras</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Información comité</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Informes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oportunidades</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paneles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prevalidador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proyecto</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Radicación</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referenciación</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solicitud de crédito</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Usuarios</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Porcentaje_de_avance__c</picklist>
+            <values>
+                <fullName>10%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>100%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>25%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>35%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>50%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>65%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>70%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>75%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>80%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>85%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>90%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>95%25</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Prioridad__c</picklist>
+            <values>
+                <fullName>Alta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Baja</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Urgente</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Proveedor__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Si</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Tipo_de_incidencia__c</picklist>
+            <values>
+                <fullName>Bloqueo de usuarios</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambio de correo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambio de nombres migrados</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambio de propietario</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambio tipo de registro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulta en espera de CIFIN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulta en espera de Data</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulta en espera de VIGIA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Creación de usuarios</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eliminar informe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eliminar panel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eliminar registro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Error Java</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Error de cálculo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inconsistencia en la información</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Informes nuevos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marcación canal digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No actualiza datos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Otro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panel nuevo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relacionar codeudores</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relación de codeudores</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Status asesor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Proyectos</fullName>
+        <active>true</active>
+        <label>Proyectos</label>
+        <picklistValues>
+            <picklist>Cual_1__c</picklist>
+            <values>
+                <fullName>Avanxo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ITAC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kypello</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cual__c</picklist>
+            <values>
+                <fullName>Avanxo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Avanxo%2FCF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ITAC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ITAC%2FCF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kypello</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kypello%2FCF</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Detalle__c</picklist>
+            <values>
+                <fullName>Pruebas de usuario</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pruebas técnicas</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Estado_del_proyecto__c</picklist>
+            <values>
+                <fullName>Análisis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Análisis %28Proveedor%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asignado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cerrado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Desarrollo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diseño del documento</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entregado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planeación</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pruebas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solicitado</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Suspendido</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Estado_del_requerimiento__c</picklist>
+            <values>
+                <fullName>Abierto</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Cerrado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reabierto</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lider_del_proyecto__c</picklist>
+            <values>
+                <fullName>Angel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Claudia Angel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cristina Gil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hernan Galeano</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Juan Toro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Juan Uribe</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Modulo_de_incidencia__c</picklist>
+            <values>
+                <fullName>Candidatos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clientes%2FConvenios</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Constructoras</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Información comité</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Informes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oportunidades</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paneles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prevalidador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proyecto</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Radicación</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referenciación</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solicitud de crédito</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Usuarios</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Porcentaje_de_avance__c</picklist>
+            <values>
+                <fullName>0%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>100%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>25%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>35%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>45%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>50%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>55%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>65%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>70%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>75%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>80%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>85%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>90%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>95%25</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Prioridad__c</picklist>
+            <values>
+                <fullName>Alta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Baja</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Urgente</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Proveedor__c</picklist>
+            <values>
+                <fullName>En búsqueda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Si</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Tipo_de_incidencia__c</picklist>
+            <values>
+                <fullName>Bloqueo de usuarios</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambio de correo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambio de nombres migrados</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambio de propietario</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambio tipo de registro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulta en espera de CIFIN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulta en espera de Data</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulta en espera de VIGIA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Creación de usuarios</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eliminar informe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eliminar panel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eliminar registro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Error Java</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Error de cálculo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inconsistencia en la información</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Informes nuevos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marcación canal digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No actualiza datos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Otro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panel nuevo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relacionar codeudores</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relación de codeudores</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Status asesor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <validationRules>
+        <fullName>RQ001_Solicitud_de_credito</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos consecutivo de la solicitud y número de documento cuando se indica en el campo módulo de incidencia &quot;Solicitud de crédito&quot;.</description>
+        <errorConditionFormula>(ISPICKVAL( Modulo_de_incidencia__c , &quot;Solicitud de crédito&quot;)&amp;&amp;
+
+( ISBLANK( Consecutivo_de_la_solicitud__c )  ||
+ ISBLANK( Observacion__c )  ||
+ ISBLANK( Numero_documento__c ) ))</errorConditionFormula>
+        <errorMessage>RQ-001.Cuando indica en el campo módulo de incidencia: &quot;Solicitud de crédito&quot;, debe diligenciar los campos consecutivo de la solicitud, número de documento y observación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ002_Candidatos</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos número de documento y observación cuando se indica en el campo módulo de incidencia &quot;Candidatos&quot;.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL(Modulo_de_incidencia__c, &quot;Candidatos&quot;) ,
+ OR(
+ ISBLANK(Numero_documento__c) ,
+ ISBLANK(Observacion__c) 
+
+) )</errorConditionFormula>
+        <errorMessage>RQ-002.Cuando indica en el campo módulo de incidencia: &quot;Candidatos&quot;, debe diligenciar los campos número de documento y observación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ003_Clientes_Convenios</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos número de documento y observación cuando se indica en el campo módulo de incidencia &quot;Clientes/Convenios&quot;.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL(Modulo_de_incidencia__c, &quot;Clientes/Convenios&quot;) ,
+ OR( 
+ ISBLANK(Numero_documento__c) ,
+ ISBLANK(Observacion__c) 
+
+) )</errorConditionFormula>
+        <errorMessage>RQ-003.Cuando indica en el campo módulo de incidencia: &quot;Clientes/Convenios&quot;, debe diligenciar los campos número de documento y observación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ004_Oportunidades</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos número de documento y observación cuando se indica en el campo módulo de incidencia &quot;Clientes/Convenios&quot;.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Modulo_de_incidencia__c , &quot;Oportunidades&quot;),
+ OR(
+ ISBLANK( Observacion__c )  , 
+ ISBLANK( Numero_documento__c ) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-004.Cuando indica en el campo módulo de incidencia: &quot;Oportunidades&quot;, debe diligenciar los campos número de documento y observación</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ005_Prevalidador</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos número de documento y observación cuando se indica en el campo módulo de incidencia &quot;Clientes/Convenios&quot;.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Modulo_de_incidencia__c , &quot;Prevalidador&quot;),
+ OR(
+ ISBLANK( Observacion__c )  , 
+ ISBLANK( Numero_documento__c ) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-005.Cuando indica en el campo módulo de incidencia: &quot;Prevalidador&quot;, debe diligenciar los campos número de documento y observación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ006_Radicacion</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos consecutivo de la solicitud y número de documento cuando se indica en el campo módulo de incidencia &quot;Solicitud de crédito&quot;.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Modulo_de_incidencia__c , &quot;Radicación&quot;),
+  OR(
+ ISBLANK( Consecutivo_de_la_solicitud__c )  , 
+ ISBLANK( Observacion__c )  , 
+ ISBLANK( Numero_documento__c ) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-006.Cuando indica en el campo módulo de incidencia: &quot;Radicación&quot;, debe diligenciar los campos número de documento, consecutivo de la solicitud y observación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ007_Informacion_comite</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos consecutivo de la solicitud y número de documento cuando se indica en el campo módulo de incidencia &quot;Información comité&quot;.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Modulo_de_incidencia__c , &quot;Información comité&quot;),
+ OR(
+ ISBLANK( Consecutivo_de_la_solicitud__c ), 
+ ISBLANK( Observacion__c ), 
+ ISBLANK( Numero_documento__c ) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-007.Cuando indica en el campo módulo de incidencia: &quot;Información comité&quot;, debe diligenciar los campos número de documento, consecutivo de la solicitud y observación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ008_Referenciacion</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos consecutivo de la solicitud y número de documento cuando se indica en el campo módulo de incidencia &quot;Referenciación&quot;.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Modulo_de_incidencia__c , &quot;Referenciación&quot;),
+ OR(
+ ISBLANK( Consecutivo_de_la_solicitud__c )  , 
+ ISBLANK( Observacion__c )  , 
+ ISBLANK( Numero_documento__c ) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-008.Cuando indica en el campo módulo de incidencia: &quot;Referenciación&quot;, debe diligenciar los campos número de documento, consecutivo de la solicitud y observación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ009_Constructoras</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos nombre de la constructora y observación cuando se indica en el campo módulo de incidencia &quot;Constructoras&quot;.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Modulo_de_incidencia__c , &quot;Constructoras&quot;),
+ OR(
+ ISBLANK( Nombre_de_la_constructora__c )  , 
+ ISBLANK( Observacion__c ) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-009.Cuando indica en el campo módulo de incidencia: &quot;Constructoras&quot;, debe diligenciar los campos nombre de la constructora y observación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ010_Proyecto</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos nombre del proyecto y observación cuando se indica en el campo módulo de incidencia &quot;Proyecto&quot;.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Modulo_de_incidencia__c , &quot;Proyecto&quot;),
+ OR(
+ ISBLANK( Nombre_del_proyecto__c )  , 
+ ISBLANK( Observacion__c ) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-010.Cuando indica en el campo módulo de incidencia: &quot;Proyecto&quot;, debe diligenciar los campos nombre del proyecto y observación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ011_Paneles</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos nombre del panel y observación cuando se indica en el campo módulo de incidencia &quot;Paneles&quot;.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Modulo_de_incidencia__c , &quot;Paneles&quot;),
+ OR(
+ ISBLANK( Nombre_del_panel__c )  , 
+ ISBLANK( Observacion__c ) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-011.Cuando indica en el campo módulo de incidencia: &quot;Paneles&quot;, debe diligenciar los campos nombre del panel y observación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ012_Informes</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos nombre del informe y observación cuando se indica en el campo módulo de incidencia &quot;Informes&quot;.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Modulo_de_incidencia__c , &quot;Informes&quot;),
+ OR(
+ ISBLANK( Nombre_del_informe__c )  , 
+ ISBLANK( Observacion__c ) 
+
+
+))</errorConditionFormula>
+        <errorMessage>RQ-012.Cuando indica en el campo módulo de incidencia: &quot;Informes&quot;, debe diligenciar los campos nombre del informe y observación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ013_Usuarios</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien el campo observación cuando se indica en el campo módulo de incidencia &quot;Usuarios&quot;.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Modulo_de_incidencia__c , &quot;Usuarios&quot;),
+ ISBLANK( Observacion__c ) 
+
+
+
+)</errorConditionFormula>
+        <errorMessage>RQ-013.Cuando indica en el campo módulo de incidencia: &quot;Usuarios&quot;, debe diligenciar el campo Observación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ014_Documento_numerico</fullName>
+        <active>true</active>
+        <description>Valida que solamente ingresen números en el número de documento, no permite caracteres alfanuméricos.</description>
+        <errorConditionFormula>AND(
+ Numero_documento__c != NULL,
+ NOT( ISNUMBER(	Numero_documento__c) )
+)</errorConditionFormula>
+        <errorDisplayField>Numero_documento__c</errorDisplayField>
+        <errorMessage>RQ-014.Ingresar solamente caractéres numéricos.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ015_Requerimientos_cerrados</fullName>
+        <active>false</active>
+        <description>Valida que el estado del requerimiento sea cerrado solamente por el administrador del sistema.</description>
+        <errorConditionFormula>AND( 
+ISPICKVAL(Estado_del_requerimiento__c, &quot;Cerrado&quot;),
+ $UserRole.Id  &lt;&gt; &quot;00eo0000000uvB5&quot;
+
+)</errorConditionFormula>
+        <errorMessage>RQ-015.El estado del requerimiento solamente puede ser cerrado por el administrador del sistema.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ016_Requerimientos_de_usuarios</fullName>
+        <active>true</active>
+        <description>Valida que las solicitudes de usuarios las pidan solamente los líderes de las áreas.</description>
+        <errorConditionFormula>AND(
+ISPICKVAL(Modulo_de_incidencia__c,&quot;Usuarios&quot;),
+
+   $User.ProfileId   &lt;&gt; &quot;00eo0000000f7LO&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000f645&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000TwAw&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000TUb7&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000f7LJ&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000f7L9&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000TzBP&quot;,
+  $User.ProfileId &lt;&gt; &quot;00eo0000000TUb9&quot;,
+ $User.ProfileId &lt;&gt; &quot;00eo0000000uvB5&quot;
+
+ 
+)</errorConditionFormula>
+        <errorMessage>RQ-016.Los requerimientos de usuarios solamente pueden ser solicitadas por los líderes de área.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ017_Numero_de_digitos_documento</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+LEN( Numero_documento__c )&lt;6,
+ OR(
+ISPICKVAL(Modulo_de_incidencia__c, &quot;Solicitud de crédito&quot;) , 
+ISPICKVAL(Modulo_de_incidencia__c, &quot;Radicación&quot;) , 
+ISPICKVAL(Modulo_de_incidencia__c, &quot;Información comité&quot;) , 
+ISPICKVAL(Modulo_de_incidencia__c, &quot;Referenciación&quot;), 
+ISPICKVAL(Modulo_de_incidencia__c, &quot;Candidatos&quot;) ,
+ISPICKVAL(Modulo_de_incidencia__c, &quot;Clientes/Convenios&quot;) 
+
+))</errorConditionFormula>
+        <errorDisplayField>Numero_documento__c</errorDisplayField>
+        <errorMessage>RQ-017.No es permitido ingresar menos de seis dígitos.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ018_Numero_de_digitos_consecutivo</fullName>
+        <active>true</active>
+        <description>Valida que no ingresen menos de cuatro dígitos como consecutivo</description>
+        <errorConditionFormula>AND(
+LEN( Consecutivo_de_la_solicitud__c )&lt;4,
+ OR(
+ISPICKVAL(Modulo_de_incidencia__c, &quot;Solicitud de crédito&quot;) ,
+ISPICKVAL(Modulo_de_incidencia__c, &quot;Radicación&quot;) ,
+ISPICKVAL(Modulo_de_incidencia__c, &quot;Información comité&quot;) ,
+ISPICKVAL(Modulo_de_incidencia__c, &quot;Referenciación&quot;) 
+
+))</errorConditionFormula>
+        <errorDisplayField>Consecutivo_de_la_solicitud__c</errorDisplayField>
+        <errorMessage>RQ-018. No es permitido ingresar menos de cuatro dígitos.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ019_No_campos_de_la_solicitud_de_credi</fullName>
+        <active>true</active>
+        <description>Valida que no se introduzcan datos en los campos que no le corresponden a la solicitud de crédito.</description>
+        <errorConditionFormula>AND(
+
+ISPICKVAL( Modulo_de_incidencia__c , &quot;Solicitud de crédito&quot;),
+
+OR(
+
+ NOT(ISBLANK( Nombre_de_la_constructora__c )),
+ NOT(ISBLANK(  Nombre_del_proyecto__c  )),
+ NOT(ISBLANK(   Nombre_del_panel__c   )),
+ NOT(ISBLANK( Nombre_del_informe__c    ))
+
+))</errorConditionFormula>
+        <errorMessage>RQ-019.Si el módulo de incidencia es &quot;Solicitud de crédito&quot;, diligencie solamente el tipo de incidencia, el número de documento y la observación del requerimiento.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ020_No_campos_del_candidato</fullName>
+        <active>true</active>
+        <description>Valida que no se ingrese información en campos que no corresponden a los candidatos.</description>
+        <errorConditionFormula>AND(
+
+ISPICKVAL( Modulo_de_incidencia__c , &quot;Candidatos&quot;),
+
+OR(
+
+ NOT(ISBLANK( Nombre_de_la_constructora__c )),
+ NOT(ISBLANK(  Nombre_del_proyecto__c  )),
+ NOT(ISBLANK(   Nombre_del_panel__c   )),
+ NOT(ISBLANK( Nombre_del_informe__c    )),
+ NOT(ISBLANK( 	Consecutivo_de_la_solicitud__c	))
+
+))</errorConditionFormula>
+        <errorMessage>RQ-020.Si el módulo de incidencia es &quot;Candidatos&quot;, diligencie solamente el número de documento y la observación del requerimiento.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ021_No_campos_de_la_oportunidad</fullName>
+        <active>true</active>
+        <description>Valida que no se ingrese información en campos que no corresponden a la oportunidad.</description>
+        <errorConditionFormula>AND(
+
+ISPICKVAL( Modulo_de_incidencia__c , &quot;Oportunidades&quot;),
+
+OR(
+
+ NOT(ISBLANK( Nombre_de_la_constructora__c )),
+ NOT(ISBLANK(  Nombre_del_proyecto__c  )),
+ NOT(ISBLANK(   Nombre_del_panel__c   )),
+ NOT(ISBLANK( Nombre_del_informe__c    )),
+ NOT(ISBLANK( 	Consecutivo_de_la_solicitud__c    ))
+
+))</errorConditionFormula>
+        <errorMessage>RQ-021.Si el módulo de incidencia es &quot;Oportunidades&quot;, diligencie solamente el tipo de incidencia, el número de documento y la observación del requerimiento.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ022_No_campos_del_prevalidador</fullName>
+        <active>true</active>
+        <description>No permite que se diligencien campos que no pertenezcan al prevalidador.</description>
+        <errorConditionFormula>AND(
+
+ ISPICKVAL(Modulo_de_incidencia__c, &quot;Prevalidador&quot;) ,
+
+ OR( 
+
+ NOT( ISBLANK(Nombre_de_la_constructora__c) ) ,
+ NOT( ISBLANK(Nombre_del_informe__c) ) ,
+ NOT( ISBLANK(Nombre_del_panel__c) ) ,
+ NOT( ISBLANK(Nombre_del_proyecto__c) ) 
+
+
+))</errorConditionFormula>
+        <errorMessage>RQ-022. Si el módulo de la incidencia es &quot;Prevalidador&quot;, por favor diligencie solamente el tipo de incidencia, el número de documento y la observación del requerimiento.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ023_No_campos_de_la_radicacion</fullName>
+        <active>true</active>
+        <description>Valida que no se ingrese información en campos que no correspondan a la radicación.</description>
+        <errorConditionFormula>AND( 
+
+ISPICKVAL( Modulo_de_incidencia__c , &quot;Radicación&quot;), 
+
+OR( 
+
+NOT(ISBLANK( Nombre_de_la_constructora__c )), 
+NOT(ISBLANK( Nombre_del_proyecto__c )), 
+NOT(ISBLANK( Nombre_del_panel__c )), 
+NOT(ISBLANK( Nombre_del_informe__c ))
+
+))</errorConditionFormula>
+        <errorMessage>RQ-023.Si el módulo de la incidencia es &quot;Radicación&quot;, por favor ingresar solamente el tipo de incidencia, el número de documento, el consecutivo de la solicitud y la observación del requerimiento.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ024_No_campos_informacion_comite</fullName>
+        <active>true</active>
+        <description>Valida que no se ingrese información en campos que no correspondan a la información comité.</description>
+        <errorConditionFormula>AND( 
+
+ISPICKVAL( Modulo_de_incidencia__c , &quot;Información comité&quot;), 
+
+OR( 
+
+NOT(ISBLANK( Nombre_de_la_constructora__c )), 
+NOT(ISBLANK( Nombre_del_proyecto__c )), 
+NOT(ISBLANK( Nombre_del_panel__c )), 
+NOT(ISBLANK( Nombre_del_informe__c )) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-024.Si el módulo de incidencia es &quot;información comité&quot;, diligenciar solamente el tipo de incidencia, el número de documento, el consecutivo de la solicitud y la observación del requerimiento.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ025_No_campos_referenciacion</fullName>
+        <active>true</active>
+        <description>Valida que no se ingrese información en campos que no correspondan a la referenciación.</description>
+        <errorConditionFormula>AND( 
+
+ISPICKVAL( Modulo_de_incidencia__c , &quot;Referenciación&quot;), 
+
+OR( 
+
+NOT(ISBLANK( Nombre_de_la_constructora__c )), 
+NOT(ISBLANK( Nombre_del_proyecto__c )), 
+NOT(ISBLANK( Nombre_del_panel__c )), 
+NOT(ISBLANK( Nombre_del_informe__c )) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-024.Si el módulo de incidencia es &quot;Referenciación&quot;, diligencie solamente el tipo de incidencia, el número de documento, el consecutivo de la solicitud y la observación del requerimiento.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ026_No_campos_de_la_constructora</fullName>
+        <active>true</active>
+        <description>Valida que no se ingrese información en campos que no correspondan a la constructora.</description>
+        <errorConditionFormula>AND( 
+
+ISPICKVAL( Modulo_de_incidencia__c , &quot;Constructoras&quot;), 
+
+OR( 
+
+NOT(ISBLANK( Numero_documento__c )), 
+NOT(ISBLANK( Consecutivo_de_la_solicitud__c )), 
+NOT(ISBLANK( Nombre_del_proyecto__c )),
+NOT(ISBLANK( Nombre_del_panel__c )), 
+NOT(ISBLANK( Nombre_del_informe__c )) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-026.Si el módulo de la incidencia es &quot;Constructoras&quot;, diligencie solamente el tipo de incidencia, el nombre de la constructora y la observación del requerimiento.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ027_No_campos_del_proyecto</fullName>
+        <active>true</active>
+        <description>Valida que no se ingrese información en campos que no correspondan al proyecto</description>
+        <errorConditionFormula>AND( 
+
+ISPICKVAL( Modulo_de_incidencia__c , &quot;Proyecto&quot;), 
+
+OR( 
+
+NOT(ISBLANK( Numero_documento__c )), 
+NOT(ISBLANK( Nombre_de_la_constructora__c )), 
+NOT(ISBLANK( Consecutivo_de_la_solicitud__c	 )),
+NOT(ISBLANK( Nombre_del_panel__c )), 
+NOT(ISBLANK( Nombre_del_informe__c )) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-027.Si el módulo de incidencia es &quot;Proyecto&quot;, diligencie solamente el tipo de incidencia, el nombre del proyecto y la observación del requerimiento.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ028_No_campos_del_panel</fullName>
+        <active>true</active>
+        <description>Valida que no se ingrese información en campos que no correspondan al panel.</description>
+        <errorConditionFormula>AND( 
+
+ISPICKVAL( Modulo_de_incidencia__c ,&quot;Paneles&quot;), 
+
+OR( 
+
+NOT(ISBLANK( Numero_documento__c )), 
+NOT(ISBLANK( Nombre_de_la_constructora__c )), 
+NOT(ISBLANK( Nombre_del_proyecto__c )),
+NOT(ISBLANK( Consecutivo_de_la_solicitud__c )), 
+NOT(ISBLANK( Nombre_del_informe__c )) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-028.Si el módulo de incidencia es &quot;Paneles&quot;, diligencie solamente el tipo de incidencia, el nombre del panel y la observación del requerimiento.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ029_No_campos_del_informe</fullName>
+        <active>true</active>
+        <description>Valida que no se ingrese información en campos que no correspondan al informe.</description>
+        <errorConditionFormula>AND( 
+
+ISPICKVAL( Modulo_de_incidencia__c , &quot;Informes&quot;), 
+
+OR( 
+
+NOT(ISBLANK( Numero_documento__c )), 
+NOT(ISBLANK( Nombre_de_la_constructora__c )), 
+NOT(ISBLANK( Nombre_del_proyecto__c )),
+NOT(ISBLANK( Consecutivo_de_la_solicitud__c )), 
+NOT(ISBLANK( Nombre_del_panel__c )) 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-029.Si el módulo de incidencia es &quot;Informe&quot;, diligencie solamente el tipo de incidencia, el nombre informe y la observación del requerimiento.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ030_Requerimientos_de_informes</fullName>
+        <active>true</active>
+        <description>Valida que las solicitudes de informes las pidan solamente los líderes de las áreas.</description>
+        <errorConditionFormula>AND(
+ISPICKVAL(Modulo_de_incidencia__c,&quot;Informes&quot;),
+
+   $User.ProfileId   &lt;&gt; &quot;00eo0000000f7LO&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000f645&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000TwAw&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000TUb7&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000f7LJ&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000f7L9&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000TzBP&quot;,
+  $User.ProfileId &lt;&gt; &quot;00eo0000000TUb9&quot;,
+  $User.ProfileId &lt;&gt; &quot;00eo0000000uvB5&quot;
+
+ 
+)</errorConditionFormula>
+        <errorMessage>RQ-030.Los requerimientos de informes solamente pueden ser solicitados por los líderes de área.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ031_Requerimientos_informacion_comite</fullName>
+        <active>true</active>
+        <description>Valida que las solicitudes acerca de la información comité las soliciten solamente las analistas de crédito y la coordinadora del riesgos.</description>
+        <errorConditionFormula>AND(
+ISPICKVAL(Modulo_de_incidencia__c,&quot;Información comité&quot;),
+
+  $User.ProfileId   &lt;&gt; &quot;00eo0000000TqzC&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000f7LO&quot;,
+  $User.ProfileId  &lt;&gt; &quot;00eo0000000uvB5&quot;
+
+ 
+)</errorConditionFormula>
+        <errorMessage>RQ-031.Los requerimientos acerca de información comité solamente pueden ser solicitados por las analistas de crédito y la coordinadora de crédito.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ032_Valida_costo_del_proyecto</fullName>
+        <active>true</active>
+        <description>Si se indica el campo ¿Cual?  se debe diligenciar el campo Costo</description>
+        <errorConditionFormula>AND(
+  
+    ISBLANK(Costo__c ),
+ 
+OR(   
+ 
+ ISPICKVAL( Cual__c ,&quot;Kypello&quot;),
+ ISPICKVAL( Cual__c ,&quot;Avanxo&quot;),
+ ISPICKVAL( Cual__c ,&quot;ITAC&quot;),
+ ISPICKVAL( Cual__c ,&quot;ITAC&quot;),
+ ISPICKVAL( Cual__c ,&quot;Kypello/CF&quot;),
+ ISPICKVAL( Cual__c ,&quot;ITAC/CF&quot;),
+ ISPICKVAL( Cual__c ,&quot;Avanxo/CF&quot;)
+
+))</errorConditionFormula>
+        <errorDisplayField>Costo__c</errorDisplayField>
+        <errorMessage>RQ-031.Por favor indicar el costo total del proyecto</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ033_Valida_estado_Asignado</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+
+ ISPICKVAL( Estado_del_proyecto__c , &quot;Asignado&quot;),
+
+OR(
+
+ISPICKVAL( Prioridad__c,&quot;&quot;), 
+ISPICKVAL( Lider_del_proyecto__c ,&quot;&quot;) 
+
+
+
+) )</errorConditionFormula>
+        <errorMessage>RQ-032.Si el estado del proyecto es asignado , diligenciar los campos : Priodad y Lider del proyecto</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ034_Valida_estado_analizado</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+
+ ISPICKVAL(Estado_del_proyecto__c ,&quot;Análisis&quot;),
+ ISPICKVAL(Estado_del_proyecto__c ,&quot;Análisis (Proveedor)&quot;),
+
+OR(
+
+ISPICKVAL(Proveedor__c ,&quot;&quot;),
+LEN( Comentarios__c )= 0 
+
+))</errorConditionFormula>
+        <errorMessage>RQ-034 Si el estado del proyecto es &quot; Análisis&quot;  diligenciar los campos &quot;Proveedor&quot; y &quot;Comentarios&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RQ036_Valida_estado_planificado</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+
+ ISPICKVAL(Estado_del_proyecto__c ,&quot;Planeación&quot;),
+ ISBLANK(Fecha_estimada_de_entrega__c ),
+ ISBLANK( Fecha_de_incio__c )
+
+)</errorConditionFormula>
+        <errorMessage>RQ-036 Si el estado del proyecto es &quot;Planeación&quot; , diligenciar la fecha de incio y fecha -estimada de entrega</errorMessage>
+    </validationRules>
+</CustomObject>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Cifin__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cifin</label>
+        <referenceTo>Cifin__c</referenceTo>
+        <relationshipLabel>Resultados Prevalidador</relationshipLabel>
+        <relationshipName>Resultados_Prevalidador</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Cliente__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cliente</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Resultados Prevalidador</relationshipLabel>
+        <relationshipName>Resultados_Prevalidador</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Datacredito__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Datacredito</label>
+        <referenceTo>Datacredito__c</referenceTo>
+        <relationshipLabel>Resultados Prevalidador</relationshipLabel>
+        <relationshipName>Resultados_Prevalidador</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Endeudamiento_financiero_prevalidado__c</fullName>
+        <externalId>false</externalId>
+        <label>Endeudamiento financiero prevalidado</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Fecha_de_prevalidacion__c</fullName>
+        <externalId>false</externalId>
+        <label>Fecha de prevalidación</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Fecha_hora_consulta_en_listas__c</fullName>
+        <externalId>false</externalId>
+        <label>Fecha/hora consulta en listas</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LTV_Prevalidado__c</fullName>
+        <externalId>false</externalId>
+        <label>LTV Prevalidado</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>LogRespuesta__c</fullName>
+        <externalId>false</externalId>
+        <label>LogRespuesta</label>
+        <length>131000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Log_Error__c</fullName>
+        <externalId>false</externalId>
+        <label>Log Error</label>
+        <length>130000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Monto_sugerido_preaprobado__c</fullName>
+        <externalId>false</externalId>
+        <label>Monto sugerido preaprobado</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Moras_en_CIFIN__c</fullName>
+        <externalId>false</externalId>
+        <label>Moras en CIFIN</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Moras_en_Datacredito__c</fullName>
+        <externalId>false</externalId>
+        <label>Moras en Datacredito</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_Consulta__c</fullName>
+        <externalId>false</externalId>
+        <label>No. Consulta</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_de_creditos_vigentes__c</fullName>
+        <externalId>false</externalId>
+        <label>No. de créditos vigentes</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_de_tarjetas_vigentes__c</fullName>
+        <externalId>false</externalId>
+        <label>No. de tarjetas vigentes</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Numero_de_consultas__c</fullName>
+        <externalId>false</externalId>
+        <label>Número de consultas</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Observaciones__c</fullName>
+        <externalId>false</externalId>
+        <label>Observaciones</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Oportunidad__c</fullName>
+        <externalId>false</externalId>
+        <label>Oportunidad</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Resultados Prevalidador</relationshipLabel>
+        <relationshipName>Resultados_Prevalidador</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>PDFs_Generados__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>PDFs Generados</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Plazo__c</fullName>
+        <externalId>false</externalId>
+        <label>Plazo</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Presenta_cliente_paz_y_salvo__c</fullName>
+        <description>Campo habilitado para cada gerente, donde marcan si el cliente presento los paz y salvos respectivos para poder realizar la consulta en CIFIN y el asesor comercial pueda realizar la solicitud de crédito</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Marcar este campo, si el cliente presento el paz y salvo cuando el resultado del prevalidador es NO VIABLE, para poder realizar la solicitud de crédito, y permita continuar con el proceso.</inlineHelpText>
+        <label>Presenta cliente paz y salvo</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Si</fullName>
+                    <default>false</default>
+                    <label>Si</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>true</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Relacion_cuota_ingreso_prevalidado__c</fullName>
+        <externalId>false</externalId>
+        <label>Relación cuota ingreso prevalidado</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Resultado_del_Prevalidador__c</fullName>
+        <externalId>false</externalId>
+        <label>Resultado del Prevalidador</label>
+        <length>250</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_Data__c</fullName>
+        <externalId>false</externalId>
+        <formula>Datacredito__r.Puntaje__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Score de Data</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_de_Data__c</fullName>
+        <externalId>false</externalId>
+        <label>Score de Data</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Score_interno__c</fullName>
+        <externalId>false</externalId>
+        <label>Score interno</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tipo_Cliente__c</fullName>
+        <externalId>false</externalId>
+        <label>Tipo Cliente</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Deudor</fullName>
+                    <default>false</default>
+                    <label>Deudor</label>
+                </value>
+                <value>
+                    <fullName>Codeudor</fullName>
+                    <default>false</default>
+                    <label>Codeudor</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <validationRules>
+        <fullName>RP01_Valida_si_presenta_paz_y_salvo</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+
+Observaciones__c  &lt;&gt;  &quot;El cliente no cumple con políticas de endeudamiento financiero&quot;,
+OR(
+ISPICKVAL(Presenta_cliente_paz_y_salvo__c , &quot;Si&quot;)
+))</errorConditionFormula>
+        <errorMessage>RP01- El paz y salvo solo se presenta cuando el cliente no cumple políticas de endeudamiento fiananciero.</errorMessage>
+    </validationRules>
+</CustomObject>
