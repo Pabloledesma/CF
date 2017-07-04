@@ -1,6 +1,8 @@
 @isTest
 public class TestDataFactory {
 
+
+
 	public static Lead createLead() {
 		Lead lead = new Lead(
 			FirstName = 'TestName',
@@ -97,6 +99,66 @@ public class TestDataFactory {
 			UserName='testUserUnique@testorg.com'
 		);
 		return u;
+	}
+
+	/**
+	| Crea un registro de codeudor con todos los campos diligenciados
+	|
+	| @param i: número entero para identificar los codeudores
+	| @param leadId: Id del candidato relacionado
+	| @return Id
+	**/
+	public static Codeudor__c createCodeudorFullInfo(String i, Id leadId)
+	{
+		Codeudor__c codeudor = new Codeudor__c(
+				Name = 'CodeudorTest' + i,
+				Apellidos__c = 'Test' + i,
+				Candidato__c = leadId,
+				Tipo_de_documento__c = 'Cédula de ciudadanía',
+				Numero_de_documento__c = String.valueOf(Crypto.getRandomInteger()).substring(0,8),
+				Ciudad_de_residencia__c = 'Bogotá',
+				Ocupacion__c = 'Empleado',
+				Fecha_de_nacimiento__c = Date.newInstance(1983, 05, 24),
+				Lugar_de_nacimiento__c = 'Bogotá',
+				Fecha_de_expedicion__c = Date.newInstance(2002,3,25),
+				Lugar_de_expedicion__c = 'Bogotá',
+				Estado_Civil__c = 'Casado',
+				Nivel_de_educaci_n__c = 'Universitario',
+				Parentesco_Ref_Familiar__c = 'Tio(a)',
+				Telefono_fijo__c = '1234567',
+				Numero_de_celular__c = '1234567890',
+				Fecha_de_ingreso__c = Date.newInstance(2016,4,4),
+				Nombre_entidad_empleadora__c = 'Acme',
+				Direccion_de_la_empresa__c = 'Carrera 24 # 35 - 35',
+				Experiencia__c = 2,
+				Ciudad_laboral__c = 'Bogotá',
+				Cargo_actual__c = 'Analista',
+				Telefono_de_la_oficina__c = 1234567,
+				Nombres_Ref_Familiar__c = 'Nombre ref fam' + i,
+				Apellidos_Ref_Familiar__c = 'Apellidos ref fam' + i,
+				Direccion_referencia_familiar_codeudor__c = 'calle 3 # 4 - 5',
+				Celular_Ref_Familiar__c = 1234567890,
+				Ciudad_Ref_Familiar__c = 'Cartago',
+				Nombres_Ref_Personal__c = 'Nombre ref personal' + i,
+				Apellidos_Ref_Personal__c = 'Apellido ref personal' + i,
+				Direccion_referencia_personal_codeudor__c = 'carrera 89 # 56 - 29',
+				Celular_Ref_Personal__c = 1234657890,
+				Ciudad_Ref_Personal__c = 'Cali',
+				Relacion__c = 'Amigo(a)'
+		);
+
+		Database.SaveResult result = Database.insert(codeudor, false);
+		if(result.isSuccess()){
+			codeudor.Id = result.getId();
+			return codeudor;
+		} else {
+			System.debug('Errores al insertar el codeudor: ');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+			return null;
+		}
 	}
 
 	public static Id createCodeudor(Id leadId) {

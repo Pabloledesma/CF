@@ -1,15 +1,89 @@
 @isTest
-private class LeadConversionTest {
-
-	@isTest static void conversion_de_lead_sin_codeudor() {
+private class LeadConversionHelperTest {
+	
+	@isTest public static void conversion_de_lead_codeudor_con_informacion_completa()
+	{
 		Lead lead = TestDataFactory.createLead();
-		System.assert(lead.Id != null, 'El candidato no fué insertado.');
+		Codeudor__c cod = TestDataFactory.createCodeudorFullInfo('Uno', lead.Id);
+
 		Test.startTest();
 			Database.LeadConvertResult lcr = convertLead(lead.Id);
 			verificarCuenta(lead);
 			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
-			verificarRadicacionDeCredito(sc);
+			Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
+
+			System.assertEquals(
+					rc.Familiar_Nombre_y_Apellido_codeudor1__c,
+					cod.Nombres_Ref_Familiar__c + ' ' + cod.Apellidos_Ref_Familiar__c,
+					'El nombre del codeudor no se actualizó correctamente'
+			);
+
+			System.assertEquals(
+					rc.Parentesco_familiar_codeduor1__c,
+					cod.Parentesco_Ref_Familiar__c,
+					'El Parentesco familiar del codeudor 1 no se actualizó correctamente'
+			);
+
+			System.assertEquals(
+					rc.Direccion_familiar_codeudor1__c,
+					cod.Direccion_referencia_familiar_codeudor__c,
+					'La dirección familiar del codeudor 1 no se actualizó correctamente'
+			);
+
+			System.assertEquals(
+					rc.Telefono_familiar_codeudor1__c,
+					String.valueOf(cod.Celular_Ref_Familiar__c),
+					'El teléfono de la referencia familiar del codeudor 1 no se actualizó correctamente'
+			);
+
+			System.assertEquals(
+					rc.Ciudad_familiar_codeudor1__c,
+					cod.Ciudad_Ref_Familiar__c,
+					'La ciudad de la referencia familiar del codeudor 1 no se actualizó correctamente'
+			);
+
+			System.assertEquals(
+					rc.Personal_Nombre_y_Apellido_codeudor1__c,
+					cod.Nombres_Ref_Personal__c + ' ' + cod.Apellidos_Ref_Personal__c,
+					'Los nombres y apellidos de la referencia personal del codeudor 1 no se actualizaron correctamente'
+			);
+
+			System.assertEquals(
+					rc.Parentesco_personal_codeudor1__c,
+					cod.Relacion__c,
+					'El parentesco personal del codeudor 1 no se actualizó correctamente'
+			);
+
+			System.assertEquals(
+					rc.Direccion_personal_codeudor1__c,
+					cod.Direccion_referencia_personal_codeudor__c,
+					'La dirección de la referencia personal del codeudor 1 no se actualizó correctamente'
+			);
+
+			System.assertEquals(
+					rc.Telefono_personal_codeudor1__c,
+					String.valueOf(cod.Celular_Ref_Personal__c),
+					'El teléfono de la referencia personal del codeudor 1 no se actualizó correctamente'
+			);
+
+			System.assertEquals(
+					rc.Ciudad_personal_codeudor1__c,
+					cod.Ciudad_Ref_Personal__c,
+					'La ciudad de la referencia personal del codeudor 1 no se actualizó correctamente'
+			);
 		Test.stopTest();
+
+	}
+
+	@isTest static void conversion_de_lead_sin_codeudor_con_informacion_minima() {
+		Lead lead = TestDataFactory.createLead();
+		System.assert(lead.Id != null, 'El candidato no fué insertado.');
+		Test.startTest();
+			Database.LeadConvertResult lcr = convertLead(lead.Id);
+		Test.stopTest();
+		verificarCuenta(lead);
+		Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+		verificarRadicacionDeCredito(sc);
 	}
 	
 	@isTest static void conversion_de_lead_con_un_codeudor() {
@@ -18,51 +92,49 @@ private class LeadConversionTest {
 		//El codeudor está enlazado a la cuenta principal?
 		Codeudor__c cod = [select Numero_de_documento__c from Codeudor__c where Id = :codeudorId];
 		Test.startTest();
-
 			Database.LeadConvertResult lcr = convertLead(lead.Id);
-				
-			verificarCuenta(Lead);
-
-			Account deudorPrincipal =
-			[
-					SELECT
-							Id,
-							Canal_digital__c,
-							Numero_de_documento__c
-					FROM Account
-					WHERE Numero_de_documento__c = :lead.Numero_de_identificacion__c
-			];
-			//System.debug('conversion_de_lead_con_un_codeudor -> deudorPrincipal: ' + deudorPrincipal.Id);
-			System.assertEquals(
-					deudorPrincipal.Canal_digital__c,
-					'Si',
-					'La cuenta no se está creando con el identificador de canal digital'
-			);
-
-			Account codeudor = [select Id, Cliente_deudor__c, Numero_de_documento__c from Account where Numero_de_documento__c = :String.valueOf(cod.Numero_de_documento__c)];
-			System.assertEquals(
-				 deudorPrincipal.Id, codeudor.Cliente_deudor__c,
-				'El codeudor no está enlazado al cliente plrincipal'
-			);
-
-			Opportunity op = verificarOportunidad(lcr);
-
-			// Se actualizo correctamente el codeudor en la oportunidad?
-			Account cuentaTipoCodeudor = [select Id from Account where Numero_de_documento__c = :String.valueOf(codeudor.Numero_de_documento__c)];
-			//System.debug('conversion_de_lead_con_un_codeudor -> cuentaTipoCodeudor: ' + cuentaTipoCodeudor.Id);
-			System.assertEquals(
-					op.Codeudor_1__c,
-					cuentaTipoCodeudor.Id,
-					'El codeudor 1 no fué actualizado correctamente en la oportunidad'
-			);
-
-			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
-
-			Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
-
-			System.assertEquals(rc.Codeudor_1__c, codeudor.Id, 'La radicación no esta enlazada al codeudor');
-
 		Test.stopTest();
+
+		verificarCuenta(Lead);
+
+		Account deudorPrincipal =
+		[
+				SELECT
+						Id,
+						Canal_digital__c,
+						Numero_de_documento__c
+				FROM Account
+				WHERE Numero_de_documento__c = :lead.Numero_de_identificacion__c
+		];
+		//System.debug('conversion_de_lead_con_un_codeudor -> deudorPrincipal: ' + deudorPrincipal.Id);
+		System.assertEquals(
+				deudorPrincipal.Canal_digital__c,
+				'Si',
+				'La cuenta no se está creando con el identificador de canal digital'
+		);
+
+		Account codeudor = [select Id, Cliente_deudor__c, Numero_de_documento__c from Account where Numero_de_documento__c = :String.valueOf(cod.Numero_de_documento__c)];
+		System.assertEquals(
+				deudorPrincipal.Id, codeudor.Cliente_deudor__c,
+				'El codeudor no está enlazado al cliente plrincipal'
+		);
+
+		Opportunity op = verificarOportunidad(lcr);
+
+		// Se actualizo correctamente el codeudor en la oportunidad?
+		Account cuentaTipoCodeudor = [select Id from Account where Numero_de_documento__c = :String.valueOf(codeudor.Numero_de_documento__c)];
+		//System.debug('conversion_de_lead_con_un_codeudor -> cuentaTipoCodeudor: ' + cuentaTipoCodeudor.Id);
+		System.assertEquals(
+				op.Codeudor_1__c,
+				cuentaTipoCodeudor.Id,
+				'El codeudor 1 no fué actualizado correctamente en la oportunidad'
+		);
+
+		Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+
+		Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
+
+		System.assertEquals(rc.Codeudor_1__c, codeudor.Id, 'La radicación no esta enlazada al codeudor');
 	}
 
 	@isTest static void conversion_de_lead_con_dos_codeudores() {
@@ -103,7 +175,6 @@ private class LeadConversionTest {
 			);
 
 			Opportunity op = verificarOportunidad(lcr);
-
 			// Se actualizaron correctamente los codeudores en la oportunidad?
 			List<Account> lstCodeudores = [select Id from Account where Cliente_deudor__c = :lcr.getAccountId()];
 			Map<Id, Account> mapCodeudores = new Map<Id, Account>(lstCodeudores);
@@ -120,7 +191,6 @@ private class LeadConversionTest {
 			System.assert(mapCodeudores.containsKey(rc.Codeudor_1__c), 'La radicación no esta enlazada al codeudor 1');
 			System.assert(mapCodeudores.containsKey(rc.Codeudor_2__c), 'La radicación no esta enlazada al codeudor 2');
 		}
-
 		Test.stopTest();
 	}
 
@@ -469,7 +539,43 @@ private class LeadConversionTest {
 						Codeudor_1__c,
 						Codeudor_2__c,
 						Codeudor_3__c,
-						Solicitud_de_credito__c
+						Solicitud_de_credito__c,
+						
+						Familiar_Nombre_y_Apellido_codeudor1__c,
+						Parentesco_familiar_codeduor1__c,
+						Direccion_familiar_codeudor1__c,
+						Telefono_familiar_codeudor1__c,
+						Ciudad_familiar_codeudor1__c,
+
+						Personal_Nombre_y_Apellido_codeudor1__c,
+						Parentesco_personal_codeudor1__c,
+						Direccion_personal_codeudor1__c,
+						Telefono_personal_codeudor1__c,
+						Ciudad_personal_codeudor1__c,
+								
+						Familiar_Nombre_y_Apellido_codeudor2__c,
+						Parentesco_familiar_codeudor2__c,
+						Direccion_familiar_codeudor2__c,
+						Telefono_familiar_codeudor2__c,
+						Ciudad_familiar_codeudor2__c,
+
+						Personal_Nombre_y_Apellido_codeudor2__c,
+						Parentesco_personal_codeudor2__c,
+						Direccion_personal_codeudor2__c,
+						Telefono_personal_codeudor2__c,
+						Ciudad_personal_codeudor2__c,
+
+						Familiar_Nombre_y_Apellido_codeudor3__c,
+						Parentesco_falimiar_codeudor3__c,
+						Direccion__c,
+						Telefono_familiar_codeudor3__c,
+						Ciudad_familiar_codeudor3__c,
+
+						Personal_Nombre_y_Apellido_codeudor3__c,
+						Parentesco_personal_codeudor3__c,
+						Direccion_personal_codeudor3__c,
+						Telefono_personal_codeudor3__c,
+						Ciudad_personal_codeudor3__c
 				FROM Radicacion_de_credito__c
 				WHERE Solicitud_de_credito__c = :sc.Id
 				LIMIT 1
