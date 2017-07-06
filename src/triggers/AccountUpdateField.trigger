@@ -8,7 +8,7 @@ trigger AccountUpdateField on Account (before insert, before update, after inser
 	if( Trigger.isAfter && Trigger.isInsert ){
     	RecordType rt = [select Id, Name from RecordType where Name = 'Cliente deudor' and SobjectType='Account'];
 
-		System.debug('AccountUpdateField: Es de tipo codeudor y tiene un cliente deudor asociado');
+		//System.debug('AccountUpdateField: Es de tipo codeudor y tiene un cliente deudor asociado');
 
 		List<Solicitud_de_credito__c> sc =
 		[

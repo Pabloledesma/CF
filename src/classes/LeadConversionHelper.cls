@@ -34,6 +34,7 @@ public without sharing class LeadConversionHelper {
                     Estrato__c,
                     // Informaciòn laboral
                     Tipo_de_contrato__c,
+                    Profesion_o_Actividad__c,
                     Fecha_de_ingreso_del_empleo_actual__c,
                     Nombre_entidad_empleadora_o_negocio__c,
                     Direccion_de_la_empresa__c,
@@ -86,9 +87,9 @@ public without sharing class LeadConversionHelper {
                 Nombres_Ref_Personal__c,
                 Numero_de_celular__c,
                 Numero_de_documento__c,
-                Ocupacion__c, 
+                Ocupacion__c,
+                Profesion_o_Actividad__c,
                 Parentesco_Ref_Familiar__c,
-                Ocupacion_u_oficio_principal__c,
                 Relacion__c,
                 Telefono_de_la_oficina__c,
                 Telefono_fijo__c,
@@ -119,7 +120,7 @@ public without sharing class LeadConversionHelper {
                 Numero_de_documento__c              = String.valueOf(c.Numero_de_documento__c),
                 Tipo_de_documento__c                = c.Tipo_de_documento__c,
                 Ciudad_de_residencia__c             = c.Ciudad_de_residencia__c,
-                Tipo_de_ocupacion__c                = c.Ocupacion_u_oficio_principal__c,
+                Tipo_de_ocupacion__c                = c.Ocupacion__c,
                 Fecha_de_nacimiento__c              = c.Fecha_de_nacimiento__c,
                 Lugar_de_nacimiento__c              = c.Lugar_de_nacimiento__c,
                 Fecha_de_expedicion_cc__c           = c.Fecha_de_expedicion__c,
@@ -211,7 +212,7 @@ public without sharing class LeadConversionHelper {
                 Nombre_entidad_empleadora_o_negocio__c      = this.lstLead[0].Nombre_entidad_empleadora_o_negocio__c,
                 Direccion_comercial__c                      = this.lstLead[0].Direccion_de_la_empresa__c,
                 Tiempo_de_experiencia_en_anos__c            = this.lstLead[0].Tiempo_de_experiencia_en_anos__c,
-                Profesion_u_oficio__c                       = this.lstLead[0].Tipo_de_contrato__c,
+                Profesion_u_oficio__c                       = this.lstLead[0].Profesion_o_Actividad__c,
                 Ciudad_Laboral__c                           = this.lstLead[0].Ciudad_laboral_Actividad_Economica_c__c,
                 Cargo_actual__c                             = this.lstLead[0].Cargo_actual__c,
                 Telefono_oficina__c                         = this.lstLead[0].Telefono_Actividad_Economica__c,
@@ -235,13 +236,18 @@ public without sharing class LeadConversionHelper {
             Integer i = 0;
             for(Codeudor__c cod : this.lstCodeudores){
                 if( i == 0 ){
-                    //Actualiza codeudor 1
+                    //Información laboral
+                    rc.Ocupacion_u_oficio_principal_codeudor1__c = cod.Ocupacion__c;
+                    rc.Profesion_o_actividad_codeudor1__c = cod.Profesion_o_Actividad__c;
+
+                    //Referencia familiar
                     rc.Familiar_Nombre_y_Apellido_codeudor1__c = cod.Nombres_Ref_Familiar__c + ' ' + cod.Apellidos_Ref_Familiar__c;
                     rc.Parentesco_familiar_codeduor1__c = cod.Parentesco_Ref_Familiar__c;
                     rc.Direccion_familiar_codeudor1__c = cod.Direccion_referencia_familiar_codeudor__c;
                     rc.Telefono_familiar_codeudor1__c = String.valueOf(cod.Celular_Ref_Familiar__c);
                     rc.Ciudad_familiar_codeudor1__c = cod.Ciudad_Ref_Familiar__c;
 
+                    //Referencia personal
                     rc.Personal_Nombre_y_Apellido_codeudor1__c = cod.Nombres_Ref_Personal__c + ' ' + cod.Apellidos_Ref_Personal__c;
                     rc.Parentesco_personal_codeudor1__c = cod.Relacion__c;
                     rc.Direccion_personal_codeudor1__c = cod.Direccion_referencia_personal_codeudor__c;
@@ -250,6 +256,9 @@ public without sharing class LeadConversionHelper {
                 }
 
                 if( i == 1 ){
+                    rc.Ocupacion_u_oficio_principal_codeudor2__c = cod.Ocupacion__c;
+                    rc.Profesion_o_actividad_codeudor2__c = cod.Profesion_o_Actividad__c;
+
                     //Actualiza codeudor 2
                     rc.Familiar_Nombre_y_Apellido_codeudor2__c = cod.Nombres_Ref_Familiar__c + ' ' + cod.Apellidos_Ref_Familiar__c;
                     rc.Parentesco_familiar_codeudor2__c = cod.Parentesco_Ref_Familiar__c;
@@ -265,6 +274,9 @@ public without sharing class LeadConversionHelper {
                 }
 
                 if( i == 2 ){
+                    rc.Ocupacion_u_oficio_principal_codeudor3__c = cod.Ocupacion__c;
+                    rc.Profesion_o_actividad_codeudor3__c = cod.Profesion_o_Actividad__c;
+
                     //Actualiza codeudor 3
                     rc.Familiar_Nombre_y_Apellido_codeudor3__c = cod.Nombres_Ref_Familiar__c + ' ' + cod.Apellidos_Ref_Familiar__c;
                     rc.Parentesco_falimiar_codeudor3__c = cod.Parentesco_Ref_Familiar__c;

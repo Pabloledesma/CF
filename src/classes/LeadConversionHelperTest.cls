@@ -42,6 +42,12 @@ private class LeadConversionHelperTest {
 				);
 
 				System.assertEquals(
+						rc.Profesion_o_actividad_codeudor1__c,
+						String.valueOf(cod.Profesion_o_Actividad__c),
+						'La actividad del codeudor 1 no se actualizó correctamente'
+				);
+
+				System.assertEquals(
 						rc.Ciudad_familiar_codeudor1__c,
 						cod.Ciudad_Ref_Familiar__c,
 						'La ciudad de la referencia familiar del codeudor 1 no se actualizó correctamente'
@@ -558,8 +564,10 @@ private class LeadConversionHelperTest {
 						Direccion_personal_codeudor1__c,
 						Telefono_personal_codeudor1__c,
 						Ciudad_personal_codeudor1__c,
+						Profesion_o_actividad_codeudor1__c,
 								
 						Familiar_Nombre_y_Apellido_codeudor2__c,
+						Profesion_o_actividad_codeudor2__c,
 						Parentesco_familiar_codeudor2__c,
 						Direccion_familiar_codeudor2__c,
 						Telefono_familiar_codeudor2__c,
@@ -573,6 +581,7 @@ private class LeadConversionHelperTest {
 
 						Familiar_Nombre_y_Apellido_codeudor3__c,
 						Parentesco_falimiar_codeudor3__c,
+						Profesion_o_actividad_codeudor3__c,
 						Direccion__c,
 						Telefono_familiar_codeudor3__c,
 						Ciudad_familiar_codeudor3__c,
