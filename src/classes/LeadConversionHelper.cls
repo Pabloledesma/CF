@@ -225,7 +225,7 @@ public without sharing class LeadConversionHelper {
                 // Referencia personal
                 Personal_Nombre_y_Apellido__c               = this.lstLead[0].Personal_Nombre_y_Apellido__c,
                 Parentesco_personal__c                      = this.lstLead[0].Relacion__c,
-                //Direccion_parentesco_personal__c            = this.lstLead[0].Direccion_referencia_personal__c,
+                Direccion_parentesco_personal__c            = this.lstLead[0].Direccion_referencia_personal__c,
                 Ciudad_parentesco_personal__c               = this.lstLead[0].Ciudad_referencia_personal__c,
                 Telefono_parentesco_personal__c             = this.lstLead[0].Telefono_referencia_personal__c
         );
