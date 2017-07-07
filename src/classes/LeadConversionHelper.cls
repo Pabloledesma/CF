@@ -26,6 +26,7 @@ public without sharing class LeadConversionHelper {
                     Estado_civil__c,
                     Numero_de_celular__c,
                     Tipo_de_producto_que_le_interesa__c,
+                    Nivel_de_educacion__c,
                     //Informaciòn de residencia
                     Tipo_de_vivienda_residencia__c,
                     Antiguedad_en_la_vivienda_actual_en_a_o__c,
@@ -201,6 +202,7 @@ public without sharing class LeadConversionHelper {
         Radicacion_de_credito__c rc = new Radicacion_de_credito__c(
                 Solicitud_de_credito__c                     = solicitud_de_credito_id,
                 Cliente_deudor__c                           = this.clienteDeudor.id,
+                Nivel_de_educacion__c                       = this.lstLead[0].Nivel_de_educacion__c,
                 // Información de residencia
                 Tipo_de_vivienda__c                         = this.lstLead[0].Tipo_de_vivienda_residencia__c,
                 Antiguedad_en_la_vivienda_actual_en_ano__c  = this.lstLead[0].Antiguedad_en_la_vivienda_actual_en_a_o__c,
