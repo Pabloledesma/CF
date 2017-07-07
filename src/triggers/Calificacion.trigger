@@ -29,7 +29,6 @@ trigger Calificacion on Calificacion__c (before insert) {
     Informacion_comite__c ic = [
         select 
             Relacion_cuota_ingreso__c,
-            Ind_relacion_cuota_ingeso_neto_dispon__c,
             Numero_de_consultas__c,
             Cliente_deudor__c
         from 
@@ -40,7 +39,6 @@ trigger Calificacion on Calificacion__c (before insert) {
     //Aportes_de_recursos_propios__c
     //N_mero_de_cr_ditos_vigentes__c
     Trigger.new[0].Relacion_cuota_ingreso__c        = ic.Relacion_cuota_ingreso__c;
-    Trigger.new[0].Indice_relacion_cuota_ingreso__c = ic.Ind_relacion_cuota_ingeso_neto_dispon__c;
     Trigger.new[0].Numero_de_Consultas__c           = ic.Numero_de_consultas__c;
     
     Informacion_financiera__c infoFinanciera = [
@@ -62,6 +60,6 @@ trigger Calificacion on Calificacion__c (before insert) {
     }
     
     //Confirmar la ecuación con Juan Carlos  
-    Trigger.new[0].Calificacion__c = ic.Relacion_cuota_ingreso__c + ic.Ind_relacion_cuota_ingeso_neto_dispon__c + ic.Numero_de_consultas__c + Trigger.new[0].Porcentaje_de_utilizacion_tc__c;
+    Trigger.new[0].Calificacion__c = ic.Relacion_cuota_ingreso__c + ic.Numero_de_consultas__c + Trigger.new[0].Porcentaje_de_utilizacion_tc__c;
     
 }

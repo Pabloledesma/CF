@@ -7,15 +7,17 @@ public with sharing class CalificacionCtrl {
     Transient public Double porcentajeDeUsoTc { get; set; }
     
     public CalificacionCtrl(ApexPages.StandardController stdController){
-        System.debug(stdController.getRecord());
-        idInfoComite = ApexPages.currentPage().getParameters().get('id');
-        if(idInfoComite != null){
+        System.debug('CalificacionCtrl ->' + stdController.getRecord());
+        this.idInfoComite = ApexPages.currentPage().getParameters().get('id');
+        if(this.idInfoComite != null){
             this.calificacion = new Calificacion__c(Informacion_comite__c = idInfoComite, Disponible__c = true);
             checkAvailability();
             this.infoComite = getInfoComite();
             setPorcentajeDeUsoTc();
         }   
     }
+
+    public CalificacionCtrl(){}
     
     /**
      * Obtiene la información comité
@@ -24,7 +26,6 @@ public with sharing class CalificacionCtrl {
          Informacion_comite__c ic = [
                 select 
                     Relacion_cuota_ingreso_propuesta__c,
-                    Ind_relacion_cuota_ingeso_neto_propuesta__c,
                     Numero_de_consultas__c,
                     Cliente_deudor__c,
              		N_de_creditos_vigentes__c,
@@ -54,7 +55,6 @@ public with sharing class CalificacionCtrl {
                 c.Aportes_de_recursos_propios__c,
                 c.Calificacion__c,
                 c.Eximido_de_calificacion__c,
-                c.Indice_relacion_cuota_ingreso__c,
                 c.CreatedDate,
                 c.Informacion_comite__c,
                 c.Numero_de_Consultas__c,
@@ -128,13 +128,11 @@ public with sharing class CalificacionCtrl {
             Aportes_de_recursos_propios__c		= this.aportesPropios(),
             N_mero_de_cr_ditos_vigentes__c      = this.infoComite.N_de_creditos_vigentes__c,
             Relacion_cuota_ingreso__c           = this.infoComite.Relacion_cuota_ingreso__c,
-            Indice_relacion_cuota_ingreso__c    = this.infoComite.Ind_relacion_cuota_ingeso_neto_dispon__c,
             Numero_de_Consultas__c              = this.infoComite.Numero_de_consultas__c,
             Porcentaje_de_utilizacion_tc__c     = this.porcentajeDeUsoTc,
             Calificacion__c                     = (Double) (
                 ((this.infoComite.N_de_creditos_vigentes__c != null) ? this.infoComite.N_de_creditos_vigentes__c : 0) +
                 ((this.infoComite.Relacion_cuota_ingreso__c != null) ? this.infoComite.Relacion_cuota_ingreso__c : 0) +
-                ((this.infoComite.Ind_relacion_cuota_ingeso_neto_dispon__c != null) ? this.infoComite.Ind_relacion_cuota_ingeso_neto_dispon__c : 0) +
                 ((this.infoComite.Numero_de_consultas__c  != null) ? this.infoComite.Numero_de_consultas__c : 0)
             ) / 100
         );
