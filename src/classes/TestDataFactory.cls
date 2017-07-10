@@ -3,6 +3,20 @@ public class TestDataFactory {
 
 
 
+	public static Lead createLead(Lead lead) {
+		Database.SaveResult result = Database.insert(lead, false);
+		if(result.isSuccess()){
+			lead.Id = result.getId();
+		} else {
+			System.debug('Errores al insertar el candidato: ');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+		}
+		return lead;
+	}
+
 	public static Lead createLead() {
 		Lead lead = new Lead(
 			FirstName = 'TestName',
@@ -238,17 +252,27 @@ public class TestDataFactory {
 		return acc.Id;
 	}
 
-	public static Database.SaveResult insertSOBject(sObject ob, String nameObject)
+	/**
+	 * Inserta un objeto y entrega los resultados
+	 *
+	 * @param sObject: objeto a insertar
+	 * @param nameObject: nombre del objeto a insertar
+	 * @return retorna el objeto si la operación es exitosa, en caso contrario retorna null
+	 **/
+	public static sObject insertSOBject(sObject ob, String nameObject)
 	{
 		Database.SaveResult result = Database.insert(ob, false);
-		if(!result.isSuccess()){
+		if(result.isSuccess()){
+			ob.Id = result.getId();
+			return ob;
+		} else {
 			System.debug('Errores al insertar '+ nameObject +': ');
 			for(Database.Error error : result.getErrors()){
 				System.debug(error.getStatusCode() + ': ' + error.getMessage());
 				System.debug('Verificar los siguientes campos: ' + error.getFields());
 			}
+			return null;
 		}
-		return result;
 	}
 
 	public static Account createRawAccount(Id recordTypeId, String numeroDeDocumento)
@@ -276,6 +300,34 @@ public class TestDataFactory {
 		);
 
 		return acc;
+	}
+
+	public static sObject createAccount(String numeroDeDocumento)
+	{
+		RecordType rt = [SELECT Id, Name FROM RecordType WHERE Name = 'Cliente deudor' AND sObjectType = 'Account'];
+		Account acc = new Account(
+				RecordTypeId = rt.Id,
+				LastName = 'TestLastname',
+				FirstName = 'TestName',
+				Tipo_de_documento__c = 'Cédula ciudadanía',
+				Numero_de_documento__c = numeroDeDocumento,
+				Sexo__c = 'Femenino',
+				Estado_civil__c = 'Soltero',
+				Fecha_de_expedicion_cc__c = Date.newInstance(2016, 2, 2),
+				Fecha_de_nacimiento__c = Date.newInstance(1983, 5, 24),
+				Lugar_de_expedicion__c = 'Bogotá',
+				Lugar_de_nacimiento__c = 'Popayán',
+				Ciudad_de_residencia__c = 'Bogotá',
+				Ciudad_de_radicacion__c = 'Bogotá',
+				Numero_de_telefono_celular__c = '3134665665',
+				Correo_electronico_1__c = 'test@test.com',
+				Tipo_de_ocupacion__c = 'Empleado',
+				Aporta_ingresos__c = 'No',
+				Canal_digital__c = 'Si',
+				Estado_del_cliente__c = 'Prospecto'
+		);
+
+		return insertSOBject(acc, 'Account');
 	}
 
 	public static Id createAccount(Id recordTypeId, String numeroDeDocumento){
