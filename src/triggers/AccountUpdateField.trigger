@@ -68,10 +68,10 @@ trigger AccountUpdateField on Account (before insert, before update, after inser
 				* Eliminación de codeudores
 				 **/
 				if(resSolicitud.isSuccess() && resRadicacion.isSuccess()){
-					//System.debug('Se eliminan los codeudores!');
+					System.debug('Se eliminan los codeudores!');
 					List<Codeudor__c> codeudores = new List<Codeudor__c>();
 					codeudores = [SELECT Id FROM Codeudor__c WHERE Numero_de_documento__c IN :cedulasCodeudores];
-					//System.debug(codeudores);
+					System.debug(codeudores);
 
 					Database.DeleteResult[] deleteResults = Database.delete(codeudores);
 					for(Database.DeleteResult res : deleteResults){

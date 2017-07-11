@@ -41,7 +41,7 @@ private class InformacionComite_tst
         OBJActualizacion_masiva_de_registros.Campo_origen__c='Id';
         
         insert OBJActualizacion_masiva_de_registros;
-        insert infoActual;
+        //insert infoActual;
         InformacionComite_cls  classInformacionComite= new InformacionComite_cls();
         classInformacionComite.actualizarCodeudores(infoActual);
         
@@ -84,7 +84,7 @@ private class InformacionComite_tst
         OBJActualizacion_masiva_de_registros.Campo_origen__c='Id';
         
         insert OBJActualizacion_masiva_de_registros;
-        insert infoActual;
+        //insert infoActual;
         InformacionComite_cls  classInformacionComite= new InformacionComite_cls();
         classInformacionComite.actualizarCodeudores(infoActual);
         
@@ -127,7 +127,7 @@ private class InformacionComite_tst
         OBJActualizacion_masiva_de_registros.Campo_origen__c='Id';
         
         insert OBJActualizacion_masiva_de_registros;
-        insert infoActual;
+        //insert infoActual;
         InformacionComite_cls  classInformacionComite= new InformacionComite_cls();
         classInformacionComite.actualizarCodeudores(infoActual);
         

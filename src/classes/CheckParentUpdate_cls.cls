@@ -25,9 +25,9 @@ public class CheckParentUpdate_cls
     	strObjOrigen = strObjOrigenTmp;
     	strObjDestino = strObjDestinoTmp;
     	
-    	system.Debug('\n\nId Origen --> ' + sobjOrigen.get('id'));
+    	/*system.Debug('\n\nId Origen --> ' + sobjOrigen.get('id'));
     	system.Debug('\n\nObjeto Origen --> ' + strObjOrigen);
-    	system.Debug('\n\nObjeto Destino --> ' + strObjDestino);
+    	system.Debug('\n\nObjeto Destino --> ' + strObjDestino);*/
 
 /* KYP01
         listLog.add( LogDepuracion_cls.setWrap(32,'CheckParentUpdate_cls', 'Id Origen --> ' + sobjOrigen.get('id'),'',true));
@@ -43,7 +43,7 @@ public class CheckParentUpdate_cls
                                                                               SetupOwnerId,SystemModstamp FROM Actualizacionderegistros__c 
                                                                               where  Objeto_origen__c=:strObjOrigen and Objeto_destino__c = :strObjDestino];
        
-		system.debug('\n\n---------- Configuracion personalizada ----------\n\n'+lstActualizacionderegistros);                                                                      
+//		system.debug('\n\n---------- Configuracion personalizada ----------\n\n'+lstActualizacionderegistros);
 //		LogDepuracion_cls.setLog(18,'UpdateRegistersLookUp_cls', '	 personalizada ----------\n\n'+lstActualizacionderegistros,'',true); KYP01
 		String strQuery='SELECT Id ';
         
@@ -70,21 +70,21 @@ public class CheckParentUpdate_cls
 		
 		strQuery+=' FROM '+ strObjDestino + ' WHERE Id=\''+ sobjOrigen.get(lstActualizacionderegistros[0].Campo_llave__c) +'\' LIMIT 1';
 		
-    	system.Debug('\n\nQuery Select Objeto Destino --> ' + strQuery);
+//    	system.Debug('\n\nQuery Select Objeto Destino --> ' + strQuery);
 //    	listLog.add( LogDepuracion_cls.setWrap(72,'CheckParentUpdate_cls', 'Query Select Objeto Destino --> ' + strQuery,'',true)); KYP01
     	List<sObject> lstObjetoDestino = Database.query(strQuery);
     	
     	if(!lstObjetoDestino.IsEmpty())
     	{
     		sObject sobjDestino = lstObjetoDestino[0];
-     		system.Debug('\n\nlstObjetoDestino ENTRO --> ' + sobjDestino);
+//     		system.Debug('\n\nlstObjetoDestino ENTRO --> ' + sobjDestino);
 //     		listLog.add( LogDepuracion_cls.setWrap(79,'CheckParentUpdate_cls', 'lstObjetoDestino ENTRO --> ' + sobjDestino,'',true)); KYP01
     		for(Actualizacionderegistros__c objActualizacionderegistros : lstActualizacionderegistros)
             {
-				system.Debug('\n\nCampo Origen --> ' + objActualizacionderegistros.Campo_origen__c);
+				/*system.Debug('\n\nCampo Origen --> ' + objActualizacionderegistros.Campo_origen__c);
 				system.Debug('Campo Origen --> ' + sobjOrigen.get(objActualizacionderegistros.Campo_origen__c));
 				system.Debug('\n\nCampo Destino --> ' + objActualizacionderegistros.Campo_destino__c);
-				system.Debug('Campo Destino --> ' + sobjDestino.get(objActualizacionderegistros.Campo_destino__c));
+				system.Debug('Campo Destino --> ' + sobjDestino.get(objActualizacionderegistros.Campo_destino__c));*/
 				
 /* KYP01
 				listLog.add( LogDepuracion_cls.setWrap(87,'CheckParentUpdate_cls', 'Campo Origen --> ' + objActualizacionderegistros.Campo_origen__c,'',true));
@@ -100,7 +100,7 @@ public class CheckParentUpdate_cls
             }
     	}
     	
-    	system.Debug('\n\nEsta el objeto Actualizado --> ' + blnIsUpdated);
+//    	system.Debug('\n\nEsta el objeto Actualizado --> ' + blnIsUpdated);
 /* KYP01
     	listLog.add( LogDepuracion_cls.setWrap(90,'CheckParentUpdate_cls', 'Esta el objeto Actualizado --> ' + blnIsUpdated,'',true));
     	LogDepuracion_cls.setLogList(listLog);

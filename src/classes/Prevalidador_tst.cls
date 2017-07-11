@@ -11,9 +11,9 @@ private class Prevalidador_tst {
 		insert conf;
 		
 		Account cuenta = CrearCuentaDeudor();
-		insert cuenta;
+		//insert cuenta;
 
-		Opportunity opp = CrearOportunidad(cuenta.Id);
+		/*Opportunity opp = CrearOportunidad(cuenta.Id);
 		opp.Consultas_realizadas__c = 3;
 		opp.Estado_Consulta__c = 'Disponible para consulta';
 		insert opp;
@@ -145,7 +145,7 @@ private class Prevalidador_tst {
 		info2.Codeudor_2__c = codeudor2.Id;
 		info2.Codeudor_3__c = codeudor3.Id;
 		info2.Radicacion_de_credito__c = radicacion.Id;
-		insert info2;
+		insert info2;*/
 		
     }
 

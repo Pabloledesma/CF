@@ -1,7 +1,7 @@
 @isTest
 private class WSProcesadorPrevalidador_tst {
 
-    static testMethod void myUnitTest() {
+   /* static testMethod void myUnitTest() {
 
 		Account cuenta = CrearCuentaDeudor();
 		insert cuenta;
@@ -257,6 +257,6 @@ RespuestaCliente = '<Informes>' +
 		opp.Excepcion__c = 'No';
 		
 		return opp;
-    }
+    }*/
 
 }

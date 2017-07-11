@@ -9,7 +9,6 @@ public class TestDataFactory {
 			LastName = 'Test',
 			Numero_de_identificacion__c = String.valueOf(Crypto.getRandomInteger()),
 			Email = 'test@test.com',
-            Tipo_de_documento__c = 'Cédula ciudadanía',
             Phone = '1234567',
             Telefono_Actividad_Economica__c = '123456789',
             Telefono_referencia_familiar__c = '12345678',
@@ -20,14 +19,15 @@ public class TestDataFactory {
 		Database.SaveResult result = Database.insert(lead, false);
 		if(result.isSuccess()){
 			lead.Id = result.getId();
+			return lead;
 		} else {
 			System.debug('Errores al insertar el candidato: ');
 			for(Database.Error error : result.getErrors()){
-                System.debug(error.getStatusCode() + ': ' + error.getMessage());
-                System.debug('Verificar los siguientes campos: ' + error.getFields());
-            }
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+			return null;
 		}
-		return lead;
 	}
 
 	public static Lead createLead(Id ownerId) {
@@ -36,7 +36,6 @@ public class TestDataFactory {
 				LastName = 'Test',
 				Numero_de_identificacion__c = String.valueOf(Crypto.getRandomInteger()),
 				Email = 'test@test.com',
-				Tipo_de_documento__c = 'Cédula ciudadanía',
 				Phone = '1234567',
 				Telefono_Actividad_Economica__c = '123456789',
 				Telefono_referencia_familiar__c = '12345678',
@@ -48,14 +47,15 @@ public class TestDataFactory {
 		Database.SaveResult result = Database.insert(lead, false);
 		if(result.isSuccess()){
 			lead.Id = result.getId();
+			return lead;
 		} else {
 			System.debug('Errores al insertar el candidato: ');
 			for(Database.Error error : result.getErrors()){
 				System.debug(error.getStatusCode() + ': ' + error.getMessage());
 				System.debug('Verificar los siguientes campos: ' + error.getFields());
 			}
+			return null;
 		}
-		return lead;
 	}
 
 	public static Lead createLead(String tipoDeProducto) {
@@ -64,7 +64,6 @@ public class TestDataFactory {
 			LastName = 'Test',
 			Numero_de_identificacion__c = String.valueOf(Crypto.getRandomInteger()),
 			Email = 'test@test.com',
-            Tipo_de_documento__c = 'Cédula ciudadanía',
             Phone = '1234567',
             Telefono_Actividad_Economica__c = '123456789',
             Telefono_referencia_familiar__c = '12345678',
@@ -76,14 +75,15 @@ public class TestDataFactory {
 		Database.SaveResult result = Database.insert(lead, false);
 		if(result.isSuccess()){
 			lead.Id = result.getId();
+			return lead;
 		} else {
 			System.debug('Errores al insertar el candidato: ');
 			for(Database.Error error : result.getErrors()){
-                System.debug(error.getStatusCode() + ': ' + error.getMessage());
-                System.debug('Verificar los siguientes campos: ' + error.getFields());
-            }
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+			return null;
 		}
-		return lead;
 	}
 
 	public static User createUser(Id profileId){
@@ -373,8 +373,24 @@ public class TestDataFactory {
 		LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
 		lc.setConvertedStatus(convertStatus.MasterLabel);
 
-		Database.LeadConvertResult lcr = Database.convertLead(lc);
-		return lcr;
+		try {
+			Database.LeadConvertResult lcr = Database.convertLead(lc);
+			if(lcr.isSuccess()){
+				return lcr;
+			} else {
+				System.debug('Error al convertir el candidato:');
+				for(Database.Error error : lcr.getErrors()){
+					System.debug(error.getMessage());
+				}
+				return null;
+			}
+		} catch (System.DmlException e) {
+			System.debug(e.getMessage());
+			return null;
+		}
+
+
+
 	}
 
 	public static Integer randomWithLimit(Integer upperLimit){

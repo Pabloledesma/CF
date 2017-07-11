@@ -5,7 +5,7 @@ private class LeadConversionHelperTest {
 	{
 		Id asesorId = '005o0000002P5KY';
 		Lead lead = TestDataFactory.createLead(asesorId);
-
+		System.assert(lead != null);
 		User asesorComercial = [select Id from User where Id = '005o0000002P5KY'];
 		Codeudor__c cod = TestDataFactory.createCodeudorFullInfo('Uno', lead.Id);
 
@@ -88,8 +88,32 @@ private class LeadConversionHelperTest {
 	}
 
 	@isTest static void conversion_de_lead_sin_codeudor_con_informacion_minima() {
-		Lead lead = TestDataFactory.createLead();
-		System.assert(lead.Id != null, 'El candidato no fué insertado.');
+
+		Lead lead = new Lead(
+				FirstName = 'TestName',
+				LastName = 'Test',
+				Numero_de_identificacion__c = String.valueOf(Crypto.getRandomInteger()),
+				Email = 'test@test.com',
+				Tipo_de_documento__c = 'Cédula ciudadanía',
+				Phone = '1234567',
+				Telefono_Actividad_Economica__c = '123456789',
+				Telefono_referencia_familiar__c = '12345678',
+				Telefono_referencia_personal__c = '12345678',
+				Canal_digital__c = 'Si'
+		);
+
+		Database.SaveResult result = Database.insert(lead, false);
+		if(result.isSuccess()){
+			lead.Id = result.getId();
+		} else {
+			System.debug('Errores al insertar el candidato: ');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+		}
+
+
 		Test.startTest();
 			Database.LeadConvertResult lcr = convertLead(lead.Id);
 		Test.stopTest();
@@ -100,6 +124,7 @@ private class LeadConversionHelperTest {
 	
 	@isTest static void conversion_de_lead_con_un_codeudor() {
 		Lead lead = TestDataFactory.createLead();
+		System.assert(lead != null, 'El candidato no fué insertado.');
 		Id codeudorId = TestDataFactory.createCodeudor(lead.Id);
 		//El codeudor está enlazado a la cuenta principal?
 		Codeudor__c cod = [select Numero_de_documento__c from Codeudor__c where Id = :codeudorId];
@@ -152,7 +177,7 @@ private class LeadConversionHelperTest {
 	@isTest static void conversion_de_lead_con_dos_codeudores() {
 		Id asesorId = '005o0000002P5KY';
 		Lead lead = TestDataFactory.createLead(asesorId);
-
+		System.assert(lead != null, 'El candidato no fué insertado.');
 		User asesorComercial = [select Id from User where Id = '005o0000002P5KY'];
 		Set<Id> setCodeudores = new Set<Id>();
 		setCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
@@ -209,7 +234,7 @@ private class LeadConversionHelperTest {
 	@isTest static void conversion_de_lead_con_tres_codeudores() {
 
 		Lead lead = TestDataFactory.createLead();
-
+		System.assert(lead != null, 'El candidato no fué insertado.');
 		Set<Id> idCodeudores = new Set<Id>();
 		idCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
 		idCodeudores.add(TestDataFactory.createCodeudor(lead.Id));
@@ -247,6 +272,7 @@ private class LeadConversionHelperTest {
 
 	@isTest static void conversion_de_lead_con_cuatro_codeudores() {
 		Lead lead = TestDataFactory.createLead();
+		System.assert(lead != null, 'El candidato no fué insertado.');
 		TestDataFactory.createCodeudor(lead.Id);
 		TestDataFactory.createCodeudor(lead.Id);
 		TestDataFactory.createCodeudor(lead.Id);
@@ -273,7 +299,7 @@ private class LeadConversionHelperTest {
 		Test.startTest();
 		Id asesorId = '005o0000002P5KY';
 		Lead lead = TestDataFactory.createLead(asesorId);
-
+		System.assert(lead != null, 'El candidato no fué insertado.');
 		User asesorComercial = [select Id from User where Id = '005o0000002P5KY'];
 		System.runAs(asesorComercial){
 
@@ -294,6 +320,7 @@ private class LeadConversionHelperTest {
 	public static void solicitud_de_vivienda_nueva()
 	{
 		Lead viviendaNueva = TestDataFactory.createLead('Crédito de vivienda nueva');
+		System.assert(viviendaNueva != null, 'El candidato no fué insertado.');
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
@@ -311,6 +338,7 @@ private class LeadConversionHelperTest {
 	@isTest public static void solicitud_de_asignacion_de_cupo()
 	{
 		Lead asignacionDeCupo = TestDataFactory.createLead('Asignación de cupo');
+		System.assert(asignacionDeCupo != null, 'El candidato no fué insertado.');
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
@@ -328,6 +356,7 @@ private class LeadConversionHelperTest {
 	@isTest public static void solicitud_credito_de_vivienda_usada()
 	{
 		Lead lead = TestDataFactory.createLead('Crédito de vivienda usada');
+		System.assert(lead != null, 'El candidato no fué insertado.');
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
@@ -345,6 +374,7 @@ private class LeadConversionHelperTest {
 	@isTest public static void solicitud_mejoramiento_de_vivienda()
 	{
 		Lead lead = TestDataFactory.createLead('Mejoramiento de vivienda');
+		System.assert(lead != null, 'El candidato no fué insertado.');
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();

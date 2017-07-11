@@ -110,7 +110,7 @@ public without sharing class LeadConversionHelper {
     }
 
     public void createAccounts(){
-        //System.debug('LeadConversionHelper.createAccounts -> Cliente deudor: ' + this.clienteDeudor.Id);
+        System.debug('LeadConversionHelper.createAccounts -> Cliente deudor: ' + this.clienteDeudor.Id);
         List<Account> lstAccounts = new List<Account>();
         for(Codeudor__c c: this.lstCodeudores){
             lstAccounts.add(new Account(
@@ -149,8 +149,8 @@ public without sharing class LeadConversionHelper {
                 }
             }
         }
-        //System.debug('LeadConversionHelper.createAccounts -> codeudoresCreados: ');
-        //System.debug(codeudoresCreados);
+        System.debug('LeadConversionHelper.createAccounts -> codeudoresCreados: ');
+        System.debug(codeudoresCreados);
         //if(codeudoresCreados.size() > 0) updateOpportunity(codeudoresCreados);
         
         //System.debug('Codeudores creados: ');
