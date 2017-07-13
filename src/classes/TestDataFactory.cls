@@ -104,11 +104,11 @@ public class TestDataFactory {
 	/**
 	| Crea un registro de codeudor con todos los campos diligenciados
 	|
-	| @param i: número entero para identificar los codeudores
+	| @param i: Identificador único para el codeudor
 	| @param leadId: Id del candidato relacionado
 	| @return Id
 	**/
-	public static Codeudor__c createCodeudorFullInfo(String i, Id leadId)
+	public static Codeudor__c createCodeudorFullInfo(String i, Id leadId, String ocupacion)
 	{
 		Codeudor__c codeudor = new Codeudor__c(
 				Name = 'CodeudorTest' + i,
@@ -117,7 +117,7 @@ public class TestDataFactory {
 				Tipo_de_documento__c = 'Cédula de ciudadanía',
 				Numero_de_documento__c = String.valueOf(Crypto.getRandomInteger()).substring(0,8),
 				Ciudad_de_residencia__c = 'Bogotá',
-				Ocupacion__c = 'Pensionado',
+				Ocupacion__c = ocupacion,
 				Fecha_de_nacimiento__c = Date.newInstance(1983, 05, 24),
 				Lugar_de_nacimiento__c = 'Bogotá',
 				Fecha_de_expedicion__c = Date.newInstance(2002,3,25),
@@ -168,7 +168,7 @@ public class TestDataFactory {
 			Name = 'CodeudorTest',
 			Apellidos__c = 'Test',
 			Candidato__c = leadId,
-			Numero_de_documento__c = String.valueOf(Crypto.getRandomInteger()).substring(0,8)
+			Numero_de_documento__c = String.valueOf(Crypto.getRandomInteger()).substring(0,7)
 		); 
 
 		Database.SaveResult result = Database.insert(cod, false);

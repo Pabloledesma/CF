@@ -2,7 +2,7 @@ public without sharing class LeadConversionHelper {
     
     public List<Lead> lstLead;
     public Account clienteDeudor;    //Trigger.new[0]
-    public List<Codeudor__c> lstCodeudores;
+    public List<Codeudor__c> codeudor;
     public RecordType rt;
 
     public LeadConversionHelper(Account newAccount) {
@@ -27,6 +27,7 @@ public without sharing class LeadConversionHelper {
                     Numero_de_celular__c,
                     Tipo_de_producto_que_le_interesa__c,
                     Nivel_de_educacion__c,
+                    N_mero_de_personas_a_cargo__c,
                     //Informaciòn de residencia
                     Tipo_de_vivienda_residencia__c,
                     Antiguedad_en_la_vivienda_actual_en_a_o__c,
@@ -58,7 +59,7 @@ public without sharing class LeadConversionHelper {
             from Lead 
             where Numero_de_identificacion__c = :clienteDeudor.Numero_de_documento__c
         ];
-        this.lstCodeudores = [
+        this.codeudor = [
             SELECT
                 Name,
                 Apellidos__c,
@@ -103,16 +104,15 @@ public without sharing class LeadConversionHelper {
         if(idSolicitud != null)
         this.createRadicacion(idSolicitud);
 
-        if(this.lstCodeudores.size() > 0){
+        if(this.codeudor.size() > 0){
             this.createAccounts();
         }
-
     }
 
     public void createAccounts(){
         System.debug('LeadConversionHelper.createAccounts -> Cliente deudor: ' + this.clienteDeudor.Id);
         List<Account> lstAccounts = new List<Account>();
-        for(Codeudor__c c: this.lstCodeudores){
+        for(Codeudor__c c: this.codeudor){
             lstAccounts.add(new Account(
                 RecordTypeId                        = this.rt.Id,
                 Cliente_deudor__c                   = this.clienteDeudor.Id,
@@ -133,14 +133,11 @@ public without sharing class LeadConversionHelper {
                 Canal_digital__c                    = 'Si'
             ));
         }
-        
-        
-        //List<Id> codeudoresCreados = new List<Id>();
+
         Database.SaveResult[] srList = Database.insert(lstAccounts, false);
         for(Database.SaveResult sr : srList){
             if(sr.isSuccess()){
-                System.debug('Se creó el codeudor exitosamente: ' + sr.getId());
-                //codeudoresCreados.add(sr.getId());
+                System.debug('createAccounts -> Se creó el codeudor exitosamente: ' + sr.getId());
             } else {
                 for(Database.Error error : sr.getErrors()){
                     System.debug('Errores al insertar cuentas de tipo codeudor: ');
@@ -149,12 +146,6 @@ public without sharing class LeadConversionHelper {
                 }
             }
         }
-        System.debug('LeadConversionHelper.createAccounts -> codeudoresCreados: ');
-        System.debug(codeudoresCreados);
-        //if(codeudoresCreados.size() > 0) updateOpportunity(codeudoresCreados);
-        
-        //System.debug('Codeudores creados: ');
-        //System.debug(codeudoresCreados);
     }
 
     public Id createSolicitud(){
@@ -212,13 +203,15 @@ public without sharing class LeadConversionHelper {
                 // Información laboral
                 Tipo_de_contrato__c                         = this.lstLead[0].Tipo_de_contrato__c,
                 Nombre_entidad_empleadora_o_negocio__c      = this.lstLead[0].Nombre_entidad_empleadora_o_negocio__c,
-                Direccion_comercial__c                      = this.lstLead[0].Direccion_de_la_empresa__c,
+                Direccion_de_la_empresa_Deudor__c           = this.lstLead[0].Direccion_de_la_empresa__c,
                 Tiempo_de_experiencia_en_anos__c            = this.lstLead[0].Tiempo_de_experiencia_en_anos__c,
                 Profesion_u_oficio__c                       = this.lstLead[0].Profesion_o_Actividad__c,
-                Ciudad_Laboral__c                           = this.lstLead[0].Ciudad_laboral_Actividad_Economica_c__c,
+                Ciudad_Laboral_Actividad_Economica__c       = this.lstLead[0].Ciudad_laboral_Actividad_Economica_c__c,
                 Cargo_actual__c                             = this.lstLead[0].Cargo_actual__c,
                 Telefono_oficina__c                         = this.lstLead[0].Telefono_Actividad_Economica__c,
                 Telefono_actividad_economica__c             = this.lstLead[0].Telefono_Actividad_Economica__c,
+                No_personas_a_cargo__c                      = (this.lstLead[0].N_mero_de_personas_a_cargo__c != null) ? Decimal.valueOf(this.lstLead[0].N_mero_de_personas_a_cargo__c) : 0,
+                Ocupacion_u_oficio_principal__c             = this.lstLead[0].Tipo_de_ocupacion__c,
                 // Referencia Familiar
                 Familiar_Nombre_y_Apellido__c               = this.lstLead[0].Familiar_Nombre_y_Apellido__c,
                 Parentesco_familiar__c                      = this.lstLead[0].Parentesco__c,
@@ -233,67 +226,35 @@ public without sharing class LeadConversionHelper {
                 Telefono_parentesco_personal__c             = this.lstLead[0].Telefono_referencia_personal__c
         );
 
-        // Hay codeudores?
-        if(this.lstCodeudores.size() > 0){
-            Integer i = 0;
-            for(Codeudor__c cod : this.lstCodeudores){
-                if( i == 0 ){
-                    //Información laboral
-                    rc.Ocupacion_u_oficio_principal_codeudor1__c = cod.Ocupacion__c;
-                    rc.Profesion_o_actividad_codeudor1__c = cod.Profesion_o_Actividad__c;
+        // Hay Codeudor?
+        if(this.codeudor.size() > 0){
+            //Información personal
+            rc.Nivel_de_educacion__c                        = this.codeudor[0].Nivel_de_educaci_n__c;
+            rc.Anos_de_experiencia__c                       = this.codeudor[0].Experiencia__c;
 
-                    //Referencia familiar
-                    rc.Familiar_Nombre_y_Apellido_codeudor1__c = cod.Nombres_Ref_Familiar__c + ' ' + cod.Apellidos_Ref_Familiar__c;
-                    rc.Parentesco_familiar_codeduor1__c = cod.Parentesco_Ref_Familiar__c;
-                    rc.Direccion_familiar_codeudor1__c = cod.Direccion_referencia_familiar_codeudor__c;
-                    rc.Telefono_familiar_codeudor1__c = String.valueOf(cod.Celular_Ref_Familiar__c);
-                    rc.Ciudad_familiar_codeudor1__c = cod.Ciudad_Ref_Familiar__c;
+            //Información laboral
+            rc.Ocupacion_u_oficio_principal_codeudor1__c    = this.codeudor[0].Ocupacion__c;
+            rc.Profesion_o_actividad_codeudor1__c           = this.codeudor[0].Profesion_o_Actividad__c;
+            rc.Aporta_ingresos_codeudor_1__c                = 'Si';
+            rc.Nombre_de_la_empresa_codeudor1__c            = this.codeudor[0].Nombre_entidad_empleadora__c;
+            rc.Cargo_codeudor1__c                           = this.codeudor[0].Cargo_actual__c;
+            rc.Direccion_oficina_codeudor1__c               = this.codeudor[0].Direccion_de_la_empresa__c;
+            rc.Telefono_de_la_oficina_codeudor1__c          = this.codeudor[0].Telefono_de_la_oficina__c;
+            rc.Ciudad_codeudor1__c                          = this.codeudor[0].Ciudad_laboral__c;
 
-                    //Referencia personal
-                    rc.Personal_Nombre_y_Apellido_codeudor1__c = cod.Nombres_Ref_Personal__c + ' ' + cod.Apellidos_Ref_Personal__c;
-                    rc.Parentesco_personal_codeudor1__c = cod.Relacion__c;
-                    rc.Direccion_personal_codeudor1__c = cod.Direccion_referencia_personal_codeudor__c;
-                    rc.Telefono_personal_codeudor1__c = String.valueOf(cod.Celular_Ref_Personal__c);
-                    rc.Ciudad_personal_codeudor1__c = cod.Ciudad_Ref_Personal__c;
-                }
+            //Referencia familiar
+            rc.Familiar_Nombre_y_Apellido_codeudor1__c      = this.codeudor[0].Nombres_Ref_Familiar__c + ' ' + this.codeudor[0].Apellidos_Ref_Familiar__c;
+            rc.Parentesco_familiar_codeduor1__c             = this.codeudor[0].Parentesco_Ref_Familiar__c;
+            rc.Direccion_familiar_codeudor1__c              = this.codeudor[0].Direccion_referencia_familiar_codeudor__c;
+            rc.Telefono_familiar_codeudor1__c               = (this.codeudor[0].Celular_Ref_Familiar__c != null) ? String.valueOf(this.codeudor[0].Celular_Ref_Familiar__c) : null;
+            rc.Ciudad_familiar_codeudor1__c                 = this.codeudor[0].Ciudad_Ref_Familiar__c;
 
-                if( i == 1 ){
-                    rc.Ocupacion_u_oficio_principal_codeudor2__c = cod.Ocupacion__c;
-                    rc.Profesion_o_actividad_codeudor2__c = cod.Profesion_o_Actividad__c;
-
-                    //Actualiza codeudor 2
-                    rc.Familiar_Nombre_y_Apellido_codeudor2__c = cod.Nombres_Ref_Familiar__c + ' ' + cod.Apellidos_Ref_Familiar__c;
-                    rc.Parentesco_familiar_codeudor2__c = cod.Parentesco_Ref_Familiar__c;
-                    rc.Direccion_familiar_codeudor2__c = cod.Direccion_referencia_familiar_codeudor__c;
-                    rc.Telefono_familiar_codeudor2__c = String.valueOf(cod.Celular_Ref_Familiar__c);
-                    rc.Ciudad_familiar_codeudor2__c = cod.Ciudad_Ref_Familiar__c;
-
-                    rc.Personal_Nombre_y_Apellido_codeudor2__c = cod.Nombres_Ref_Personal__c + ' ' + cod.Apellidos_Ref_Personal__c;
-                    rc.Parentesco_personal_codeudor2__c = cod.Relacion__c;
-                    rc.Direccion_personal_codeudor2__c = cod.Direccion_referencia_personal_codeudor__c;
-                    rc.Telefono_personal_codeudor2__c = String.valueOf(cod.Celular_Ref_Personal__c);
-                    rc.Ciudad_personal_codeudor2__c = cod.Ciudad_Ref_Personal__c;
-                }
-
-                if( i == 2 ){
-                    rc.Ocupacion_u_oficio_principal_codeudor3__c = cod.Ocupacion__c;
-                    rc.Profesion_o_actividad_codeudor3__c = cod.Profesion_o_Actividad__c;
-
-                    //Actualiza codeudor 3
-                    rc.Familiar_Nombre_y_Apellido_codeudor3__c = cod.Nombres_Ref_Familiar__c + ' ' + cod.Apellidos_Ref_Familiar__c;
-                    rc.Parentesco_falimiar_codeudor3__c = cod.Parentesco_Ref_Familiar__c;
-                    rc.Direccion__c = cod.Direccion_referencia_familiar_codeudor__c;
-                    rc.Telefono_familiar_codeudor3__c = String.valueOf(cod.Celular_Ref_Familiar__c);
-                    rc.Ciudad_familiar_codeudor3__c = cod.Ciudad_Ref_Familiar__c;
-
-                    rc.Personal_Nombre_y_Apellido_codeudor3__c = cod.Nombres_Ref_Personal__c + ' ' + cod.Apellidos_Ref_Personal__c;
-                    rc.Parentesco_personal_codeudor3__c = cod.Relacion__c;
-                    rc.Direccion_personal_codeudor3__c = cod.Direccion_referencia_personal_codeudor__c;
-                    rc.Telefono_personal_codeudor3__c = String.valueOf(cod.Celular_Ref_Personal__c);
-                    rc.Ciudad_personal_codeudor3__c = cod.Ciudad_Ref_Personal__c;
-                }
-                i++;
-            }
+            //Referencia personal
+            rc.Personal_Nombre_y_Apellido_codeudor1__c      = this.codeudor[0].Nombres_Ref_Personal__c + ' ' + this.codeudor[0].Apellidos_Ref_Personal__c;
+            rc.Parentesco_personal_codeudor1__c             = this.codeudor[0].Relacion__c;
+            rc.Direccion_personal_codeudor1__c              = this.codeudor[0].Direccion_referencia_personal_codeudor__c;
+            rc.Telefono_personal_codeudor1__c               = (this.codeudor[0].Celular_Ref_Personal__c != null) ? String.valueOf(this.codeudor[0].Celular_Ref_Personal__c) : null;
+            rc.Ciudad_personal_codeudor1__c                 = this.codeudor[0].Ciudad_Ref_Personal__c;
         }
 
         Database.SaveResult result = Database.insert(rc, false);

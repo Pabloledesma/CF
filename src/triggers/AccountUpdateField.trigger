@@ -38,7 +38,6 @@ trigger AccountUpdateField on Account (before insert, before update, after inser
 				//System.debug('AccountUpdateField -> Solicitud antes: ' + sc[0]);
 				Set<String> cedulasCodeudores = new Set<String>();
 				for(Account acc : Trigger.new){
-					// Si es de tipo codeudor, tiene un cliente deudor asociado y existe una radicación de crédito asociada
 					if(acc.RecordTypeId == rt.Id && acc.Cliente_deudor__c != null){
 						cedulasCodeudores.add(acc.Numero_de_documento__c);
 						List<String> lstCampos = new List<String>{'Codeudor_1__c', 'Codeudor_2__c', 'Codeudor_3__c'};
