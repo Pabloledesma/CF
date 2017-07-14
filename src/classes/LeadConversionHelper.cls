@@ -193,7 +193,10 @@ public without sharing class LeadConversionHelper {
         Radicacion_de_credito__c rc = new Radicacion_de_credito__c(
                 Solicitud_de_credito__c                     = solicitud_de_credito_id,
                 Cliente_deudor__c                           = this.clienteDeudor.id,
+                Numero_de_documento_Deudor__c               = this.lstLead[0].Numero_de_identificacion__c,
+                Lugar_de_expedicion_Deudor__c               = this.lstLead[0].Lugar_de_expedicion__c,
                 Nivel_de_educacion__c                       = this.lstLead[0].Nivel_de_educacion__c,
+
                 // Información de residencia
                 Tipo_de_vivienda__c                         = this.lstLead[0].Tipo_de_vivienda_residencia__c,
                 Antiguedad_en_la_vivienda_actual_en_ano__c  = this.lstLead[0].Antiguedad_en_la_vivienda_actual_en_a_o__c,

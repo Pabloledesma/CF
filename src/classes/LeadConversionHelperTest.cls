@@ -6,7 +6,7 @@ private class LeadConversionHelperTest {
 
 		Test.startTest();
 		Id asesorId = '005o0000002P5KY';
-		Lead lead = TestDataFactory.createLead(asesorId);
+		Lead lead = TestDataFactory.createLeadFullInfo(asesorId);
 		System.assertNotEquals(lead.Id, null, 'El candidato no se creó correctamente');
 		User asesorComercial = [select Id from User where Id = '005o0000002P5KY'];
 		Codeudor__c cod = TestDataFactory.createCodeudorFullInfo('Uno', lead.Id, 'Empleado');
@@ -23,35 +23,49 @@ private class LeadConversionHelperTest {
 						'El campo aporta ingresos del codeudor 1 no se está actualizando correctamente'
 				);
 
-				System.assert(
-						! op.Aporta_Ingresos_Codeudor_2__c,
-						'Solo se creó un codeudor para esta prueba'
-				);
-
-				System.assert(
-						! op.Aporta_Ingresos_Codeudor_3__c,
-						'Solo se creó un codeudor para esta prueba'
-				);
-
 				Solicitud_de_credito__c sc = verificarSolicitud(lcr);
 				Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
+
+				System.assertNotEquals(
+						rc.Numero_de_documento_Deudor__c,
+						null,
+						'El número de documento del cliente deudor no fué actualizado'
+				);
+
+				System.assertNotEquals(
+						rc.Lugar_de_expedicion_Deudor__c,
+						null,
+						'El lugar de expedición del deudor no fué actualizado'
+				);
+
+				System.assertNotEquals(
+						rc.Fecha_de_expedicin_Deudor__c,
+						null,
+						'La fecha de expedición del cliente deudor no fué actualizada'
+				);
+
+				System.assertNotEquals(
+						rc.Fecha_de_nacimiento__c,
+						null,
+						'La fecha de nacimiento dle cliente deudor no fué actualizada'
+				);
+
+				System.assertNotEquals(
+						rc.Lugar_de_nacimiento_Deudor__c,
+						null,
+						'El lugar de nacimiento del cliente deudor no fué actualizado'
+				);
+
+				System.assertNotEquals(
+						rc.Nivel_de_educacion__c,
+						null,
+						'El nivel de educación no fué actualizado'
+				);
 
 				System.assertEquals(
 						rc.Aporta_Ingresos_Codeudor_1__c,
 						'Si',
 						'El campo aporta ingresos del codeudor 1 no se está actualizando correctamente en la radicación de crédito'
-				);
-
-				System.assertEquals(
-						rc.Aporta_ingresos_codeudor_2__c,
-						null,
-						'Solo se creó un codeudor para esta prueba'
-				);
-
-				System.assertEquals(
-						rc.Aporta_Ingresos_Codeudor_3__c,
-						null,
-						'Solo se creó un codeudor para esta prueba'
 				);
 
 				System.assertEquals(
@@ -517,13 +531,17 @@ private class LeadConversionHelperTest {
 		[
 				SELECT
 						Id,
+						Numero_de_documento_Deudor__c,
+						Lugar_de_expedicion_Deudor__c,
+						Fecha_de_expedicin_Deudor__c,
+						Fecha_de_nacimiento__c,
+						Lugar_de_nacimiento_Deudor__c,
+						No_personas_a_cargo__c,
+						Nivel_de_educacion__c,
+
 						Codeudor_1__c,
-						Codeudor_2__c,
-						Codeudor_3__c,
 						Solicitud_de_credito__c,
 						Aporta_ingresos_codeudor_1__c,
-						Aporta_ingresos_codeudor_2__c,
-						Aporta_ingresos_codeudor_3__c,
 
 						Familiar_Nombre_y_Apellido_codeudor1__c,
 						Parentesco_familiar_codeduor1__c,
@@ -536,33 +554,8 @@ private class LeadConversionHelperTest {
 						Direccion_personal_codeudor1__c,
 						Telefono_personal_codeudor1__c,
 						Ciudad_personal_codeudor1__c,
-						Profesion_o_actividad_codeudor1__c,
-								
-						Familiar_Nombre_y_Apellido_codeudor2__c,
-						Profesion_o_actividad_codeudor2__c,
-						Parentesco_familiar_codeudor2__c,
-						Direccion_familiar_codeudor2__c,
-						Telefono_familiar_codeudor2__c,
-						Ciudad_familiar_codeudor2__c,
+						Profesion_o_actividad_codeudor1__c
 
-						Personal_Nombre_y_Apellido_codeudor2__c,
-						Parentesco_personal_codeudor2__c,
-						Direccion_personal_codeudor2__c,
-						Telefono_personal_codeudor2__c,
-						Ciudad_personal_codeudor2__c,
-
-						Familiar_Nombre_y_Apellido_codeudor3__c,
-						Parentesco_falimiar_codeudor3__c,
-						Profesion_o_actividad_codeudor3__c,
-						Direccion__c,
-						Telefono_familiar_codeudor3__c,
-						Ciudad_familiar_codeudor3__c,
-
-						Personal_Nombre_y_Apellido_codeudor3__c,
-						Parentesco_personal_codeudor3__c,
-						Direccion_personal_codeudor3__c,
-						Telefono_personal_codeudor3__c,
-						Ciudad_personal_codeudor3__c
 				FROM Radicacion_de_credito__c
 				WHERE Solicitud_de_credito__c = :sc.Id
 				LIMIT 1

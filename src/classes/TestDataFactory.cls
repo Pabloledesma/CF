@@ -86,6 +86,46 @@ public class TestDataFactory {
 		}
 	}
 
+	public static Lead createLeadFullInfo(Id ownerId) {
+		Lead lead = new Lead(
+				FirstName = 'TestName',
+				LastName = 'Test',
+				Numero_de_identificacion__c = String.valueOf(Crypto.getRandomInteger()),
+				Ciudad_de_residencia__c = 'Bogotá',
+				Fecha_de_nacimiento__c = Date.newInstance(1983, 5, 24),
+				Lugar_de_nacimiento__c = 'Leticia',
+				Fecha_de_expedicion_cc__c = Date.newInstance(2001, 7, 26),
+				Lugar_de_expedicion__c = 'Bogotá',
+				Profesion_o_Actividad__c = 'Programador',
+				Nivel_de_educacion__c = 'Universitario',
+				N_mero_de_personas_a_cargo__c = '2',
+				Tipo_de_vivienda_residencia__c = 'Hipotecada',
+				Antiguedad_en_la_vivienda_actual_en_a_o__c = 2,
+				Direccion_residencia__c = 'carrera 2 2 2',
+				Estrato__c = '3',
+				Email = 'test@test.com',
+				Phone = '1234567',
+				Telefono_Actividad_Economica__c = '123456789',
+				Telefono_referencia_familiar__c = '12345678',
+				Telefono_referencia_personal__c = '12345678',
+				Canal_digital__c = 'Si',
+				OwnerId = ownerId
+		);
+
+		Database.SaveResult result = Database.insert(lead, false);
+		if(result.isSuccess()){
+			lead.Id = result.getId();
+			return lead;
+		} else {
+			System.debug('Errores al insertar el candidato: ');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+			return null;
+		}
+	}
+
 	public static User createUser(Id profileId){
 		User u = new User(
 			Alias = 'testUser', 
