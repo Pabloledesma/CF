@@ -15,8 +15,6 @@ trigger AccountUpdateField on Account (before insert, before update, after inser
 				SELECT
 						Id,
 						Codeudor_1__c,
-						Codeudor_2__c,
-						Codeudor_3__c,
 						Cliente_deudor__c
 				FROM Solicitud_de_credito__c
 				WHERE Cliente_deudor__c = :Trigger.new[0].Cliente_deudor__c
@@ -28,8 +26,6 @@ trigger AccountUpdateField on Account (before insert, before update, after inser
 					select
 							Id,
 							Codeudor_1__c,
-							Codeudor_2__c,
-							Codeudor_3__c,
 							Solicitud_de_credito__c
 					from Radicacion_de_credito__c
 					where Solicitud_de_credito__c = :sc[0].Id
@@ -47,15 +43,7 @@ trigger AccountUpdateField on Account (before insert, before update, after inser
 								listRc[0].Codeudor_1__c = acc.Id;
 								sc[0].Codeudor_1__c = acc.Id;
 								break;
-							} else if (campo == 'Codeudor_2__c' && listRc[0].Codeudor_2__c == null) {
-								listRc[0].Codeudor_2__c = acc.Id;
-								sc[0].Codeudor_2__c = acc.Id;
-								break;
-							} else if (campo == 'Codeudor_3__c' && listRc[0].Codeudor_3__c == null) {
-								listRc[0].Codeudor_3__c = acc.Id;
-								sc[0].Codeudor_3__c = acc.Id;
-								break;
-							}
+							} 
 						}
 					}
 				}
