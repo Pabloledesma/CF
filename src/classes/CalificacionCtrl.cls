@@ -7,15 +7,17 @@ public with sharing class CalificacionCtrl {
     Transient public Double porcentajeDeUsoTc { get; set; }
     
     public CalificacionCtrl(ApexPages.StandardController stdController){
-        System.debug(stdController.getRecord());
-        idInfoComite = ApexPages.currentPage().getParameters().get('id');
-        if(idInfoComite != null){
+        System.debug('CalificacionCtrl ->' + stdController.getRecord());
+        this.idInfoComite = ApexPages.currentPage().getParameters().get('id');
+        if(this.idInfoComite != null){
             this.calificacion = new Calificacion__c(Informacion_comite__c = idInfoComite, Disponible__c = true);
             checkAvailability();
             this.infoComite = getInfoComite();
             setPorcentajeDeUsoTc();
         }   
     }
+
+    public CalificacionCtrl(){}
     
     /**
      * Obtiene la información comité
@@ -24,7 +26,6 @@ public with sharing class CalificacionCtrl {
          Informacion_comite__c ic = [
                 select 
                     Relacion_cuota_ingreso_propuesta__c,
-                    Ind_relacion_cuota_ingeso_neto_propuesta__c,
                     Numero_de_consultas__c,
                     Cliente_deudor__c,
              		N_de_creditos_vigentes__c,
