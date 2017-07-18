@@ -1,13 +1,5 @@
 @isTest
 private class LeadConversionHelperTest {
-
-	@isTest public static void conversion_de_lead_con_cliente_no_viable()
-	{
-	    Lead lead = TestDataFactory.createLead();
-		Test.startTest();
-
-	    Test.stopTest();
-	}
 	
 	@isTest public static void conversion_de_lead_codeudor_con_informacion_completa()
 	{

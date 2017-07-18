@@ -1,5 +1,214 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>CallHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EmailHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EnableCustomerPortalUser</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ListClean</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>RequestUpdate</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SmsHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewCustomerPortalUser</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>WebsiteHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <fieldSets>
+        <fullName>MC4SF__Account_Filter_Fields</fullName>
+        <description>used on the MailChimp query builder</description>
+        <displayedFields>
+            <field>Fax</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>AccountNumber</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Phone</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Rating</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Site</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>AccountSource</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Type</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>AnnualRevenue</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BillingCity</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BillingCountry</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BillingState</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BillingStreet</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BillingPostalCode</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CreatedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>NumberOfEmployees</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Industry</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastActivityDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ShippingCity</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ShippingCountry</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ShippingState</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ShippingStreet</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ShippingPostalCode</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Website</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Account Filter Fields</label>
+    </fieldSets>
+    <fields>
+        <fullName>AccountNumber</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>AccountSource</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
     <fields>
         <fullName>Acierta__c</fullName>
         <externalId>false</externalId>
@@ -60,6 +269,11 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>AnnualRevenue</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Ano_inicio_de_empleo_o_negocio__c</fullName>
@@ -540,6 +754,11 @@
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BillingAddress</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Bonos__c</fullName>
@@ -9803,6 +10022,11 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>Detalle_de_la_solicitud__c</fullName>
         <externalId>false</externalId>
         <label>Detalle de la solicitud</label>
@@ -10101,6 +10325,11 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Fax</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>Fecha_de_cambio_de_condiciones__c</fullName>
         <externalId>false</externalId>
         <label>Fecha de cambio de condiciones</label>
@@ -10361,6 +10590,12 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Industry</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Ingresos_Familiares__c</fullName>
         <externalId>false</externalId>
         <label>Ingresos Familiares</label>
@@ -10381,6 +10616,11 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Jigsaw</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Lugar_de_expedicion__c</fullName>
@@ -10497,6 +10737,11 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Name</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
         <fullName>No_acta__c</fullName>
         <externalId>false</externalId>
         <label>No acta</label>
@@ -10552,6 +10797,11 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumberOfEmployees</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Numero_de_celular_1__c</fullName>
@@ -10677,6 +10927,107 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>OwnerId</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Ownership</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ParentId</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Hierarchy</type>
+    </fields>
+    <fields>
+        <fullName>PersonAssistantName</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonAssistantPhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonBirthdate</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonDepartment</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonDoNotCall</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonEmail</fullName>
+        <inlineHelpText>Si el cliente no tiene email por favor indicar pendiente@credifamilia.com</inlineHelpText>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonHasOptedOutOfEmail</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonHasOptedOutOfFax</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonHomePhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonLastCURequestDate</fullName>
+    </fields>
+    <fields>
+        <fullName>PersonLastCUUpdateDate</fullName>
+    </fields>
+    <fields>
+        <fullName>PersonLeadSource</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PersonMailingAddress</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonMobilePhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonOtherAddress</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonOtherPhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>PersonTitle</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>Personas_a_cargo__c</fullName>
         <externalId>false</externalId>
         <label>Personas a cargo</label>
@@ -10736,6 +11087,11 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         </valueSet>
     </fields>
     <fields>
+        <fullName>Phone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
         <fullName>Plazo__c</fullName>
         <externalId>false</externalId>
         <label>Plazo</label>
@@ -10768,6 +11124,12 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rating</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Referencias_comerciales__c</fullName>
@@ -10920,6 +11282,21 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         </valueSet>
     </fields>
     <fields>
+        <fullName>ShippingAddress</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Sic</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>SicDesc</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>Sistema_amortizacion__c</fullName>
         <externalId>false</externalId>
         <label>Sistema amortización</label>
@@ -10929,6 +11306,11 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Site</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Solicitud_al_gerente_comercial__c</fullName>
@@ -11000,6 +11382,11 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>TickerSymbol</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Tipo__c</fullName>
@@ -11351,6 +11738,12 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Type</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Valida_aporta_ingresos__c</fullName>
         <externalId>false</externalId>
         <label>Valida aporta ingresos</label>
@@ -11503,6 +11896,11 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Website</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>ltv__c</fullName>
         <externalId>false</externalId>
         <label>ltv</label>
@@ -11513,6 +11911,89 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
         <trackHistory>false</trackHistory>
         <type>Percent</type>
     </fields>
+    <listViews>
+        <fullName>AllAccounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <columns>Propietario_de_la_cuenta__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Todos Los clientes / convenios</label>
+    </listViews>
+    <listViews>
+        <fullName>Clientes_Canal_Digital</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE_CODE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Canal_digital__c</field>
+            <operation>contains</operation>
+            <value>Si</value>
+        </filters>
+        <label>Clientes Canal Digital</label>
+        <sharedTo>
+            <role>Analista_de_Mercadeo</role>
+            <role>Asor_de_leads</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Convenios</fullName>
+        <columns>Estado_de_aprobacion_Riesgos__c</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Tipo_de_documento__c</columns>
+        <columns>Numero_de_documento__c</columns>
+        <columns>Ciudad_de_residencia__c</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>PersonAccount.Convenio</value>
+        </filters>
+        <filters>
+            <field>Solicitud_al_gerente_comercial__c</field>
+            <operation>equals</operation>
+            <value>Solicitud,Devuelta</value>
+        </filters>
+        <label>Convenios pendientes por aprobar</label>
+    </listViews>
+    <listViews>
+        <fullName>Convenios_aprobados</fullName>
+        <columns>Consecutivo__c</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Tipo_de_documento__c</columns>
+        <columns>Numero_de_documento__c</columns>
+        <columns>Ciudad_de_residencia__c</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Solicitud_al_gerente_comercial__c</field>
+            <operation>equals</operation>
+            <value>Aprobado</value>
+        </filters>
+        <label>Convenios aprobados</label>
+    </listViews>
+    <listViews>
+        <fullName>MyAccounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Numero_de_documento__c</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>Numero_de_telefono_celular__c</columns>
+        <columns>PC_EMAIL</columns>
+        <columns>Cliente_prevalidado__c</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <filterScope>Mine</filterScope>
+        <label>Mis Clientes / Convenios</label>
+    </listViews>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Activacion_de_cuenta_personales</fullName>
         <active>true</active>
@@ -20832,6 +21313,32 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
             </values>
         </picklistValues>
     </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Numero_de_documento__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACCOUNT.PHONE1</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.RECORDTYPE</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Numero_de_documento__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CORE.USERS.ALIAS</lookupDialogsAdditionalFields>
+        <lookupFilterFields>ACCOUNT.NAME</lookupFilterFields>
+        <lookupFilterFields>Numero_de_documento__c</lookupFilterFields>
+        <lookupFilterFields>ACCOUNT.RECORDTYPE</lookupFilterFields>
+        <lookupFilterFields>CORE.USERS.ALIAS</lookupFilterFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Numero_de_documento__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.RECORDTYPE</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACCOUNT.PHONE1</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Telefono_laboral__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CORE.USERS.ALIAS</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Numero_de_documento__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Numero_de_telefono_celular__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Propietario_de_la_cuenta__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PC_EMAIL</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.RECORDTYPE</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>CL001_Valida_check_list_convenio_per_nat</fullName>
         <active>true</active>
@@ -20844,7 +21351,7 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
   ISPICKVAL ( Convenio_firmado__c , &quot;No&quot;), 
   ISPICKVAL ( Referencias_comerciales__c , &quot;No&quot;)
 )</errorConditionFormula>
-        <errorMessage>CL- 001 Para enviar la solicitud al Gerente Comercial, debe diligenciar el Check list de Persona Natural adicional a convenio firmado y referencias comerciales</errorMessage>
+        <errorMessage>CL-001 Para enviar la solicitud al Gerente Comercial, debe diligenciar el Check list de Persona Natural adicional a convenio firmado y referencias comerciales</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>CL002_Valida_check_list_convenio_per_jur</fullName>
@@ -20864,7 +21371,7 @@ IF(OR(ISPICKVAL(Departamento_actualizacion_datos__c,&quot;Guajira&quot;),ISPICKV
     <validationRules>
         <fullName>CL003_Valida_campo_numero_de_documento</fullName>
         <active>true</active>
-        <description>Valida que el campo número de documento sea solo número</description>
+        <description>Valida que el campo número de documento sea solo número.</description>
         <errorConditionFormula>NOT ISNUMBER( Numero_de_documento__c )</errorConditionFormula>
         <errorDisplayField>Numero_de_documento__c</errorDisplayField>
         <errorMessage>CL-003. Este campo solo acepta caracteres numéricos.</errorMessage>
@@ -20888,21 +21395,22 @@ ISPICKVAL (  Solicitud_al_gerente_comercial__c, &quot;Devuelta&quot;)
         <active>true</active>
         <description>Valida que en el campo número de teléfono celular sea solamente numérico, y que contenga 10 caracteres.</description>
         <errorConditionFormula>AND(
-NOT ISBLANK (Numero_de_telefono_celular__c),
+$Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;,
+NOT ISBLANK(Numero_de_telefono_celular__c),
 OR(
 LEN( Numero_de_telefono_celular__c)  &lt;&gt;  10,
-NOT ISNUMBER(  Numero_de_telefono_celular__c  )
+NOT ISNUMBER(  Numero_de_telefono_celular__c )
+
 ))</errorConditionFormula>
         <errorDisplayField>Numero_de_telefono_celular__c</errorDisplayField>
-        <errorMessage>CL-005. El campo solo debe tener máximo 10 dígitos sin espacios. No incluir guiones ni paréntesis.</errorMessage>
+        <errorMessage>CL-005 El campo debe tener 10 caracteres sin espacios. No incluir guiones ni paréntesis.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>CL006_El_telefono_debe_tener_7_caracter</fullName>
         <active>true</active>
         <description>Valida que el número de teléfono fijo tenga no contenga menos de siete (7) dígitos.</description>
         <errorConditionFormula>AND(
-
-NOT ISBLANK (Phone),
+$Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;,
 
 OR(
    LEN(Phone) = NULL,
@@ -20915,7 +21423,10 @@ OR(
         <fullName>CL007_Valida_caracteres_campo_barrio</fullName>
         <active>true</active>
         <description>Valida que en el campo Barrio solamente ingresen texto.</description>
-        <errorConditionFormula>NOT( REGEX( Barrio__c , &quot;^[a-zA-Z_áéíóúñ\\s]*$&quot;))</errorConditionFormula>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;,
+NOT( REGEX( Barrio__c , &quot;^[a-zA-Z_áéíóúñ\\s]*$&quot;))
+)</errorConditionFormula>
         <errorDisplayField>Barrio__c</errorDisplayField>
         <errorMessage>CL-007. Solamente es permitido ingresar texto.</errorMessage>
     </validationRules>
@@ -20924,6 +21435,7 @@ OR(
         <active>true</active>
         <description>Valida que cuando el campo Aprobado con programa MI CASA YA sea igual a &quot;Si&quot; se diligencie el campo Código de familia.</description>
         <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;,
  ISPICKVAL(   Aprobado_con_programa_MI_CASA_YA__c  ,&quot;Si&quot;),
  ISBLANK(  Codigo_Familia__c  )  
 )</errorConditionFormula>
@@ -20952,7 +21464,10 @@ REGEX( Numero_de_documento__c, &quot;[^0][0-9]{5,10}&quot;)
         <fullName>CL010_Valida_si_es_mayor_de_edad</fullName>
         <active>true</active>
         <description>Valida que en el campo Edad sea igual o mayor a 18.</description>
-        <errorConditionFormula>18&gt; Edad__c</errorConditionFormula>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;,
+18&gt; Edad__c
+)</errorConditionFormula>
         <errorMessage>CL-010. El cliente debe ser mayor de edad.</errorMessage>
     </validationRules>
     <validationRules>
@@ -20961,11 +21476,12 @@ REGEX( Numero_de_documento__c, &quot;[^0][0-9]{5,10}&quot;)
         <description>Valida que solamente el administrador de CRM y los perfiles comerciales modifiquen la información del cliente.</description>
         <errorConditionFormula>AND(
 
-$Profile.Id &lt;&gt; &quot;00eo0000000TUb5&quot;,
+OwnerId &lt;&gt; $User.Id &amp;&amp; 
 $Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;,
-$Profile.Id &lt;&gt; &quot;00eo0000000TUb1&quot;,
 $Profile.Id &lt;&gt; &quot;00eo0000000TUb7&quot;,
+$Profile.Id &lt;&gt; &quot;00eo0000000f645&quot;,
 $Profile.Id &lt;&gt; &quot;00eo0000000fznJ&quot;,
+$Profile.Id &lt;&gt; &quot;00eo0000000g2vT&quot;,
 
 OR(
 ISCHANGED( LastName ), 
@@ -20979,32 +21495,51 @@ ISCHANGED( MiddleName )
         <fullName>CL012_Valida_el_propietario_de_la_cuenta</fullName>
         <active>true</active>
         <description>Valida que la cuenta del cliente solamente pueda ser modificada por el propietario de la cuenta.</description>
-        <errorConditionFormula>OwnerId &lt;&gt;  $User.Id &amp;&amp;
-$Profile.Id  &lt;&gt; &quot;00eo0000000TUb7&quot; &amp;&amp;
-$Profile.Id  &lt;&gt; &quot;00eo0000000f645&quot; &amp;&amp;
-$Profile.Id  &lt;&gt; &quot;00eo0000000TUaz&quot; &amp;&amp;
-$Profile.Id  &lt;&gt; &quot;00eo0000000uvB5&quot;</errorConditionFormula>
+        <errorConditionFormula>OwnerId  &lt;&gt;  $User.Id &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000uvB5&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000Tr0P&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo00000016F80&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000TUb7&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000fznJ&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000Tr0Z&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000f645&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo00000016F80&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000TqzW&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000TzBZ&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000TuFy&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000001EIPn&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000Tr0Z&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000TuFy&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000Tr0P&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000Tr0K&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000f7LE&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo00000013vGj&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000g2vT&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000TqzW&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000TUaz&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000PswQ&quot; &amp;&amp;
+ $Profile.Id  &lt;&gt; &quot;00eo0000000f7LO&quot;</errorConditionFormula>
         <errorMessage>CL-012.La cuenta del cliente solamente puede ser modificada por el propietario de la cuenta o por los líderes de área.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>CL013_Valida_direccion_de_residencia</fullName>
         <active>true</active>
         <description>Valida que no se introduzcan caracteres no autorizados en el campo dirección de residencia.</description>
-        <errorConditionFormula>OR( 
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;,
 
-( CONTAINS(Direccion_de_residencia__c , &quot;N°&quot;)) , 
-( CONTAINS(Direccion_de_residencia__c , &quot;No&quot;)) , 
-( CONTAINS(Direccion_de_residencia__c , &quot;no&quot;)) , 
-( CONTAINS(Direccion_de_residencia__c , &quot;n°&quot;)) , 
-( CONTAINS(Direccion_de_residencia__c , &quot;n.°&quot;)) , 
-( CONTAINS(Direccion_de_residencia__c , &quot;N.°&quot;)) , 
-( CONTAINS(Direccion_de_residencia__c , &quot;_&quot;)) , 
-( CONTAINS(Direccion_de_residencia__c , &quot;¬&quot;)) , 
-( CONTAINS(Direccion_de_residencia__c , &quot;N°&quot;)) , 
-( CONTAINS(Direccion_de_residencia__c , &quot;-&quot;)) , 
-( CONTAINS(Direccion_de_residencia__c , &quot;~&quot;)) , 
-( CONTAINS(Direccion_de_residencia__c , &quot;`&quot;)) 
-)</errorConditionFormula>
+OR(
+
+( CONTAINS( Direccion_de_residencia__c , &quot;°&quot;)) ,
+( CONTAINS( Direccion_de_residencia__c , &quot;ª&quot;)) ,
+( CONTAINS( Direccion_de_residencia__c , &quot;_&quot;)) ,
+( CONTAINS( Direccion_de_residencia__c , &quot;¬&quot;)) ,
+( CONTAINS( Direccion_de_residencia__c , &quot;´&quot;)) ,
+( CONTAINS( Direccion_de_residencia__c , &quot;|&quot;)) ,
+( CONTAINS( Direccion_de_residencia__c , &quot;~&quot;)) ,
+( CONTAINS( Direccion_de_residencia__c , &quot;`&quot;))
+
+))</errorConditionFormula>
         <errorDisplayField>Direccion_de_residencia__c</errorDisplayField>
         <errorMessage>CL-013. Hay caracteres no permitidos en este campo. Solamente se pueden ingresar el símbolo numeral (#), guión al medio (-).</errorMessage>
     </validationRules>
@@ -21012,9 +21547,16 @@ $Profile.Id  &lt;&gt; &quot;00eo0000000uvB5&quot;</errorConditionFormula>
         <fullName>CL014_Valida_Ciudad_de_residencia</fullName>
         <active>true</active>
         <description>Valida en el campo Ciudad de residencia solamente se ingrese texto.</description>
-        <errorConditionFormula>NOT( REGEX( Ciudad_de_residencia__c , &quot;^[a-zA-Z_áéíóú\\s]*$&quot;))</errorConditionFormula>
+        <errorConditionFormula>AND(
+NOT ISBLANK(Ciudad_de_residencia__c),
+$Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;,
+$Profile.Id &lt;&gt; &quot;00eo00000016F80&quot;,
+
+OR(
+NOT( REGEX( Ciudad_de_residencia__c , &quot;^[a-zA-Z_áéíóú\\s]*$&quot;))
+))</errorConditionFormula>
         <errorDisplayField>Ciudad_de_residencia__c</errorDisplayField>
-        <errorMessage>CL-014. Este campo es solamente texto. No ingresar puntos, ni guiones.</errorMessage>
+        <errorMessage>CL-014. Este campo es solamente texto. No ingresar puntos, guiones o paréntesis.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>CL015_Valida_correspondencia_fisico</fullName>
@@ -21024,10 +21566,10 @@ $Profile.Id  &lt;&gt; &quot;00eo0000000uvB5&quot;</errorConditionFormula>
 ISPICKVAL( Correspondencia__c, &quot;Físico&quot; ) , 
 
 OR( 
-ISBLANK(Barrio__c ),
-ISBLANK(Direccion_de_residencia__c),
-ISBLANK(TEXT(Departamento_actualizacion_datos__c)),
-ISBLANK(TEXT(Ciudad_actualizacion_datos__c ))
+ISBLANK(Barrio__c ), 
+ISBLANK(Direccion_de_residencia__c), 
+ISBLANK(TEXT(Departamento_actualizacion_datos__c)), 
+ISBLANK(TEXT(Ciudad_actualizacion_datos__c )) 
 
 ))</errorConditionFormula>
         <errorMessage>CL-015. Si la entrega de la correspondencia se realiza en físico debe diligenciar los campos: Departamento , Ciudad, Barrio y Dirección de residencia.</errorMessage>
@@ -21035,16 +21577,23 @@ ISBLANK(TEXT(Ciudad_actualizacion_datos__c ))
     <validationRules>
         <fullName>CL016_Valida_correspondencia_fisico_corr</fullName>
         <active>true</active>
-        <description>Valida que cuando el tipo de correspondencia sea físico/correo se diligencien los campos Correo, Departamento , Ciudad, Barrio y Dirección de residencia.</description>
+        <description>Valida que cuando el tipo de correspondencia sea físico/correo se diligencien los campos Correo electrónico, Departamento , Ciudad, Barrio y Dirección de residencia.</description>
         <errorConditionFormula>AND( 
-ISPICKVAL( Correspondencia__c, &quot;Físico/Correo&quot; ) , 
+ISPICKVAL( Correspondencia__c, &quot;Físico/Correo&quot; ) ,
+ $Profile.Id &lt;&gt; &quot;00eo0000000TUb7&quot;,
+ $Profile.Id &lt;&gt; &quot;00eo0000000fznJ&quot;,
+ $Profile.Id &lt;&gt; &quot;00eo0000000PswQ&quot;,
+ $Profile.Id &lt;&gt; &quot;00eo0000000TUaz&quot;,
+ $Profile.Id &lt;&gt; &quot;00eo0000000g2vT&quot;,
+ $Profile.Id &lt;&gt; &quot;00eo0000000TUb5&quot;,
+ $Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;,
 
 OR( 
-ISBLANK( PersonEmail),
-ISBLANK(Barrio__c ),
-ISBLANK(Direccion_de_residencia__c),
-ISBLANK(TEXT(Departamento_actualizacion_datos__c)),
-ISBLANK(TEXT(Ciudad_actualizacion_datos__c ))
+ISBLANK( PersonEmail), 
+ISBLANK(Barrio__c ), 
+ISBLANK(Direccion_de_residencia__c), 
+ISBLANK(TEXT(Departamento_actualizacion_datos__c)), 
+ISBLANK(TEXT(Ciudad_actualizacion_datos__c )) 
 
 ))</errorConditionFormula>
         <errorMessage>CL-016. Si la entrega de la correspondencia se realiza en físico debe diligenciar los campos: Correo electrónico, Departamento , Ciudad, Barrio y Dirección de residencia.</errorMessage>
@@ -21053,19 +21602,26 @@ ISBLANK(TEXT(Ciudad_actualizacion_datos__c ))
         <fullName>CL017_Valida_la_fecha_de_expedicion</fullName>
         <active>true</active>
         <description>Valida que la fecha de expedición del documento no sea menor a 18 años.</description>
-        <errorConditionFormula>((Fecha_de_expedicion_cc__c  -  Fecha_de_nacimiento__c)/365.22) &lt; 18</errorConditionFormula>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;,
+((Fecha_de_expedicion_cc__c - Fecha_de_nacimiento__c)/365.22) &lt; 18
+)</errorConditionFormula>
         <errorDisplayField>Fecha_de_expedicion_cc__c</errorDisplayField>
         <errorMessage>CL-017. El documento no pudo ser expedido antes de los 18 años. Por favor corregir la fecha.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>CL018_Valida_el_lugar_de_expedicion</fullName>
         <active>true</active>
-        <description>Valida que en el campo lugar de expedición se ingrese solamente texto, no permite ingresar caracteres numéricos, ni menos de tres caracteres</description>
-        <errorConditionFormula>AND( 
-NOT ISBLANK(Lugar_de_expedicion__c), 
-
-OR( 
-NOT( REGEX( Lugar_de_expedicion__c , &quot;^[a-zA-Z_áéíóúñ\\s]*$&quot;)), 
+        <description>Valida que en el campo lugar de expedición se ingrese solamente texto, no permite ingresar caracteres numéricos, ni menos de tres caracteres.</description>
+        <errorConditionFormula>AND(
+NOT ISBLANK(Lugar_de_expedicion__c),
+$Profile.Id &lt;&gt; &quot;00eo00000016F80&quot;, 
+$Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;, 
+$Profile.Id &lt;&gt; &quot;00eo0000000TuFy&quot;, 
+$Profile.Id &lt;&gt; &quot;00eo0000000Tr0P&quot;, 
+$Profile.Id &lt;&gt; &quot;00eo0000000f7LE&quot;, 
+OR(
+NOT( REGEX( Lugar_de_expedicion__c , &quot;^[a-zA-Z_áéíóúñ\\s]*$&quot;)),
 LEN(Lugar_de_expedicion__c) &lt; 3 
 ))</errorConditionFormula>
         <errorDisplayField>Lugar_de_expedicion__c</errorDisplayField>
@@ -21077,13 +21633,18 @@ LEN(Lugar_de_expedicion__c) &lt; 3
         <description>Valida que en el campo lugar de nacimiento, se ingresen solamente texto, no permite caracteres numéricos.</description>
         <errorConditionFormula>AND(
 NOT ISBLANK(Lugar_de_nacimiento__c),
+ $Profile.Id &lt;&gt; &quot;00eo00000016F80&quot;,
+ $Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;,
+ $Profile.Id &lt;&gt; &quot;00eo0000000TuFy&quot;,
+ $Profile.Id &lt;&gt; &quot;00eo0000000Tr0P&quot;,
+ $Profile.Id &lt;&gt; &quot;00eo0000000f7LE&quot;,
 
 OR(
 NOT( REGEX( Lugar_de_nacimiento__c , &quot;^[a-zA-Z_áéíóúñ\\s]*$&quot;)),
 LEN(Lugar_de_nacimiento__c) &lt; 3 
 ))</errorConditionFormula>
         <errorDisplayField>Lugar_de_nacimiento__c</errorDisplayField>
-        <errorMessage>CL-020. Este campo es solo texto.</errorMessage>
+        <errorMessage>CL-019. Este campo es solo texto. No incluir puntos, guiones, ni comas.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>CL020_Valida_tipo_de_contrato</fullName>
@@ -21157,4 +21718,99 @@ OR(
         <errorDisplayField>PersonEmail</errorDisplayField>
         <errorMessage>CL-022. Dirección de correo inválida, por favor diligencie la información completa.</errorMessage>
     </validationRules>
+    <validationRules>
+        <fullName>CL023_Valida_edad_del_cliente</fullName>
+        <active>true</active>
+        <description>Valida que el cliente no tenga más de 70 años.</description>
+        <errorConditionFormula>AND(
+Edad__c &gt; 70,
+$Profile.Id &lt;&gt; &quot;00eo00000013vGj&quot;,
+$Profile.Id &lt;&gt; &quot;00eo0000000TuFy&quot;,
+$Profile.Id &lt;&gt; &quot;00eo0000000Tr0P&quot;
+)</errorConditionFormula>
+        <errorMessage>CL-023. El cliente no cumple con la política de edad, por favor verifique si la fecha de nacimiento y expedición del documento son correctas.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>GoogleMaps</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google Maps</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://maps.google.com/maps?f=q&amp;hl=en&amp;q={!Account_BillingStreet}+{!Account_BillingCity}+{!Account_BillingState}&amp;om=1</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleNews</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google News</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://www.google.com/news?&amp;q={!Account_Name}&amp;btnG=Search+News</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleSearch</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google Search</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://www.google.com/search?q={!Account_Name}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>MC4SF__MailChimp_Subscriptions</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>MailChimp Subscriptions</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)} 
+
+try { 
+	var personContactId = sforce.apex.execute(&quot;MC4SF.Util&quot;, &quot;getPersonContactId&quot;, {accountId: &apos;{!Account.Id}&apos;}); 
+	if (personContactId == &apos;&apos;) {
+		alert(&apos;This feature is only applicable to Person Accounts.&apos;);
+	} else {
+		top.location.href = &apos;/apex/MC4SF__SubscriptionsContact?id=&apos; + personContactId;
+	}
+} catch (error) { 
+	if (error.faultcode == &apos;sf:INSUFFICIENT_ACCESS&apos;) { 
+		alert(&apos;You do not have permission to perform this function.&apos;); 
+	} else { 
+		alert(error); 
+	} 
+}</url>
+    </webLinks>
 </CustomObject>

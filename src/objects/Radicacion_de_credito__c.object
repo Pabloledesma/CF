@@ -1,6 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Permite identificar toda la información de la radicación del crédito</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fieldSets>
+        <fullName>ConjuntoCamposRadicaciones</fullName>
+        <description>Pagina VF de edición del objeto Radicaciones</description>
+        <displayedFields>
+            <field>Cliente_deudor__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Direccion_oficina_deudor__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Codeudor_1__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Direccion_oficina_codeudor1__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Codeudor_2__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Direccion_oficina_codeudor2__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Codeudor_3__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Direccion_oficina_codeudor3__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Solicitud_de_credito__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Credito_solicitado__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Tipo_de_tramite__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Ocupacion_u_oficio_principal__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Id_Radicacion__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Tipo_de_vivienda__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Cargo_actual__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>ConjuntoCamposRadicaciones</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>Detalle</fullName>
+        <description>Detalle</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Detalle</label>
+    </fieldSets>
     <fields>
         <fullName>ARP__c</fullName>
         <externalId>false</externalId>
@@ -250,11 +393,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Aporta_ingresos_codeudor_1__c</fullName>
+        <fullName>Aporta_Ingresos_Codeudor_1__c</fullName>
         <externalId>false</externalId>
-        <formula>TEXT(Codeudor_1__r.Aporta_ingresos__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Aporta ingresos 1</label>
+        <label>Aporta Ingresos 1</label>
+        <length>2</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -262,11 +404,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Aporta_ingresos_codeudor_2__c</fullName>
+        <fullName>Aporta_Ingresos_Codeudor_2__c</fullName>
         <externalId>false</externalId>
-        <formula>TEXT(Codeudor_2__r.Aporta_ingresos__c )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Aporta ingresos 2</label>
+        <label>Aporta Ingresos 2</label>
+        <length>2</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -274,11 +415,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Aporta_ingresos_codeudor_3__c</fullName>
+        <fullName>Aporta_Ingresos_Codeudor_3__c</fullName>
         <externalId>false</externalId>
-        <formula>TEXT( Codeudor_3__r.Aporta_ingresos__c )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Aporta ingresos 3</label>
+        <label>Aporta Ingresos 3</label>
+        <length>2</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3370,6 +3510,18 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>NIT_de_la_empresa__c</fullName>
+        <externalId>false</externalId>
+        <label>NIT de la empresa</label>
+        <precision>9</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Nacional_turista_de_algun_pais_miembro__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Es nacional turista de algún país miembro de la Comunidad Andina</inlineHelpText>
@@ -3966,24 +4118,9 @@
                     <label>Independiente</label>
                 </value>
                 <value>
-                    <fullName>Estudiante</fullName>
-                    <default>false</default>
-                    <label>Estudiante</label>
-                </value>
-                <value>
                     <fullName>Pensionado</fullName>
                     <default>false</default>
                     <label>Pensionado</label>
-                </value>
-                <value>
-                    <fullName>Ama de casa</fullName>
-                    <default>false</default>
-                    <label>Ama de casa</label>
-                </value>
-                <value>
-                    <fullName>Otro</fullName>
-                    <default>false</default>
-                    <label>Otro</label>
                 </value>
                 <value>
                     <fullName>Empleado</fullName>
@@ -7200,6 +7337,17 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+    <gender>Feminine</gender>
+    <label>Radicación de crédito</label>
+    <nameField>
+        <displayFormat>{0000}</displayFormat>
+        <label>Formato RC</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Radicaciones de créditos</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>R001_Valida_direccion_de_residencia</fullName>
         <active>true</active>
@@ -7242,6 +7390,40 @@
         <errorMessage>RAD-004 El campo solo debe tener máximo 10 caracteres sin espacios. No incluir guiones ni paréntesis</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>R005_Numero_de_digitos_telefono_ref_pers</fullName>
+        <active>true</active>
+        <description>El teléfono de la referencia personal debe tener mínimo 7 dígitos, o máximo 10.</description>
+        <errorConditionFormula>AND(
+NOT ISBLANK(Telefono_parentesco_personal__c),
+LEN( Telefono_parentesco_personal__c ) &lt;&gt; 7,
+LEN( Telefono_parentesco_personal__c ) &lt;&gt; 10, 
+$Profile.Id &lt;&gt; &quot;00eo00000013vGj&quot;,
+$Profile.Id &lt;&gt; &quot;00eo0000000f7LO&quot;,
+$Profile.Id &lt;&gt; &quot;00eo0000000TUb1&quot;,
+$Profile.Id &lt;&gt; &quot;00eo0000000TqzW&quot;,
+$Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;
+)</errorConditionFormula>
+        <errorDisplayField>Telefono_parentesco_personal__c</errorDisplayField>
+        <errorMessage>RAD-005 El campo debe tener mínimo siete (7), o máximo 10 dígitos. No ingresar ceros (0).</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R006_Numero_de_digitos_telefono_ref_fami</fullName>
+        <active>true</active>
+        <description>El teléfono debe tener mínimo 7 dígitos caracteres.</description>
+        <errorConditionFormula>AND(
+NOT ISBLANK(Telefono_parentesco_familiar__c ),
+LEN(Telefono_parentesco_familiar__c  ) &lt;&gt; 7,
+LEN(Telefono_parentesco_familiar__c  ) &lt;&gt; 10,
+$Profile.Id &lt;&gt; &quot;00eo00000013vGj&quot;, 
+$Profile.Id &lt;&gt; &quot;00eo0000000f7LO&quot;, 
+$Profile.Id &lt;&gt; &quot;00eo0000000TqzW&quot;,
+$Profile.Id &lt;&gt; &quot;00eo0000000TUb1&quot;,
+$Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;
+)</errorConditionFormula>
+        <errorDisplayField>Telefono_parentesco_familiar__c</errorDisplayField>
+        <errorMessage>RAD-006 El campo debe tener mínimo siete (7), o máximo 10 dígitos. No ingresar ceros (0).</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>R007_El_tel_comerci_debe_tener_10_caract</fullName>
         <active>true</active>
         <description>El teléfono tener máximo hasta 7 caracteres</description>
@@ -7254,6 +7436,20 @@ NOT ISNUMBER(Telefono_comercial__c)
 ))</errorConditionFormula>
         <errorDisplayField>Telefono_comercial__c</errorDisplayField>
         <errorMessage>RAD-007. El campo solo debe tener mínimo siete (7) y máximo 10 dígitos sin espacios. No incluir guiones ni paréntesis, no ingresar ceros (0).</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R008_Tel_financi_debe_tener_min_7_digito</fullName>
+        <active>true</active>
+        <description>El teléfono debe tener máximo hasta 10 caracteres</description>
+        <errorConditionFormula>AND(
+NOT ISBLANK (Telefono_entidad_financiera__c),
+
+OR(
+LEN(Telefono_entidad_financiera__c ) &lt; 7,
+NOT ISNUMBER(Telefono_entidad_financiera__c)
+))</errorConditionFormula>
+        <errorDisplayField>Telefono_entidad_financiera__c</errorDisplayField>
+        <errorMessage>RAD-008. El campo solo debe tener mínimo siete (7) y máximo 10 dígitos sin espacios. No incluir guiones ni paréntesis, no ingresar ceros (0).</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>R009_El_tel_arrend1_debe_tener_10_caract</fullName>
@@ -7340,11 +7536,14 @@ $Profile.Id &lt;&gt; &quot;00eo0000000TUb1&quot;
     </validationRules>
     <validationRules>
         <fullName>R015_El_tel_resid_deud_debe_tener_7_cara</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>El teléfono debe tener máximo hasta 7 caracteres</description>
-        <errorConditionFormula>OR(
+        <errorConditionFormula>AND(
+NOT ISBLANK(Telefono_residencia__c),
+OR(
 NOT ISNUMBER( Telefono_residencia__c),
 LEN(Telefono_residencia__c) &lt; 7
+)
 )</errorConditionFormula>
         <errorDisplayField>Telefono_residencia__c</errorDisplayField>
         <errorMessage>RAD-015. El campo solo debe tener máximo 7 caracteres sin espacios. No incluir guiones ni paréntesis</errorMessage>
@@ -7521,6 +7720,20 @@ NOT ISNUMBER(Telefono_familiar_codeudor1__c)
         <errorMessage>RAD-033. El campo solo debe tener mínimo siete (7) y máximo 10 dígitos sin espacios. No incluir guiones ni paréntesis, no ingresar ceros (0).</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>R034_El_tel_familiar_cod2_max_10_caracte</fullName>
+        <active>true</active>
+        <description>El teléfono de la referencia familiar del codeudor 2 debe ser numérico y y no puede tener menos de siete dígitos.</description>
+        <errorConditionFormula>AND(
+NOT ISBLANK(Telefono_familiar_codeudor2__c),
+
+OR(
+LEN( Telefono_familiar_codeudor2__c ) &lt; 7,
+NOT ISNUMBER(Telefono_familiar_codeudor2__c)
+))</errorConditionFormula>
+        <errorDisplayField>Telefono_familiar_codeudor2__c</errorDisplayField>
+        <errorMessage>RAD-034. El campo solo debe tener mínimo siete (7) y máximo 10 dígitos sin espacios. No incluir guiones ni paréntesis, no ingresar ceros (0).</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>R035_El_tel_familiar_cod3_max_10_caract</fullName>
         <active>true</active>
         <description>El teléfono de la referencia familiar del codeudor 3 debe ser numérico y y no puede tener  menos de siete dígitos.</description>
@@ -7630,7 +7843,9 @@ LEN(Telefono_financiero_codeudor3__c ) &lt; 7
         <active>true</active>
         <description>Valida que si el codeduor 1 aporta ingresos, diligencien la información de las referencias personales y familiares.</description>
         <errorConditionFormula>AND(
-Aporta_ingresos_codeudor_1__c = &quot;Si&quot;,
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;,
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;,
+Aporta_Ingresos_Codeudor_1__c = &quot;Si&quot;,
 
 OR(
 ISBLANK (Personal_Nombre_y_Apellido_codeudor1__c),
@@ -7733,4 +7948,703 @@ ISBLANK (Telefono_familiar_codeudor1__c)
         <errorDisplayField>Direccion_oficina_codeudor3__c</errorDisplayField>
         <errorMessage>RAD-050. Hay caracteres no permitidos en este campo. Solamente se pueden ingresar el símbolo numeral (#), guión al medio (-).</errorMessage>
     </validationRules>
+    <validationRules>
+        <fullName>R051_Valida_nombre_personal_CD1_solo_tex</fullName>
+        <active>true</active>
+        <description>El nombre de la referencia personal solamente debe ser texto.</description>
+        <errorConditionFormula>NOT( REGEX(Personal_Nombre_y_Apellido_codeudor1__c , &quot;^[a-zA-Z_áéíóúñ\\s]*$&quot;))</errorConditionFormula>
+        <errorDisplayField>Personal_Nombre_y_Apellido_codeudor1__c</errorDisplayField>
+        <errorMessage>RAD-051. Este campo es solo texto.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R052_Valida_nombre_personal_CD2_solo_tex</fullName>
+        <active>true</active>
+        <description>El nombre de la referencia personal del codeudor 2 solamente debe ser texto.</description>
+        <errorConditionFormula>NOT( REGEX(Personal_Nombre_y_Apellido_codeudor2__c , &quot;^[a-zA-Z_áéíóúñ\\s]*$&quot;))</errorConditionFormula>
+        <errorDisplayField>Personal_Nombre_y_Apellido_codeudor2__c</errorDisplayField>
+        <errorMessage>RAD-052. Este campo es solo texto.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R053_Valida_nombre_personal_CD3_solo_tex</fullName>
+        <active>true</active>
+        <description>El nombre de la referencia personal del codeudor 3 solamente debe ser texto.</description>
+        <errorConditionFormula>NOT( REGEX(Personal_Nombre_y_Apellido_codeudor3__c , &quot;^[a-zA-Z_áéíóúñ\\s]*$&quot;))</errorConditionFormula>
+        <errorDisplayField>Personal_Nombre_y_Apellido_codeudor3__c</errorDisplayField>
+        <errorMessage>RAD-053. Este campo es solo texto.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R054_Valida_tipo_de_vivienda_arriendo</fullName>
+        <active>true</active>
+        <description>Si el tipo de vivienda es arriendo, los datos del arrendatario no deben estar en blanco.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Tipo_de_vivienda__c ,&quot;Arriendo&quot;),
+ $Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot;,
+ $Profile.Id &lt;&gt; &quot;00eo0000000TUb1&quot;,
+OR (
+  ISBLANK(Nombre_arrendador__c), 
+  ISBLANK(Telefono_arrendador_1__c),
+  ISBLANK(Arriendo_egresos__c)  
+ 
+))</errorConditionFormula>
+        <errorMessage>RAD-051. Si la opción el campo Tipo de vivienda es &quot;Arriendo&quot; debe diligenciar los campos:Nombre arrendador,Teléfono arrendador (1), y en la información financiera el valor del arriendo.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R055_Valida_el_campo_es_ud_apoderado</fullName>
+        <active>true</active>
+        <description>Si la persona es apoderada, debe registrar el nombre completo.</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Es_ud_apoderado__c ,&quot;Si&quot;),
+ ISBLANK( Nombres_y_apellidos__c ) 
+)</errorConditionFormula>
+        <errorMessage>RAD-055. El campo ¿Es Ud. apoderado ? es &quot;Si&quot; debe diligenciar el campo Nombres y apellidos</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R056_Valida_campo_ocup_u_oficio_princ_C1</fullName>
+        <active>true</active>
+        <description>Si el cliente es empleado, se debe diligenciar los campos, EPS y ARP.</description>
+        <errorConditionFormula>AND(
+ISPICKVAL(Ocupacion_u_oficio_principal_codeudor1__c,&quot;Empleado&quot;),ISBLANK( EPS_codeudor1__c ),
+ISBLANK( ARP_codeudor1__c ),
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;,
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;  
+)</errorConditionFormula>
+        <errorMessage>RAD-056. El campo Ocupación u oficio es &quot;Empleado&quot; debe diligenciar los campos : 
+EPS y ARP.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R057_Valida_campo_ocup_u_oficio_princ_C2</fullName>
+        <active>true</active>
+        <description>Si el codeudor 2 es empleado, se debe diligenciar los campos, EPS y ARP.</description>
+        <errorConditionFormula>AND( 
+ISPICKVAL( Ocupacion_u_oficio_principal_codeudor2__c,&quot;Empleado&quot;), 
+ISBLANK( EPS_codeudor2__c  ), 
+ISBLANK( ARP_codeudor2__c  ) 
+)</errorConditionFormula>
+        <errorMessage>RAD-057. El campo Ocupación u oficio es &quot;Empleado&quot; debe diligenciar los campos : 
+EPS y ARP</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R058_Valida_campo_ocup_u_oficio_princ_C3</fullName>
+        <active>true</active>
+        <description>Si el codeudor 3 es empleado, se debe diligenciar los campos, EPS y ARP.</description>
+        <errorConditionFormula>AND( 
+ISPICKVAL( Ocupacion_u_oficio_principal_codeudor3__c ,&quot;Empleado&quot;), 
+ISBLANK( EPS_codeudor3__c  ), 
+ISBLANK(  ARP_codeudor3__c  ) 
+)</errorConditionFormula>
+        <errorMessage>RAD-058. El campo Ocupación u oficio es &quot;Empleado&quot; debe diligenciar los campos : 
+EPS y ARP.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R059_Valida_campo_ocup_u_oficio_principa</fullName>
+        <active>true</active>
+        <description>Si el cliente principal es empleado, se debe diligenciar EPS y ARP.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;,
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;,
+ISPICKVAL(Ocupacion_u_oficio_principal__c ,&quot;Empleado&quot;),
+ISBLANK( EPS__c ),   
+ISBLANK( ARP__c )
+)</errorConditionFormula>
+        <errorMessage>RAD-059. El campo Ocupación u oficio  es &quot;Empleado&quot; debe diligenciar los campos :
+ EPS  y ARP.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R060_Valida_Informacion_del_Inmueble</fullName>
+        <active>true</active>
+        <description>Si el tipo de trámite es solicitud de crédito, se debe diligenciar toda la sección 19 de la radicación de crédito.</description>
+        <errorConditionFormula>AND( 
+ISPICKVAL(Tipo_de_tramite__c,&quot;Solicitud de crédito&quot;), 
+
+OR( 
+
+ISPICKVAL( Tipo_de_vivienda_inmueble__c ,&quot;&quot;), 
+ISNULL( Plazo_en_anos__c ), 
+ISPICKVAL( Destino_del_inmueble__c ,&quot;&quot;), 
+ISPICKVAL( Modalidad_del_credito__c ,&quot;&quot;), 
+ISNULL( Personas_que_van_a_vivir_en_el_inmueble__c ), 
+ISNULL(Cuantas_personas_generan_ingresos__c), 
+ISPICKVAL( Tipo_de_inmueble__c ,&quot;&quot;), 
+ISNULL( Fecha_estimada_entrega__c ), 
+ISPICKVAL( Parqueadero__c , &quot;&quot;), 
+ISBLANK( Ciudad_inmueble__c ) , 
+ISBLANK(Barrio__c ) , 
+ISNULL( Recursos_propios__c ), 
+ISNULL( Ahorro_programado__c ), 
+ISNULL( Cesantias__c ), 
+ISNULL( Venta_inmueble__c ) , 
+ISNULL( Subsidio_de_vivienda__c ), 
+ISNULL( Otros_creditos__c ), 
+ISNULL( Credito_fondo_empleados__c ), 
+ISNULL( Fecha_radicacion__c ) 
+
+))</errorConditionFormula>
+        <errorMessage>RAD-060. Si el Tipo de Trámite es una solicitud de crédito debe diligenciar la sección de Información del inmueble a financiar.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R061_No_modificar_el_consecutivo_solicit</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISCHANGED( Solicitud_de_credito__c )</errorConditionFormula>
+        <errorDisplayField>Solicitud_de_credito__c</errorDisplayField>
+        <errorMessage>RAD-061. No modificar el consecutivo de la solicitud.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R062_Valida_campos_de_la_radicacion</fullName>
+        <active>true</active>
+        <description>La radicación solamente se puede modificar cuando la solicitud está en nueva solicitud, Devuelta, Aplazada, Reproceso, Reproceso devuelto, y carta definitiva no generada.</description>
+        <errorConditionFormula>AND(
+
+$Profile.Id= &quot;00eo0000000uvB5&quot;,
+$Profile.Id= &quot;00eo0000000f7LO&quot;,
+$Profile.Id= &quot;00eo00000013vGj&quot;,
+NOT ISPICKVAL( Solicitud_de_credito__r.Estado_de_la_solicitud__c , &quot;Nueva Solicitud&quot;),
+NOT ISPICKVAL( Solicitud_de_credito__r.Estado_de_la_solicitud__c , &quot;Devuelta&quot;),
+NOT ISPICKVAL( Solicitud_de_credito__r.Estado_de_la_solicitud__c , &quot;Aplazada&quot;),
+NOT ISPICKVAL( Solicitud_de_credito__r.Estado_de_la_solicitud__c , &quot;Reproceso&quot;),
+NOT ISPICKVAL( Solicitud_de_credito__r.Estado_de_la_solicitud__c , &quot;Reproceso devuelto&quot;),
+NOT ISPICKVAL( Solicitud_de_credito__r.Estado_de_la_solicitud__c , &quot;Carta definitiva no generada&quot;),
+
+OR(
+AND(ISCHANGED(Ciudad__c )),
+AND(ISCHANGED(Cliente__c )),
+AND(ISCHANGED(Proyecto_que_recibe_la_solicitud__c )),
+AND(ISCHANGED(Tipo_de_tramite__c )),
+AND(ISCHANGED(Zona_ubicacion__c )),
+AND(ISCHANGED(Nivel_de_educacion__c )),
+AND(ISCHANGED(Tipo_de_vivienda__c )),
+AND(ISCHANGED(Antiguedad_en_la_vivienda_actual_en_ano__c )),
+AND(ISCHANGED(Direccion_residencia__c )),
+AND(ISCHANGED(Telefono_residencia__c )),
+AND(ISCHANGED(Celular__c)),
+AND(ISCHANGED(Ciudad_de_residencia__c )),
+AND(ISCHANGED(Estrato__c )),
+AND(ISCHANGED(Direccion_oficina_deudor__c )),
+AND(ISCHANGED(Telefono_oficina__c )),
+AND(ISCHANGED(Extension__c )),
+AND(ISCHANGED(Fax_oficina__c)),
+AND(ISCHANGED(Ciudad_laboral__c )),
+AND(ISCHANGED(Nombre_arrendador__c )),
+AND(ISCHANGED(Telefono_arrendador_1__c )),
+AND(ISCHANGED(Telefono_arrendador_2__c )),
+AND(ISCHANGED(Email__c )),
+AND(ISCHANGED(Nacional_turista_de_algun_pais_miembro__c )),
+AND(ISCHANGED(Direccion_ciudad_otro__c )),
+AND(ISCHANGED(Es_ud_apoderado__c )),
+AND(ISCHANGED(Nombres_y_apellidos__c )),
+AND(ISCHANGED(Es_victima_segun_ley_1448_de_2011__c )),
+AND(ISCHANGED(Inscrito_en_el_Registro_nico_de_V_ctima__c )),
+AND(ISCHANGED(Es_ciudadano_o_residente_de_EEUU__c )),
+AND(ISCHANGED(Es_nacido_en_los_EEUU__c )),
+AND(ISCHANGED(Es_hijo_de_padres_EEUU_Extranjeros__c )),
+AND(ISCHANGED(Direccion_envio_de_correspondencia__c )),
+AND(ISCHANGED(Ocupacion_u_oficio_principal__c )),
+AND(ISCHANGED(Cual_es_su_principal_actividad_economica__c )),
+AND(ISCHANGED(Profesion_u_oficio__c )),
+AND(ISCHANGED(Tiempo_de_experiencia_en_anos__c )),
+AND(ISCHANGED(Caja_compensacion__c )),
+AND(ISCHANGED(Tipo_de_contrato__c )),
+AND(ISCHANGED(ARP__c )),
+AND(ISCHANGED(EPS__c )),
+AND(ISCHANGED(Nombre_entidad_empleadora_o_negocio__c )),
+AND(ISCHANGED(Direccion_de_la_empresa_Deudor__c )),
+AND(ISCHANGED(Ciudad_Laboral_Actividad_Economica__c )),
+AND(ISCHANGED(Telefono_Actividad_economica__c )),
+AND(ISCHANGED(Cargo_actual__c )),
+AND(ISCHANGED(Antiguedad_en_meses__c )),
+AND(ISCHANGED(Nombre_jefe__c )),
+AND(ISCHANGED(Maneja_recursos_publicos__c )),
+AND(ISCHANGED(Ejerce_algun_grado_de_poder_publico__c )),
+AND(ISCHANGED(Especifique__c )),
+AND(ISCHANGED(Anos_que_lleva_cotizados_en_pensiones__c )),
+AND(ISCHANGED(Goza_de_reconocimiento_publico__c )),
+AND(ISCHANGED(Salario_ingreso_mensual__c )),
+AND(ISCHANGED(Arriendos__c )),
+AND(ISCHANGED(Rentas__c )),
+AND(ISCHANGED(Subsidios__c )),
+AND(ISCHANGED(Ingresos_no_operacionales_de_otra_activ__c )),
+AND(ISCHANGED(Total_ingresos_Deudor__c )),
+AND(ISCHANGED(Descripcion_otros_ingresos__c )),
+AND(ISCHANGED(Total_activos__c )),
+AND(ISCHANGED(Gastos_financieros__c )),
+AND(ISCHANGED(Arriendo_egresos__c )),
+AND(ISCHANGED(Servicios_publicos__c )),
+AND(ISCHANGED(Educacion__c )),
+AND(ISCHANGED(Gastos_personales__c )),
+AND(ISCHANGED(Otros_egresos__c )),
+AND(ISCHANGED(Total_egresos__c )),
+AND(ISCHANGED(Descripcion_otros_egresos__c ))
+))</errorConditionFormula>
+        <errorMessage>RAD-062. No puede modificar el formato de radicación si no está en los estados de la solicitud :Nueva solicitud, Devuelta, Reproceso, Reproceso devuelto,Aplazada o Carta definitiva no generada .</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R063_Valida_el_propietario_del_registro</fullName>
+        <active>true</active>
+        <description>Valida que el propietario de la radicación sea el mismo que el de la solicitud.</description>
+        <errorConditionFormula>Solicitud_de_credito__r.OwnerId  &lt;&gt;  $User.Id &amp;&amp;
+
+$Profile.Id &lt;&gt; &quot;00eo0000000uvB5&quot; &amp;&amp;
+$Profile.Id &lt;&gt; &quot;00eo0000000TqzW&quot; &amp;&amp; 
+$Profile.Id &lt;&gt; &quot;00eo0000000g2vT&quot; &amp;&amp; 
+$Profile.Id &lt;&gt; &quot;00eo0000000TUb7&quot; &amp;&amp; 
+$Profile.Id &lt;&gt; &quot;00eo0000000f645&quot; &amp;&amp;
+$Profile.Id &lt;&gt; &quot;00eo0000000PswQ&quot; &amp;&amp;
+$Profile.Id &lt;&gt; &quot;00eo0000000f7LO&quot; &amp;&amp;
+$Profile.Id &lt;&gt; &quot;00eo00000013vGj&quot; &amp;&amp;
+$Profile.Id &lt;&gt; &quot;00eo0000000f7LO&quot; &amp;&amp;
+$Profile.Id &lt;&gt; &quot;00eo0000000TqzW&quot;</errorConditionFormula>
+        <errorMessage>RAD-063. La radicación de crédito solamente puede ser creada o modificada por el propietario de la cuenta.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R064_Valida_telefono_act_economica</fullName>
+        <active>true</active>
+        <description>Valida que el teléfono de la empresa donde trabaja el cliente deudor sea solamente numérico.</description>
+        <errorConditionFormula>AND(
+NOT ISBLANK(Telefono_Actividad_economica__c),
+OR( 
+NOT ISNUMBER(Telefono_Actividad_economica__c),
+LEN(Telefono_Actividad_economica__c) &lt; 7
+)
+)</errorConditionFormula>
+        <errorDisplayField>Telefono_Actividad_economica__c</errorDisplayField>
+        <errorMessage>RAD-064. El campo debe tener mínimo 7 dígitos sin espacios. No incluir guiones ni paréntesis.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R065_Antiguedad_en_meses_menor_a_3</fullName>
+        <active>true</active>
+        <description>Valida que la la antigüedad en meses del cliente deudor no sea menor a 3.</description>
+        <errorConditionFormula>Antiguedad_en_meses__c  &lt; 3</errorConditionFormula>
+        <errorDisplayField>Antiguedad_en_meses__c</errorDisplayField>
+        <errorMessage>RAD-065. El cliente no puede tener una antigüedad menor a tres (3) meses.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R066_Valida_direccion_de_la_empresa</fullName>
+        <active>true</active>
+        <description>Valida que no se ingreses caracteres no permitidos.</description>
+        <errorConditionFormula>AND(
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-02-24&quot;),
+
+OR( 
+
+( CONTAINS(Direccion_de_la_empresa_Deudor__c, &quot;°&quot;)) , 
+( CONTAINS(Direccion_de_la_empresa_Deudor__c, &quot;_&quot;)) , 
+( CONTAINS(Direccion_de_la_empresa_Deudor__c, &quot;¬&quot;)) , 
+( CONTAINS(Direccion_de_la_empresa_Deudor__c, &quot;)&quot;)) , 
+( CONTAINS(Direccion_de_la_empresa_Deudor__c, &quot;(&quot;)) , 
+( CONTAINS(Direccion_de_la_empresa_Deudor__c, &quot;~&quot;)) , 
+( CONTAINS(Direccion_de_la_empresa_Deudor__c, &quot;`&quot;)) 
+))</errorConditionFormula>
+        <errorDisplayField>Direccion_de_la_empresa_Deudor__c</errorDisplayField>
+        <errorMessage>RAD-066. Hay caracteres no permitidos en este campo. Solamente se pueden ingresar el símbolo numeral (#), guión al medio (-).</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R067_Campos_obligatorios_cuan_CD1_aporta</fullName>
+        <active>true</active>
+        <description>Valida que los campos indicados estén diligenciados cuando el codeudor 1 aporte ingresos.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;,
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;,
+Aporta_Ingresos_Codeudor_1__c = &quot;Si&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (TEXT(Nacionalidad_codeudor1__c)),
+ISBLANK (TEXT(Nivel_de_educacion_codeudor1__c)),
+ISBLANK (TEXT(Ocupacion_u_oficio_principal_codeudor1__c )),
+ISBLANK (No_personas_a_cargo_codeudor1__c),
+ISBLANK (Profesion_o_actividad_codeudor1__c),
+ISBLANK (Anos_de_experiencia__c),
+ISBLANK (TEXT(Ocupacion_u_oficio_principal_codeudor1__c)),
+ISBLANK (Nombre_de_la_empresa_codeudor1__c),
+ISBLANK (Cargo_codeudor1__c),
+ISBLANK (Direccion_oficina_codeudor1__c),
+ISBLANK (Telefono_de_la_oficina_codeudor1__c),
+ISBLANK (Ciudad_codeudor1__c),
+ISBLANK (TEXT(Direccion_envio_codeudor1__c)),
+ISBLANK (TEXT(Es_ciudadano_o_residente_codeudor1__c)),
+ISBLANK (Parentesco_con_el_primer_codeudor1__c)
+
+
+))</errorConditionFormula>
+        <errorMessage>RAD-067. Si el Codeudor 1 aporta ingresos debe diligenciar toda la información de la sección 7.Información del segundo solicitante - Codeudor 1 (En caso de aplicar)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R068_Valida_info_financiera_CD1_aportant</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos indicados cuando el codeudor 1 aporta ingresos.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;, 
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;, 
+Aporta_Ingresos_Codeudor_1__c = &quot;Si&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (Salario_ingreso_mensual_codeudor1__c),
+ISBLANK (Arriendos_codeudor1__c),
+ISBLANK (Ingresos_no_operacionales_codeudor1__c),
+ISBLANK (Descripcion_otros_ingresos_codeudor1__c)
+))</errorConditionFormula>
+        <errorMessage>RAD-068. Si el Codeudor 1 aporta ingresos debe diligenciar toda la información de la sección 8.Información financiera del codeudor 1 (En caso de aplicar)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R069_Valida_transacciones_codeudor_1</fullName>
+        <active>true</active>
+        <description>Valida que cuando el codeudor 1 aporte ingresos seleccionen si el cliente realiza o no transacciones en moneda extranjera.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;,
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;,
+Aporta_Ingresos_Codeudor_1__c = &quot;Si&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (TEXT(Realiza_operaciones_de_moneda_codeudor1__c))
+))</errorConditionFormula>
+        <errorDisplayField>Realiza_operaciones_de_moneda_codeudor1__c</errorDisplayField>
+        <errorMessage>RAD-069. Si el codeudor 1 aporta ingresos debe diligenciar este campo.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R070_Valida_infor_transacc_CD1_aportante</fullName>
+        <active>true</active>
+        <description>Valida que cuando el codeudor 1 realice transacciones en moneda extranjera se diligencien los campos de toda la sección.</description>
+        <errorConditionFormula>AND(
+Aporta_Ingresos_Codeudor_1__c = &quot;Si&quot;,
+ISPICKVAL(Realiza_operaciones_de_moneda_codeudor1__c, &quot;Si&quot;),
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (TEXT(Tipo_de_operaciones_codeudor1__c )),
+ISBLANK (Cual_Codeudor1__c),
+ISBLANK (Tipo_de_producto_codeudor1__c),
+ISBLANK (Identificacion_del_producto_codeudor1__c),
+ISBLANK (Entidad_codeudor1__c),
+ISBLANK (Ciudad_transacciones1__c),
+ISBLANK (Monto_codeudor1__c),
+ISBLANK (Pais_codeudor1__c),
+ISBLANK (Moneda_codeudor1__c),
+ISBLANK (TEXT(Registro_cambiario_codeudor1__c))
+
+))</errorConditionFormula>
+        <errorMessage>RAD-070. Si el codeudor 1 realiza operaciones con moneda extranjera, debe diligenciar toda la información de la sección: 9.Transacciones en moneda extranjera del codeudor 1.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R071_Valida_referencias_codeudor_2</fullName>
+        <active>true</active>
+        <description>Valida que si el codeduor 1 aporta ingresos, diligencien la información de las referencias personales y familiares.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;, 
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;, 
+Aporta_Ingresos_Codeudor_2__c = &quot;Si&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (Personal_Nombre_y_Apellido_codeudor2__c),
+ISBLANK (TEXT(Parentesco_personal_codeudor2__c)), 
+ISBLANK (Direccion_personal_codeudor2__c),
+ISBLANK (Ciudad_personal_codeudor2__c),
+ISBLANK (Familiar_Nombre_y_Apellido_codeudor2__c),
+ISBLANK (Direccion_familiar_codeudor2__c),
+ISBLANK (Ciudad_familiar_codeudor2__c),
+ISBLANK (Telefono_familiar_codeudor2__c)
+
+))</errorConditionFormula>
+        <errorMessage>RAD-071. Si el codeudor 2 aporta ingresos debe diligenciar la información de las referencias personales y  familiares..</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R072_Valida_info_financiera_CD2_aportant</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos indicados cuando el codeudor 1 aporta ingresos.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;, 
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;, 
+Aporta_Ingresos_Codeudor_2__c = &quot;Si&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (Salario_ingreso_mensual_codeudor2__c),
+ISBLANK (Arriendos_codeudor2__c),
+ISBLANK (Ingresos_no_operacionales_codeudor2__c),
+ISBLANK (Descripcion_otros_ingresos_codeudor2__c)
+
+))</errorConditionFormula>
+        <errorMessage>RAD-072. Si el Codeudor 2 aporta ingresos debe diligenciar toda la información de la sección 12.Información financiera del Codeudor 2 (En caso de aplicar)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R073_Valida_transacciones_codeudor_2</fullName>
+        <active>true</active>
+        <description>Si el codeudor 2 aporta ingresos, debe indicar si realiza operaciones con moneda extranjera.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;,
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;,
+Aporta_Ingresos_Codeudor_2__c = &quot;Si&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;),
+ISBLANK (TEXT(Realiza_operaciones_de_moneda_codeudor2__c))
+)</errorConditionFormula>
+        <errorDisplayField>Realiza_operaciones_de_moneda_codeudor2__c</errorDisplayField>
+        <errorMessage>RAD-073. Si el codeudor 2 aporta ingresos debe diligenciar este campo.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R074_Campos_obligatorios_cuan_CD3_aporta</fullName>
+        <active>true</active>
+        <description>Valida que los campos indicados estén diligenciados cuando el codeudor 1 aporte ingresos.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;, 
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;, 
+Aporta_Ingresos_Codeudor_3__c = &quot;Si&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (TEXT(Nacionalidad_codeudor3__c)),
+ISBLANK (TEXT(Nivel_de_educacion_codeudor3__c)),
+ISBLANK (TEXT(Ocupacion_u_oficio_principal_codeudor3__c )),
+ISBLANK (No_personas_a_cargo_codeudor3__c),
+ISBLANK (Profesion_o_actividad_codeudor3__c),
+ISBLANK (Anos_de_experiencia__c),
+ISBLANK (TEXT(Ocupacion_u_oficio_principal_codeudor3__c)),
+ISBLANK (Nombre_de_la_empresa_codeudor3__c),
+ISBLANK (Cargo_codeudor3__c),
+ISBLANK (Direccion_oficina_codeudor3__c),
+ISBLANK (Telefono_de_la_oficina_codeudor3__c),
+ISBLANK (Ciudad_codeudor3__c),
+ISBLANK (TEXT(Direccion_envio_codeudor3__c)),
+ISBLANK (TEXT(Es_ciudadano_o_residente_codeudor3__c)),
+ISBLANK (Parentesco_con_el_primer_codeudor3__c)
+
+))</errorConditionFormula>
+        <errorMessage>RAD-074. Si el Codeudor 3 aporta ingresos debe diligenciar toda la información de la sección 15.Información del cuarto solicitante - Codeudor 3 (En caso de aplicar)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R075_Valida_transacciones_codeudor_3</fullName>
+        <active>true</active>
+        <description>Si el codeudor 3 aporta ingresos, se debe especificar si realiza operaciones con moneda extranjera.</description>
+        <errorConditionFormula>AND( 
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;, 
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;,
+Aporta_Ingresos_Codeudor_3__c = &quot;Si&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;),
+ISBLANK (TEXT(Realiza_operaciones_de_moneda_codeudor3__c))
+)</errorConditionFormula>
+        <errorDisplayField>Realiza_operaciones_de_moneda_codeudor3__c</errorDisplayField>
+        <errorMessage>RAD-075. Si el codeudor 3 aporta ingresos debe diligenciar este campo.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R076_Valida_infor_transacc_CD3_aportante</fullName>
+        <active>true</active>
+        <description>Si el codeudor 3 aporta ingresos, debe diligenciar toda la sección de transacciones financieras para el codeudor 3.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;, 
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;, 
+Aporta_Ingresos_Codeudor_3__c = &quot;Si&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;3017-03-01&quot;) ,
+
+OR(
+ISPICKVAL(Realiza_operaciones_de_moneda_codeudor3__c, &quot;Si&quot;),
+ISBLANK (TEXT(Tipo_de_operaciones_codeudor3__c )),
+ISBLANK (Cual_Codeudor3__c),
+ISBLANK (Tipo_de_producto_codeudor3__c),
+ISBLANK (Identificacion_del_producto_codeudor3__c),
+ISBLANK (Entidad_codeudor3__c),
+ISBLANK (Ciudad_transacciones3__c),
+ISBLANK (Monto_codeudor3__c),
+ISBLANK (Pais_codeudor3__c),
+ISBLANK (Moneda_codeudor3__c),
+ISBLANK (TEXT(Registro_cambiario_codeudor3__c))
+
+))</errorConditionFormula>
+        <errorMessage>RAD-076. Si el codeudor 3 realiza operaciones con moneda extranjera, debe diligenciar toda la información de la sección: 17.Transacciones en moneda extranjera del Codeudor 3 (En caso de aplicar)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R077_Valida_info_financiera_CD3_aportant</fullName>
+        <active>true</active>
+        <description>Valida que se diligencien los campos indicados cuando el codeudor 1 aporta ingresos.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;, 
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;, 
+Aporta_Ingresos_Codeudor_3__c = &quot;Si&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (Salario_ingreso_mensual_codeudor3__c),
+ISBLANK (Arriendos_codeudor3__c),
+ISBLANK (Ingresos_no_operacionales_codeudor3__c),
+ISBLANK (Descripcion_otros_ingresos_codeudor3__c)
+
+))</errorConditionFormula>
+        <errorMessage>RAD-077. Si el Codeudor 3 aporta ingresos debe diligenciar toda la información de la sección 16.Información financiera del Codeudor 3 (En caso de aplicar)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R078_Valida_referencias_codeudor_3</fullName>
+        <active>true</active>
+        <description>Valida que si el codeduor 1 aporta ingresos, diligencien la información de las referencias personales y familiares.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;, 
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;, 
+Aporta_Ingresos_Codeudor_3__c = &quot;Si&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (Personal_Nombre_y_Apellido_codeudor3__c),
+ISBLANK (TEXT(Parentesco_personal_codeudor3__c)),
+ISBLANK (Direccion_personal_codeudor3__c),
+ISBLANK (Ciudad_personal_codeudor3__c),
+ISBLANK (Familiar_Nombre_y_Apellido_codeudor3__c),
+ISBLANK (Direccion__c),
+ISBLANK (Ciudad_familiar_codeudor3__c),
+ISBLANK (Telefono_familiar_codeudor3__c)
+
+))</errorConditionFormula>
+        <errorMessage>RAD-078. Si el codeudor 3 aporta ingresos debe diligenciar la información de las referencias personales y  familiares.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R079_Campos_obligatorios_CD1_no_aporta</fullName>
+        <active>true</active>
+        <description>Valida que los campos indicados estén diligenciados cuando el codeudor 1 no aporta ingresos.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;, 
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;, 
+Aporta_Ingresos_Codeudor_1__c = &quot;No&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (TEXT(Informacion_de_los_solicitantes__c)),
+ISBLANK (TEXT(Nacionalidad_codeudor1__c)),
+ISBLANK (Parentesco_con_el_primer_codeudor1__c),
+ISBLANK (TEXT(Nivel_de_educacion_codeudor1__c))
+
+))</errorConditionFormula>
+        <errorMessage>RAD-079. Si el Codeudor 1 no aporta ingresos deben estar diligenciados los campos: Información de los solicitantes, tipo y número de documento, lugar y fecha de nacimiento y expedición, nacionalidad, nivel de educación y parentesco.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R080_Campos_obligatorios_CD2_no_aporta</fullName>
+        <active>true</active>
+        <description>Valida que los campos indicados estén diligenciados cuando el codeudor 1 no aporta ingresos.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;, 
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;, 
+Aporta_Ingresos_Codeudor_2__c = &quot;No&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (TEXT(Informacion_de_los_solicit_codeudor2__c)),
+ISBLANK (TEXT(Nacionalidad_codeudor2__c)),
+ISBLANK (TEXT(Nivel_de_educacion_codeduor2__c))
+
+))</errorConditionFormula>
+        <errorMessage>RAD-080. Si el Codeudor 2 no aporta ingresa deben estar diligenciados los campos: Información de los solicitantes, tipo y número de documento, lugar y fecha de nacimiento y expedición, nacionalidad y nivel de educación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R081_Campos_obligatorios_CD3_no_aporta</fullName>
+        <active>true</active>
+        <description>Valida que los campos indicados estén diligenciados cuando el codeudor 1 no aporta ingresos.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;, 
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;, 
+Aporta_Ingresos_Codeudor_3__c = &quot;No&quot;,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (TEXT(Informacion_de_los_solicitant_codeudor3__c)),
+ISBLANK (TEXT(Nacionalidad_codeudor3__c)),
+ISBLANK (TEXT(Nivel_de_educacion_codeudor3__c))
+
+))</errorConditionFormula>
+        <errorMessage>RAD-081. Si el Codeudor 3 no aporta ingresa deben estar diligenciados los campos: Información de los solicitantes, tipo y número de documento, lugar y fecha de nacimiento y expedición, nacionalidad y nivel de educación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R082_Valida_fecha_de_entrega_y_radicacin</fullName>
+        <active>true</active>
+        <description>Valida que la fecha de radicación sea menor a la fecha de entrega del inmueble.</description>
+        <errorConditionFormula>Fecha_radicacion__c &gt;= Fecha_estimada_entrega__c &amp;&amp;
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;)</errorConditionFormula>
+        <errorDisplayField>Fecha_estimada_entrega__c</errorDisplayField>
+        <errorMessage>RAD-082. La fecha estimada de entrega debe ser mayor a la fecha de radicación.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R083_Valida_NIT_para_empleados</fullName>
+        <active>true</active>
+        <description>Valida que cuando un cliente es empleado, se debe diligenciar el NIT de la empresa en donde trabaja.</description>
+        <errorConditionFormula>AND(
+$Profile.Id &lt;&gt; &apos;00eo0000000TUb1&apos;, 
+$Profile.Id &lt;&gt; &apos;00eo0000000uvB5&apos;, 
+ISPICKVAL( Ocupacion_u_oficio_principal__c , &quot;Empleado&quot;) ,
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-05-12&quot;) ,
+
+OR(
+ISBLANK ( NIT_de_la_empresa__c )
+
+))</errorConditionFormula>
+        <errorMessage>RAD-083. Cuando el cliente es empleado, debe diligenciar el NIT de la empresa de donde trabaja.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R084_Valida_infor_transacc_CD2_aportante</fullName>
+        <active>false</active>
+        <description>Valida que cuando el codeudor 2 aporte ingresos  y</description>
+        <errorConditionFormula>AND(
+Aporta_ingresos_codeudor_2__c = &quot;Si&quot;,
+ISPICKVAL(Realiza_operaciones_de_moneda_codeudor2__c, &quot;Si&quot;),
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2017-03-01&quot;) ,
+
+OR(
+ISBLANK (TEXT(Tipo_de_operaciones_codeudor2__c )),
+ISBLANK (Cual_Codeudor2__c),
+ISBLANK (Tipo_de_producto_codeudor2__c),
+ISBLANK (Identificacion_del_producto_codeudor2__c),
+ISBLANK (Entidad_codeudor2__c),
+ISBLANK (Ciudad_transacciones2__c),
+ISBLANK (Monto_codeudor2__c),
+ISBLANK (Pais_codeudor2__c),
+ISBLANK (Moneda_codeudor2__c),
+ISBLANK (TEXT(Registro_cambiario_codeudor2__c))
+
+))</errorConditionFormula>
+        <errorMessage>RAD-084. Si el codeudor 2 realiza operaciones con moneda extranjera, debe diligenciar toda la información de la sección: 13.Transacciones en moneda extranjera del Codeudor 2 (En caso de aplicar).</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>R085_Campos_obligatorios_cuan_CD2_aporta</fullName>
+        <active>false</active>
+        <description>Valida que los campos indicados estén diligenciados cuando el codeudor 1 aporte ingresos.</description>
+        <errorConditionFormula>AND( 
+Aporta_ingresos_codeudor_2__c = &quot;Si&quot;, 
+Datevalue(CreatedDate) &gt;=Datevalue(&quot;2027-03-02&quot;) , 
+
+OR( 
+ISBLANK (TEXT(Nacionalidad_codeudor2__c)), 
+ISBLANK (TEXT(Ocupacion_u_oficio_principal_codeudor2__c )), 
+ISBLANK (No_personas_a_cargo_codeudor2__c), 
+ISBLANK (Profesion_o_actividad_codeudor2__c), 
+ISBLANK (Anos_de_experiencia__c), 
+ISBLANK (TEXT(Ocupacion_u_oficio_principal_codeudor2__c)), 
+ISBLANK (Nombre_de_la_empresa_codeudor2__c), 
+ISBLANK (Direccion_oficina_codeudor2__c), 
+ISBLANK (Telefono_de_la_oficina_codeudor2__c), 
+ISBLANK (Ciudad_codeudor2__c), 
+ISBLANK (TEXT(Direccion_envio_codeudor2__c)), 
+ISBLANK (TEXT(Es_ciudadano_o_residente_codeudor2__c)), 
+ISBLANK (Parentesco_con_el_primer_codeudor2__c) 
+
+
+))</errorConditionFormula>
+        <errorMessage>RAD-085. Si el Codeudor 2 aporta ingresos debe diligenciar toda la información de la sección 11.Información del segundo solicitante - Codeudor 2 (En caso de aplicar)</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Nuevo</fullName>
+        <availability>online</availability>
+        <description>Botón para actualizar las lupas desde la oportunidad</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Nuevo</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/a01/e?CF00No0000009InGV={!Solicitud_de_credito__c.Name}&amp;
+ CF00No0000009InGV_lkid={!Solicitud_de_credito__c.Id}&amp;
+CF00No0000009InBy={!Solicitud_de_credito__c.Cliente_deudor__c}&amp;
+CF00No0000009InBy_lkid={!Solicitud_de_credito__c.Cliente_deudorId__c}&amp;
+CF00No0000009InBz={!Solicitud_de_credito__c.Codeudor_1__c}&amp;
+CF00No0000009InBz_lkid={!Solicitud_de_credito__c.Codeudor_1Id__c}&amp;
+CF00No0000009InC0={!Solicitud_de_credito__c.Codeudor_2__c}&amp;
+CF00No0000009InC0_lkid={!Solicitud_de_credito__c.Codeudor_2Id__c}&amp;
+CF00No0000009InC1={!Solicitud_de_credito__c.Codeudor_3__c}&amp;
+CF00No0000009InC1_lkid={!Solicitud_de_credito__c.Codeudor_3Id__c}</url>
+    </webLinks>
 </CustomObject>

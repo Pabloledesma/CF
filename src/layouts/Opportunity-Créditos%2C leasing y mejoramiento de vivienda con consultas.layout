@@ -38,6 +38,18 @@
                 <behavior>Readonly</behavior>
                 <field>Tipo_de_vivienda_proyecto__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Aporta_Ingresos_Codeudor_1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Aporta_Ingresos_Codeudor_2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Aporta_Ingresos_Codeudor_3__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

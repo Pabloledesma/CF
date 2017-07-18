@@ -5,6 +5,7 @@ public with sharing class CalificacionCtrl {
     Transient public Calificacion__c calificacion {get; set;}
     Transient public List<Calificacion__c> lstCalificaciones { get; set; } 
     Transient public Double porcentajeDeUsoTc { get; set; }
+    Transient public Double capacidadDePago { get; set; }
     
     public CalificacionCtrl(ApexPages.StandardController stdController){
         System.debug('CalificacionCtrl ->' + stdController.getRecord());
@@ -31,14 +32,34 @@ public with sharing class CalificacionCtrl {
              		N_de_creditos_vigentes__c,
              		Credito_solicitado__c,
              		Subsidio__c,
-             		Valor_total_del_Inmueble__c
-             		
+             		Valor_total_del_Inmueble__c,
+             		Radicacion__c
                 from 
                     Informacion_comite__c
                 where Id = :this.idInfoComite
             ];
             
             return ic;
+    }
+
+    /**
+     * Obtiene la capacidad de pago
+     *
+     * @param
+     * @return
+     **/
+    public void getCapacidadDePago()
+    {
+        if(this.infoComite.Radicacion__c != null){
+            Informacion_Financiera__c infoF = [
+                    SELECT
+                            Ingreso_neto_total__c,
+                            Gastos_personales__c
+                    FROM
+                            Informacion_financiera__c
+                    WHERE Radicacion_de_credito__c = :this.infoComite.Radicacion__c
+            ];
+        }
     }
     
     /**

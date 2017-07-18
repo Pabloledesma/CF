@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Permite identificar la información de proyectos que pertenecen a cada constructora</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Area_promedio_de_vivienda__c</fullName>
         <externalId>false</externalId>
@@ -933,6 +986,117 @@
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
+    <gender>Masculine</gender>
+    <label>Proyecto</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Estado_de_aprobacion_Riegos__c</columns>
+        <columns>NAME</columns>
+        <columns>Constructora__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Solicitud_al_Gerente_Comercial__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Todos</label>
+    </listViews>
+    <listViews>
+        <fullName>Proyectos_Rechazados</fullName>
+        <columns>Consecutivo__c</columns>
+        <columns>NAME</columns>
+        <columns>Ciudad__c</columns>
+        <columns>Propietario__c</columns>
+        <columns>Estado_de_aprobacion_Riegos__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Estado_de_aprobacion_Riegos__c</field>
+            <operation>equals</operation>
+            <value>Rechazado</value>
+        </filters>
+        <label>Proyectos rechazados</label>
+    </listViews>
+    <listViews>
+        <fullName>Proyectos_VIP</fullName>
+        <columns>NAME</columns>
+        <columns>Constructora__c</columns>
+        <columns>Ciudad__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Propietario__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Vivienda_vip__c</field>
+            <operation>equals</operation>
+            <value>Si</value>
+        </filters>
+        <label>Proyectos VIP</label>
+    </listViews>
+    <listViews>
+        <fullName>Proyectos_VIPA</fullName>
+        <columns>NAME</columns>
+        <columns>Constructora__c</columns>
+        <columns>Ciudad__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Propietario__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Vivienda_vipa__c</field>
+            <operation>equals</operation>
+            <value>Si</value>
+        </filters>
+        <label>Proyectos VIPA</label>
+    </listViews>
+    <listViews>
+        <fullName>Proyectos_VIS</fullName>
+        <columns>NAME</columns>
+        <columns>Constructora__c</columns>
+        <columns>Ciudad__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Propietario__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Vivienda_vis__c</field>
+            <operation>equals</operation>
+            <value>Si</value>
+        </filters>
+        <label>Proyectos VIS</label>
+    </listViews>
+    <listViews>
+        <fullName>Proyectos_aprobados</fullName>
+        <columns>NAME</columns>
+        <columns>Estado_de_aprobacion_Riegos__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Estado_de_aprobacion_Riegos__c</field>
+            <operation>equals</operation>
+            <value>Aprobado</value>
+        </filters>
+        <label>Proyectos aprobados</label>
+    </listViews>
+    <listViews>
+        <fullName>Proyectos_pendientes_por_aprobar</fullName>
+        <columns>Constructora__c</columns>
+        <columns>NAME</columns>
+        <columns>Estado_de_aprobacion_Riegos__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Ciudad__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Estado_de_aprobacion_Riegos__c</field>
+            <operation>equals</operation>
+            <value>Solicitud de aprobación</value>
+        </filters>
+        <label>Proyectos pendientes por aprobar</label>
+    </listViews>
+    <nameField>
+        <label>Nombre de Proyecto</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Proyectos</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Una_solicitud_aprobada_no_puede_ser_modi</fullName>
         <active>false</active>
@@ -1142,4 +1306,5 @@ OR (
 )</errorConditionFormula>
         <errorMessage>PROY-05 Debe seleccionar la opción &quot;SI&quot; en alguna de las opciones de vivienda vipa, vivienda vip, vivienda vis o vivienda no vis</errorMessage>
     </validationRules>
+    <visibility>Public</visibility>
 </CustomObject>

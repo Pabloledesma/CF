@@ -43,6 +43,10 @@
                 <behavior>Edit</behavior>
                 <field>Lugar_de_nacimiento__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Aporta_ingresos__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -106,11 +110,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Ocupacion_u_oficio_principal__c</field>
+                <field>Cargo_actual__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Cargo_actual__c</field>
+                <field>Profesion_o_Actividad__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

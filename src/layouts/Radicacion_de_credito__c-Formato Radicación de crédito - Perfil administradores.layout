@@ -762,8 +762,8 @@
                 <field>Codeudor_1__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Aporta_ingresos_codeudor_1__c</field>
+                <behavior>Edit</behavior>
+                <field>Aporta_Ingresos_Codeudor_1__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -1158,8 +1158,8 @@
                 <field>Codeudor_2__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Aporta_ingresos_codeudor_2__c</field>
+                <behavior>Edit</behavior>
+                <field>Aporta_Ingresos_Codeudor_2__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -1546,8 +1546,8 @@
                 <field>Codeudor_3__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Aporta_ingresos_codeudor_3__c</field>
+                <behavior>Edit</behavior>
+                <field>Aporta_Ingresos_Codeudor_3__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

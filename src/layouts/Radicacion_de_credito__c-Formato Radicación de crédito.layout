@@ -44,6 +44,18 @@
                 <behavior>Edit</behavior>
                 <field>NIT_de_la_empresa__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Aporta_Ingresos_Codeudor_1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Aporta_Ingresos_Codeudor_2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Aporta_Ingresos_Codeudor_3__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -748,10 +760,6 @@
                 <field>Codeudor_1__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Aporta_ingresos_codeudor_1__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Informacion_de_los_solicitantes__c</field>
             </layoutItems>
@@ -1144,10 +1152,6 @@
                 <field>Codeudor_2__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Aporta_ingresos_codeudor_2__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Informacion_de_los_solicit_codeudor2__c</field>
             </layoutItems>
@@ -1530,10 +1534,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Codeudor_3__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Aporta_ingresos_codeudor_3__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

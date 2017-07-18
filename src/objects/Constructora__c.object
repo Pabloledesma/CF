@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Identifica las constructoras</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Bloqueo_para_desembolso__c</fullName>
         <defaultValue>false</defaultValue>
@@ -728,6 +781,231 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+    <gender>Feminine</gender>
+    <label>Constructora</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Estado_de_aprobacion_Riegos__c</columns>
+        <columns>Solicitud_al_Gerente_Comercial__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>Todos</label>
+    </listViews>
+    <listViews>
+        <fullName>Constructora_por_Zona</fullName>
+        <columns>NAME</columns>
+        <columns>Zona__c</columns>
+        <columns>Estado_de_aprobacion_Riegos__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Constructora por Zona</label>
+    </listViews>
+    <listViews>
+        <fullName>Constructoras_Alrededor_Bogot</fullName>
+        <columns>NAME</columns>
+        <columns>Propietario__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Zona__c</field>
+            <operation>equals</operation>
+            <value>Alrededores de Bogotá</value>
+        </filters>
+        <label>Constructoras Alrededor Bogotá</label>
+    </listViews>
+    <listViews>
+        <fullName>Constructoras_Antioquia</fullName>
+        <columns>NAME</columns>
+        <columns>Propietario__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Zona__c</field>
+            <operation>equals</operation>
+            <value>Antioquia</value>
+        </filters>
+        <label>Constructoras Antioquia</label>
+    </listViews>
+    <listViews>
+        <fullName>Constructoras_Aprobadas</fullName>
+        <columns>NAME</columns>
+        <columns>Estado_de_aprobacion_Riegos__c</columns>
+        <columns>Solicitud_al_Gerente_Comercial__c</columns>
+        <columns>Propietario__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Estado_de_aprobacion_Riegos__c</field>
+            <operation>equals</operation>
+            <value>Aprobado</value>
+        </filters>
+        <label>Constructoras Aprobadas</label>
+    </listViews>
+    <listViews>
+        <fullName>Constructoras_Bloqueadas</fullName>
+        <columns>NAME</columns>
+        <columns>Zona__c</columns>
+        <columns>Propietario__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Bloqueo_para_desembolso__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Constructoras Bloqueadas</label>
+        <sharedTo>
+            <role>Analista_Aplicaciones_y_Procesos_CRM</role>
+            <role>Analista_de_Mercadeo</role>
+            <role>Analista_de_credito</role>
+            <role>Analista_de_operaciones</role>
+            <role>Analista_de_operaciones_Barranquilla</role>
+            <role>Analista_de_operaciones_Bucaramanga</role>
+            <role>Analista_de_operaciones_Cali</role>
+            <role>Analista_de_operaciones_Medellin</role>
+            <role>Analista_de_operaciones_Pereira</role>
+            <role>Auditor</role>
+            <role>Auxiliar_Juridica</role>
+            <role>Auxiliar_control_de_calidad</role>
+            <role>Auxiliar_de_Desembolsos</role>
+            <role>Auxiliar_de_archivo</role>
+            <role>Auxiliar_de_operaciones</role>
+            <role>Auxiliar_de_referenciacion</role>
+            <role>Auxiliar_de_servicio_al_cliente</role>
+            <role>Auxiliar_de_tramites</role>
+            <role>Contador</role>
+            <role>Coordinador_comercial</role>
+            <role>Coordinadora_de_credito</role>
+            <role>Director_de_Cartera</role>
+            <role>Director_de_Operaciones</role>
+            <role>Gerente_Canal_Digital</role>
+            <role>Gerente_de_riesgos</role>
+            <role>Gte_Cial_Barranquilla</role>
+            <role>Gte_Cial_Bogota</role>
+            <role>Gte_Cial_Bucaramanga</role>
+            <role>Gte_Cial_Cali</role>
+            <role>Gte_Cial_Medellin</role>
+            <role>Gte_Cial_Pereira</role>
+            <role>Lider_de_cumplimiento_de_producto</role>
+            <role>Lider_de_cumplimiento_financiero</role>
+            <role>Presidente</role>
+            <role>Secretaria_General</role>
+            <role>Vicepresidente</role>
+            <role>Vicepresidente_comercial</role>
+            <role>Vicepresidente_de_Operaciones_y_Tecnologia</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Constructoras_Bogot</fullName>
+        <columns>NAME</columns>
+        <columns>Propietario__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Zona__c</field>
+            <operation>equals</operation>
+            <value>Bogotá</value>
+        </filters>
+        <label>Constructoras Bogotá</label>
+    </listViews>
+    <listViews>
+        <fullName>Constructoras_Costa_Atl_ntica</fullName>
+        <columns>NAME</columns>
+        <columns>Propietario__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Zona__c</field>
+            <operation>equals</operation>
+            <value>Costa Atlántica</value>
+        </filters>
+        <label>Constructoras Costa Atlántica</label>
+    </listViews>
+    <listViews>
+        <fullName>Constructoras_Eje_Cafetero</fullName>
+        <columns>NAME</columns>
+        <columns>Propietario__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Zona__c</field>
+            <operation>equals</operation>
+            <value>Eje Cafetero</value>
+        </filters>
+        <label>Constructoras Eje Cafetero</label>
+    </listViews>
+    <listViews>
+        <fullName>Constructoras_Santander</fullName>
+        <columns>NAME</columns>
+        <columns>Propietario__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Zona__c</field>
+            <operation>equals</operation>
+            <value>Santander</value>
+        </filters>
+        <label>Constructoras Santander</label>
+    </listViews>
+    <listViews>
+        <fullName>Constructoras_Valle</fullName>
+        <columns>NAME</columns>
+        <columns>Propietario__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Zona__c</field>
+            <operation>equals</operation>
+            <value>Valle</value>
+        </filters>
+        <label>Constructoras Valle</label>
+    </listViews>
+    <listViews>
+        <fullName>Constructoras_pendientes_por_aprobar</fullName>
+        <columns>NAME</columns>
+        <columns>Nit__c</columns>
+        <columns>Solicitud_al_Gerente_Comercial__c</columns>
+        <columns>Estado_de_aprobacion_Riegos__c</columns>
+        <columns>Ciudad__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Estado_de_aprobacion_Riegos__c</field>
+            <operation>equals</operation>
+            <value>Solicitud de aprobación</value>
+        </filters>
+        <label>Constructoras pendientes por aprobar</label>
+    </listViews>
+    <listViews>
+        <fullName>Construtoras_Rechazadas</fullName>
+        <columns>NAME</columns>
+        <columns>Ciudad__c</columns>
+        <columns>Propietario__c</columns>
+        <columns>Estado_de_aprobacion_Riegos__c</columns>
+        <columns>Solicitud_al_Gerente_Comercial__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Estado_de_aprobacion_Riegos__c</field>
+            <operation>equals</operation>
+            <value>Rechazado</value>
+        </filters>
+        <label>Constructoras rechazadas</label>
+    </listViews>
+    <nameField>
+        <label>Nombre de la Constructora</label>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Constructoras</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Una_solicitud_aprobada_no_puede_ser_modi</fullName>
         <active>true</active>
@@ -790,4 +1068,5 @@ ISPICKVAL (  Solicitud_al_Gerente_Comercial__c, &quot;Devuelta&quot;)
         <errorDisplayField>Nit__c</errorDisplayField>
         <errorMessage>CON-03 El campo Nit es solo numérico</errorMessage>
     </validationRules>
+    <visibility>Public</visibility>
 </CustomObject>

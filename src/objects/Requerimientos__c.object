@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Area__c</fullName>
         <externalId>false</externalId>
@@ -1103,6 +1155,163 @@ IF( TEXT(Tipo_de_incidencia__c)=&quot;Bloqueo de usuarios&quot;, &quot;8 Hr labo
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <gender>Masculine</gender>
+    <label>Requerimiento</label>
+    <listViews>
+        <fullName>Mis_requerimientos</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Tipo_de_incidencia__c</columns>
+        <columns>Estado_del_requerimiento__c</columns>
+        <columns>Propietario__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>Mis requerimientos</label>
+    </listViews>
+    <listViews>
+        <fullName>Requerimientos_Abiertos</fullName>
+        <columns>NAME</columns>
+        <columns>Modulo_de_incidencia__c</columns>
+        <columns>Tipo_de_incidencia__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Propietario__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Estado_del_requerimiento__c</field>
+            <operation>equals</operation>
+            <value>Abierto</value>
+        </filters>
+        <label>Requerimientos Abiertos</label>
+        <sharedTo>
+            <roleAndSubordinates>Analista_de_Mercadeo</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_credito</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_operaciones</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_operaciones_Barranquilla</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_operaciones_Bucaramanga</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_operaciones_Cali</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_operaciones_Medellin</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_operaciones_Pereira</roleAndSubordinates>
+            <roleAndSubordinates>Asesor_de_Captacion</roleAndSubordinates>
+            <roleAndSubordinates>Asor_Cial_Barranquilla</roleAndSubordinates>
+            <roleAndSubordinates>Asor_Cial_Bogota</roleAndSubordinates>
+            <roleAndSubordinates>Asor_Cial_Bucaramanga</roleAndSubordinates>
+            <roleAndSubordinates>Asor_Cial_Cali</roleAndSubordinates>
+            <roleAndSubordinates>Asor_Cial_Medellin</roleAndSubordinates>
+            <roleAndSubordinates>Asor_Cial_Pereira</roleAndSubordinates>
+            <roleAndSubordinates>Asor_de_leads</roleAndSubordinates>
+            <roleAndSubordinates>Auditor</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_Juridica</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_control_de_calidad</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_Desembolsos</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_archivo</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_cierre</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_operaciones</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_referenciacion</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_servicio_al_cliente</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_tramites</roleAndSubordinates>
+            <roleAndSubordinates>Contador</roleAndSubordinates>
+            <roleAndSubordinates>Coordinador_comercial</roleAndSubordinates>
+            <roleAndSubordinates>Coordinadora_de_credito</roleAndSubordinates>
+            <roleAndSubordinates>Director_de_Cartera</roleAndSubordinates>
+            <roleAndSubordinates>Director_de_Operaciones</roleAndSubordinates>
+            <roleAndSubordinates>Gerente_Canal_Digital</roleAndSubordinates>
+            <roleAndSubordinates>Gerente_de_riesgos</roleAndSubordinates>
+            <roleAndSubordinates>Gte_Cial_Barranquilla</roleAndSubordinates>
+            <roleAndSubordinates>Gte_Cial_Bogota</roleAndSubordinates>
+            <roleAndSubordinates>Gte_Cial_Bucaramanga</roleAndSubordinates>
+            <roleAndSubordinates>Gte_Cial_Cali</roleAndSubordinates>
+            <roleAndSubordinates>Gte_Cial_Medellin</roleAndSubordinates>
+            <roleAndSubordinates>Gte_Cial_Pereira</roleAndSubordinates>
+            <roleAndSubordinates>Lider_de_cumplimiento_de_producto</roleAndSubordinates>
+            <roleAndSubordinates>Lider_de_cumplimiento_financiero</roleAndSubordinates>
+            <roleAndSubordinates>Presidente</roleAndSubordinates>
+            <roleAndSubordinates>Secretaria_General</roleAndSubordinates>
+            <roleAndSubordinates>Supernumerario</roleAndSubordinates>
+            <roleAndSubordinates>Vicepresidente</roleAndSubordinates>
+            <roleAndSubordinates>Vicepresidente_comercial</roleAndSubordinates>
+            <roleAndSubordinates>Vicepresidente_de_Operaciones_y_Tecnologia</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Requerimientos_Cerrados</fullName>
+        <columns>NAME</columns>
+        <columns>Modulo_de_incidencia__c</columns>
+        <columns>Tipo_de_incidencia__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Estado_del_requerimiento__c</field>
+            <operation>equals</operation>
+            <value>Cerrado</value>
+        </filters>
+        <label>Requerimientos Cerrados</label>
+        <sharedTo>
+            <roleAndSubordinates>Analista_de_Mercadeo</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_credito</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_operaciones</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_operaciones_Barranquilla</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_operaciones_Bucaramanga</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_operaciones_Cali</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_operaciones_Medellin</roleAndSubordinates>
+            <roleAndSubordinates>Analista_de_operaciones_Pereira</roleAndSubordinates>
+            <roleAndSubordinates>Asesor_de_Captacion</roleAndSubordinates>
+            <roleAndSubordinates>Asor_Cial_Barranquilla</roleAndSubordinates>
+            <roleAndSubordinates>Asor_Cial_Bogota</roleAndSubordinates>
+            <roleAndSubordinates>Asor_Cial_Bucaramanga</roleAndSubordinates>
+            <roleAndSubordinates>Asor_Cial_Cali</roleAndSubordinates>
+            <roleAndSubordinates>Asor_Cial_Medellin</roleAndSubordinates>
+            <roleAndSubordinates>Asor_Cial_Pereira</roleAndSubordinates>
+            <roleAndSubordinates>Asor_de_leads</roleAndSubordinates>
+            <roleAndSubordinates>Auditor</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_Juridica</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_control_de_calidad</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_Desembolsos</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_archivo</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_cierre</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_operaciones</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_referenciacion</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_servicio_al_cliente</roleAndSubordinates>
+            <roleAndSubordinates>Auxiliar_de_tramites</roleAndSubordinates>
+            <roleAndSubordinates>Contador</roleAndSubordinates>
+            <roleAndSubordinates>Coordinador_comercial</roleAndSubordinates>
+            <roleAndSubordinates>Coordinadora_de_credito</roleAndSubordinates>
+            <roleAndSubordinates>Director_de_Cartera</roleAndSubordinates>
+            <roleAndSubordinates>Director_de_Operaciones</roleAndSubordinates>
+            <roleAndSubordinates>Gerente_Canal_Digital</roleAndSubordinates>
+            <roleAndSubordinates>Gerente_de_riesgos</roleAndSubordinates>
+            <roleAndSubordinates>Gte_Cial_Barranquilla</roleAndSubordinates>
+            <roleAndSubordinates>Gte_Cial_Bogota</roleAndSubordinates>
+            <roleAndSubordinates>Gte_Cial_Bucaramanga</roleAndSubordinates>
+            <roleAndSubordinates>Gte_Cial_Cali</roleAndSubordinates>
+            <roleAndSubordinates>Gte_Cial_Medellin</roleAndSubordinates>
+            <roleAndSubordinates>Gte_Cial_Pereira</roleAndSubordinates>
+            <roleAndSubordinates>Lider_de_cumplimiento_de_producto</roleAndSubordinates>
+            <roleAndSubordinates>Lider_de_cumplimiento_financiero</roleAndSubordinates>
+            <roleAndSubordinates>Presidente</roleAndSubordinates>
+            <roleAndSubordinates>Secretaria_General</roleAndSubordinates>
+            <roleAndSubordinates>Supernumerario</roleAndSubordinates>
+            <roleAndSubordinates>Vicepresidente</roleAndSubordinates>
+            <roleAndSubordinates>Vicepresidente_comercial</roleAndSubordinates>
+            <roleAndSubordinates>Vicepresidente_de_Operaciones_y_Tecnologia</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Todos</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Tipo_de_incidencia__c</columns>
+        <columns>Estado_del_requerimiento__c</columns>
+        <columns>Propietario__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Todos</label>
+    </listViews>
+    <nameField>
+        <displayFormat>{0000}</displayFormat>
+        <label>Consecutivo</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Requerimientos</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Incidencias</fullName>
         <active>true</active>
@@ -1923,6 +2132,8 @@ IF( TEXT(Tipo_de_incidencia__c)=&quot;Bloqueo de usuarios&quot;, &quot;8 Hr labo
             </values>
         </picklistValues>
     </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>RQ001_Solicitud_de_credito</fullName>
         <active>true</active>
@@ -2478,4 +2689,5 @@ LEN( Comentarios__c )= 0
 )</errorConditionFormula>
         <errorMessage>RQ-036 Si el estado del proyecto es &quot;Planeación&quot; , diligenciar la fecha de incio y fecha -estimada de entrega</errorMessage>
     </validationRules>
+    <visibility>Public</visibility>
 </CustomObject>

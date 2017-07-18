@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Cifin__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -307,6 +359,16 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+    <gender>Masculine</gender>
+    <label>Resultado Prevalidador</label>
+    <nameField>
+        <displayFormat>RP-{000000}</displayFormat>
+        <label>Id Resultado Prevalidador</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Resultados Prevalidador</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>RP01_Valida_si_presenta_paz_y_salvo</fullName>
         <active>true</active>
@@ -318,4 +380,48 @@ ISPICKVAL(Presenta_cliente_paz_y_salvo__c , &quot;Si&quot;)
 ))</errorConditionFormula>
         <errorMessage>RP01- El paz y salvo solo se presenta cuando el cliente no cumple políticas de endeudamiento fiananciero.</errorMessage>
     </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Generar_PDFs</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Generar PDFs</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
+
+var Respuesta = sforce.apex.execute(&quot;Prevalidador&quot;, &quot;GenerarPDFs&quot;,
+ {idRespuesta:&apos;{!Resultado_Prevalidador__c.Id}&apos;,
+  idDatacredito:&apos;{!Resultado_Prevalidador__c.DatacreditoId__c}&apos;,
+  idCifin:&apos;{!Resultado_Prevalidador__c.CifinId__c}&apos;});
+
+if (Respuesta == &apos;ok&apos;) {
+  alert(&apos;PDFs generados exitosamente&apos;);
+  window.location.reload();
+}
+else
+  alert(Respuesta);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Resultado_CIFIN</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Resultado CIFIN</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.open(&apos;apex/ResultadoConsultaCIFIN?id={!Resultado_Prevalidador__c.CifinId__c}&apos;, &apos;ResultadoConsultaCIFIN&apos;);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Resultado_Datacredito</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Resultado Datacrédito</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.open(&apos;apex/ResultadoConsultaDatacredito?id={!Resultado_Prevalidador__c.DatacreditoId__c}&apos;, &apos;ResultadoConsultaDatacredito&apos;);</url>
+    </webLinks>
 </CustomObject>

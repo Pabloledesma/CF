@@ -37,10 +37,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Indice_relacion_cuota_ingreso__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Eximido_de_calificacion__c</field>
             </layoutItems>
             <layoutItems>
@@ -50,6 +46,18 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Capacidad_de_pago__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Creditos_cerrados__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Edad__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Edad_menor_a_30_vigentes_cerrados__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>

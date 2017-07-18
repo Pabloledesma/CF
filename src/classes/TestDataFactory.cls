@@ -110,7 +110,7 @@ public class TestDataFactory {
 				Telefono_referencia_personal__c = '12345678',
 				Canal_digital__c = 'Si',
 				OwnerId = ownerId
-
+				
 		);
 
 		Database.SaveResult result = Database.insert(lead, false);

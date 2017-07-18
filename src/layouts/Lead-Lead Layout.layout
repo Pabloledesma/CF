@@ -30,10 +30,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Personas_a_cargo__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Ciudad_de_residencia__c</field>
             </layoutItems>
             <layoutItems>
@@ -195,6 +191,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Cargo_actual__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Profesion_o_Actividad__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

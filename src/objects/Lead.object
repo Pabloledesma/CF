@@ -1,5 +1,259 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>AddToCampaign</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CallHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ChangeStatus</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Convert</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EmailHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>FindDup</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ListClean</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SmsHighlightAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <businessProcesses>
+        <fullName>Credifamilia</fullName>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Asignado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Descartado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En gestión</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Nuevo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Verificando</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <fieldSets>
+        <fullName>MC4SF__Lead_Filter_Fields</fullName>
+        <description>used in the MailChimp query builder</description>
+        <displayedFields>
+            <field>AnnualRevenue</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>City</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Company</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Country</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CreatedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Description</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>DoNotCall</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Email</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>NumberOfEmployees</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>HasOptedOutOfFax</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Fax</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FirstName</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Industry</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastActivityDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastName</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LeadSource</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MobilePhone</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Phone</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Rating</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Salutation</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>State</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Status</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Street</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Title</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Website</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>PostalCode</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Lead Filter Fields</label>
+    </fieldSets>
+    <fields>
+        <fullName>Address</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>AnnualRevenue</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
     <fields>
         <fullName>Antiguedad_del_inmueble__c</fullName>
         <externalId>false</externalId>
@@ -110,6 +364,10 @@
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CampaignId</fullName>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Canal_digital__c</fullName>
@@ -230,6 +488,11 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Company</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>Concepto_del_candidato__c</fullName>
         <externalId>false</externalId>
         <label>Resultado del Prevalidador</label>
@@ -281,6 +544,11 @@
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Detalle__c</fullName>
@@ -441,6 +709,11 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>DoNotCall</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>Edad__c</fullName>
         <externalId>false</externalId>
         <formula>FLOOR((TODAY() -  Fecha_de_nacimiento__c  )/365)</formula>
@@ -452,6 +725,11 @@
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Estado_civil__c</fullName>
@@ -558,6 +836,11 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Fax</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>Fecha_asignacion__c</fullName>
         <externalId>false</externalId>
         <label>Fecha asignación</label>
@@ -656,6 +939,22 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>HasOptedOutOfEmail</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>HasOptedOutOfFax</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Industry</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Ingresos_mensuales_familiares__c</fullName>
         <externalId>false</externalId>
         <label>Ingresos mensuales familiares</label>
@@ -667,6 +966,11 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Jigsaw</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>Keyword__c</fullName>
         <externalId>false</externalId>
         <label>Keyword</label>
@@ -676,6 +980,15 @@
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LastTransferDate</fullName>
+    </fields>
+    <fields>
+        <fullName>LeadSource</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Lugar_de_expedicion__c</fullName>
@@ -698,6 +1011,25 @@
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MC4SF__MC_Subscriber__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>MC Subscriber</label>
+        <referenceTo>MC4SF__MC_Subscriber__c</referenceTo>
+        <relationshipLabel>Leads</relationshipLabel>
+        <relationshipName>Leads</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MobilePhone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Monto_maximo_a_aprobar__c</fullName>
@@ -846,6 +1178,56 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Name</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Nivel_de_educacion__c</fullName>
+        <externalId>false</externalId>
+        <label>Nivel de educación</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Primaria</fullName>
+                    <default>false</default>
+                    <label>Primaria</label>
+                </value>
+                <value>
+                    <fullName>Secundaria</fullName>
+                    <default>false</default>
+                    <label>Secundaria</label>
+                </value>
+                <value>
+                    <fullName>Universitario</fullName>
+                    <default>false</default>
+                    <label>Universitario</label>
+                </value>
+                <value>
+                    <fullName>Técnica</fullName>
+                    <default>false</default>
+                    <label>Técnica</label>
+                </value>
+                <value>
+                    <fullName>Postgrado</fullName>
+                    <default>false</default>
+                    <label>Postgrado</label>
+                </value>
+                <value>
+                    <fullName>Ninguno</fullName>
+                    <default>false</default>
+                    <label>Ninguno</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Nombre_entidad_empleadora_o_negocio__c</fullName>
         <externalId>false</externalId>
         <label>Nombre entidad empleadora o negocio</label>
@@ -855,6 +1237,11 @@
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumberOfEmployees</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Numero_de_asignacion__c</fullName>
@@ -881,7 +1268,6 @@
     </fields>
     <fields>
         <fullName>Numero_de_identificacion__c</fullName>
-        <caseSensitive>false</caseSensitive>
         <externalId>false</externalId>
         <label>Número de documento</label>
         <length>18</length>
@@ -889,7 +1275,7 @@
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <type>Text</type>
-        <unique>true</unique>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Numero_de_solicitantes__c</fullName>
@@ -964,6 +1350,12 @@
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OwnerId</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Parentesco__c</fullName>
@@ -1057,63 +1449,20 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Personas_a_cargo__c</fullName>
+        <fullName>Phone</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Profesion_o_Actividad__c</fullName>
         <externalId>false</externalId>
-        <label>Personas a cargo</label>
+        <label>Profesión o Actividad</label>
+        <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>0</fullName>
-                    <default>false</default>
-                    <label>0</label>
-                </value>
-                <value>
-                    <fullName>1</fullName>
-                    <default>false</default>
-                    <label>1</label>
-                </value>
-                <value>
-                    <fullName>2</fullName>
-                    <default>false</default>
-                    <label>2</label>
-                </value>
-                <value>
-                    <fullName>3</fullName>
-                    <default>false</default>
-                    <label>3</label>
-                </value>
-                <value>
-                    <fullName>4</fullName>
-                    <default>false</default>
-                    <label>4</label>
-                </value>
-                <value>
-                    <fullName>5</fullName>
-                    <default>false</default>
-                    <label>5</label>
-                </value>
-                <value>
-                    <fullName>6</fullName>
-                    <default>false</default>
-                    <label>6</label>
-                </value>
-                <value>
-                    <fullName>7</fullName>
-                    <default>false</default>
-                    <label>7</label>
-                </value>
-                <value>
-                    <fullName>8</fullName>
-                    <default>false</default>
-                    <label>8</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Propietario_candidato__c</fullName>
@@ -1161,6 +1510,12 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Rating</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Relacion__c</fullName>
@@ -1211,6 +1566,12 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Tasa_actual__c</fullName>
@@ -1376,7 +1737,7 @@
                 <sorted>false</sorted>
                 <value>
                     <fullName>Cédula ciudadanía</fullName>
-                    <default>false</default>
+                    <default>true</default>
                     <label>Cédula ciudadanía</label>
                 </value>
                 <value>
@@ -1414,19 +1775,9 @@
                     <label>Pensionado</label>
                 </value>
                 <value>
-                    <fullName>Rentista</fullName>
-                    <default>false</default>
-                    <label>Rentista</label>
-                </value>
-                <value>
                     <fullName>Empleado con negocio</fullName>
                     <default>false</default>
                     <label>Empleado con negocio</label>
-                </value>
-                <value>
-                    <fullName>Ama de casa</fullName>
-                    <default>false</default>
-                    <label>Ama de casa</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1540,6 +1891,11 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Title</fullName>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>Valor_de_vivienda__c</fullName>
         <externalId>false</externalId>
         <label>Valor de vivienda</label>
@@ -1597,6 +1953,249 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+    <fields>
+        <fullName>Website</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <listViews>
+        <fullName>Administradores_Lead</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Administradores</label>
+        <queue>Administradores</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>AllOpenLeads</fullName>
+        <columns>LEAD.STATUS</columns>
+        <columns>Origen__c</columns>
+        <columns>FULL_NAME</columns>
+        <columns>Numero_de_celular__c</columns>
+        <columns>LEAD.EMAIL</columns>
+        <columns>Numero_de_identificacion__c</columns>
+        <columns>Estado_civil__c</columns>
+        <columns>Ciudad_de_residencia__c</columns>
+        <columns>Tipo_de_ocupacion__c</columns>
+        <columns>LEAD.CREATED_DATE</columns>
+        <columns>LEAD.LAST_ACTIVITY</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>Todos los candidatos abiertos</label>
+        <sharedTo>
+            <role>Analista_de_Mercadeo</role>
+            <role>Gerente_Canal_Digital</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Leads_Lead</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Leads</label>
+        <queue>Leads</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Mis_Candidatos_Aplazados</fullName>
+        <columns>Numero_de_identificacion__c</columns>
+        <columns>FULL_NAME</columns>
+        <columns>LEAD.EMAIL</columns>
+        <columns>LEAD.RECORDTYPE</columns>
+        <columns>LEAD.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>LEAD.STATUS</field>
+            <operation>equals</operation>
+            <value>Aplazado</value>
+        </filters>
+        <label>Mis Candidatos Aplazados</label>
+        <sharedTo>
+            <role>Analista_Aplicaciones_y_Procesos_CRM</role>
+            <role>Asor_de_leads</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Mis_Candidatos_Con_Primer_Contacto</fullName>
+        <columns>Numero_de_identificacion__c</columns>
+        <columns>FULL_NAME</columns>
+        <columns>LEAD.EMAIL</columns>
+        <columns>LEAD.RECORDTYPE</columns>
+        <columns>LEAD.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>LEAD.STATUS</field>
+            <operation>equals</operation>
+            <value>Primer contacto</value>
+        </filters>
+        <label>Mis Candidatos Con Primer Contacto</label>
+        <sharedTo>
+            <role>Analista_Aplicaciones_y_Procesos_CRM</role>
+            <role>Asor_de_leads</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Mis_Candidatos_Con_Segundo_Contacto</fullName>
+        <columns>Numero_de_identificacion__c</columns>
+        <columns>FULL_NAME</columns>
+        <columns>LEAD.EMAIL</columns>
+        <columns>LEAD.RECORDTYPE</columns>
+        <columns>LEAD.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>LEAD.STATUS</field>
+            <operation>equals</operation>
+            <value>Segundo contacto</value>
+        </filters>
+        <label>Mis Candidatos Con Segundo Contacto</label>
+        <sharedTo>
+            <role>Analista_Aplicaciones_y_Procesos_CRM</role>
+            <role>Asor_de_leads</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Mis_Candidatos_Con_Tercer_Contacto</fullName>
+        <columns>Numero_de_identificacion__c</columns>
+        <columns>FULL_NAME</columns>
+        <columns>LEAD.EMAIL</columns>
+        <columns>LEAD.RECORDTYPE</columns>
+        <columns>LEAD.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>LEAD.STATUS</field>
+            <operation>equals</operation>
+            <value>Tercer contacto</value>
+        </filters>
+        <label>Mis Candidatos Con Tercer Contacto</label>
+        <sharedTo>
+            <role>Analista_Aplicaciones_y_Procesos_CRM</role>
+            <role>Asor_de_leads</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Mis_Candidatos_Convertidos</fullName>
+        <columns>Numero_de_identificacion__c</columns>
+        <columns>FULL_NAME</columns>
+        <columns>LEAD.EMAIL</columns>
+        <columns>LEAD.RECORDTYPE</columns>
+        <columns>LEAD.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>LEAD.STATUS</field>
+            <operation>equals</operation>
+            <value>Convertido</value>
+        </filters>
+        <label>Mis Candidatos Convertidos</label>
+        <sharedTo>
+            <role>Analista_Aplicaciones_y_Procesos_CRM</role>
+            <role>Asor_de_leads</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Mis_Candidatos_Desistidos</fullName>
+        <columns>Numero_de_identificacion__c</columns>
+        <columns>FULL_NAME</columns>
+        <columns>LEAD.EMAIL</columns>
+        <columns>LEAD.RECORDTYPE</columns>
+        <columns>LEAD.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>Origen__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>LEAD.STATUS</field>
+            <operation>equals</operation>
+            <value>Desistido</value>
+        </filters>
+        <label>Mis Candidatos Desistidos</label>
+        <sharedTo>
+            <role>Analista_Aplicaciones_y_Procesos_CRM</role>
+            <role>Asor_de_leads</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Mis_Candidatos_En_Gesti_n</fullName>
+        <columns>Numero_de_identificacion__c</columns>
+        <columns>FULL_NAME</columns>
+        <columns>LEAD.EMAIL</columns>
+        <columns>LEAD.RECORDTYPE</columns>
+        <columns>LEAD.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>LEAD.STATUS</field>
+            <operation>equals</operation>
+            <value>En gestión</value>
+        </filters>
+        <label>Mis Candidatos En Gestión</label>
+        <sharedTo>
+            <role>Analista_Aplicaciones_y_Procesos_CRM</role>
+            <role>Asor_de_leads</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Mis_Candidatos_En_Recepci_n_de_Doc</fullName>
+        <columns>Numero_de_identificacion__c</columns>
+        <columns>FULL_NAME</columns>
+        <columns>LEAD.EMAIL</columns>
+        <columns>LEAD.RECORDTYPE</columns>
+        <columns>LEAD.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>LEAD.STATUS</field>
+            <operation>equals</operation>
+            <value>Recepción de documentos</value>
+        </filters>
+        <label>Mis Candidatos En Recepción de Doc.</label>
+        <sharedTo>
+            <role>Analista_Aplicaciones_y_Procesos_CRM</role>
+            <role>Asor_de_leads</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>MyUnreadLeads</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>LEAD.COMPANY</columns>
+        <columns>Origen__c</columns>
+        <columns>LEAD.STATUS</columns>
+        <columns>LEAD.CREATED_DATE</columns>
+        <columns>LEAD.STATE</columns>
+        <columns>LEAD.PHONE</columns>
+        <columns>LEAD.EMAIL</columns>
+        <columns>LEAD.RATING</columns>
+        <columns>LEAD.UNREAD</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>LEAD.UNREAD</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Mis Candidatos No leídos</label>
+    </listViews>
+    <listViews>
+        <fullName>TODOS_LOS_CANDIDATOS_NO_CONVERTIDOS1</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>Numero_de_identificacion__c</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <columns>LEAD.UNREAD</columns>
+        <columns>LEAD.EMAIL</columns>
+        <columns>LEAD.STATUS</columns>
+        <columns>LEAD.CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>TODOS LOS CANDIDATOS NO CONVERTIDOS</label>
+        <sharedTo>
+            <roleAndSubordinates>Analista_de_Mercadeo</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Cliente_deudor</fullName>
         <active>true</active>
@@ -2038,6 +2637,33 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Nivel_de_educacion__c</picklist>
+            <values>
+                <fullName>Ninguno</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Postgrado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Primaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secundaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Técnica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Universitario</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Numero_de_solicitantes__c</picklist>
             <values>
                 <fullName>0</fullName>
@@ -2116,45 +2742,6 @@
             </values>
             <values>
                 <fullName>Yerno</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Personas_a_cargo__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>8</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2269,10 +2856,6 @@
         <picklistValues>
             <picklist>Tipo_de_ocupacion__c</picklist>
             <values>
-                <fullName>Ama de casa</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Empleado</fullName>
                 <default>false</default>
             </values>
@@ -2286,10 +2869,6 @@
             </values>
             <values>
                 <fullName>Pensionado</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rentista</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2807,6 +3386,33 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Nivel_de_educacion__c</picklist>
+            <values>
+                <fullName>Ninguno</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Postgrado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Primaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secundaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Técnica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Universitario</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Numero_de_solicitantes__c</picklist>
             <values>
                 <fullName>0</fullName>
@@ -2885,45 +3491,6 @@
             </values>
             <values>
                 <fullName>Yerno</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Personas_a_cargo__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>8</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3038,10 +3605,6 @@
         <picklistValues>
             <picklist>Tipo_de_ocupacion__c</picklist>
             <values>
-                <fullName>Ama de casa</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Empleado</fullName>
                 <default>false</default>
             </values>
@@ -3055,10 +3618,6 @@
             </values>
             <values>
                 <fullName>Pensionado</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rentista</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3131,6 +3690,26 @@
             </values>
         </picklistValues>
     </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>FULL_NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>LEAD.COMPANY</customTabListAdditionalFields>
+        <customTabListAdditionalFields>LEAD.PHONE</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>FULL_NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>LEAD.COMPANY</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FULL_NAME</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>LEAD.COMPANY</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>LEAD.PHONE</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>LEAD.MOBILE_PHONE</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>FULL_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LEAD.TITLE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LEAD.COMPANY</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LEAD.PHONE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LEAD.MOBILE_PHONE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LEAD.EMAIL</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LEAD.STATUS</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWriteTransfer</sharingModel>
     <validationRules>
         <fullName>CD001_Valida_documento_numerico</fullName>
         <active>true</active>
@@ -3236,4 +3815,109 @@ IsConverted = TRUE
 )</errorConditionFormula>
         <errorMessage>CD-008. No es propietario de este lead, por favor no convertir.</errorMessage>
     </validationRules>
+    <webLinks>
+        <fullName>Centrales</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Centrales</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
+
+var Respuesta = sforce.apex.execute(&quot;Prevalidador&quot;, &quot;ValidarEstadoDatacredito&quot;,
+{idOportunidad:&apos;{!Opportunity.Id}&apos;});
+
+if (Respuesta == &apos;ok&apos;) {
+//  var Respuesta = sforce.apex.execute(&quot;Prevalidador&quot;, &quot;RealizarConsultaDatacredito&quot;,
+//  {idOportunidad:&apos;{!Opportunity.Id}&apos;});
+//  alert(Respuesta);
+  alert(&apos;Consulta enviada exitosamente&apos;);
+  window.location.reload();
+}
+else {
+  alert(Respuesta);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleMaps</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google Maps</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://maps.google.com/maps?f=q&amp;hl=en&amp;q={!Lead_Street}+{!Lead_City}+{!Lead_State}&amp;om=1</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleNews</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google News</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://www.google.com/news?&amp;q={!Lead_Company}&amp;btnG=Search+News</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleSearch</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google Search</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://www.google.com/search?q={!Lead_Company}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>MC4SF__MailChimp_Subscriptions_detail</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>MailChimp Subscriptions</masterLabel>
+        <openType>noSidebar</openType>
+        <page>MC4SF__SubscriptionsLead</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>MC4SF__MailChimp_Subscriptions_list</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>MailChimp Subscriptions</masterLabel>
+        <openType>noSidebar</openType>
+        <page>MC4SF__SubscriptionsLeadList</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
 </CustomObject>

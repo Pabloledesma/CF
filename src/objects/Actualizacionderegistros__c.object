@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>Campo_destino__c</fullName>
         <externalId>false</externalId>
@@ -70,4 +72,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <label>Actualización desde un objeto hijo</label>
+    <visibility>Public</visibility>
 </CustomObject>

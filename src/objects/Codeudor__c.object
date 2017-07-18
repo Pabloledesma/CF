@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Estará inicialmente relacionado con el Candidato y en el reposará la información correspondiente a los Codeudores.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Apellidos_Ref_Familiar__c</fullName>
         <description>Apellidos de la referencia familiar</description>
@@ -31,6 +84,30 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Aporta_ingresos__c</fullName>
+        <externalId>false</externalId>
+        <label>Aporta ingresos</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Si</fullName>
+                    <default>false</default>
+                    <label>Si</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>true</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Candidato__c</fullName>
@@ -125,6 +202,28 @@
         <externalId>false</externalId>
         <label>Dirección de la empresa</label>
         <length>70</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Direccion_referencia_familiar_codeudor__c</fullName>
+        <description>Barrio de la referencia familiar</description>
+        <externalId>false</externalId>
+        <label>Dirección</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Direccion_referencia_personal_codeudor__c</fullName>
+        <description>Barrio donde reside la referencia personal</description>
+        <externalId>false</externalId>
+        <label>Dirección</label>
+        <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -360,39 +459,6 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Ocupacion_u_oficio_principal__c</fullName>
-        <externalId>false</externalId>
-        <label>Ocupación u oficio principal</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Empleado</fullName>
-                    <default>false</default>
-                    <label>Empleado</label>
-                </value>
-                <value>
-                    <fullName>Pensionado</fullName>
-                    <default>false</default>
-                    <label>Pensionado</label>
-                </value>
-                <value>
-                    <fullName>Independiente</fullName>
-                    <default>false</default>
-                    <label>Independiente</label>
-                </value>
-                <value>
-                    <fullName>Empleado con negocio</fullName>
-                    <default>false</default>
-                    <label>Empleado con negocio</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Parentesco_Ref_Familiar__c</fullName>
         <description>Parentesco con la referencia familiar</description>
         <externalId>false</externalId>
@@ -472,6 +538,16 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Profesion_o_Actividad__c</fullName>
+        <externalId>false</externalId>
+        <label>Profesión o Actividad</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Relacion__c</fullName>
         <externalId>false</externalId>
         <label>Relación</label>
@@ -499,11 +575,10 @@
         <fullName>Telefono_de_la_oficina__c</fullName>
         <externalId>false</externalId>
         <label>Teléfono oficina</label>
-        <precision>10</precision>
+        <length>7</length>
         <required>false</required>
-        <scale>0</scale>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -540,10 +615,33 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+    <gender>Masculine</gender>
+    <label>Codeudor</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>Todos</label>
+    </listViews>
+    <nameField>
+        <label>Nombre</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Codeudores</pluralLabel>
     <recordTypes>
         <fullName>Codeudor</fullName>
         <active>true</active>
         <label>Codeudor</label>
+        <picklistValues>
+            <picklist>Aporta_ingresos__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Si</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Estado_Civil__c</picklist>
             <values>
@@ -596,25 +694,6 @@
         </picklistValues>
         <picklistValues>
             <picklist>Ocupacion__c</picklist>
-            <values>
-                <fullName>Empleado</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Empleado con negocio</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Independiente</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pensionado</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Ocupacion_u_oficio_principal__c</picklist>
             <values>
                 <fullName>Empleado</fullName>
                 <default>false</default>
@@ -710,4 +789,7 @@
             </values>
         </picklistValues>
     </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

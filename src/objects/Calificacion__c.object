@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>calificacion</customHelpPage>
+    <deploymentStatus>InDevelopment</deploymentStatus>
+    <description>Sistema de validación financiera del cliente para otorgar un crédito.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Aportes_de_recursos_propios__c</fullName>
         <externalId>false</externalId>
@@ -34,6 +88,18 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>Creditos_cerrados__c</fullName>
+        <description>Número de créditos cerrados</description>
+        <externalId>false</externalId>
+        <label>Créditos cerrados</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Disponible__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Verifica si este usuario ya fué calificado en los últimos 60 días</description>
@@ -43,22 +109,38 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Edad__c</fullName>
+        <description>Edad del cliente</description>
+        <externalId>false</externalId>
+        <label>Edad</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Edad_menor_a_30_vigentes_cerrados__c</fullName>
+        <description>Si la edad del cliente es superior a 30 años el valor del campo es cero. En caso contrario es la suma de la edad, los créditos vigentes y los cerrados.</description>
+        <externalId>false</externalId>
+        <formula>if(Edad__c &lt; 30, Edad__c +  N_mero_de_cr_ditos_vigentes__c +  Creditos_cerrados__c, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Edad &lt; 30 + vigentes + cerrados</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Eximido_de_calificacion__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Eximido de calificación</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Indice_relacion_cuota_ingreso__c</fullName>
-        <externalId>false</externalId>
-        <label>Indice relación cuota ingreso</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>3</scale>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
     </fields>
     <fields>
         <fullName>Informacion_comite__c</fullName>
@@ -86,9 +168,9 @@
     </fields>
     <fields>
         <fullName>Numero_de_Consultas__c</fullName>
-        <description>Número de consultas con el sector financiero.</description>
+        <description>Número de consultas con el sector financiero y cooperativo.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Número de consultas con el sector financiero.</inlineHelpText>
+        <inlineHelpText>Número de consultas con el sector financiero y cooperativo.</inlineHelpText>
         <label>Número de Consultas</label>
         <precision>18</precision>
         <required>false</required>
@@ -118,4 +200,34 @@
         <trackTrending>false</trackTrending>
         <type>Percent</type>
     </fields>
+    <gender>Feminine</gender>
+    <label>Calificación</label>
+    <nameField>
+        <displayFormat>{0000}</displayFormat>
+        <label>Nombre de Calificación</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Calificaciones</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Nueva_Calificacion</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Nueva Calificación</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/apex/calificacion/{!Calificacion__c.Informacion_comiteId__c}</url>
+    </webLinks>
 </CustomObject>
