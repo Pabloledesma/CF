@@ -1,9 +1,9 @@
 trigger ConteoLeads on Lead (Before Update, Before Insert) {
  for(Lead l:Trigger.New){
-     System.debug('ConteoLeads -> \n\n' + Trigger.new[0]);
   String Consulta = 'VIABLE';
   Integer asigna;
-  Integer nleads = database.countQuery('SELECT COUNT() FROM Lead WHERE Concepto_del_candidato__c=: Consulta') ;
+  Integer nleads = database.countQuery('SELECT COUNT() FROM Lead WHERE Concepto_del_candidato__c=: Consulta');
+
   
   if(Trigger.isUpdate && l.Concepto_del_candidato__c=='VIABLE'){
    l.Conteo__c = nleads;
@@ -15,4 +15,4 @@ trigger ConteoLeads on Lead (Before Update, Before Insert) {
    l.Numero_de_asignacion__c=asigna;
   }
  }
-}
+} 
