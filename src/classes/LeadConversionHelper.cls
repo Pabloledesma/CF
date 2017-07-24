@@ -109,6 +109,9 @@ public without sharing class LeadConversionHelper {
         }
     }
 
+	/*
+	* Crea la cuenta del codeudor
+	*/
     public void createAccounts(){
         System.debug('LeadConversionHelper.createAccounts -> Cliente deudor: ' + this.clienteDeudor.Id);
         List<Account> lstAccounts = new List<Account>();
