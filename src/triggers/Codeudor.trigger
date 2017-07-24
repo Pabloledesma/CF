@@ -1,3 +1,7 @@
+/*
+** Se deshabilitó porque vamos a trabajar con un solo codeudor
+ */
+
 trigger Codeudor on Codeudor__c (before insert) {
 	/**
 	* Verifica que la cédula del codeudor no exista en la cuenta.

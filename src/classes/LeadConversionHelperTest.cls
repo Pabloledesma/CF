@@ -427,17 +427,13 @@ private class LeadConversionHelperTest {
 			   List<Account> lstCodeudores = [select Id from Account where Cliente_deudor__c = :lcr.getAccountId()];
 			   Map<Id, Account> mapCodeudores = new Map<Id, Account>(lstCodeudores);
 			   System.assert(mapCodeudores.containsKey(op.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
-			   System.assert(mapCodeudores.containsKey(op.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la oportunidad');
 
 			   Solicitud_de_credito__c sc = verificarSolicitud(lcr);
 			   System.assert(mapCodeudores.containsKey(sc.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la Solicitud');
-			   System.assert(mapCodeudores.containsKey(sc.Codeudor_2__c), 'El codeudor 2 no fué actualizado correctamente en la Solicitud');
-
 
 			   Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
 
 			   System.assert(mapCodeudores.containsKey(rc.Codeudor_1__c), 'La radicación no esta enlazada al codeudor 1');
-			   System.assert(mapCodeudores.containsKey(rc.Codeudor_2__c), 'La radicación no esta enlazada al codeudor 2');
 
 			   //Los codeudores se eliminaron?
 			   List<Codeudor__c> codeudores = new List<Codeudor__c>();
@@ -500,9 +496,7 @@ private class LeadConversionHelperTest {
 						Id,
 						RecordTypeId,
 						Oportunidad__c,
-						Codeudor_1__c,
-						Codeudor_2__c,
-						Codeudor_3__c
+						Codeudor_1__c
 				FROM Solicitud_de_credito__c
 				WHERE Oportunidad__c = :lcr.getOpportunityId()
 				LIMIT 1
@@ -584,11 +578,7 @@ private class LeadConversionHelperTest {
 						Id,
 						AccountId,
 						Codeudor_1__c,
-						Codeudor_2__c,
-						Codeudor_3__c,
-						Aporta_Ingresos_Codeudor_1__c,
-						Aporta_Ingresos_Codeudor_2__c,
-						Aporta_Ingresos_Codeudor_3__c
+						Aporta_Ingresos_Codeudor_1__c
 				FROM Opportunity
 				WHERE AccountId = :lcr.getAccountId()
 		];
