@@ -8,7 +8,7 @@ public without sharing class LeadConversionHelper {
     public LeadConversionHelper(Account newAccount) {
         this.clienteDeudor = newAccount;
         this.rt = [select Id, Name from RecordType where Name = 'Cliente deudor' and SobjectType='Account'];
-        this.lstLead = [
+        this.lstLead = [ 
                 SELECT
                     Id,
                     isConverted,
@@ -63,8 +63,7 @@ public without sharing class LeadConversionHelper {
             SELECT
                 Name,
                 Apellidos__c,
-                Apellidos_Ref_Familiar__c,
-                Apellidos_Ref_Personal__c,
+                Familiar_Nombre_y_Apellido__c,
                 Direccion_referencia_familiar_codeudor__c,
                 Direccion_referencia_personal_codeudor__c,
                 Candidato__c,
@@ -85,8 +84,7 @@ public without sharing class LeadConversionHelper {
                 Lugar_de_nacimiento__c,
                 Nivel_de_educaci_n__c,
                 Nombre_entidad_empleadora__c,
-                Nombres_Ref_Familiar__c,
-                Nombres_Ref_Personal__c,
+                Personal_Nombre_y_Apellido__c,
                 Numero_de_celular__c,
                 Numero_de_documento__c,
                 Ocupacion__c,
@@ -249,16 +247,14 @@ public without sharing class LeadConversionHelper {
             rc.Ciudad_codeudor1__c                          = this.codeudor[0].Ciudad_laboral__c;
 
             //Referencia familiar
-            if(this.codeudor[0].Nombres_Ref_Familiar__c != null && this.codeudor[0].Apellidos_Ref_Familiar__c != null)
-            rc.Familiar_Nombre_y_Apellido_codeudor1__c      = this.codeudor[0].Nombres_Ref_Familiar__c + ' ' + this.codeudor[0].Apellidos_Ref_Familiar__c;
+            rc.Familiar_Nombre_y_Apellido_codeudor1__c      = this.codeudor[0].Familiar_Nombre_y_Apellido__c;
             rc.Parentesco_familiar_codeduor1__c             = this.codeudor[0].Parentesco_Ref_Familiar__c;
             rc.Direccion_familiar_codeudor1__c              = this.codeudor[0].Direccion_referencia_familiar_codeudor__c;
             rc.Telefono_familiar_codeudor1__c               = (this.codeudor[0].Celular_Ref_Familiar__c != null) ? String.valueOf(this.codeudor[0].Celular_Ref_Familiar__c) : null;
             rc.Ciudad_familiar_codeudor1__c                 = this.codeudor[0].Ciudad_Ref_Familiar__c;
 
             //Referencia personal
-            if(this.codeudor[0].Nombres_Ref_Personal__c != null && this.codeudor[0].Apellidos_Ref_Personal__c != null)
-            rc.Personal_Nombre_y_Apellido_codeudor1__c      = this.codeudor[0].Nombres_Ref_Personal__c + ' ' + this.codeudor[0].Apellidos_Ref_Personal__c;
+            rc.Personal_Nombre_y_Apellido_codeudor1__c      = this.codeudor[0].Personal_Nombre_y_Apellido__c;
             rc.Parentesco_personal_codeudor1__c             = this.codeudor[0].Relacion__c;
             rc.Direccion_personal_codeudor1__c              = this.codeudor[0].Direccion_referencia_personal_codeudor__c;
             rc.Telefono_personal_codeudor1__c               = (this.codeudor[0].Celular_Ref_Personal__c != null) ? String.valueOf(this.codeudor[0].Celular_Ref_Personal__c) : null;

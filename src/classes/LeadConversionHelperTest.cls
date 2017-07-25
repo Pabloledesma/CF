@@ -70,7 +70,7 @@ private class LeadConversionHelperTest {
 
 				System.assertEquals(
 						rc.Familiar_Nombre_y_Apellido_codeudor1__c,
-						cod.Nombres_Ref_Familiar__c + ' ' + cod.Apellidos_Ref_Familiar__c,
+						cod.Familiar_Nombre_y_Apellido__c,
 						'El nombre del codeudor no se actualizó correctamente'
 				);
 
@@ -106,7 +106,7 @@ private class LeadConversionHelperTest {
 
 				System.assertEquals(
 						rc.Personal_Nombre_y_Apellido_codeudor1__c,
-						cod.Nombres_Ref_Personal__c + ' ' + cod.Apellidos_Ref_Personal__c,
+						cod.Personal_Nombre_y_Apellido__c,
 						'Los nombres y apellidos de la referencia personal del codeudor 1 no se actualizaron correctamente'
 				);
 
@@ -161,7 +161,7 @@ private class LeadConversionHelperTest {
 			for(Database.Error error : result.getErrors()){
 				System.debug(error.getStatusCode() + ': ' + error.getMessage());
 				System.debug('Verificar los siguientes campos: ' + error.getFields());
-			}
+			} 
 		}
 
 
