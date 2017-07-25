@@ -72,7 +72,7 @@ global class Prevalidador {
             (opp.Ingresos_Familiares__c == null) ||
             String.isBlank(opp.Estado_Consulta__c)
            )
-            return 'Faltan datos de la oportunidad necesarios para realizar la consulta';
+            return 'Faltan datos de la oportunidad necesarios para realizar la consulta.';
 
         // Buscar datos del deudor (cuenta de la oportunidad)
         List<Account> lstCuentas = [
@@ -99,7 +99,7 @@ global class Prevalidador {
             String.isBlank(cuenta.Tipo_de_contrato__c) ||
             String.isBlank(cuenta.Personas_a_cargo__c)
            )
-            return 'Faltan datos del deudor necesarios para realizar la consulta';
+            return 'Faltan datos del deudor necesarios para realizar la consulta.';
 
         // Validar datos de los codeudores
         String respuesta;
@@ -144,7 +144,7 @@ global class Prevalidador {
             String.isBlank(cuenta.Lugar_de_nacimiento__c) ||
             String.isBlank(cuenta.Aporta_ingresos__c)
            )
-            return 'Faltan datos del codeudor necesarios para realizar la consulta';
+            return 'Faltan datos del codeudor necesarios para realizar la consulta.';
 
         return 'ok';    
     }

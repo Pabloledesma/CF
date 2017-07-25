@@ -445,61 +445,6 @@ private class LeadConversionHelperTest {
 	    Test.stopTest();
 	}
 
-	@isTest public static void actualiza_la_informacion_en_la_cuenta_si_el_candidato_ya_existe()
-	{
-	    sObject cuenta = TestDataFactory.createAccount('123456789');
-
-		Lead lead = new Lead(
-				FirstName = 'TestName',
-				LastName = 'Test',
-				Numero_de_identificacion__c = '123456789',
-				Email = 'newEmail@test.com',
-				Tipo_de_documento__c = 'Cédula ciudadanía',
-				Phone = '7654321',
-				Telefono_Actividad_Economica__c = '987654321',
-				Telefono_referencia_familiar__c = '87654321',
-				Telefono_referencia_personal__c = '87654321',
-				Canal_digital__c = 'Si'
-		);
-
-		Lead insertedLead = TestDataFactory.createLead(lead);
-
-		Test.startTest();
-			Database.LeadConvertResult lcr = convertLead(insertedLead.id);
-
-			System.assert(lcr.isSuccess(), 'El candidato no se convirtió');
-
-		Account acc = [
-				SELECT
-						Numero_de_documento__c,
-						PersonEmail,
-						Phone,
-						Telefono_laboral__c
-				FROM Account
-				WHERE Numero_de_documento__c = '123456789'
-		];
-
-		System.assertEquals(
-				acc.PersonEmail,
-				insertedLead.Email,
-				'El correo no se actualizó correctamente'
-		);
-
-		System.assertEquals(
-				acc.Phone,
-				insertedLead.Phone,
-				'El teléfono no se actualizó correctamente'
-		);
-
-		System.assertEquals(
-				acc.Telefono_laboral__c,
-				insertedLead.Telefono_Actividad_economica__c,
-				'El teléfono de la oficina no se actualizó correctamente'
-		);
-
-		Test.stopTest();
-	}
-
 	public static User getComercialUser()
 	{
 		Profile asesorComercial = [SELECT Id, Name FROM Profile WHERE Name = 'Asesor comercial canal digital'];

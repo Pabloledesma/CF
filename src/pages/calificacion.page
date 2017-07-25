@@ -8,11 +8,12 @@
                 <apex:inputCheckbox label="Eximir Calificación" value="{!calificacion.Eximido_de_calificacion__c}"/>
             </apex:pageBlockSection>
             <apex:pageBlockSection >
-                <apex:pageBlockTable value="{!lstCalificaciones}" var="c">
+            	<apex:pageBlockTable value="{!lstCalificaciones}" var="c">
                     <apex:column value="{!c.Name}" />
                     <apex:column value="{!c.createdDate}"/>
                     <apex:column value="{!c.Aportes_de_recursos_propios__c}" />
                     <apex:column value="{!c.Porcentaje_de_utilizacion_tc__c}" />
+                    <apex:column value="{!c.Indice_relacion_cuota_ingreso__c}" />
                     <apex:column value="{!c.Numero_de_Consultas__c}" />
                     <apex:column value="{!c.N_mero_de_cr_ditos_vigentes__c}" />
                     <apex:column value="{!c.Relacion_cuota_ingreso__c}" />
@@ -21,9 +22,9 @@
                 </apex:pageBlockTable>
             </apex:pageBlockSection>
             <apex:pageBlockButtons >
-                <apex:commandButton value="Calificar" action="{!Calificar}" disabled="{!calificacion.Disponible__c}" />
+                <apex:commandButton value="Calificar" action="{!Calificar}" disabled="{calificacion.Disponible__c}" />
             </apex:pageBlockButtons>
-        </apex:pageBlock>
-    </apex:form>
+        </apex:pageBlock>   
+    </apex:form> 
 
 </apex:page>

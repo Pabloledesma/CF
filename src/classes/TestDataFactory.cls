@@ -1,22 +1,6 @@
 @isTest
 public class TestDataFactory {
 
-
-
-	public static Lead createLead(Lead lead) {
-		Database.SaveResult result = Database.insert(lead, false);
-		if(result.isSuccess()){
-			lead.Id = result.getId();
-		} else {
-			System.debug('Errores al insertar el candidato: ');
-			for(Database.Error error : result.getErrors()){
-				System.debug(error.getStatusCode() + ': ' + error.getMessage());
-				System.debug('Verificar los siguientes campos: ' + error.getFields());
-			}
-		}
-		return lead;
-	}
-
 	public static Lead createLead() {
 		Lead lead = new Lead(
 			FirstName = 'TestName',
@@ -156,12 +140,12 @@ public class TestDataFactory {
 		return u;
 	}
 
-	/**
-	| Crea un registro de codeudor con todos los campos diligenciados
-	|
-	| @param i: Identificador único para el codeudor
-	| @param leadId: Id del candidato relacionado
-	| @return Id
+	/** 
+	* Crea un registro de codeudor con todos los campos diligenciados 
+	*
+	* @param i: Identificador único para el codeudor
+	* @param leadId: Id del candidato relacionado
+	* @return Id
 	**/
 	public static Codeudor__c createCodeudorFullInfo(String i, Id leadId, String ocupacion)
 	{
@@ -188,7 +172,7 @@ public class TestDataFactory {
 				Experiencia__c = 2,
 				Ciudad_laboral__c = 'Bogotá',
 				Cargo_actual__c = 'Analista',
-				Telefono_de_la_oficina__c = '1234567',
+				Telefono_de_la_oficina__c = 1234567,
 				Profesion_o_Actividad__c = 'zapatero',
 				Nombres_Ref_Familiar__c = 'Nombre ref fam' + i,
 				Apellidos_Ref_Familiar__c = 'Apellidos ref fam' + i,
@@ -293,27 +277,17 @@ public class TestDataFactory {
 		return acc.Id;
 	}
 
-	/**
-	 * Inserta un objeto y entrega los resultados
-	 *
-	 * @param sObject: objeto a insertar
-	 * @param nameObject: nombre del objeto a insertar
-	 * @return retorna el objeto si la operación es exitosa, en caso contrario retorna null
-	 **/
-	public static sObject insertSOBject(sObject ob, String nameObject)
+	public static Database.SaveResult insertSOBject(sObject ob, String nameObject)
 	{
 		Database.SaveResult result = Database.insert(ob, false);
-		if(result.isSuccess()){
-			ob.Id = result.getId();
-			return ob;
-		} else {
+		if(!result.isSuccess()){
 			System.debug('Errores al insertar '+ nameObject +': ');
 			for(Database.Error error : result.getErrors()){
 				System.debug(error.getStatusCode() + ': ' + error.getMessage());
 				System.debug('Verificar los siguientes campos: ' + error.getFields());
 			}
-			return null;
 		}
+		return result;
 	}
 
 	public static Account createRawAccount(Id recordTypeId, String numeroDeDocumento)
@@ -341,34 +315,6 @@ public class TestDataFactory {
 		);
 
 		return acc;
-	}
-
-	public static sObject createAccount(String numeroDeDocumento)
-	{
-		RecordType rt = [SELECT Id, Name FROM RecordType WHERE Name = 'Cliente deudor' AND sObjectType = 'Account'];
-		Account acc = new Account(
-				RecordTypeId = rt.Id,
-				LastName = 'TestLastname',
-				FirstName = 'TestName',
-				Tipo_de_documento__c = 'Cédula ciudadanía',
-				Numero_de_documento__c = numeroDeDocumento,
-				Sexo__c = 'Femenino',
-				Estado_civil__c = 'Soltero',
-				Fecha_de_expedicion_cc__c = Date.newInstance(2016, 2, 2),
-				Fecha_de_nacimiento__c = Date.newInstance(1983, 5, 24),
-				Lugar_de_expedicion__c = 'Bogotá',
-				Lugar_de_nacimiento__c = 'Popayán',
-				Ciudad_de_residencia__c = 'Bogotá',
-				Ciudad_de_radicacion__c = 'Bogotá',
-				Numero_de_telefono_celular__c = '3134665665',
-				Correo_electronico_1__c = 'test@test.com',
-				Tipo_de_ocupacion__c = 'Empleado',
-				Aporta_ingresos__c = 'No',
-				Canal_digital__c = 'Si',
-				Estado_del_cliente__c = 'Prospecto'
-		);
-
-		return insertSOBject(acc, 'Account');
 	}
 
 	public static Id createAccount(Id recordTypeId, String numeroDeDocumento){

@@ -245,10 +245,11 @@ public without sharing class LeadConversionHelper {
             rc.Nombre_de_la_empresa_codeudor1__c            = this.codeudor[0].Nombre_entidad_empleadora__c;
             rc.Cargo_codeudor1__c                           = this.codeudor[0].Cargo_actual__c;
             rc.Direccion_oficina_codeudor1__c               = this.codeudor[0].Direccion_de_la_empresa__c;
-            rc.Telefono_de_la_oficina_codeudor1__c          = this.codeudor[0].Telefono_de_la_oficina__c;
+            rc.Telefono_de_la_oficina_codeudor1__c          = String.valueOf(this.codeudor[0].Telefono_de_la_oficina__c);
             rc.Ciudad_codeudor1__c                          = this.codeudor[0].Ciudad_laboral__c;
 
             //Referencia familiar
+            if(this.codeudor[0].Nombres_Ref_Familiar__c != null && this.codeudor[0].Apellidos_Ref_Familiar__c != null)
             rc.Familiar_Nombre_y_Apellido_codeudor1__c      = this.codeudor[0].Nombres_Ref_Familiar__c + ' ' + this.codeudor[0].Apellidos_Ref_Familiar__c;
             rc.Parentesco_familiar_codeduor1__c             = this.codeudor[0].Parentesco_Ref_Familiar__c;
             rc.Direccion_familiar_codeudor1__c              = this.codeudor[0].Direccion_referencia_familiar_codeudor__c;
@@ -256,6 +257,7 @@ public without sharing class LeadConversionHelper {
             rc.Ciudad_familiar_codeudor1__c                 = this.codeudor[0].Ciudad_Ref_Familiar__c;
 
             //Referencia personal
+            if(this.codeudor[0].Nombres_Ref_Personal__c != null && this.codeudor[0].Apellidos_Ref_Personal__c != null)
             rc.Personal_Nombre_y_Apellido_codeudor1__c      = this.codeudor[0].Nombres_Ref_Personal__c + ' ' + this.codeudor[0].Apellidos_Ref_Personal__c;
             rc.Parentesco_personal_codeudor1__c             = this.codeudor[0].Relacion__c;
             rc.Direccion_personal_codeudor1__c              = this.codeudor[0].Direccion_referencia_personal_codeudor__c;
