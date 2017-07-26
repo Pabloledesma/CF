@@ -153,7 +153,7 @@ public class TestDataFactory {
 				Name = 'CodeudorTest' + i,
 				Apellidos__c = 'Test' + i,
 				Candidato__c = leadId,
-				Tipo_de_documento__c = 'Cédula de ciudadanía',
+				Tipo_de_documento__c = 'Cédula ciudadanía',
 				Numero_de_documento__c = String.valueOf(Crypto.getRandomInteger()).substring(0,8),
 				Ciudad_de_residencia__c = 'Bogotá',
 				Ocupacion__c = ocupacion,
