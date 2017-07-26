@@ -315,6 +315,41 @@ public class TestDataFactory {
 		return acc;
 	}
 
+	public static Id createAccount(String numeroDeDocumento){
+
+		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account']; 
+		Account acc = new Account(
+			RecordTypeId = rt.Id,
+			LastName = 'TestLastname',
+            FirstName = 'TestName',
+			Tipo_de_documento__c = 'Cédula ciudadanía',
+			Numero_de_documento__c = numeroDeDocumento,
+			Sexo__c = 'Femenino',
+			Estado_civil__c = 'Soltero',
+			Fecha_de_expedicion_cc__c = Date.newInstance(2016, 2, 2),
+			Fecha_de_nacimiento__c = Date.newInstance(1983, 5, 24),
+			Lugar_de_expedicion__c = 'Bogotá',
+			Lugar_de_nacimiento__c = 'Popayán',
+			Ciudad_de_residencia__c = 'Bogotá',
+			Ciudad_de_radicacion__c = 'Bogotá',
+			Numero_de_telefono_celular__c = '3134665665',
+			Correo_electronico_1__c = 'test@test.com',
+			Tipo_de_ocupacion__c = 'Empleado',
+			Aporta_ingresos__c = 'No',
+			Canal_digital__c = 'Si',
+			Estado_del_cliente__c = 'Prospecto'
+		);
+		Database.SaveResult result = Database.insert(acc, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la cuenta: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return acc.Id;
+	}
+
 	public static Id createAccount(Id recordTypeId, String numeroDeDocumento){
 		Account acc = new Account(
 			RecordTypeId = recordTypeId,
@@ -381,6 +416,25 @@ public class TestDataFactory {
             }
 		}
 		return acc.Id;
+	}
+
+	public static Id createOpportunity(Id accountId){
+		Opportunity op = new Opportunity(
+			AccountId = accountId,
+			Name = 'Opp Test',
+			StageName = 'Abierta',
+			CloseDate = Date.newInstance(2017, 12, 12)
+		);
+
+		Database.SaveResult result = Database.insert(op, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la oportunidad: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return op.Id;
 	}
 
 	public static Id createMeta(){
