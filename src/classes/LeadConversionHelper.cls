@@ -131,7 +131,8 @@ public without sharing class LeadConversionHelper {
                 Numero_de_telefono_celular__c       = c.Numero_de_celular__c,
                 Telefono__c                         = c.Telefono_fijo__c,
                 Fecha_de_ingreso_a_empleo_actual__c = c.Fecha_de_ingreso__c,
-                Canal_digital__c                    = 'Si'
+                Canal_digital__c                    = 'Si',
+                Aporta_ingresos__c                  = 'Si'
             ));
         }
 
@@ -239,11 +240,10 @@ public without sharing class LeadConversionHelper {
             //Información laboral
             rc.Ocupacion_u_oficio_principal_codeudor1__c    = this.codeudor[0].Ocupacion__c;
             rc.Profesion_o_actividad_codeudor1__c           = this.codeudor[0].Profesion_o_Actividad__c;
-            rc.Aporta_ingresos_codeudor_1__c                = 'Si';
             rc.Nombre_de_la_empresa_codeudor1__c            = this.codeudor[0].Nombre_entidad_empleadora__c;
             rc.Cargo_codeudor1__c                           = this.codeudor[0].Cargo_actual__c;
             rc.Direccion_oficina_codeudor1__c               = this.codeudor[0].Direccion_de_la_empresa__c;
-            rc.Telefono_de_la_oficina_codeudor1__c          = String.valueOf(this.codeudor[0].Telefono_de_la_oficina__c);
+            rc.Telefono_de_la_oficina_codeudor1__c          = this.codeudor[0].Telefono_de_la_oficina__c;
             rc.Ciudad_codeudor1__c                          = this.codeudor[0].Ciudad_laboral__c;
 
             //Referencia familiar

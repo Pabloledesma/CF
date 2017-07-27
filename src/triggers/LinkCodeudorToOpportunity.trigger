@@ -26,19 +26,19 @@ trigger LinkCodeudorToOpportunity on Opportunity (before insert, after insert) {
             {
                 if(i == 0){
                 	Trigger.new[0].Codeudor_1__c = codeudores[i].Id;
-					Trigger.new[0].Aporta_Ingresos_Codeudor_1__c = true;
-                	System.debug('LinkCodeudorToOpportunity -> Actualizando codeudor 1: ' + codeudores[i].Id);
+					Trigger.new[0].Aporta_Ingresos_Codeudor_1__c = 'Si';
+                	//System.debug('LinkCodeudorToOpportunity -> Actualizando codeudor 1: ' + codeudores[i].Id);
 				}
 				if(i == 1){
 					Trigger.new[0].Codeudor_2__c = codeudores[i].Id;
-					Trigger.new[0].Aporta_Ingresos_Codeudor_2__c = true;
-					System.debug('LinkCodeudorToOpportunity -> Actualizando codeudor 2: ' + codeudores[i].Id);
+					Trigger.new[0].Aporta_Ingresos_Codeudor_2__c = 'Si';
+					//System.debug('LinkCodeudorToOpportunity -> Actualizando codeudor 2: ' + codeudores[i].Id);
 				}
 
 				if(i == 2){
 					Trigger.new[0].Codeudor_3__c = codeudores[i].Id;
-					Trigger.new[0].Aporta_Ingresos_Codeudor_3__c = true;
-					System.debug('LinkCodeudorToOpportunity -> Actualizando codeudor 3: ' + codeudores[i].Id);
+					Trigger.new[0].Aporta_Ingresos_Codeudor_3__c = 'Si';
+					//System.debug('LinkCodeudorToOpportunity -> Actualizando codeudor 3: ' + codeudores[i].Id);
 				}
             }
         }

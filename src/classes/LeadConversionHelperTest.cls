@@ -18,8 +18,9 @@ private class LeadConversionHelperTest {
 
 				Opportunity op = verificarOportunidad(lcr);
 
-				System.assert(
+				System.assertEquals(
 						op.Aporta_Ingresos_Codeudor_1__c,
+						'Si',
 						'El campo aporta ingresos del codeudor 1 no se está actualizando correctamente'
 				);
 

@@ -172,7 +172,7 @@ public class TestDataFactory {
 				Experiencia__c = 2, 
 				Ciudad_laboral__c = 'Bogotá',
 				Cargo_actual__c = 'Analista',
-				Telefono_de_la_oficina__c = 1234567,
+				Telefono_de_la_oficina__c = '1234567',
 				Profesion_o_Actividad__c = 'zapatero',
 				Familiar_Nombre_y_Apellido__c = 'Nombre y Apellido ref fam' + i,
 				Direccion_referencia_familiar_codeudor__c = 'calle 3 # 4 - 5',
