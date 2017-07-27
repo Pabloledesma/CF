@@ -118,12 +118,16 @@ global class WSProcesadorPrevalidador {
 
 		// Consultar datos de la oportunidad
 		List<Opportunity> lstOportunidades = [
-			SELECT Tipo_de_Registro_de_Oportunidad__c, Tipo_de_persona__c
+			SELECT 
+				Tipo_de_Registro_de_Oportunidad__c, 
+				Tipo_de_persona__c,
+				Cliente_deudor__c
 			FROM Opportunity
 			WHERE id =: idOportunidad
 		];
-		Opportunity opp = lstOportunidades[0];
 
+		Opportunity opp = lstOportunidades[0];
+		System.debug('opp: ' + opp);
 		// Consultar datos del cliente dependiendo del tipo de registro de la oportunidad y del tipo de persona
  		Account cuenta;
 		String tipoCliente;
@@ -143,23 +147,27 @@ global class WSProcesadorPrevalidador {
 			Persona__c persona = lstPersonas[0];
 			tipoCliente = persona.Tipo__c;
 
-		}
-		else {
+		} 
 
-	 		List<Account> lstCuentas = [
-	 			SELECT Id, Tipo_de_registro_de_cuenta__c
-	 			FROM Account
-	 			WHERE Numero_de_documento__c = :numDocumento
-	 		];
-	 		if (lstCuentas.size() == 0) {
-				ActualizarEstadoConsultaOpp(idOpp, 'No existe cliente', true, null, '', esConsultaInterna, false);
-				return;
-	 		}
-	 		cuenta = lstCuentas[0];
-	 		tipoCliente = cuenta.Tipo_de_registro_de_cuenta__c == 'Cliente deudor' ? 'Deudor' : 'Codeudor';
-	 		idCuenta = cuenta.Id;
-		}
+ 		List<Account> lstCuentas = [
+ 			SELECT Id, Tipo_de_registro_de_cuenta__c
+ 			FROM Account
+ 			WHERE Numero_de_documento__c = :numDocumento
+ 		];
 
+ 		List<Account> lstCuentas2 = [select Id, Tipo_de_registro_de_cuenta__c from Account where Id = :opp.Cliente_deudor__c];
+
+ 		if (lstCuentas.size() == 0) {
+			ActualizarEstadoConsultaOpp(idOpp, 'No existe cliente', true, null, '', esConsultaInterna, false);
+			return;
+ 		}
+ 		cuenta = lstCuentas2[0];
+ 		System.debug('cuenta: ' + cuenta);
+ 		idCuenta = cuenta.Id;
+ 		
+ 		//Si la cuenta esta relacionada en el campo cliente deudor de la oportunidad entonces es deudor
+ 		tipoCliente = opp.Cliente_deudor__c == idCuenta ? 'Deudor' : 'Codeudor';
+		
 
 		// Procesar datos que solo vienen cuando es una consulta interna
 		if (esConsultaInterna) {

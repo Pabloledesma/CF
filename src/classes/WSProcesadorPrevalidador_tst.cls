@@ -1,7 +1,7 @@
 @isTest
 private class WSProcesadorPrevalidador_tst {
 
-   /* static testMethod void myUnitTest() {
+   static testMethod void myUnitTest() {
 
 		Account cuenta = CrearCuentaDeudor();
 		insert cuenta;
@@ -231,7 +231,7 @@ RespuestaCliente = '<Informes>' +
 		cuenta.Fecha_de_ingreso_a_empleo_actual__c = Date.newInstance(2010, 3, 3);
 		cuenta.Actividad_economica__c = 'Comercio';
 		cuenta.Check_VIGIA__c = true;
-        cuenta.Numero_de_telefono_celular__c='11111';
+        cuenta.Numero_de_telefono_celular__c='1111111111';
         cuenta.Validar_numero_de_celular__c='11111';
 		
 		return cuenta;
@@ -255,8 +255,9 @@ RespuestaCliente = '<Informes>' +
 		opp.CloseDate = Date.newInstance(2200, 2, 2);
 		opp.StageName = 'Radicado';
 		opp.Excepcion__c = 'No';
+      opp.Cliente_deudor__c = idCuenta;
 		
 		return opp;
-    }*/
+    }
 
 }
