@@ -147,26 +147,29 @@ global class WSProcesadorPrevalidador {
 			Persona__c persona = lstPersonas[0];
 			tipoCliente = persona.Tipo__c;
 
-		} 
+		} else {
+	 		List<Account> lstCuentas = [
+	 			SELECT Id, Tipo_de_registro_de_cuenta__c
+	 			FROM Account
+	 			WHERE Numero_de_documento__c = :numDocumento
+	 		];
 
- 		List<Account> lstCuentas = [
- 			SELECT Id, Tipo_de_registro_de_cuenta__c
- 			FROM Account
- 			WHERE Numero_de_documento__c = :numDocumento
- 		];
+	 		//List<Account> lstCuentas2 = [select Id, Tipo_de_registro_de_cuenta__c from Account where Id = :opp.Cliente_deudor__c];
 
- 		List<Account> lstCuentas2 = [select Id, Tipo_de_registro_de_cuenta__c from Account where Id = :opp.Cliente_deudor__c];
+	 		if (lstCuentas.size() == 0) {
+				ActualizarEstadoConsultaOpp(idOpp, 'No existe cliente', true, null, '', esConsultaInterna, false);
+				return;
+	 		}
+	 		cuenta = lstCuentas[0];
+	 		System.debug('cuenta: ' + cuenta);
+	 		idCuenta = cuenta.Id;
+	 		
+	 		//Si la cuenta esta relacionada en el campo cliente deudor de la oportunidad entonces es deudor
+	 		System.debug('Cliente:deudor: ' + opp.Cliente_deudor__c + ' idCuenta: ' + idCuenta);
 
- 		if (lstCuentas.size() == 0) {
-			ActualizarEstadoConsultaOpp(idOpp, 'No existe cliente', true, null, '', esConsultaInterna, false);
-			return;
- 		}
- 		cuenta = lstCuentas2[0];
- 		System.debug('cuenta: ' + cuenta);
- 		idCuenta = cuenta.Id;
- 		
- 		//Si la cuenta esta relacionada en el campo cliente deudor de la oportunidad entonces es deudor
- 		tipoCliente = opp.Cliente_deudor__c == idCuenta ? 'Deudor' : 'Codeudor';
+	 		tipoCliente = (opp.Cliente_deudor__c == idCuenta) ? 'Deudor' : 'Codeudor';
+		}
+
 		
 
 		// Procesar datos que solo vienen cuando es una consulta interna
