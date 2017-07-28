@@ -1,4 +1,6 @@
 global class WSProcesadorPrevalidador {
+
+	public String tipoCliente = 'Deudor';
 		
 	webService static void ProcesarRespuestaCliente(String RespuestaCliente) {
 				
@@ -168,7 +170,7 @@ global class WSProcesadorPrevalidador {
 	 		tipoCliente = (opp.AccountId == idCuenta) ? 'Deudor' : 'Codeudor';
 		}
 
-		
+	 	
 
 		// Procesar datos que solo vienen cuando es una consulta interna
 		if (esConsultaInterna) {
@@ -179,7 +181,7 @@ global class WSProcesadorPrevalidador {
 				Resultado_Prevalidador__c objRespuesta;
 				objRespuesta = new Resultado_Prevalidador__c();
 		 		objRespuesta.Oportunidad__c = idOpp;
-		 		objRespuesta.Tipo_Cliente__c = tipoCliente; // cuenta.Tipo_de_registro_de_cuenta__c == 'Cliente deudor' ? 'Deudor' : 'Codeudor';
+		 		objRespuesta.Tipo_Cliente__c = tipoCliente; 
 		 		objRespuesta.Cliente__c = idCuenta; // cuenta.Id;
 		 		objRespuesta.Resultado_del_Prevalidador__c = resultadoPrevalidador;
 		 		objRespuesta.LTV_Prevalidado__c = LTVPrevalidado == '' ? null : (Decimal.valueOf(LTVPrevalidado) * 100);
@@ -194,7 +196,7 @@ global class WSProcesadorPrevalidador {
 				objRespuesta.Moras_en_Datacredito__c = numMorasDatacredito == '' ? null : Double.valueOf(numMorasDatacredito);
 				objRespuesta.Moras_en_CIFIN__c = numMorasCIFIN == '' ? null : Double.valueOf(numMorasCIFIN);
 				objRespuesta.Observaciones__c = observaciones;
-				objRespuesta.LogRespuesta__c = RespuestaCliente;
+				objRespuesta.LogRespuesta__c = RespuestaCliente; 
 				
 				Integer Anyo, Mes, Dia, Hora, Minutos, Segundos;
 				if (fechaConsultaListas.length() > 0) {
@@ -226,7 +228,7 @@ global class WSProcesadorPrevalidador {
 					return;
 				
 				// Terminar exitosamente
-				Boolean contarConsulta = (idCuenta != null) && (cuenta.Tipo_de_registro_de_cuenta__c == 'Cliente deudor');
+				Boolean contarConsulta = (idCuenta != null) && (tipoCliente == 'Deudor');
 				Double numConsulta = ActualizarEstadoConsultaOpp(idOpp, '', false, null, '', true, contarConsulta);
 	
 				// Crear objeto de respuesta
@@ -257,7 +259,7 @@ global class WSProcesadorPrevalidador {
 				Resultado_Datacredito__c objResultado = new Resultado_Datacredito__c();
 				objResultado.Datacredito__c = idDatacredito;
 		 		objResultado.Oportunidad__c = idOpp;
-		 		objResultado.Tipo_Cliente__c = cuenta.Tipo_de_registro_de_cuenta__c == 'Cliente deudor' ? 'Deudor' : 'Codeudor';
+		 		objResultado.Tipo_Cliente__c = tipoCliente;
 		 		objResultado.Cliente__c = cuenta.Id;
 				objResultado.LogRespuesta__c = RespuestaCliente;
 				insert objResultado;
@@ -286,7 +288,7 @@ global class WSProcesadorPrevalidador {
 				Resultado_CIFIN__c objResultado = new Resultado_CIFIN__c();
 				objResultado.Cifin__c = idCifin;
 		 		objResultado.Oportunidad__c = idOpp;
-		 		objResultado.Tipo_Cliente__c = cuenta.Tipo_de_registro_de_cuenta__c == 'Cliente deudor' ? 'Deudor' : 'Codeudor';
+		 		objResultado.Tipo_Cliente__c = tipoCliente;
 		 		objResultado.Cliente__c = cuenta.Id;
 				objResultado.LogRespuesta__c = RespuestaCliente;
 				insert objResultado;

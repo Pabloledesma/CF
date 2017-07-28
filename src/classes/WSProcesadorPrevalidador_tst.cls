@@ -80,7 +80,7 @@ String RespuestaCliente = '<Informes>' +
       '</InformeGeneral>' +
    '</Informe>' +
 '</Informes>';
-
+ 
 		WSProcesadorPrevalidador.ProcesarRespuestaCliente(RespuestaCliente);
 
 // observaciones="EC-01: Espere un momento mientras se restablece la conexion de cliente DATACREDITO"
