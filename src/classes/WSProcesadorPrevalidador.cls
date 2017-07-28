@@ -121,7 +121,7 @@ global class WSProcesadorPrevalidador {
 			SELECT 
 				Tipo_de_Registro_de_Oportunidad__c, 
 				Tipo_de_persona__c,
-				Cliente_deudor__c
+				AccountId
 			FROM Opportunity
 			WHERE id =: idOportunidad
 		];
@@ -154,8 +154,6 @@ global class WSProcesadorPrevalidador {
 	 			WHERE Numero_de_documento__c = :numDocumento
 	 		];
 
-	 		//List<Account> lstCuentas2 = [select Id, Tipo_de_registro_de_cuenta__c from Account where Id = :opp.Cliente_deudor__c];
-
 	 		if (lstCuentas.size() == 0) {
 				ActualizarEstadoConsultaOpp(idOpp, 'No existe cliente', true, null, '', esConsultaInterna, false);
 				return;
@@ -165,9 +163,9 @@ global class WSProcesadorPrevalidador {
 	 		idCuenta = cuenta.Id;
 	 		
 	 		//Si la cuenta esta relacionada en el campo cliente deudor de la oportunidad entonces es deudor
-	 		System.debug('Cliente:deudor: ' + opp.Cliente_deudor__c + ' idCuenta: ' + idCuenta);
+	 		System.debug('Cliente:deudor: ' + opp.AccountId + ' idCuenta: ' + idCuenta);
 
-	 		tipoCliente = (opp.Cliente_deudor__c == idCuenta) ? 'Deudor' : 'Codeudor';
+	 		tipoCliente = (opp.AccountId == idCuenta) ? 'Deudor' : 'Codeudor';
 		}
 
 		
@@ -190,6 +188,7 @@ global class WSProcesadorPrevalidador {
 		 		objRespuesta.Score_interno__c = scoreInterno == '' ? null : Double.valueOf(scoreInterno);
 		 		objRespuesta.Endeudamiento_financiero_prevalidado__c = endeudamientoFinanciero == '' ? null : (Decimal.valueOf(endeudamientoFinanciero) * 100);
 				objRespuesta.Numero_de_consultas__c = numConsultas == '' ? null : Double.valueOf(numConsultas);
+				System.debug('Numero de consultas: ' + objRespuesta.Numero_de_consultas__c);
 				objRespuesta.No_de_tarjetas_vigentes__c = numTarjetasVigentes == '' ? null : Double.valueOf(numTarjetasVigentes);
 				objRespuesta.No_de_creditos_vigentes__c = numCreditosVigentes == '' ? null : Double.valueOf(numCreditosVigentes);
 				objRespuesta.Moras_en_Datacredito__c = numMorasDatacredito == '' ? null : Double.valueOf(numMorasDatacredito);
