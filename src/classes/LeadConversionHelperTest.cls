@@ -146,7 +146,7 @@ private class LeadConversionHelperTest {
 				LastName = 'Test',
 				Numero_de_identificacion__c = String.valueOf(Crypto.getRandomInteger()),
 				Email = 'test@test.com',
-				Tipo_de_documento__c = 'Cédula ciudadanía',
+				//Tipo_de_documento__c = 'Cédula ciudadanía', Será configurado como campo predeterminado
 				Phone = '1234567',
 				Telefono_Actividad_Economica__c = '123456789',
 				Telefono_referencia_familiar__c = '12345678',
@@ -417,6 +417,8 @@ private class LeadConversionHelperTest {
 
 			   ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
 			   //Existen 2 cuentas de tipo codeudor enlazadas a la cuenta principal?
+			   System.assert(cc.reporteDeConversion != null, 'El candidato no fué convertido');
+			   System.assert(cc.reporteDeConversion.isSuccess(), 'Errores en la conversión del candidato');
 			   System.assert(
 					   [select count() from Account where Cliente_deudor__c = :cc.reporteDeConversion.getAccountId()] == 2,
 					   'Se esperaba encontrar 2 cuentas de tipo codeudor'
@@ -542,7 +544,7 @@ private class LeadConversionHelperTest {
 	public static void verificarCuenta(Lead lead)
 	{
 		System.assert(lead != null, 'El candidato no fué creado');
-
+		System.assert(lead.Numero_de_identificacion__c != null, 'El candidato no tiene el número de identificación diligenciado');
 		System.assert(
 				[select count() from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c] == 1,
 				'Debe existir una cuenta con el número de indentificación del lead'
@@ -584,6 +586,9 @@ private class LeadConversionHelperTest {
 
 			try {
 				Database.LeadConvertResult lcr = Database.convertLead(lc);
+
+				System.assert(lcr != null, 'No se realizó la conversión');
+
 				if(lcr.isSuccess()){
 					this.reporteDeConversion = lcr;
 					this.resultado = true;
