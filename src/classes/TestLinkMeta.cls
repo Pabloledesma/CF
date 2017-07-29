@@ -5,8 +5,7 @@ private class TestLinkMeta {
 
         RecordType rt = [
                 SELECT
-                        Id,
-                        Name
+                        Id
                 FROM
                         RecordType
                 WHERE Name = 'Cliente deudor'

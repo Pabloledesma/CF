@@ -7,7 +7,7 @@ private class LeadConversionHelperTest {
 		Test.startTest();
 		Id asesorId = '005o0000002P5KY';
 		Lead lead = TestDataFactory.createLeadFullInfo(asesorId);
-		System.assertNotEquals(lead.Id, null, 'El candidato no se creó correctamente');
+		System.assertNotEquals(lead, null, 'El candidato no se creó correctamente');
 		User asesorComercial = [select Id from User where Id = '005o0000002P5KY'];
 		Codeudor__c cod = TestDataFactory.createCodeudorFullInfo('Uno', lead.Id, 'Empleado');
 		System.runAs(asesorComercial){
@@ -154,7 +154,7 @@ private class LeadConversionHelperTest {
 				Canal_digital__c = 'Si'
 		);
 
-		Database.SaveResult result = Database.insert(lead, false);
+		Database.SaveResult result = Database.insert(lead);
 		if(result.isSuccess()){
 			lead.Id = result.getId();
 		} else {
@@ -362,11 +362,11 @@ private class LeadConversionHelperTest {
 		User user = getComercialUser();
 		System.runAs(user)
 		{
-			Lead lead = TestDataFactory.createLead();
+			Id leadId = TestDataFactory.createLead();
 			try {
-					ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
-				} catch (DmlException e){
-					System.debug('Error en la conversión del cantidato: ' + e.getMessage());
+					ConversionDeCandidato cc = new ConversionDeCandidato(leadId);
+				} catch (Exception e){
+					System.debug('Error en la conversión del cantidato: ' + e.getMessage() + '\n' + e.getTypeName());
 					System.assert(
 							e.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'),
 							'Un asesor comercial no puede convertir candidatos'
@@ -541,7 +541,7 @@ private class LeadConversionHelperTest {
 
 	public static void verificarCuenta(Lead lead)
 	{
-		Account acc = [select Id from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c];
+		System.assert(lead != null, 'El candidato no fué creado');
 
 		System.assert(
 				[select count() from Account where Numero_de_documento__c = :lead.Numero_de_identificacion__c] == 1,

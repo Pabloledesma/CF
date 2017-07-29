@@ -1,7 +1,7 @@
 @isTest
 public class TestDataFactory {
 
-	public static Lead createLead() {
+	public static Id createLead() {
 		Lead lead = new Lead(
 			FirstName = 'TestName',
 			LastName = 'Test',
@@ -14,10 +14,9 @@ public class TestDataFactory {
             Canal_digital__c = 'Si'
 		);
 		
-		Database.SaveResult result = Database.insert(lead, false);
+		Database.SaveResult result = Database.insert(lead);
 		if(result.isSuccess()){
-			lead.Id = result.getId();
-			return lead;
+			return result.getId();
 		} else {
 			System.debug('Errores al insertar el candidato: ');
 			for(Database.Error error : result.getErrors()){
@@ -121,7 +120,7 @@ public class TestDataFactory {
 				System.debug(error.getStatusCode() + ': ' + error.getMessage());
 				System.debug('Verificar los siguientes campos: ' + error.getFields());
 			}
-			return null;
+			return lead;
 		}
 	}
 
