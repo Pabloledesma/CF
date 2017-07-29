@@ -12,11 +12,11 @@ private class LeadConversionHelperTest {
 		Codeudor__c cod = TestDataFactory.createCodeudorFullInfo('Uno', lead.Id, 'Empleado');
 		System.runAs(asesorComercial){
 
-				Database.LeadConvertResult lcr = convertLead(lead.Id);
+				ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
 
 				verificarCuenta(lead);
 
-				Opportunity op = verificarOportunidad(lcr);
+				Opportunity op = verificarOportunidad(cc.reporteDeConversion);
 
 				System.assertEquals(
 						op.Aporta_Ingresos_Codeudor_1__c,
@@ -24,7 +24,7 @@ private class LeadConversionHelperTest {
 						'El campo aporta ingresos del codeudor 1 no se está actualizando correctamente'
 				);
 
-				Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+				Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
 				Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
 
 				System.assertNotEquals(
@@ -167,10 +167,10 @@ private class LeadConversionHelperTest {
 
 
 		Test.startTest();
-			Database.LeadConvertResult lcr = convertLead(lead.Id);
+			ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
 		Test.stopTest();
 		verificarCuenta(lead);
-		Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+		Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
 		verificarRadicacionDeCredito(sc);
 	}
 	
@@ -186,7 +186,7 @@ private class LeadConversionHelperTest {
 		Codeudor__c cod = [select Numero_de_documento__c from Codeudor__c where Id = :codeudorId];
 		Test.startTest();
 			System.runAs(asesorComercial){
-				Database.LeadConvertResult lcr = convertLead(lead.Id);
+				ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
 				verificarCuenta(Lead);
 
 				Account deudorPrincipal =
@@ -218,7 +218,7 @@ private class LeadConversionHelperTest {
 						'El codeudor no está enlazado al cliente plrincipal'
 				);
 
-				Opportunity op = verificarOportunidad(lcr);
+				Opportunity op = verificarOportunidad(cc.reporteDeConversion);
 
 				// Se actualizo correctamente el codeudor en la oportunidad?
 				Account cuentaTipoCodeudor = [select Id from Account where Numero_de_documento__c = :String.valueOf(codeudor.Numero_de_documento__c)];
@@ -229,7 +229,7 @@ private class LeadConversionHelperTest {
 						'El codeudor 1 no fué actualizado correctamente en la oportunidad'
 				);
 
-				Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+				Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
 
 				Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
 
@@ -251,10 +251,10 @@ private class LeadConversionHelperTest {
 		User asesorComercial = [select Id from User where Id = '005o0000002P5KY'];
 		System.runAs(asesorComercial){
 
-			Database.LeadConvertResult lcr = convertLead(lead.id);
+			ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
 			verificarCuenta(lead);
-			verificarOportunidad(lcr);
-			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+			verificarOportunidad(cc.reporteDeConversion);
+			Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
 			verificarRadicacionDeCredito(sc);
 		}
 
@@ -272,8 +272,8 @@ private class LeadConversionHelperTest {
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
-			Database.LeadConvertResult lcr = convertLead(viviendaNueva.id);
-			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+		ConversionDeCandidato cc = new ConversionDeCandidato(viviendaNueva.id);
+			Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
 
 			System.assertEquals(
 					sc.RecordTypeId,
@@ -290,8 +290,8 @@ private class LeadConversionHelperTest {
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
-			Database.LeadConvertResult lcr = convertLead(asignacionDeCupo.id);
-			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+			ConversionDeCandidato cc = new ConversionDeCandidato(asignacionDeCupo.id);
+			Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
 
 			System.assertEquals(
 					sc.RecordTypeId,
@@ -308,8 +308,8 @@ private class LeadConversionHelperTest {
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
-			Database.LeadConvertResult lcr = convertLead(lead.id);
-			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+			ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
+			Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
 
 			System.assertEquals(
 					sc.RecordTypeId,
@@ -326,8 +326,8 @@ private class LeadConversionHelperTest {
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
-		Database.LeadConvertResult lcr = convertLead(lead.id);
-		Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+		ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
+		Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
 
 		System.assertEquals(
 				sc.RecordTypeId,
@@ -343,8 +343,8 @@ private class LeadConversionHelperTest {
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
-		Database.LeadConvertResult lcr = convertLead(lead.id);
-		Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+		ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
+		Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
 
 		System.assertEquals(
 				sc.RecordTypeId,
@@ -364,7 +364,7 @@ private class LeadConversionHelperTest {
 		{
 			Lead lead = TestDataFactory.createLead();
 			try {
-					Database.LeadConvertResult lcr = convertLead(lead.id);
+					ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
 				} catch (DmlException e){
 					System.debug('Error en la conversión del cantidato: ' + e.getMessage());
 					System.assert(
@@ -415,21 +415,21 @@ private class LeadConversionHelperTest {
 		Test.startTest();
 	       System.runAs(asesorComercial){
 
-			   Database.LeadConvertResult lcr = convertLead(lead.id);
+			   ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
 			   //Existen 2 cuentas de tipo codeudor enlazadas a la cuenta principal?
 			   System.assert(
-					   [select count() from Account where Cliente_deudor__c = :lcr.getAccountId()] == 2,
+					   [select count() from Account where Cliente_deudor__c = :cc.reporteDeConversion.getAccountId()] == 2,
 					   'Se esperaba encontrar 2 cuentas de tipo codeudor'
 			   );
 
-			   Opportunity op = verificarOportunidad(lcr);
+			   Opportunity op = verificarOportunidad(cc.reporteDeConversion);
 
 			   // Se actualizaron correctamente los codeudores en la oportunidad?
-			   List<Account> lstCodeudores = [select Id from Account where Cliente_deudor__c = :lcr.getAccountId()];
+			   List<Account> lstCodeudores = [select Id from Account where Cliente_deudor__c = :cc.reporteDeConversion.getAccountId()];
 			   Map<Id, Account> mapCodeudores = new Map<Id, Account>(lstCodeudores);
 			   System.assert(mapCodeudores.containsKey(op.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
 
-			   Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+			   Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
 			   System.assert(mapCodeudores.containsKey(sc.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la Solicitud');
 
 			   Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
@@ -463,33 +463,13 @@ private class LeadConversionHelperTest {
 		return mapRt;
 	}
 
-	public static Database.LeadConvertResult convertLead(Id leadId)
-	{
-		if(leadId != null){
-
-			Database.LeadConvertResult lcr = TestDataFactory.leadConversion(leadId);
-			if( ! lcr.isSuccess() ){
-				if(lcr.getErrors().size() > 0){
-					System.debug('Errores al convertir el candidato: ');
-					for(Database.Error error : lcr.getErrors()){
-						System.debug(error.getStatusCode() + ': ' + error.getMessage());
-						System.debug('Verificar los siguientes campos: ' + error.getFields());
-					}
-				}
-			}
-			System.assert(lcr.isSuccess(), 'La conversión no fué exitosa.');
-			return lcr;
-		}
-		System.debug('Es necesario el id del candidato para ejecutar esta función');
-		return null;
-
-	}
 
 	/**
 	* Verificar que exista la solicitud de crédito y esté enlazada a la oportunidad
 	**/
 	public static Solicitud_de_credito__c verificarSolicitud(Database.LeadConvertResult lcr)
 	{
+		System.assert(lcr != null, 'Error en la conversión del candidato');
 
 		Solicitud_de_credito__c sc =
 		[
@@ -572,7 +552,7 @@ private class LeadConversionHelperTest {
 
 	public static Opportunity verificarOportunidad(Database.LeadConvertResult lcr)
 	{
-
+		System.assert(lcr != null, 'Errores en la conversión del candidato.');
 		Opportunity op =
 		[
 				SELECT
@@ -588,4 +568,40 @@ private class LeadConversionHelperTest {
 
 		return op;
 	}
+
+	class ConversionDeCandidato
+	{
+		public Database.LeadConvertResult reporteDeConversion;
+		public Boolean resultado = false;
+
+		public ConversionDeCandidato(Id leadId)
+		{
+			Database.LeadConvert lc = new Database.LeadConvert();
+			lc.setLeadId(leadId);
+
+			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+			lc.setConvertedStatus(convertStatus.MasterLabel);
+
+			try {
+				Database.LeadConvertResult lcr = Database.convertLead(lc);
+				if(lcr.isSuccess()){
+					this.reporteDeConversion = lcr;
+					this.resultado = true;
+				} else {
+					System.debug('Error al convertir el candidato:');
+					for(Database.Error error : lcr.getErrors()){
+						System.debug(error.getMessage());
+					}
+				}
+				
+			} catch (Exception e) {
+				System.debug(
+					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+				);
+			}
+			
+		}
+	} 
 }
+

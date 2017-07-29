@@ -418,12 +418,76 @@ public class TestDataFactory {
 		return acc.Id;
 	}
 
-	public static Id createOpportunity(Id accountId){
+	public static Id createOpportunity(Id deudorId){
 		Opportunity op = new Opportunity(
-			AccountId = accountId,
+			AccountId = deudorId,
 			Name = 'Opp Test',
 			StageName = 'Abierta',
-			CloseDate = Date.newInstance(2017, 12, 12)
+			CloseDate = Date.newInstance(2017, 12, 12),
+			Codeudor_1__c = deudorId
+		);
+
+		Database.SaveResult result = Database.insert(op, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la oportunidad: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return op.Id;
+	}
+
+	public static Id createOpportunity(Id deudorId, Id codeudorId){
+		Opportunity op = new Opportunity(
+			AccountId = deudorId,
+			Name = 'Opp Test',
+			StageName = 'Abierta',
+			CloseDate = Date.newInstance(2017, 12, 12),
+			Codeudor_1__c = codeudorId
+		);
+
+		Database.SaveResult result = Database.insert(op, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la oportunidad: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return op.Id;
+	}
+
+	public static Id createOpportunity(Id deudorId, Id codeudor1Id, Id codeudor2Id){
+		Opportunity op = new Opportunity(
+			AccountId = deudorId,
+			Name = 'Opp Test',
+			StageName = 'Abierta',
+			CloseDate = Date.newInstance(2017, 12, 12),
+			Codeudor_1__c = codeudor1Id,
+			Codeudor_2__c = codeudor2Id
+		);
+
+		Database.SaveResult result = Database.insert(op, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la oportunidad: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return op.Id;
+	}
+
+	public static Id createOpportunity(Id deudorId, Id codeudor1Id, Id codeudor2Id, Id codeudor3Id){
+		Opportunity op = new Opportunity(
+			AccountId = deudorId,
+			Name = 'Opp Test',
+			StageName = 'Abierta',
+			CloseDate = Date.newInstance(2017, 12, 12),
+			Codeudor_1__c = codeudor1Id,
+			Codeudor_2__c = codeudor2Id,
+			Codeudor_3__c = codeudor3Id
 		);
 
 		Database.SaveResult result = Database.insert(op, false);
@@ -475,7 +539,7 @@ public class TestDataFactory {
 				}
 				return null;
 			}
-		} catch (System.DmlException e) {
+		} catch (Exception e) {
 			System.debug(e.getMessage());
 			return null;
 		}

@@ -1,4 +1,4 @@
-trigger LinkCodeudorToOpportunity on Opportunity (before insert, after insert) {
+trigger LinkCodeudorToOpportunity on Opportunity (before insert, after insert) { 
 	/**
 	* Enlaza los codeudeudores a la oportunidad
 	**/
