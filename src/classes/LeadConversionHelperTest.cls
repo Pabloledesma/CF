@@ -12,19 +12,32 @@ private class LeadConversionHelperTest {
 		Codeudor__c cod = TestDataFactory.createCodeudorFullInfo('Uno', lead.Id, 'Empleado');
 		System.runAs(asesorComercial){
 
-				ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
+				Database.LeadConvert lc = new Database.LeadConvert();
+			lc.setLeadId(lead.Id);
+
+			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+			lc.setConvertedStatus(convertStatus.MasterLabel);
+
+			try {
+				Database.LeadConvertResult lcr = Database.convertLead(lc);
+				System.debug('ConversionDeCandidato: ' + lcr);
+				System.assert(lcr != null, 'No se realizó la conversión');
+
+				if(!lcr.isSuccess()){
+					System.debug('Error al convertir el candidato:');
+					for(Database.Error error : lcr.getErrors()){
+						System.debug(error.getMessage());
+					}
+				}
 
 				verificarCuenta(lead);
-
-				Opportunity op = verificarOportunidad(cc.reporteDeConversion);
-
+				Opportunity op = verificarOportunidad(lcr);
 				System.assertEquals(
 						op.Aporta_Ingresos_Codeudor_1__c,
 						'Si',
 						'El campo aporta ingresos del codeudor 1 no se está actualizando correctamente'
 				);
-
-				Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
+				Solicitud_de_credito__c sc = verificarSolicitud(lcr);
 				Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
 
 				System.assertNotEquals(
@@ -134,7 +147,14 @@ private class LeadConversionHelperTest {
 						cod.Ciudad_Ref_Personal__c,
 						'La ciudad de la referencia personal del codeudor 1 no se actualizó correctamente'
 				);
+				
+			} catch (Exception e) {
+				System.debug(
+					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+				);
 			}
+		}//runAs
 		Test.stopTest();
 
 	}
