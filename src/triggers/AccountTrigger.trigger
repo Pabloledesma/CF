@@ -1,4 +1,4 @@
-trigger AccountUpdateField on Account (before insert, before update, after insert)
+trigger AccountTrigger on Account (after insert)
 {
     /**
     * Ya se está actualizando el campo aporta ingresos en la cuenta 
@@ -11,8 +11,20 @@ trigger AccountUpdateField on Account (before insert, before update, after inser
 	if( Trigger.isAfter && Trigger.isInsert ){
     	RecordType rt = [select Id, Name from RecordType where Name = 'Cliente deudor' and SobjectType='Account'];
 
-		//System.debug('AccountUpdateField: Es de tipo codeudor y tiene un cliente deudor asociado');
+    	if(Trigger.new.size() == 1 && rt != null){
+	        //Si tiene un lead asociado, el recordtype de la cuenta creada es Cliente deudor y es para el canal digital
+	        if(
+	                [select count() from Lead where Numero_de_identificacion__c = :Trigger.new[0].Numero_de_documento__c] > 0 &&
+	                        Trigger.new[0].RecordTypeId == rt.Id &&
+	                        Trigger.new[0].Canal_digital__c == 'Si'
+	                ){
+				//System.debug('LeadConversion Trigger -> Trigger.new: ');
+				//System.debug(Trigger.new[0]);
+	            LeadConversionHelper leadConversionHelper = new LeadConversionHelper(Trigger.new[0]);
+	        }
+    	}
 
+		//System.debug('AccountUpdateField: Es de tipo codeudor y tiene un cliente deudor asociado');
 		List<Solicitud_de_credito__c> sc =
 		[
 				SELECT
