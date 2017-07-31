@@ -547,6 +547,70 @@ public class TestDataFactory {
 
 	}
 
+	public static Id createRadicacion(Id codeudorId){
+		Radicacion_de_credito__c rc = new Radicacion_de_credito__c(
+			Codeudor_1__c = codeudorId
+		);
+		Database.SaveResult result = Database.insert(rc, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la Radicación de crédito: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return rc.Id; 
+	}
+
+	public static Id createRadicacion(Id codeudorId, Id codeudor2Id){
+		Radicacion_de_credito__c rc = new Radicacion_de_credito__c(
+			Codeudor_1__c = codeudorId,
+			Codeudor_2__c = codeudor2Id
+		);
+		Database.SaveResult result = Database.insert(rc, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la Radicación de crédito: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return rc.Id; 
+	}
+
+	public static Id createRadicacion(Id codeudorId, Id codeudor2Id, Id codeudor3Id){
+		Radicacion_de_credito__c rc = new Radicacion_de_credito__c(
+			Codeudor_1__c = codeudorId,
+			Codeudor_2__c = codeudor2Id,
+			Codeudor_3__c = codeudor3Id
+		);
+		Database.SaveResult result = Database.insert(rc, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la Radicación de crédito: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return rc.Id; 
+	}
+
+	public static Id createInformacionComite(Id radicacionId){
+		Informacion_comite__c infoComite = new Informacion_comite__c(
+			Radicacion__c = radicacionId
+		);
+
+		Database.SaveResult result = Database.insert(infoComite, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la Información comité: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return infoComite.Id;  
+	}
+
 	public static Integer randomWithLimit(Integer upperLimit){
         Integer rand = Math.round(Math.random()*1000);
         return Math.mod(rand, upperLimit);

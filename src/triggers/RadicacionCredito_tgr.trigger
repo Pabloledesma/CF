@@ -10,6 +10,7 @@ trigger RadicacionCredito_tgr on Radicacion_de_credito__c (before insert, before
     {
         if(!Banderas_cls.ValidarEjecucion('AfterRadicacion'))
         {   
+            System.debug('RadicacionCredito_trg -> se creó la radicación de crédito ' + Trigger.new[0].Name);
             if(trigger.new.size()==1 && !trigger.new[0].Migrado__c)
             {
                 logica.actualizarCodeudores(Trigger.new[0]);
@@ -26,8 +27,4 @@ trigger RadicacionCredito_tgr on Radicacion_de_credito__c (before insert, before
 //        UpdateRegistersExtId_cls objUpdate = new UpdateRegistersExtId_cls();
 //        objUpdate.setRegister(objTrigger,'Radicacion_de_credito__c');
     }
-
-    if(Trigger.isAfter)
-        System.debug('RadicacionCredito_trg -> se creó la radicación de crédito ' + Trigger.new[0].Name);
-
 }

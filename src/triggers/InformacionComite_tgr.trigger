@@ -2,9 +2,9 @@ trigger InformacionComite_tgr on Informacion_comite__c (before insert, before up
 {
 	InformacionComite_cls logica = new InformacionComite_cls();
 	
-	 UpdateRegistersLookUp_cls classUpdateRegistersLookUp= new UpdateRegistersLookUp_cls(); 
+	UpdateRegistersLookUp_cls classUpdateRegistersLookUp= new UpdateRegistersLookUp_cls(); 
 	 
-	 Sobject objTrigger=trigger.new[0];
+	Sobject objTrigger=trigger.new[0];
 	
 	if(Trigger.isBefore)
 	{

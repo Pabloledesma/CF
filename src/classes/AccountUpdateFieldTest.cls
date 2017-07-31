@@ -1,5 +1,5 @@
-//@isTest
-//private class AccountUpdateFieldTest {
+@isTest
+private class AccountUpdateFieldTest {
 	
 //	@isTest static void actualizacion_de_cuenta_codeudor_con_cliente_deudor() {
 //		RecordType rtDeudor = [select Id, Name from RecordType where Name = 'Cliente deudor' and SobjectType='Account'];
@@ -21,4 +21,4 @@
 //			System.assertEquals([select FirstName from Account where FirstName = 'Updated Account!'].FirstName, 'Updated Account!');
 //		Test.stopTest();
 //	}
-//}
+}

@@ -13,9 +13,9 @@ private class UpdateFromParent_tst
          Referenciacion_y_verificacion__c objReferenciacion_y_verificacion= new Referenciacion_y_verificacion__c();
          objReferenciacion_y_verificacion.Radicacion_de_credito__c=objRadicacion_de_credito.Id;
         insert objReferenciacion_y_verificacion;
-        
+       // UpdateFromParent up = new UpdateFromParent();
        
-       // classUpdateFromParent.setRegister(sobjOrigen,lstActualizacionmasivaderegistros[0].Objeto_destino__c);
+       //up.setRegister(sobjOrigen,lstActualizacionmasivaderegistros[0].Objeto_destino__c);
     }
     
 }

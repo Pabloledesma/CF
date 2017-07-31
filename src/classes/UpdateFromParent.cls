@@ -28,17 +28,19 @@ public class UpdateFromParent
     		strQuery+=objActualizacion_masiva.Campo_origen__c;
     	}
     	
-    		system.Debug('DebugLine31: '+strQuery+':>>> : '+lstActualizacionmasivaderegistros[0].Campo_Id__c
-                         +': sobjOrigen:'+sobjOrigen);
+		//system.Debug('DebugLine31: '+strQuery+':>>> : '+lstActualizacionmasivaderegistros[0].Campo_Id__c + ': sobjOrigen:'+sobjOrigen);
+        if( lstActualizacionmasivaderegistros.size() > 0 ){
     		strId=''+sobjOrigen.get(lstActualizacionmasivaderegistros[0].Campo_Id__c);
     		strQuery+=' from '+lstActualizacionmasivaderegistros[0].Objeto_origen__c+
 				        ' where Id=\''+strId+'\' limit 1';
+            return;
+        }           
     		
     	
     	system.Debug('DebugLine36: '+strQuery);
     	
     	List<sObject> lstParent= new List<sObject>();
-    	if(strId<>'null'&&strId<>null)
+    	if(strId <> 'null' && strId <> null && strQuery.length() > 10)
     	{
     	   lstParent=Database.query(strQuery);
     	}
