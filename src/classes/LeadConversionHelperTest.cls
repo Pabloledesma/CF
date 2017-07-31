@@ -586,7 +586,7 @@ private class LeadConversionHelperTest {
 
 			try {
 				Database.LeadConvertResult lcr = Database.convertLead(lc);
-
+				System.debug('ConversionDeCandidato: ' + lcr);
 				System.assert(lcr != null, 'No se realizó la conversión');
 
 				if(lcr.isSuccess()){
