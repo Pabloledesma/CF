@@ -187,11 +187,38 @@ private class LeadConversionHelperTest {
 
 
 		Test.startTest();
-			ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
+			Database.LeadConvert lc = new Database.LeadConvert();
+			lc.setLeadId(lead.Id);
+
+			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+			lc.setConvertedStatus(convertStatus.MasterLabel);
+
+			try {
+				Database.LeadConvertResult lcr = Database.convertLead(lc);
+				System.debug('ConversionDeCandidato: ' + lcr);
+				System.assert(lcr != null, 'No se realizó la conversión');
+
+				if(!lcr.isSuccess()){
+					String errores = '';
+					System.debug('Error al convertir el candidato:');
+					for(Database.Error error : lcr.getErrors()){
+						System.debug(error.getMessage());
+						errores += error.getMessage() + '\n';
+					}
+					System.assert(lcr.isSuccess(), errores);
+				}
+
+				verificarCuenta(lead);
+				Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+				verificarRadicacionDeCredito(sc);
+				
+			} catch (Exception e) {
+				System.debug(
+					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+				);
+			}
 		Test.stopTest();
-		verificarCuenta(lead);
-		Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
-		verificarRadicacionDeCredito(sc);
 	}
 	
 	@isTest static void conversion_de_lead_con_un_codeudor() {
@@ -206,7 +233,27 @@ private class LeadConversionHelperTest {
 		Codeudor__c cod = [select Numero_de_documento__c from Codeudor__c where Id = :codeudorId];
 		Test.startTest();
 			System.runAs(asesorComercial){
-				ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
+				Database.LeadConvert lc = new Database.LeadConvert();
+			lc.setLeadId(lead.Id);
+
+			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+			lc.setConvertedStatus(convertStatus.MasterLabel);
+
+			try {
+				Database.LeadConvertResult lcr = Database.convertLead(lc);
+				System.debug('ConversionDeCandidato: ' + lcr);
+				System.assert(lcr != null, 'No se realizó la conversión');
+
+				if(!lcr.isSuccess()){
+					String errores = '';
+					System.debug('Error al convertir el candidato:');
+					for(Database.Error error : lcr.getErrors()){
+						System.debug(error.getMessage());
+						errores += error.getMessage() + '\n';
+					}
+					System.assert(lcr.isSuccess(), errores);
+				}
+
 				verificarCuenta(Lead);
 
 				Account deudorPrincipal =
@@ -238,7 +285,7 @@ private class LeadConversionHelperTest {
 						'El codeudor no está enlazado al cliente plrincipal'
 				);
 
-				Opportunity op = verificarOportunidad(cc.reporteDeConversion);
+				Opportunity op = verificarOportunidad(lcr);
 
 				// Se actualizo correctamente el codeudor en la oportunidad?
 				Account cuentaTipoCodeudor = [select Id from Account where Numero_de_documento__c = :String.valueOf(codeudor.Numero_de_documento__c)];
@@ -249,11 +296,19 @@ private class LeadConversionHelperTest {
 						'El codeudor 1 no fué actualizado correctamente en la oportunidad'
 				);
 
-				Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
+				Solicitud_de_credito__c sc = verificarSolicitud(lcr);
 
 				Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
 
 				System.assertEquals(rc.Codeudor_1__c, codeudor.Id, 'La radicación no esta enlazada al codeudor');
+				
+			} catch (Exception e) {
+				System.debug(
+					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+				);
+			}
+				
 			}
 		Test.stopTest();
 
@@ -271,11 +326,38 @@ private class LeadConversionHelperTest {
 		User asesorComercial = [select Id from User where Id = '005o0000002P5KY'];
 		System.runAs(asesorComercial){
 
-			ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
+			Database.LeadConvert lc = new Database.LeadConvert();
+			lc.setLeadId(lead.Id);
+
+			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+			lc.setConvertedStatus(convertStatus.MasterLabel);
+
+			try {
+				Database.LeadConvertResult lcr = Database.convertLead(lc);
+				System.debug('ConversionDeCandidato: ' + lcr);
+				System.assert(lcr != null, 'No se realizó la conversión');
+
+				if(!lcr.isSuccess()){
+					String errores = '';
+					System.debug('Error al convertir el candidato:');
+					for(Database.Error error : lcr.getErrors()){
+						System.debug(error.getMessage());
+						errores += error.getMessage() + '\n';
+					}
+					System.assert(lcr.isSuccess(), errores);
+				}
+			
 			verificarCuenta(lead);
-			verificarOportunidad(cc.reporteDeConversion);
-			Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
+			verificarOportunidad(lcr);
+			Solicitud_de_credito__c sc = verificarSolicitud(lcr);
 			verificarRadicacionDeCredito(sc);
+				
+			} catch (Exception e) {
+				System.debug(
+					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+				);
+			}
 		}
 
 		//System.debug('conversion_de_lead_asignado_a_un_asesor -> lead: ' + lead);
@@ -292,14 +374,43 @@ private class LeadConversionHelperTest {
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
-		ConversionDeCandidato cc = new ConversionDeCandidato(viviendaNueva.id);
-			Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
+		
+		Database.LeadConvert lc = new Database.LeadConvert();
+			lc.setLeadId(viviendaNueva.Id);
 
-			System.assertEquals(
-					sc.RecordTypeId,
-					mapRt.get('Vivienda Nueva'),
-					'El tipo de registro de la Solicitud no es correcto.'
-			);
+			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+			lc.setConvertedStatus(convertStatus.MasterLabel);
+
+			try {
+				Database.LeadConvertResult lcr = Database.convertLead(lc);
+				System.debug('ConversionDeCandidato: ' + lcr);
+				System.assert(lcr != null, 'No se realizó la conversión');
+
+				if(!lcr.isSuccess()){
+					String errores = '';
+					System.debug('Error al convertir el candidato:');
+					for(Database.Error error : lcr.getErrors()){
+						System.debug(error.getMessage());
+						errores += error.getMessage() + '\n';
+					}
+					System.assert(lcr.isSuccess(), errores);
+				}
+
+				Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+
+				System.assertEquals(
+						sc.RecordTypeId,
+						mapRt.get('Vivienda Nueva'),
+						'El tipo de registro de la Solicitud no es correcto.'
+				);
+				
+			} catch (Exception e) {
+				System.debug(
+					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+				);
+			}
+
 		Test.stopTest();
 	}
 
@@ -310,14 +421,43 @@ private class LeadConversionHelperTest {
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
-			ConversionDeCandidato cc = new ConversionDeCandidato(asignacionDeCupo.id);
-			Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
+			
+			Database.LeadConvert lc = new Database.LeadConvert();
+			lc.setLeadId(asignacionDeCupo.Id);
 
-			System.assertEquals(
-					sc.RecordTypeId,
-					mapRt.get('Vivienda Nueva'),
-					'El tipo de registro de la Solicitud no es correcto.'
-			);
+			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+			lc.setConvertedStatus(convertStatus.MasterLabel);
+
+			try {
+				Database.LeadConvertResult lcr = Database.convertLead(lc);
+				System.debug('ConversionDeCandidato: ' + lcr);
+				System.assert(lcr != null, 'No se realizó la conversión');
+
+				if(!lcr.isSuccess()){
+					String errores = '';
+					System.debug('Error al convertir el candidato:');
+					for(Database.Error error : lcr.getErrors()){
+						System.debug(error.getMessage());
+						errores += error.getMessage() + '\n';
+					}
+					System.assert(lcr.isSuccess(), errores);
+				}
+
+				Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+
+				System.assertEquals(
+						sc.RecordTypeId,
+						mapRt.get('Vivienda Nueva'),
+						'El tipo de registro de la Solicitud no es correcto.'
+				);
+				
+			} catch (Exception e) {
+				System.debug(
+					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+				);
+			}
+
 	    Test.stopTest();
 	}
 
@@ -328,14 +468,42 @@ private class LeadConversionHelperTest {
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
-			ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
-			Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
+			Database.LeadConvert lc = new Database.LeadConvert();
+			lc.setLeadId(lead.Id);
 
-			System.assertEquals(
-					sc.RecordTypeId,
-					mapRt.get('Vivienda Usada / Mejoramiento'),
-					'El tipo de registro de la Solicitud no es correcto.'
-			);
+			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+			lc.setConvertedStatus(convertStatus.MasterLabel);
+
+			try {
+				Database.LeadConvertResult lcr = Database.convertLead(lc);
+				System.debug('ConversionDeCandidato: ' + lcr);
+				System.assert(lcr != null, 'No se realizó la conversión');
+
+				if(!lcr.isSuccess()){
+					String errores = '';
+					System.debug('Error al convertir el candidato:');
+					for(Database.Error error : lcr.getErrors()){
+						System.debug(error.getMessage());
+						errores += error.getMessage() + '\n';
+					}
+					System.assert(lcr.isSuccess(), errores);
+				}
+
+				Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+
+				System.assertEquals(
+						sc.RecordTypeId,
+						mapRt.get('Vivienda Usada / Mejoramiento'),
+						'El tipo de registro de la Solicitud no es correcto.'
+				);
+				
+			} catch (Exception e) {
+				System.debug(
+					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+				);
+			}
+			
 	    Test.stopTest();
 	}
 
@@ -346,14 +514,42 @@ private class LeadConversionHelperTest {
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
-		ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
-		Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
+			Database.LeadConvert lc = new Database.LeadConvert();
+			lc.setLeadId(lead.Id);
 
-		System.assertEquals(
-				sc.RecordTypeId,
-				mapRt.get('Vivienda Usada / Mejoramiento'),
-				'El tipo de registro de la Solicitud no es correcto.'
-		);
+			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+			lc.setConvertedStatus(convertStatus.MasterLabel);
+
+			try {
+				Database.LeadConvertResult lcr = Database.convertLead(lc);
+				System.debug('ConversionDeCandidato: ' + lcr);
+				System.assert(lcr != null, 'No se realizó la conversión');
+
+				if(!lcr.isSuccess()){
+					String errores = '';
+					System.debug('Error al convertir el candidato:');
+					for(Database.Error error : lcr.getErrors()){
+						System.debug(error.getMessage());
+						errores += error.getMessage() + '\n';
+					}
+					System.assert(lcr.isSuccess(), errores);
+				}
+
+				Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+
+				System.assertEquals(
+						sc.RecordTypeId,
+						mapRt.get('Vivienda Usada / Mejoramiento'),
+						'El tipo de registro de la Solicitud no es correcto.'
+				);
+				
+			} catch (Exception e) {
+				System.debug(
+					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+				);
+			}
+		
 		Test.stopTest();
 	}
 
@@ -363,14 +559,40 @@ private class LeadConversionHelperTest {
 		Map<String, Id> mapRt = new Map<String, Id>();
 		mapRt = getRecordTypeFromSolicitud();
 		Test.startTest();
-		ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
-		Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
+		Database.LeadConvert lc = new Database.LeadConvert();
+			lc.setLeadId(lead.Id);
 
-		System.assertEquals(
-				sc.RecordTypeId,
-				mapRt.get('Compra de cartera hipotecaria'),
-				'El tipo de registro de la Solicitud no es correcto.'
-		);
+			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+			lc.setConvertedStatus(convertStatus.MasterLabel);
+
+			try {
+				Database.LeadConvertResult lcr = Database.convertLead(lc);
+				System.debug('ConversionDeCandidato: ' + lcr);
+				System.assert(lcr != null, 'No se realizó la conversión');
+
+				if(!lcr.isSuccess()){
+					String errores = '';
+					System.debug('Error al convertir el candidato:');
+					for(Database.Error error : lcr.getErrors()){
+						System.debug(error.getMessage());
+						errores += error.getMessage() + '\n';
+					}
+					System.assert(lcr.isSuccess(), errores);
+				}
+				Solicitud_de_credito__c sc = verificarSolicitud(lcr);
+
+				System.assertEquals(
+						sc.RecordTypeId,
+						mapRt.get('Compra de cartera hipotecaria'),
+						'El tipo de registro de la Solicitud no es correcto.'
+				);
+			} catch (Exception e) {
+				System.debug(
+					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+				);
+			}
+		
 		Test.stopTest();
 	}
 
@@ -383,16 +605,38 @@ private class LeadConversionHelperTest {
 		System.runAs(user)
 		{
 			Id leadId = TestDataFactory.createLead();
+			Database.LeadConvert lc = new Database.LeadConvert();
+			lc.setLeadId(leadId);
+
+			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+			lc.setConvertedStatus(convertStatus.MasterLabel);
+
 			try {
-					ConversionDeCandidato cc = new ConversionDeCandidato(leadId);
-				} catch (Exception e){
-					System.debug('Error en la conversión del cantidato: ' + e.getMessage() + '\n' + e.getTypeName());
-					System.assert(
-							e.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'),
-							'Un asesor comercial no puede convertir candidatos'
-					);
+				Database.LeadConvertResult lcr = Database.convertLead(lc);
+				System.debug('ConversionDeCandidato: ' + lcr);
+				System.assert(lcr != null, 'No se realizó la conversión');
+
+				if(!lcr.isSuccess()){
+					String errores = '';
+					System.debug('Error al convertir el candidato:');
+					for(Database.Error error : lcr.getErrors()){
+						System.debug(error.getMessage());
+						errores += error.getMessage() + '\n';
+					}
+					System.assert(lcr.isSuccess(), errores);
 				}
+				
+			} catch (Exception e) {
+				System.debug(
+					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+				);
+				System.assert(
+						e.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'),
+						'Un asesor comercial no puede convertir candidatos'
+				);
 			}
+		}//runAs
 	    Test.stopTest();
 	}
 
@@ -435,23 +679,43 @@ private class LeadConversionHelperTest {
 		Test.startTest();
 	       System.runAs(asesorComercial){
 
-			   ConversionDeCandidato cc = new ConversionDeCandidato(lead.Id);
-			   //Existen 2 cuentas de tipo codeudor enlazadas a la cuenta principal?
-			   System.assert(cc.reporteDeConversion != null, 'El candidato no fué convertido');
-			   System.assert(cc.reporteDeConversion.isSuccess(), 'Errores en la conversión del candidato');
+			Database.LeadConvert lc = new Database.LeadConvert();
+			lc.setLeadId(lead.Id);
+
+			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+			lc.setConvertedStatus(convertStatus.MasterLabel);
+
+			try {
+				Database.LeadConvertResult lcr = Database.convertLead(lc);
+				System.debug('ConversionDeCandidato: ' + lcr);
+				System.assert(lcr != null, 'No se realizó la conversión');
+
+				if(!lcr.isSuccess()){
+					String errores = '';
+					System.debug('Error al convertir el candidato:');
+					for(Database.Error error : lcr.getErrors()){
+						System.debug(error.getMessage());
+						errores += error.getMessage() + '\n';
+					}
+					System.assert(lcr.isSuccess(), errores);
+				}
+
+				  //Existen 2 cuentas de tipo codeudor enlazadas a la cuenta principal?
+			   System.assert(lcr != null, 'El candidato no fué convertido');
+			   System.assert(lcr.isSuccess(), 'Errores en la conversión del candidato');
 			   System.assert(
-					   [select count() from Account where Cliente_deudor__c = :cc.reporteDeConversion.getAccountId()] == 2,
+					   [select count() from Account where Cliente_deudor__c = :lcr.getAccountId()] == 2,
 					   'Se esperaba encontrar 2 cuentas de tipo codeudor'
 			   );
 
-			   Opportunity op = verificarOportunidad(cc.reporteDeConversion);
+			   Opportunity op = verificarOportunidad(lcr);
 
 			   // Se actualizaron correctamente los codeudores en la oportunidad?
-			   List<Account> lstCodeudores = [select Id from Account where Cliente_deudor__c = :cc.reporteDeConversion.getAccountId()];
+			   List<Account> lstCodeudores = [select Id from Account where Cliente_deudor__c = :lcr.getAccountId()];
 			   Map<Id, Account> mapCodeudores = new Map<Id, Account>(lstCodeudores);
 			   System.assert(mapCodeudores.containsKey(op.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la oportunidad');
 
-			   Solicitud_de_credito__c sc = verificarSolicitud(cc.reporteDeConversion);
+			   Solicitud_de_credito__c sc = verificarSolicitud(lcr);
 			   System.assert(mapCodeudores.containsKey(sc.Codeudor_1__c), 'El codeudor 1 no fué actualizado correctamente en la Solicitud');
 
 			   Radicacion_de_credito__c rc = verificarRadicacionDeCredito(sc);
@@ -462,9 +726,15 @@ private class LeadConversionHelperTest {
 			   List<Codeudor__c> codeudores = new List<Codeudor__c>();
 			   codeudores = [SELECT Id FROM Codeudor__c WHERE Candidato__c = :lead.Id];
 			   System.assertEquals(codeudores.size(), 0, 'Los codeudores se deben eliminar despues de la conversión');
-		   }
-
-
+				
+			} catch (Exception e) {
+				System.debug(
+					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+				);
+			}
+			 
+		} //runAs
 	    Test.stopTest();
 	}
 
@@ -590,43 +860,5 @@ private class LeadConversionHelperTest {
 
 		return op;
 	}
-
-	class ConversionDeCandidato
-	{
-		public Database.LeadConvertResult reporteDeConversion;
-		public Boolean resultado = false;
-
-		public ConversionDeCandidato(Id leadId)
-		{
-			Database.LeadConvert lc = new Database.LeadConvert();
-			lc.setLeadId(leadId);
-
-			LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
-			lc.setConvertedStatus(convertStatus.MasterLabel);
-
-			try {
-				Database.LeadConvertResult lcr = Database.convertLead(lc);
-				System.debug('ConversionDeCandidato: ' + lcr);
-				System.assert(lcr != null, 'No se realizó la conversión');
-
-				if(lcr.isSuccess()){
-					this.reporteDeConversion = lcr;
-					this.resultado = true;
-				} else {
-					System.debug('Error al convertir el candidato:');
-					for(Database.Error error : lcr.getErrors()){
-						System.debug(error.getMessage());
-					}
-				}
-				
-			} catch (Exception e) {
-				System.debug(
-					'Se resentaron los siguientes errores en la conversión del candidato: \n' +
-					e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
-				);
-			}
-			
-		}
-	} 
 }
 

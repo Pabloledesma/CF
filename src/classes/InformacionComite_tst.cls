@@ -22,17 +22,14 @@ private class InformacionComite_tst
                     Radicacion_de_credito__c
             ];
             Id infoComiteId     = TestDataFactory.createInformacionComite(rc.Id);
+            System.assert(infoComiteId != 'Error al insertar la información comité');
             Actualizacion_masiva_de_registros__c OBJActualizacion_masiva_de_registros= new Actualizacion_masiva_de_registros__c();
             OBJActualizacion_masiva_de_registros.Objeto_destino__c='Informacion_comite__c';
             OBJActualizacion_masiva_de_registros.Name='fdgdf';
             OBJActualizacion_masiva_de_registros.Objeto_origen__c='Account';
             OBJActualizacion_masiva_de_registros.Campo_Id__c='Radicacion__c';
             OBJActualizacion_masiva_de_registros.Campo_origen__c='Id';
-            
             insert OBJActualizacion_masiva_de_registros;
-            
-            
-           
 
             List<Informacion_comite__c> lstInfoC = [
                 SELECT 
@@ -87,6 +84,7 @@ private class InformacionComite_tst
                     Radicacion_de_credito__c
             ];
             Id infoComiteId     = TestDataFactory.createInformacionComite(rc.Id);
+            System.assert(infoComiteId != 'Error al insertar la información comité');
             Actualizacion_masiva_de_registros__c OBJActualizacion_masiva_de_registros= new Actualizacion_masiva_de_registros__c();
             OBJActualizacion_masiva_de_registros.Objeto_destino__c='Informacion_comite__c';
             OBJActualizacion_masiva_de_registros.Name='fdgdf';
@@ -158,7 +156,9 @@ private class InformacionComite_tst
                 FROM 
                     Radicacion_de_credito__c
             ];
+            System.assert(rc != null, 'Debe existir una radiccación de crédito: ' + rc);
             Id infoComiteId     = TestDataFactory.createInformacionComite(rc.Id);
+            System.assert(infoComiteId != 'Error al insertar la información comité');
             Actualizacion_masiva_de_registros__c OBJActualizacion_masiva_de_registros= new Actualizacion_masiva_de_registros__c();
             OBJActualizacion_masiva_de_registros.Objeto_destino__c='Informacion_comite__c';
             OBJActualizacion_masiva_de_registros.Name='fdgdf';

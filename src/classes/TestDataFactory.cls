@@ -603,10 +603,13 @@ public class TestDataFactory {
 		Database.SaveResult result = Database.insert(infoComite, false);
 		if(!result.isSuccess()){
             System.debug('Errores al insertar la Información comité: ');
+            String errores = '';
 			for(Database.Error error : result.getErrors()){
                 System.debug(error.getStatusCode() + ': ' + error.getMessage());
                 System.debug('Verificar los siguientes campos: ' + error.getFields());
+                errores += error.getStatusCode() + ': ' + error.getMessage() + '\n' + 'Verificar los siguientes campos: ' + error.getFields();
             }
+			System.assert(result.isSuccess(), errores);
 		}
 		return infoComite.Id;  
 	}
