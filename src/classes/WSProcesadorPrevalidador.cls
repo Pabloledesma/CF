@@ -1,6 +1,4 @@
 global class WSProcesadorPrevalidador {
-
-	public String tipoCliente = 'Deudor';
 		
 	webService static void ProcesarRespuestaCliente(String RespuestaCliente) {
 				
@@ -132,7 +130,7 @@ global class WSProcesadorPrevalidador {
 		System.debug('opp: ' + opp);
 		// Consultar datos del cliente dependiendo del tipo de registro de la oportunidad y del tipo de persona
  		Account cuenta;
-		String tipoCliente;
+		String tipoCliente = 'Deudor';
 		Id idCuenta = null;
 		if ((opp.Tipo_de_Registro_de_Oportunidad__c == 'Cuenta de ahorros - CDT') && (opp.Tipo_de_persona__c == 'Jurídica')) {
 

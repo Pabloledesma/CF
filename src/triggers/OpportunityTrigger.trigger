@@ -47,7 +47,7 @@ trigger OpportunityTrigger on Opportunity (before insert, before update, after i
 					AND Canal_digital__c = 'Si'				
 			];
 
-			System.debug('LinkCodeudorToOpportunity -> codeudores:');
+			//System.debug('LinkCodeudorToOpportunity -> codeudores:');
 			System.debug(codeudores);
 			if(codeudores.size() > 0){
 	            for(Integer i = 0; i < codeudores.size(); i++)
@@ -151,14 +151,14 @@ trigger OpportunityTrigger on Opportunity (before insert, before update, after i
 	* Enlaza la oportunidad a la solicitud de crédito
 	**/
 	if(Trigger.isAfter && Trigger.new.size() == 1 && Trigger.new[0].AccountId != null){
-		System.debug('LinkCodeudorToOpportunity -> Se creó la oportunidad ' + Trigger.new[0].Name);
+		//System.debug('LinkCodeudorToOpportunity -> Se creó la oportunidad ' + Trigger.new[0].Name);
 		List<Solicitud_de_credito__c> sc = [select Id, Oportunidad__c from Solicitud_de_credito__c where Cliente_deudor__c = :Trigger.new[0].AccountId ];
 		if(sc.size() > 0){
 			sc[0].Oportunidad__c = Trigger.new[0].Id;
 			//System.debug('Oportunidad enlazada: ' + sc);
 			update sc[0];
 		} else {
-			System.debug('LinkCodeudor to opportunity: No se ha creado la solicitud!');
+			//System.debug('LinkCodeudor to opportunity: No se ha creado la solicitud!');
 		}
 	}
 }

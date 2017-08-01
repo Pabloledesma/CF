@@ -159,11 +159,11 @@ public without sharing class LeadConversionHelper {
         }
 
         Solicitud_de_credito__c sc = new Solicitud_de_credito__c();
-        System.debug('createSolicitud -> Tipo de producto: '+this.lstLead[0].Tipo_de_producto_que_le_interesa__c);
+        //System.debug('createSolicitud -> Tipo de producto: '+this.lstLead[0].Tipo_de_producto_que_le_interesa__c);
         if( this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Crédito de vivienda nueva' ||
             this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Asignación de cupo'){
 
-            System.debug('createSolicitud -> RecordType: ' + mapRt.get('Vivienda Nueva'));
+            //System.debug('createSolicitud -> RecordType: ' + mapRt.get('Vivienda Nueva'));
             sc.RecordTypeId = mapRt.get('Vivienda Nueva');
         } else if(
                 this.lstLead[0].Tipo_de_producto_que_le_interesa__c == 'Crédito de vivienda usada' ||
@@ -178,16 +178,10 @@ public without sharing class LeadConversionHelper {
         Database.SaveResult result = Database.insert(sc, false);
         
         if(result.isSuccess()){
-            System.debug('createSolicitud -> Se creó la Solicitud de credito: ' + result.getId());
+            //System.debug('createSolicitud -> Se creó la Solicitud de credito: ' + result.getId());
             return result.getId();
-        } else {
-            for(Database.Error error : result.getErrors()){
-                System.debug('Errores al insertar la solicitud de crédito: ');
-                System.debug(error.getStatusCode() + ': ' + error.getMessage());
-                System.debug('Verificar los siguientes campos: ' + error.getFields());
-            }
-            return null;
-        }
+        } 
+        return null;
     }
 
     public void createRadicacion(Id solicitud_de_credito_id){
@@ -265,14 +259,14 @@ public without sharing class LeadConversionHelper {
         
         if(result.isSuccess()){
             System.debug('Se creó la radicación de credito: ' + result.getId());
-        } else {
-            for(Database.Error error : result.getErrors()){
-                System.debug('Errores al insertar la radicación de crédito: ');
-                System.debug(error.getStatusCode() + ': ' + error.getMessage());
-                System.debug('Verificar los siguientes campos: ' + error.getFields());
-            }
-        }
-        
+        } 
+        //else {
+        //    for(Database.Error error : result.getErrors()){
+        //        System.debug('Errores al insertar la radicación de crédito: ');
+        //        System.debug(error.getStatusCode() + ': ' + error.getMessage());
+        //        System.debug('Verificar los siguientes campos: ' + error.getFields());
+        //    }
+        //}   
     }
   
 }

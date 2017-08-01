@@ -738,6 +738,59 @@ private class LeadConversionHelperTest {
 	    Test.stopTest();
 	}
 
+	@isTest
+	static void crea_codeudor_con_error()
+	{
+		Id leadId = TestDataFactory.createLead();
+		Codeudor__c cod = new Codeudor__c(
+			Name = 'CodeudorTest',
+			Apellidos__c = 'Test',
+			Candidato__c = leadId,
+			Numero_de_documento__c = 'cedula'
+		); 
+
+		Database.SaveResult result = Database.insert(cod, false);
+		if(!result.isSuccess()){
+			System.debug('Errores al insertar el codeudor: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+
+		Database.LeadConvert lc = new Database.LeadConvert();
+		lc.setLeadId(leadId);
+
+		LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted=true LIMIT 1];
+		lc.setConvertedStatus(convertStatus.MasterLabel);
+
+		try {
+			Database.LeadConvertResult lcr = Database.convertLead(lc);
+			System.debug('ConversionDeCandidato: ' + lcr);
+			System.assert(lcr != null, 'No se realizó la conversión');
+
+			if(!lcr.isSuccess()){
+				String errores = '';
+				System.debug('Error al convertir el candidato:');
+				for(Database.Error error : lcr.getErrors()){
+					System.debug(error.getMessage());
+					errores += error.getMessage() + '\n';
+				}
+				System.assert(lcr.isSuccess(), errores);
+			}
+			
+		} catch (Exception e) {
+			System.debug(
+				'Se resentaron los siguientes errores en la conversión del candidato: \n' +
+				e.getMessage() + '\n' + e.getStackTraceString() + '\n' + e.getTypeName()
+			);
+			System.assert(
+					e.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'),
+					'Error en el número de documento del candidato'
+			);
+		}
+	}
+
 	public static User getComercialUser()
 	{
 		Profile asesorComercial = [SELECT Id, Name FROM Profile WHERE Name = 'Asesor comercial canal digital'];
