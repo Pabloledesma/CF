@@ -400,7 +400,7 @@ global class Prevalidador {
             SELECT Amount, Tipo_de_producto__c, Valor_del_inmueble__c, AccountId, OwnerId, Tipo_de_vivienda__c,
             Codeudor_1__c, Codeudor_2__c, Codeudor_3__c, Numero_de_vivienda__c, Ingresos_Familiares__c, Canal_de_atencion__c
             FROM Opportunity
-           c WHERE id =: idOportunidad
+            WHERE id =: idOportunidad
         ];
         Opportunity opp = lstOportunidades[0];
                 
@@ -429,6 +429,7 @@ global class Prevalidador {
         dom.Xmlnode nodoInforme = nodoInformes.addChildElement('Informe', '', '');
         nodoInforme.setAttribute('idOportunidad', opp.Id);
         nodoInforme.setAttribute('tipoVivienda', opp.Tipo_de_vivienda__c == null ? '' : opp.Tipo_de_vivienda__c);
+        System.debug('prevalidador -> opp.Amount: ' + opp.Amount);
         nodoInforme.setAttribute('valorCredito', String.valueOf(opp.Amount));
         nodoInforme.setAttribute('ingresosFamiliares', opp.Ingresos_Familiares__c == null ? '' : String.valueOf(opp.Ingresos_Familiares__c));
         nodoInforme.setAttribute('tipoProducto', EliminarCaracteresEspeciales(opp.Tipo_de_producto__c));

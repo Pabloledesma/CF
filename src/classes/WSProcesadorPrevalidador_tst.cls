@@ -5,8 +5,7 @@ private class WSProcesadorPrevalidador_tst {
    {
       Account cuenta = CrearCuentaDeudor();
       insert cuenta;
-      Opportunity opp = CrearOportunidad(cuenta.Id);
-      insert opp;
+      Id oppId = TestDataFactory.createOpportunity(cuenta.Id);
    }
 
    @isTest
@@ -181,7 +180,7 @@ private class WSProcesadorPrevalidador_tst {
       System.assert(opp != null, 'Error al insertar la oportunidad');
       String RespuestaCliente = '<Informes>' +
          '<Informe idOportunidad="' + opp.Id + '" origen="datacredito" montoSugerido="45690000" relacionCI="0.08" ltv="0.49088764" respuesta="Consulta exitosa" fechaConsulta="10/05/2016">' +
-            '<InformeGeneral scoreIntenro="998.0" endeudamientoFinanciero="0.140818594" acierta="855.0" numDocumento="' + acc.Numero_de_documento__c + '" numConsultas="5" numTargetas="3" numCreditos="5" morasDataCredito="12" morasCifin="2" fechaListas="10/05/2016" horaListas="22:07:34" observaciones="EC-01: una nueva observación!!">' +
+            '<InformeGeneral scoreIntenro="998.0" endeudamientoFinanciero="0.140818594" acierta="855.0" numDocumento="' + acc.Numero_de_documento__c + '" numConsultas="5" numTargetas="3" numCreditos="5" morasDataCredito="12" morasCifin="2" fechaListas="10/05/2016" horaListas="22:07:34" observaciones="EC-01: una nueva observación texto de prueba texto de prueba texto de prueba">' +
                '<Vigia encontrado="N" error="N"/>' +
                '<DataCredito respuesta="13" encabezado="Historia de Credito+ |$Consultado por:|#Claudia Angel|#2012-09-09T21:16:17|$">' +
                   '<InformacionBasica informacion="Tipo de documento |#C.C.|#Nemero |#00079792339|#Estado Del documento |#VIGENTE|#PUNTAJE|#855.0|$Nombre|#POLANIA TEATINO JORGE ORLANDO|#Rando de edad|#29 - 35|$">' +
@@ -360,15 +359,17 @@ private class WSProcesadorPrevalidador_tst {
    }
 
    @isTest
-   static void excepcion_en_informacion_general()
+   static void oportunidad_juridica_con_cdt()
    {
-      Account acc = [select Id, Numero_de_documento__c from account where Numero_de_documento__c = '112233'];
-      System.assert(acc != null, 'Error al insertar la cuenta');
-      Opportunity opp = [select Id from Opportunity where AccountId = :acc.Id];
-      System.assert(opp != null, 'Error al insertar la oportunidad');
+      RecordType rt = [select Id from RecordType where Name = 'Cuenta de ahorros - CDT' and SobjectType = 'Opportunity'];
+      Account acc = [select id, Numero_de_documento__c from Account where Numero_de_documento__c = '112233'];
+      Id oppId = TestDataFactory.createOpportunity(rt.Id, acc.Id, 'Jurídica');
+      System.assert(oppId != null, 'Debe existir una oportunidad');
+      Id personaId = TestDataFactory.createPerson(acc.Numero_de_documento__c, oppId, 'CDT');
+      System.assert(personaId != null, 'Error al insertar la persona');
       String RespuestaCliente = '<Informes>' +
-         '<Informe idOportunidad="' + opp.Id + '" montoSugerido="45690000" relacionCI="0.08" ltv="0.49088764" respuesta="Consulta exitosa" fechaConsulta="">' +
-            '<InformeGeneral scoreIntenro="" endeudamientoFinanciero="" acierta="" numDocumento="" numConsultas="a" numTargetas="" numCreditos="" morasDataCredito="" morasCifin="" fechaListas="" horaListas="" observaciones="">' +
+         '<Informe idOportunidad="' + oppId + '" origen="cifin" montoSugerido="45690000" relacionCI="0.08" ltv="0.49088764" respuesta="Consulta exitosa" fechaConsulta="10/05/2016">' +
+            '<InformeGeneral scoreIntenro="998.0" endeudamientoFinanciero="0.140818594" acierta="855.0" numDocumento="' + acc.Numero_de_documento__c + '" numConsultas="5" numTargetas="3" numCreditos="5" morasDataCredito="12" morasCifin="2" fechaListas="10/05/2016" horaListas="22:07:34" observaciones="EC-01: Otra observación!!">' +
                '<Vigia encontrado="N" error="N"/>' +
                '<DataCredito respuesta="13" encabezado="Historia de Credito+ |$Consultado por:|#Claudia Angel|#2012-09-09T21:16:17|$">' +
                   '<InformacionBasica informacion="Tipo de documento |#C.C.|#Nemero |#00079792339|#Estado Del documento |#VIGENTE|#PUNTAJE|#855.0|$Nombre|#POLANIA TEATINO JORGE ORLANDO|#Rando de edad|#29 - 35|$">' +
@@ -414,13 +415,8 @@ private class WSProcesadorPrevalidador_tst {
             '</InformeGeneral>' +
          '</Informe>' +
       '</Informes>';
-
       Test.startTest();
-         try {
-               WSProcesadorPrevalidador.ProcesarRespuestaCliente(RespuestaCliente);
-         } catch (Exception e){
-            System.assert(e.getMessage().contains('Invalid id'), 'No se encontró ninguna excepción en la respuesta');
-         }
+         WSProcesadorPrevalidador.ProcesarRespuestaCliente(RespuestaCliente);
       Test.stopTest();
    }
 
@@ -450,27 +446,4 @@ private class WSProcesadorPrevalidador_tst {
 		return cuenta;
 
 	}
-
-    static Opportunity CrearOportunidad(Id idCuenta) {
-
-    	Opportunity opp = new Opportunity();
-    	opp.Name = 'Nombre';
-		opp.AccountId = idCuenta;
-		opp.Tipo_de_producto__c = 'Crédito de vivienda usada';
-		opp.Asignacion_de_cupo__c = 'No';
-		opp.Tiene_convenio__c = 'No';
-		opp.Canal_de_atencion__c = 'Sala de ventas';
-		opp.Valor_del_inmueble__c = 200000;
-		opp.Amount = 100000;
-		opp.Tipo_de_vivienda__c = 'Vip';
-		opp.Numero_de_vivienda__c = '1';
-		opp.Ingresos_Familiares__c = 500000;
-		opp.CloseDate = Date.newInstance(2200, 2, 2);
-		opp.StageName = 'Radicado';
-		opp.Excepcion__c = 'No';
-      opp.Cliente_deudor__c = idCuenta;
-		
-		return opp;
-    }
-
 }

@@ -417,13 +417,78 @@ public class TestDataFactory {
 		return acc.Id;
 	}
 
+	public static Id createPerson(String numDocumento, Id oppId, String tipoDeProducto)
+	{
+		Persona__c persona = new Persona__c(
+			Nombre__c = 'Nombre',
+			Apellidos__c = 'Apellidos',
+			Tipo_de_documento__c = 'Cédula ciudadanía',
+			Numero_de_documento__c = numDocumento,
+			Tipo__c = 'Representante Legal',
+			Oportunidad__c = oppId,
+			Tipo_de_producto_a_adquirir__c = 'CDT',
+			Razon_social__c = 'Acme',
+			Nit_de_la_entidad__c = '123456789'
+		);
+
+		Database.SaveResult result = Database.insert(persona, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la persona: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return persona.Id;
+	}
+
 	public static Id createOpportunity(Id deudorId){
 		Opportunity op = new Opportunity(
+			Name = 'Nombre',
 			AccountId = deudorId,
-			Name = 'Opp Test',
-			StageName = 'Abierta',
-			CloseDate = Date.newInstance(2017, 12, 12),
-			Codeudor_1__c = deudorId
+			Tipo_de_producto__c = 'Crédito de vivienda usada',
+			Asignacion_de_cupo__c = 'No',
+			Tiene_convenio__c = 'No',
+			Canal_de_atencion__c = 'Sala de ventas',
+			Valor_del_inmueble__c = 200000,
+			Amount = 100000,
+			Tipo_de_vivienda__c = 'Vip',
+			Numero_de_vivienda__c = '1',
+			Ingresos_Familiares__c = 500000,
+			CloseDate = Date.newInstance(2200, 2, 2),
+			StageName = 'Radicado',
+			Excepcion__c = 'No',
+	      	Cliente_deudor__c = deudorId
+		);
+
+		Database.SaveResult result = Database.insert(op, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la oportunidad: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return op.Id;
+	}
+
+	public static Id createOpportunity(Id deudorId, String tipoDeProducto){
+		Opportunity op = new Opportunity(
+			Name = 'Nombre',
+			AccountId = deudorId,
+			Tipo_de_producto__c = tipoDeProducto,
+			Asignacion_de_cupo__c = 'No',
+			Tiene_convenio__c = 'No',
+			Canal_de_atencion__c = 'Sala de ventas',
+			Valor_del_inmueble__c = 200000,
+			Amount = 100000,
+			Tipo_de_vivienda__c = 'Vip',
+			Numero_de_vivienda__c = '1',
+			Ingresos_Familiares__c = 500000,
+			CloseDate = Date.newInstance(2200, 2, 2),
+			StageName = 'Radicado',
+			Excepcion__c = 'No',
+	      	Cliente_deudor__c = deudorId
 		);
 
 		Database.SaveResult result = Database.insert(op, false);
@@ -444,6 +509,37 @@ public class TestDataFactory {
 			StageName = 'Abierta',
 			CloseDate = Date.newInstance(2017, 12, 12),
 			Codeudor_1__c = codeudorId
+		);
+
+		Database.SaveResult result = Database.insert(op, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la oportunidad: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return op.Id;
+	}
+
+	public static Id createOpportunity(Id tipoDeRegistro, Id deudorId, String tipoDePersona){
+		Opportunity op = new Opportunity(
+			RecordTypeId = tipoDeRegistro,
+			Name = 'Nombre',
+			AccountId = deudorId,
+			Tipo_de_persona__c = tipoDePersona,
+			Asignacion_de_cupo__c = 'No',
+			Tiene_convenio__c = 'No',
+			Canal_de_atencion__c = 'Sala de ventas',
+			Valor_del_inmueble__c = 200000,
+			Amount = 100000,
+			Tipo_de_vivienda__c = 'Vip',
+			Numero_de_vivienda__c = '1',
+			Ingresos_Familiares__c = 500000,
+			CloseDate = Date.newInstance(2200, 2, 2),
+			StageName = 'Radicado',
+			Excepcion__c = 'No',
+	      	Cliente_deudor__c = deudorId
 		);
 
 		Database.SaveResult result = Database.insert(op, false);

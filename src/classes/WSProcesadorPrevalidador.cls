@@ -35,6 +35,7 @@ global class WSProcesadorPrevalidador {
 	 		esConsultaInterna = ((origen == null) || (origen == ''));
 	 		esDatacredito = (origen == 'datacredito');
 	 		esCifin = (origen == 'cifin');
+	 		//System.debug('esCifin: ' + esCifin + ' origen: ' + origen);
 	 		montoSugeridoPreaprobado = informe.getAttributeValue('montoSugerido', null);
 	 		relacionCuotaIngreso = informe.getAttributeValue('relacionCI', '');
 	 		LTVPrevalidado = informe.getAttributeValue('ltv', '');
@@ -64,58 +65,6 @@ global class WSProcesadorPrevalidador {
 			return;
 		}
 
-		// Si se presentó un error en la conexión con Datacredito ó CIFIN y
-		// si las observaciones del último resultado indican que se presentó un error
-		// en la conexión con Datacredito ó CIFIN, no seguir procesando la respuesta
-		if (observaciones.startsWith('EC-01:')) {
-			
-			// Buscar las observaciones del último Resultado
-			if (esConsultaInterna) {
-
-				List<Resultado_Prevalidador__c> lstResultados = [
-					SELECT Observaciones__c
-					FROM Resultado_Prevalidador__c
-					WHERE Oportunidad__c = :idOpp
-					ORDER BY CreatedDate DESC
-				];
-
-				if (lstResultados.size() > 0) {
-					if (lstResultados[0].Observaciones__c.startsWith('EC-01:'))
-						return;
-				}
-
-			}
-			else if (esDatacredito) {
-
-				List<Resultado_Datacredito__c> lstResultados = [
-					SELECT Observaciones__c
-					FROM Resultado_Datacredito__c
-					WHERE Oportunidad__c = :idOpp
-					ORDER BY CreatedDate DESC
-				];
-
-				if (lstResultados.size() > 0) {
-					if (lstResultados[0].Observaciones__c.startsWith('EC-01:'))
-						return;
-				}
-
-			}
-			else if (esCifin) {
-
-				List<Resultado_CIFIN__c> lstResultados = [
-					SELECT Observaciones__c
-					FROM Resultado_CIFIN__c
-					WHERE Oportunidad__c = :idOpp
-					ORDER BY CreatedDate DESC
-				];
-
-				if (lstResultados.size() > 0) {
-					if (lstResultados[0].Observaciones__c.startsWith('EC-01:'))
-						return;
-				}
-			}
-		}
-
 		// Consultar datos de la oportunidad
 		List<Opportunity> lstOportunidades = [
 			SELECT 
@@ -127,7 +76,7 @@ global class WSProcesadorPrevalidador {
 		];
 
 		Opportunity opp = lstOportunidades[0];
-		System.debug('opp: ' + opp);
+		//System.debug('opp: ' + opp);
 		// Consultar datos del cliente dependiendo del tipo de registro de la oportunidad y del tipo de persona
  		Account cuenta;
 		String tipoCliente = 'Deudor';
@@ -168,8 +117,6 @@ global class WSProcesadorPrevalidador {
 	 		tipoCliente = (opp.AccountId == idCuenta) ? 'Deudor' : 'Codeudor';
 		}
 
-	 	
-
 		// Procesar datos que solo vienen cuando es una consulta interna
 		if (esConsultaInterna) {
 
@@ -188,7 +135,7 @@ global class WSProcesadorPrevalidador {
 		 		objRespuesta.Score_interno__c = scoreInterno == '' ? null : Double.valueOf(scoreInterno);
 		 		objRespuesta.Endeudamiento_financiero_prevalidado__c = endeudamientoFinanciero == '' ? null : (Decimal.valueOf(endeudamientoFinanciero) * 100);
 				objRespuesta.Numero_de_consultas__c = numConsultas == '' ? null : Double.valueOf(numConsultas);
-				System.debug('Numero de consultas: ' + objRespuesta.Numero_de_consultas__c);
+				//System.debug('Numero de consultas: ' + objRespuesta.Numero_de_consultas__c);
 				objRespuesta.No_de_tarjetas_vigentes__c = numTarjetasVigentes == '' ? null : Double.valueOf(numTarjetasVigentes);
 				objRespuesta.No_de_creditos_vigentes__c = numCreditosVigentes == '' ? null : Double.valueOf(numCreditosVigentes);
 				objRespuesta.Moras_en_Datacredito__c = numMorasDatacredito == '' ? null : Double.valueOf(numMorasDatacredito);
@@ -259,6 +206,7 @@ global class WSProcesadorPrevalidador {
 		 		objResultado.Oportunidad__c = idOpp;
 		 		objResultado.Tipo_Cliente__c = tipoCliente;
 		 		objResultado.Cliente__c = cuenta.Id;
+		 		objResultado.Observaciones__c = observaciones;
 				objResultado.LogRespuesta__c = RespuestaCliente;
 				insert objResultado;
 
@@ -288,6 +236,7 @@ global class WSProcesadorPrevalidador {
 		 		objResultado.Oportunidad__c = idOpp;
 		 		objResultado.Tipo_Cliente__c = tipoCliente;
 		 		objResultado.Cliente__c = cuenta.Id;
+		 		objResultado.Observaciones__c = observaciones;
 				objResultado.LogRespuesta__c = RespuestaCliente;
 				insert objResultado;
 
@@ -302,6 +251,58 @@ global class WSProcesadorPrevalidador {
 
 		}
 
+		// Si se presentó un error en la conexión con Datacredito ó CIFIN y
+		// si las observaciones del último resultado indican que se presentó un error
+		// en la conexión con Datacredito ó CIFIN, no seguir procesando la respuesta
+		if (observaciones.startsWith('EC-01:')) {
+			
+			// Buscar las observaciones del último Resultado
+			if (esConsultaInterna) {
+
+				List<Resultado_Prevalidador__c> lstResultados = [
+					SELECT Observaciones__c
+					FROM Resultado_Prevalidador__c
+					WHERE Oportunidad__c = :idOpp
+					ORDER BY CreatedDate DESC
+				];
+
+				if (lstResultados.size() > 0) {
+					if (lstResultados[0].Observaciones__c.startsWith('EC-01:'))
+						return;
+				}
+
+			}
+			else if (esDatacredito) {
+
+				List<Resultado_Datacredito__c> lstResultados = [
+					SELECT Observaciones__c
+					FROM Resultado_Datacredito__c
+					WHERE Oportunidad__c = :idOpp
+					ORDER BY CreatedDate DESC
+				];
+
+				if (lstResultados.size() > 0) {
+					if (lstResultados[0].Observaciones__c.startsWith('EC-01:'))
+						return;
+				}
+
+			}
+			else if (esCifin) {
+
+				List<Resultado_CIFIN__c> lstResultados = [
+					SELECT Observaciones__c
+					FROM Resultado_CIFIN__c
+					WHERE Oportunidad__c = :idOpp
+					ORDER BY CreatedDate DESC
+				];
+
+				if (lstResultados.size() > 0) {
+					if (lstResultados[0].Observaciones__c.startsWith('EC-01:'))
+						return;
+				}
+			}
+		}
+
         return;
     }
 
@@ -313,7 +314,15 @@ global class WSProcesadorPrevalidador {
 
  		if ((nodoCifin.getAttributeCount() == 0) || (nodoCifin.getChildElements().size() == 0)) {
 	 		Cifin__c objCifin = new Cifin__c();
-	 		insert objCifin;
+	 		Database.SaveResult result = Database.insert(objCifin, false);
+	 		if(!result.isSuccess()){
+	 			for(Database.Error error : result.getErrors()){
+	 				System.debug('Error al insertar el registro cifin:');
+					System.debug(error.getMessage());
+	 			}
+	 			return null;
+	 		}
+	 		System.debug('objCifin.Id: ' + objCifin.Id);
  			return objCifin.Id;
  		}
 
