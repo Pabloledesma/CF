@@ -914,4 +914,3 @@ private class LeadConversionHelperTest {
 		return op;
 	}
 }
-

@@ -8,8 +8,8 @@ trigger LeadConversion on Account (after insert) {
                         Trigger.new[0].RecordTypeId == rt[0].Id &&
                         Trigger.new[0].Canal_digital__c == 'Si'
                 ){
-//	    System.debug('LeadConversion Trigger -> Trigger.new: ');
-//	    System.debug(Trigger.new[0]);
+//      System.debug('LeadConversion Trigger -> Trigger.new: ');
+//      System.debug(Trigger.new[0]);
             LeadConversionHelper leadConversionHelper = new LeadConversionHelper(Trigger.new[0]);
         }
     }

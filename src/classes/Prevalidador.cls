@@ -50,76 +50,100 @@ global class Prevalidador {
 
     }
 
+    /**
+    * Valida datos de la oportunidad
+    * Valida datos del deudor
+    * Valida datos de los codeudores
+    */ 
     public static string ValidarDatosObligatorios(Id idOportunidad) {
 
         // Buscar datos de la oportunidad
         List<Opportunity> lstOportunidades = [
             SELECT Tipo_de_producto__c, Asignacion_de_cupo__c, Valor_del_inmueble__c, Amount, Numero_de_vivienda__c,
-                   Tipo_de_vivienda__c, Ingresos_Familiares__c, Estado_Consulta__c, AccountId,
+                   Tipo_de_vivienda__c, Ingresos_Familiares__c, Estado_Consulta__c, AccountId, Valor_del_credito__c,
                    Codeudor_1__c, Codeudor_2__c, Codeudor_3__c
             FROM Opportunity
             WHERE id =: idOportunidad
         ];
-        Opportunity opp = lstOportunidades[0];
-        
-        // Validar datos de la oportunidad
-        if (String.isBlank(opp.Tipo_de_producto__c) ||
-            String.isBlank(opp.Asignacion_de_cupo__c) ||
-            (opp.Valor_del_inmueble__c == null) ||
-            (opp.Amount == null) ||
-            String.isBlank(opp.Numero_de_vivienda__c) ||
-            String.isBlank(opp.Tipo_de_vivienda__c) ||
-            (opp.Ingresos_Familiares__c == null) ||
-            String.isBlank(opp.Estado_Consulta__c)
-           )
-            return 'Faltan datos de la oportunidad necesarios para realizar la consulta.';
 
-        // Buscar datos del deudor (cuenta de la oportunidad)
-        List<Account> lstCuentas = [
-            SELECT FirstName, LastName, Sexo__c, Tipo_de_documento__c, Numero_de_documento__c, Edad__c, Estado_civil__c,
-                   Ciudad_de_radicacion__c, Tipo_de_ocupacion__c, Actividad_economica__c, Fecha_de_ingreso_a_empleo_actual__c,
-                   Tipo_de_contrato__c, Personas_a_cargo__c
-            FROM Account
-            WHERE id =: opp.AccountId
-        ];
-        Account cuenta = lstCuentas[0];
+        if(!lstOportunidades.isEmpty()){
+            Opportunity opp = lstOportunidades[0];
+            // Validar datos de la oportunidad
+            if (String.isBlank(opp.Tipo_de_producto__c) ||
+                String.isBlank(opp.Asignacion_de_cupo__c) ||
+                String.isBlank(opp.Estado_Consulta__c ) ||
+                String.isBlank(String.valueOf(opp.Numero_de_vivienda__c)) ||
+                (opp.Ingresos_Familiares__c == 0) ||
+                (opp.Ingresos_Familiares__c == null) ||
+                (opp.Valor_del_inmueble__c == 0) ||
+                (opp.Valor_del_inmueble__c == null) ||
+                (opp.Valor_del_credito__c == null) ||
+                String.isBlank(opp.Tipo_de_vivienda__c)
+               ){ 
+                System.debug(
+                    'Tipo de producto : ' + String.isBlank(opp.Tipo_de_producto__c) + '\n' + 
+                    'Asignacion_de_cupo__c: ' + String.isBlank(opp.Asignacion_de_cupo__c) + '\n' + 
+                    'Estado_Consulta__c: ' + String.isBlank(opp.Estado_Consulta__c) + '\n' + 
+                    'Numero_de_vivienda__c: ' + String.isBlank(opp.Numero_de_vivienda__c) + '\n' + 
+                    'Tipo_de_vivienda__c: ' + String.isBlank(opp.Tipo_de_vivienda__c) + '\n' + 
+                    'Valor_de_inmueble__c: ' + (opp.Valor_del_inmueble__c == 0 || opp.Valor_del_inmueble__c == null) + '\n' + 
+                    'Valor del credito: ' + (opp.Valor_del_credito__c == 0 || opp.Valor_del_credito__c == null) + '\n' + 
+                    'Amount: ' + (opp.Amount == 0 || opp.Amount == null) + '\n' + 
+                    'Ingresos_Familiares__c: ' + (opp.Ingresos_Familiares__c == 0 || opp.Ingresos_Familiares__c == null) 
+                );
+                return 'Faltan datos de la oportunidad necesarios para realizar la consulta.';
+            }
 
-        // Validar datos del deudor
-        if (String.isBlank(cuenta.FirstName) ||
-            String.isBlank(cuenta.LastName) ||
-            String.isBlank(cuenta.Sexo__c) ||
-            String.isBlank(cuenta.Tipo_de_documento__c) ||
-            String.isBlank(cuenta.Numero_de_documento__c) ||
-            (cuenta.Edad__c == null) ||
-            String.isBlank(cuenta.Estado_civil__c) ||
-            String.isBlank(cuenta.Ciudad_de_radicacion__c) ||
-            String.isBlank(cuenta.Tipo_de_ocupacion__c) ||
-            String.isBlank(cuenta.Actividad_economica__c) ||
-            (cuenta.Fecha_de_ingreso_a_empleo_actual__c == null) ||
-            String.isBlank(cuenta.Tipo_de_contrato__c) ||
-            String.isBlank(cuenta.Personas_a_cargo__c)
-           )
-            return 'Faltan datos del deudor necesarios para realizar la consulta.';
+            // Buscar datos del deudor (cuenta de la oportunidad)
+            List<Account> lstCuentas = [
+                SELECT FirstName, LastName, Sexo__c, Tipo_de_documento__c, Numero_de_documento__c, Edad__c, Estado_civil__c,
+                       Ciudad_de_radicacion__c, Tipo_de_ocupacion__c, Actividad_economica__c, Fecha_de_ingreso_a_empleo_actual__c,
+                       Tipo_de_contrato__c, Personas_a_cargo__c
+                FROM Account
+                WHERE id =: opp.AccountId
+            ];
 
-        // Validar datos de los codeudores
-        String respuesta;
-        if (opp.Codeudor_1__c != null) {
-            respuesta = ValidarDatosCodeudor(opp.Codeudor_1__c);
-            if (respuesta != 'ok')
-                return respuesta;
-        }
-        if (opp.Codeudor_2__c != null) {
-            respuesta = ValidarDatosCodeudor(opp.Codeudor_2__c);
-            if (respuesta != 'ok')
-                return respuesta;
-        }
-        if (opp.Codeudor_3__c != null) {
-            respuesta = ValidarDatosCodeudor(opp.Codeudor_3__c);
-            if (respuesta != 'ok')
-                return respuesta;
-        }
+            if(!lstCuentas.isEmpty()){
+                Account cuenta = lstCuentas[0];
 
-        return 'ok';
+                // Validar datos del deudor
+                if (String.isBlank(cuenta.FirstName) ||
+                    String.isBlank(cuenta.LastName) ||
+                    String.isBlank(cuenta.Sexo__c) ||
+                    String.isBlank(cuenta.Tipo_de_documento__c) ||
+                    String.isBlank(cuenta.Numero_de_documento__c) ||
+                    (cuenta.Edad__c == null) ||
+                    String.isBlank(cuenta.Estado_civil__c) ||
+                    String.isBlank(cuenta.Ciudad_de_radicacion__c) ||
+                    String.isBlank(cuenta.Tipo_de_ocupacion__c) ||
+                    String.isBlank(cuenta.Actividad_economica__c) ||
+                    (cuenta.Fecha_de_ingreso_a_empleo_actual__c == null) ||
+                    String.isBlank(cuenta.Tipo_de_contrato__c) ||
+                    String.isBlank(cuenta.Personas_a_cargo__c)
+                   )
+                    return 'Faltan datos del deudor necesarios para realizar la consulta.';
+            }
+
+            // Validar datos de los codeudores
+            String respuesta;
+            if (opp.Codeudor_1__c != null) {
+                respuesta = ValidarDatosCodeudor(opp.Codeudor_1__c);
+                if (respuesta != 'ok')
+                    return respuesta;
+            }
+            if (opp.Codeudor_2__c != null) {
+                respuesta = ValidarDatosCodeudor(opp.Codeudor_2__c);
+                if (respuesta != 'ok')
+                    return respuesta;
+            }
+            if (opp.Codeudor_3__c != null) {
+                respuesta = ValidarDatosCodeudor(opp.Codeudor_3__c);
+                if (respuesta != 'ok')
+                    return respuesta;
+            }
+            return 'ok';
+        } //if(!lstOportunidades.isEmpty()){
+        return 'La oportunidad referenciada no existe.';     
     }
 
     public static String ValidarDatosCodeudor(Id idCodeudor) {
@@ -130,23 +154,24 @@ global class Prevalidador {
             FROM Account
             WHERE id =: idCodeudor
         ];
-        Account cuenta = lstCuentas[0];
-
-        if (String.isBlank(cuenta.FirstName) ||
-            String.isBlank(cuenta.LastName) ||
-            String.isBlank(cuenta.Sexo__c) ||
-            String.isBlank(cuenta.Tipo_de_documento__c) ||
-            String.isBlank(cuenta.Numero_de_documento__c) ||
-            (cuenta.Edad__c == null) ||
-            String.isBlank(cuenta.Estado_civil__c) ||
-            String.isBlank(cuenta.Ciudad_de_radicacion__c) ||
-            String.isBlank(cuenta.Tipo_de_ocupacion__c) ||
-            String.isBlank(cuenta.Lugar_de_nacimiento__c) ||
-            String.isBlank(cuenta.Aporta_ingresos__c)
-           )
-            return 'Faltan datos del codeudor necesarios para realizar la consulta.';
-
-        return 'ok';    
+        if(lstCuentas.size() > 0){
+            Account cuenta = lstCuentas[0];
+            if (String.isBlank(cuenta.FirstName) ||
+                String.isBlank(cuenta.LastName) ||
+                String.isBlank(cuenta.Sexo__c) ||
+                String.isBlank(cuenta.Tipo_de_documento__c) ||
+                String.isBlank(cuenta.Numero_de_documento__c) ||
+                (cuenta.Edad__c == null) ||
+                String.isBlank(cuenta.Estado_civil__c) ||
+                String.isBlank(cuenta.Ciudad_de_radicacion__c) ||
+                String.isBlank(cuenta.Tipo_de_ocupacion__c) ||
+                String.isBlank(cuenta.Lugar_de_nacimiento__c) ||
+                String.isBlank(cuenta.Aporta_ingresos__c)
+               )
+                return 'Faltan datos del codeudor necesarios para realizar la consulta.';
+                return 'ok';    
+        }
+        return 'La cuenta no existe';
     }
 
     public static string ValidarCantidadConsultas(Id idOportunidad) {

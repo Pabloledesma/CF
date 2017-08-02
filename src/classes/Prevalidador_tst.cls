@@ -9,51 +9,69 @@ private class Prevalidador_tst {
 		conf.Clave_WS_Prevalidador__c = 'password';
 		conf.URL_WS_Prevalidador__c = 'http://testwsprevalidador.credifamilia.com/CredifamiliaServer/services/Credifamilia';
 		insert conf;
-
-		Account cuenta = CrearCuentaDeudor();
-		insert cuenta;
+		TestDataFactory.createAccount('12345678', false);
 	}
 
     @isTest
     static void oportunidad_disponible_para_consulta_con_tres_consultas() {
-		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '112233'];
-		Opportunity opp = CrearOportunidad(cuenta.Id);
-		opp.Consultas_realizadas__c = 3;
-		opp.Estado_Consulta__c = 'Disponible para consulta';
-		insert opp;
+		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '12345678'];
+		Id oppId = TestDataFactory.createOpportunity(cuenta.Id);
 
 		Test.startTest();
-			Prevalidador.ValidarCantidadConsultas(opp.Id);
-			Prevalidador.ValidarEstadoDatacredito(opp.Id);
-			Prevalidador.ValidarEstadoCIFIN(opp.Id);
-			Prevalidador.ValidarConsultaInterna(opp.Id);
-			Prevalidador.ValidarDatosObligatorios(opp.Id);
+			Prevalidador.ValidarCantidadConsultas(oppId);
+			Prevalidador.ValidarEstadoDatacredito(oppId);
+			Prevalidador.ValidarEstadoCIFIN(oppId);
+			Prevalidador.ValidarConsultaInterna(oppId);
+			Prevalidador.ValidarDatosObligatorios(oppId);
+		Test.stopTest();
+	}
+
+	@isTest
+	static void validar_datos_obligatorios()
+	{
+		Account cuenta = [select Id, Numero_de_documento__c, Canal_digital__c from Account where Numero_de_documento__c = '12345678'];
+		System.assert(cuenta.Canal_digital__c == 'No', 'La Cuenta debe ser del canal constructor.');
+		Id oppId = TestDataFactory.createOpportunity(cuenta.Id);
+		
+		Test.startTest();
+			String resultado = Prevalidador.ValidarDatosObligatorios(oppId);
+			System.assertEquals(
+					'ok',
+					resultado,
+					'Faltan datos obligatorios'
+			); 
 		Test.stopTest();
 	}
 
 	@isTest
 	static void oportunidad_sin_consultas()
 	{
-		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '112233'];
-		Opportunity opp1 = CrearOportunidad(cuenta.Id);
-		opp1.Consultas_realizadas__c = 0;
-		opp1.Estado_Consulta__c = 'Disponible para consulta';
-		insert opp1;
+		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '12345678'];
+		Id opp1Id = TestDataFactory.createOpportunity(cuenta.Id);
+		Opportunity opp1 = new Opportunity(
+			Id = opp1Id,
+			Consultas_realizadas__c = 0,
+			Estado_Consulta__c = 'Disponible para consulta'
+		);
+		update opp1;
 		Test.startTest();
-			Prevalidador.ValidarCantidadConsultas(opp1.Id);
-			Prevalidador.ValidarEstadoDatacredito(opp1.Id);
-			Prevalidador.ValidarEstadoCIFIN(opp1.Id);
+			Prevalidador.ValidarCantidadConsultas(opp1Id);
+			Prevalidador.ValidarEstadoDatacredito(opp1Id);
+			Prevalidador.ValidarEstadoCIFIN(opp1Id);
 		Test.stopTest();
 	}
 		
 	@isTest
 	static void sin_consultas_y_esperando_respuesta()
 	{
-		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '112233'];
-		Opportunity opp2 = CrearOportunidad(cuenta.Id);
-		opp2.Consultas_realizadas__c = 0;
-		opp2.Estado_Consulta__c = 'Esperando respuesta Consulta Interna';
-		insert opp2;
+		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '12345678'];
+		Id opp2Id = TestDataFactory.createOpportunity(cuenta.Id);
+		Opportunity opp2 = new Opportunity(
+			Id = opp2Id,
+			Consultas_realizadas__c = 0,
+			Estado_Consulta__c = 'Esperando respuesta Consulta Interna'
+		);
+		update opp2;
 		Test.startTest();
 			Prevalidador.ValidarCantidadConsultas(opp2.Id);
 			Prevalidador.ValidarEstadoDatacredito(opp2.Id);
@@ -64,12 +82,14 @@ private class Prevalidador_tst {
 	@isTest
 	static void oportunidad_con_tres_codeudores()
 	{
-		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '112233'];
+		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '12345678'];
 		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account'];				   		
 		Id codeudorId = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345678');
 		Id codeudor2Id = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345677');
 		Id codeudor3Id = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345676');
-		Opportunity opp3 = CrearOportunidad(cuenta.Id);
+		Id opp3Id = TestDataFactory.createOpportunity(cuenta.Id);
+		Opportunity opp3 = new Opportunity();
+		opp3.Id = opp3Id; 
 		opp3.Codeudor_1__c = codeudorId;
 		opp3.Codeudor_2__c = codeudor2Id;
 		opp3.Codeudor_3__c = codeudor3Id;
@@ -78,7 +98,7 @@ private class Prevalidador_tst {
 		opp3.Resultado_del_Prevalidador__c = 'VIABLE';
 		opp3.Tipo_de_persona__c = 'Jurídica';
 		opp3.Tipo_de_producto__c = 'CDT';
-		Database.SaveResult result = Database.insert(opp3, false);
+		Database.SaveResult result = Database.update(opp3, false);
 		if(!result.isSuccess()){
 			System.debug('Error al insertar la oportunidad');
 			for(Database.Error error : result.getErrors()){
@@ -86,7 +106,7 @@ private class Prevalidador_tst {
 			}
 		}
 		Test.startTest();
-			Prevalidador.ConstruirRequestConsultaInterna(opp3.Id);
+			//Prevalidador.ConstruirRequestConsultaInterna(opp3.Id);
 			Prevalidador.ConstruirRequestConsultaDatacredito(opp3.Id);
 			Prevalidador.ConstruirRequestConsultaCIFIN(opp3.Id);
 		Test.stopTest();
@@ -95,9 +115,9 @@ private class Prevalidador_tst {
 	@isTest
 	static void validacion_exitosa_datos_codeudor()
 	{
-		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '112233'];
+		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '12345678'];
 		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account'];				   		
-		Id codeudorId = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345678');
+		Id codeudorId = TestDataFactory.createAccount(rt.id, cuenta.Id, '85749612');
 		Test.startTest();
 			String resultado = Prevalidador.ValidarDatosCodeudor(codeudorId);
 			System.debug(resultado);
@@ -107,13 +127,14 @@ private class Prevalidador_tst {
 	@isTest
 	static void validacion_de_persona()
 	{
-		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '112233'];
+		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '12345678'];
 		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account'];				   		
 		Id codeudorId = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345678');
 		Id codeudor2Id = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345677');
 		Id codeudor3Id = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345676');
-		Opportunity opp3 = CrearOportunidad(cuenta.Id);
-		opp3.Amount = 100000;
+		Id opp3Id = TestDataFactory.createOpportunity(cuenta.Id);
+		Opportunity opp3 = new Opportunity();
+		opp3.Id = opp3Id; 
 		opp3.Codeudor_1__c = codeudorId;
 		opp3.Codeudor_2__c = codeudor2Id;
 		opp3.Codeudor_3__c = codeudor3Id;
@@ -122,7 +143,14 @@ private class Prevalidador_tst {
 		opp3.Resultado_del_Prevalidador__c = 'VIABLE';
 		opp3.Tipo_de_persona__c = 'Jurídica';
 		opp3.Tipo_de_producto__c = 'CDT';
-		insert opp3;
+		Database.SaveResult result = Database.update(opp3, false);
+		if(!result.isSuccess()){
+			System.debug('Error al insertar la oportunidad');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getMessage() + '\n' + error.getFields());
+			}
+		}
+
 		Persona__c persona = new Persona__c();
 		persona.Oportunidad__c = opp3.Id;
 		persona.Nombre__c = 'nombre';
@@ -131,7 +159,7 @@ private class Prevalidador_tst {
 		persona.Razon_social__c = 'empresa';
 		persona.NIT_de_la_entidad__c = '12345';
 		persona.Tipo_de_Documento__c = 'Cédula';
-		persona.Numero_de_documento__c = '112233';
+		persona.Numero_de_documento__c = '12345678';
 		insert persona;
 		persona = new Persona__c();
 		persona.Oportunidad__c = opp3.Id;
@@ -141,7 +169,7 @@ private class Prevalidador_tst {
 		persona.Pais_de_nacimiento__c = 'Colombia';
 		persona.Porcentaje_participacion__c = 10;
 		persona.Tipo_de_Documento__c = 'Cédula';
-		persona.Numero_de_documento__c = '112233';
+		persona.Numero_de_documento__c = '12345678';
 		insert persona;
 		Test.startTest();
 			Prevalidador.ValidarConsultaInternaPasivos(opp3.Id);
@@ -152,12 +180,14 @@ private class Prevalidador_tst {
 	@isTest
 	static void generar_PDF()
 	{
-		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '112233'];
+		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '12345678'];
 		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account'];				   		
 		Id codeudorId = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345678');
 		Id codeudor2Id = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345677');
 		Id codeudor3Id = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345676');
-		Opportunity opp3 = CrearOportunidad(cuenta.Id);
+		Id opp3Id = TestDataFactory.createOpportunity(cuenta.Id);
+		Opportunity opp3 = new Opportunity();
+		opp3.Id = opp3Id; 
 		opp3.Codeudor_1__c = codeudorId;
 		opp3.Codeudor_2__c = codeudor2Id;
 		opp3.Codeudor_3__c = codeudor3Id;
@@ -166,7 +196,13 @@ private class Prevalidador_tst {
 		opp3.Resultado_del_Prevalidador__c = 'VIABLE';
 		opp3.Tipo_de_persona__c = 'Jurídica';
 		opp3.Tipo_de_producto__c = 'CDT';
-		insert opp3;
+		Database.SaveResult result = Database.update(opp3, false);
+		if(!result.isSuccess()){
+			System.debug('Error al insertar la oportunidad');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getMessage() + '\n' + error.getFields());
+			}
+		}
 		Meta__c meta = new Meta__c();
 		insert meta;
 		Solicitud_de_credito__c solicitud = new Solicitud_de_credito__c();
@@ -239,52 +275,4 @@ private class Prevalidador_tst {
 			}
 		Test.stopTest();
 	}
-
-	static Account CrearCuentaDeudor() {
-
-		RecordType tipoRegistro = [SELECT Id, Name, SobjectType FROM RecordType where Name ='Cliente deudor' limit 1];
-		Account cuenta = new Account(RecordTypeId = tipoRegistro.Id);
-		cuenta.FirstName = 'Nombre';
-		cuenta.LastName = 'Apellidos';
-		cuenta.Validar_nombre__c = 'Nombre';
-		cuenta.Numero_de_documento__c = '112233';
-		cuenta.Validar_numero_de_documento__c = '112233';
-		cuenta.Tipo_de_documento__c = 'Cédula ciudadanía';
-		cuenta.Tipo_de_ocupacion__c = 'Empleado';
-		cuenta.Sexo__c = 'Femenino';
-		cuenta.Estado_civil__c = 'Soltero';
-		cuenta.Personas_a_cargo__c = '2';
-		cuenta.Tipo_de_contrato__c = 'Independiente';
-		cuenta.Ciudad_de_residencia__c = 'Bogotá';
-		cuenta.Fecha_de_nacimiento__c = Date.newInstance(1970, 2, 2);
-		cuenta.Fecha_de_ingreso_a_empleo_actual__c = Date.newInstance(2010, 3, 3);
-		cuenta.Actividad_economica__c = 'Comercio';
-		cuenta.Check_VIGIA__c = true;
-        cuenta.Numero_de_telefono_celular__c='1324567890';
-        cuenta.Validar_numero_de_celular__c='1324567890';
-		
-		return cuenta;
-
-	}
-    
-    static Opportunity CrearOportunidad(Id idCuenta) {
-
-    	Opportunity opp = new Opportunity();
-    	opp.Name = 'Nombre';
-		opp.AccountId = idCuenta;
-		opp.Tipo_de_producto__c = 'Crédito de vivienda usada';
-		opp.Asignacion_de_cupo__c = 'No';
-		opp.Tiene_convenio__c = 'No';
-		opp.Canal_de_atencion__c = 'Sala de ventas';
-		opp.Valor_del_inmueble__c = 200000;
-		opp.Amount = 100000;
-		opp.Tipo_de_vivienda__c = 'Vip';
-		opp.Numero_de_vivienda__c = '1';
-		opp.Ingresos_Familiares__c = 500000;
-		opp.CloseDate = Date.newInstance(2200, 2, 2);
-		opp.StageName = 'Radicado';
-		opp.Excepcion__c = 'No';
-		
-		return opp;
-    }
 }

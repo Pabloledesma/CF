@@ -314,6 +314,49 @@ public class TestDataFactory {
 		return acc;
 	}
 
+	public static Id createAccount(String numeroDeDocumento, Boolean canalDigital){
+
+		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account']; 
+		Account acc = new Account(
+			RecordTypeId = rt.Id,
+			LastName = 'TestLastname',
+            FirstName = 'TestName',
+			Tipo_de_documento__c = 'Cédula ciudadanía',
+			Numero_de_documento__c = numeroDeDocumento,
+			Sexo__c = 'Femenino',
+			Estado_civil__c = 'Soltero',
+			Fecha_de_expedicion_cc__c = Date.newInstance(2016, 2, 2),
+			Fecha_de_nacimiento__c = Date.newInstance(1983, 5, 24),
+			Fecha_de_ingreso_a_empleo_actual__c = Date.newInstance(2016, 2, 2),
+			Lugar_de_expedicion__c = 'Bogotá',
+			Lugar_de_nacimiento__c = 'Popayán',
+			Ciudad_de_residencia__c = 'Bogotá',
+			Ciudad_de_radicacion__c = 'Bogotá',
+			Numero_de_telefono_celular__c = '3134665665',
+			Correo_electronico_1__c = 'test@test.com',
+			Tipo_de_ocupacion__c = 'Empleado',
+			Tipo_de_contrato__c = 'Término indefinido',
+			Personas_a_cargo__c = '1',
+			Actividad_economica__c = 'Otra',
+			Aporta_ingresos__c = 'No',
+			Estado_del_cliente__c = 'Prospecto'
+		);
+
+		if(canalDigital){
+			acc.Canal_digital__c = 'Si';
+		} 
+
+		Database.SaveResult result = Database.insert(acc, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la cuenta: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+		}
+		return acc.Id;
+	}
+
 	public static Id createAccount(String numeroDeDocumento){
 
 		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account']; 
@@ -327,6 +370,7 @@ public class TestDataFactory {
 			Estado_civil__c = 'Soltero',
 			Fecha_de_expedicion_cc__c = Date.newInstance(2016, 2, 2),
 			Fecha_de_nacimiento__c = Date.newInstance(1983, 5, 24),
+			Fecha_de_ingreso_a_empleo_actual__c = Date.newInstance(2016, 2, 2),
 			Lugar_de_expedicion__c = 'Bogotá',
 			Lugar_de_nacimiento__c = 'Popayán',
 			Ciudad_de_residencia__c = 'Bogotá',
@@ -334,6 +378,9 @@ public class TestDataFactory {
 			Numero_de_telefono_celular__c = '3134665665',
 			Correo_electronico_1__c = 'test@test.com',
 			Tipo_de_ocupacion__c = 'Empleado',
+			Tipo_de_contrato__c = 'Término indefinido',
+			Personas_a_cargo__c = '1',
+			Actividad_economica__c = 'Otra',
 			Aporta_ingresos__c = 'No',
 			Canal_digital__c = 'Si',
 			Estado_del_cliente__c = 'Prospecto'
@@ -451,7 +498,7 @@ public class TestDataFactory {
 			Tiene_convenio__c = 'No',
 			Canal_de_atencion__c = 'Sala de ventas',
 			Valor_del_inmueble__c = 200000,
-			Amount = 100000,
+			Amount = 100000000,
 			Tipo_de_vivienda__c = 'Vip',
 			Numero_de_vivienda__c = '1',
 			Ingresos_Familiares__c = 500000,
@@ -469,6 +516,12 @@ public class TestDataFactory {
                 System.debug('Verificar los siguientes campos: ' + error.getFields());
             }
 		}
+		//Opportunity opp = [select Amount from Opportunity where Id = :op.Id];
+		//System.assertEquals(
+		//	100000000,
+		//	opp.Amount, 
+		//	'El monto de la oportunidad no se está actualizando correctamente'
+		//);
 		return op.Id;
 	}
 
