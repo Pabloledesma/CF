@@ -1,6 +1,22 @@
 @isTest
 public class TestDataFactory {
 
+	public static Lead createRawLead(){
+		Lead lead = new Lead(
+			FirstName = 'TestName',
+			LastName = 'Test',
+			Numero_de_identificacion__c = String.valueOf(Crypto.getRandomInteger()),
+			Email = 'test@test.com',
+            Phone = '1234567',
+            Telefono_Actividad_Economica__c = '123456789',
+            Telefono_referencia_familiar__c = '12345678',
+            Telefono_referencia_personal__c = '12345678',
+            Canal_digital__c = 'Si'
+		);
+
+		return lead;
+	}
+
 	public static Id createLead() {
 		Lead lead = new Lead(
 			FirstName = 'TestName',
@@ -135,6 +151,21 @@ public class TestDataFactory {
 			ProfileId = profileId,
 			TimeZoneSidKey='America/Bogota', 
 			UserName='testUserUnique@testorg.com'
+		);
+		return u;
+	}
+
+	public static User createUser(Id profileId, Integer i){
+		User u = new User(
+			Alias = 'tUser' + i, 
+			Email='TESTuSERUNIQUE'+i+'@testorg.com',
+			EmailEncodingKey='ISO-8859-1', 
+			LastName='Testing', 
+			LanguageLocaleKey='es',
+			LocaleSidKey='en_US', 
+			ProfileId = profileId,
+			TimeZoneSidKey='America/Bogota', 
+			UserName='testUserUnique'+i+'@testorg.com'
 		);
 		return u;
 	}
