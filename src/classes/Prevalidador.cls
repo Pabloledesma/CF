@@ -407,15 +407,15 @@ global class Prevalidador {
 
     }
     
-    webservice static string RealizarConsultaInterna(Id idOportunidad) {
+    webservice static void RealizarConsultaInterna(Id idOportunidad) {
 
         HttpRequest req = ConstruirRequestConsultaInterna(idOportunidad);
         Http http = new Http();
         HttpResponse resp = http.send(req);
-
+        System.debug(resp);
 //      return resp.getBody();
 //      return parametro;
-        return req.getBody(); // SOAP;
+        //return resp; // SOAP; 
     }
     
     public static HttpRequest ConstruirRequestConsultaInterna(Id idOportunidad) {
@@ -535,11 +535,10 @@ global class Prevalidador {
         nodoCodeudor.setAttribute('edad', String.valueOf(cuenta.Edad__c));
     }
 
-    webservice static string RealizarConsultaDatacredito(Id idOportunidad) {
+    webservice static void RealizarConsultaDatacredito(Id idOportunidad) {
         HttpRequest req = ConstruirRequestConsultaDatacredito(idOportunidad);
         Http http = new Http();
         HttpResponse resp = http.send(req);
-        return ''; //SOAP;
     }
 
     public static HttpRequest ConstruirRequestConsultaDatacredito(Id idOportunidad) {

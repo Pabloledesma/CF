@@ -27,7 +27,7 @@ private class Prevalidador_tst {
 	}
 
 	@isTest
-	static void validar_datos_obligatorios()
+	static void validar_datos_obligatorios_ok()
 	{
 		Account cuenta = [select Id, Numero_de_documento__c, Canal_digital__c from Account where Numero_de_documento__c = '12345678'];
 		System.assert(cuenta.Canal_digital__c == 'No', 'La Cuenta debe ser del canal constructor.');
@@ -39,6 +39,35 @@ private class Prevalidador_tst {
 					'ok',
 					resultado,
 					'Faltan datos obligatorios'
+			); 
+		Test.stopTest();
+	}
+
+	@isTest
+	static void datos_del_deudor_incompletos()
+	{
+		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account'];
+		Account acc = TestDataFactory.createRawAccount(rt.Id, '45612382');
+		acc.Canal_Digital__c = 'No';
+		acc.Estado_Civil__c = null;
+
+		Database.SaveResult result = Database.insert(acc, false);
+		if(!result.isSuccess()){
+			System.debug('Errores al insertar la cuenta: ');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+		}
+
+		Id oppId = TestDataFactory.createOpportunity(acc.Id);
+		
+		Test.startTest();
+			String resultado = Prevalidador.ValidarDatosObligatorios(oppId);
+			System.assertEquals(
+					'Faltan datos del deudor necesarios para realizar la consulta.',
+					resultado,
+					'Los datos del cliente deudor estan completos.'
 			); 
 		Test.stopTest();
 	}
@@ -84,7 +113,7 @@ private class Prevalidador_tst {
 	{
 		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '12345678'];
 		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account'];				   		
-		Id codeudorId = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345678');
+		Id codeudorId = TestDataFactory.createAccount(rt.id, cuenta.Id, '48621379');
 		Id codeudor2Id = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345677');
 		Id codeudor3Id = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345676');
 		Id opp3Id = TestDataFactory.createOpportunity(cuenta.Id);
@@ -105,10 +134,111 @@ private class Prevalidador_tst {
 				System.debug(error.getMessage() + '\n' + error.getFields());
 			}
 		}
+
+		
 		Test.startTest();
-			//Prevalidador.ConstruirRequestConsultaInterna(opp3.Id);
-			Prevalidador.ConstruirRequestConsultaDatacredito(opp3.Id);
-			Prevalidador.ConstruirRequestConsultaCIFIN(opp3.Id);
+			String respuesta = Prevalidador.ValidarDatosObligatorios(opp3.Id);
+			System.assertEquals(
+				'ok',
+				respuesta,
+				'Error en los datos del codeudor.'
+			);
+			//Prevalidador.ConstruirRequestConsultaDatacredito(opp3.Id);
+		
+			//Prevalidador.ConstruirRequestConsultaCIFIN(opp3.Id);
+		Test.stopTest();
+	}
+
+	@isTest
+	static void realizar_consulta_interna()
+	{
+		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '12345678'];
+		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account'];				   		
+		Id codeudorId = TestDataFactory.createAccount(rt.id, cuenta.Id, '48621379');
+		Id opp3Id = TestDataFactory.createOpportunity(cuenta.Id);
+		Opportunity opp3 = new Opportunity();
+		opp3.Id = opp3Id; 
+		opp3.Codeudor_1__c = codeudorId;
+		
+		opp3.Numero_de_vivienda__c = '1';
+		opp3.Ingresos_Familiares__c = 500000;
+		opp3.Resultado_del_Prevalidador__c = 'VIABLE';
+		opp3.Tipo_de_persona__c = 'Jurídica';
+		opp3.Tipo_de_producto__c = 'CDT';
+		Database.SaveResult result = Database.update(opp3, false);
+
+		
+		if(!result.isSuccess()){
+			System.debug('Error al insertar la oportunidad');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getMessage() + '\n' + error.getFields());
+			}
+		}
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
+		Test.startTest();
+			Prevalidador.RealizarConsultaInterna(opp3Id);
+		Test.stopTest();
+	}
+
+	@isTest
+	static void realizar_consulta_datacredito()
+	{
+		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '12345678'];
+		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account'];				   		
+		Id codeudorId = TestDataFactory.createAccount(rt.id, cuenta.Id, '48621379');
+		Id opp3Id = TestDataFactory.createOpportunity(cuenta.Id);
+		Opportunity opp3 = new Opportunity();
+		opp3.Id = opp3Id; 
+		opp3.Codeudor_1__c = codeudorId;
+		
+		opp3.Numero_de_vivienda__c = '1';
+		opp3.Ingresos_Familiares__c = 500000;
+		opp3.Resultado_del_Prevalidador__c = 'VIABLE';
+		opp3.Tipo_de_persona__c = 'Jurídica';
+		opp3.Tipo_de_producto__c = 'CDT';
+		Database.SaveResult result = Database.update(opp3, false);
+
+		
+		if(!result.isSuccess()){
+			System.debug('Error al insertar la oportunidad');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getMessage() + '\n' + error.getFields());
+			}
+		}
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
+		Test.startTest();
+			Prevalidador.RealizarConsultaDatacredito(opp3Id);
+		Test.stopTest();
+	}
+
+	@isTest
+	static void realizar_consulta_cifin()
+	{
+		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '12345678'];
+		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account'];				   		
+		Id codeudorId = TestDataFactory.createAccount(rt.id, cuenta.Id, '48621379');
+		Id opp3Id = TestDataFactory.createOpportunity(cuenta.Id);
+		Opportunity opp3 = new Opportunity();
+		opp3.Id = opp3Id; 
+		opp3.Codeudor_1__c = codeudorId;
+		
+		opp3.Numero_de_vivienda__c = '1';
+		opp3.Ingresos_Familiares__c = 500000;
+		opp3.Resultado_del_Prevalidador__c = 'VIABLE';
+		opp3.Tipo_de_persona__c = 'Jurídica';
+		opp3.Tipo_de_producto__c = 'CDT';
+		Database.SaveResult result = Database.update(opp3, false);
+
+		
+		if(!result.isSuccess()){
+			System.debug('Error al insertar la oportunidad');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getMessage() + '\n' + error.getFields());
+			}
+		}
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
+		Test.startTest();
+			Prevalidador.RealizarConsultaCifin(opp3Id);
 		Test.stopTest();
 	}
 
