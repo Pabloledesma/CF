@@ -71,7 +71,7 @@ trigger UserTrigger on User (before insert, after update) {
 		if( ! lstEmails.isEmpty() ) UserHandler.crearAsesoresCanalDigital( lstEmails );
 		if( ! setDelete.isEmpty() ) {
 			System.debug('agregando asesores para eliminar: ' + setDelete);			
-			UserHandler.eliminarAsesoresCanalDigital(setDelete);
+			UserHandler.eliminarAsesoresCanalDigital(setDelete); 
 		} 
 	} // Trigger.isUpdate
 }

@@ -22,4 +22,32 @@ public class UserHandler {
 		}
 		MixedDMLOps.del(lstAsesores);
 	}
+
+	@future
+	public static void actualizarCandidatosAsignados(Map<Id, Integer> usuarios)
+	{
+		List<User> toUpdate = new List<User>();
+		Set<Id> idUsuarios = usuarios.keySet();
+		for(Id userId : idUsuarios){
+			toUpdate.add( 
+				new User(
+					Id = userId,
+					Numero_de_candidatos_asignados__c = usuarios.get(userId)
+				)
+			);
+		}
+
+		if(!toUpdate.isEmpty()){
+			Database.SaveResult[] results = MixedDMLOps.up(toUpdate);
+			for(Database.SaveResult res : results){
+				if(res.isSuccess()){
+					System.debug('UserHandler->actualizando candidatos asignados: ' + res.getId());
+				} else {
+					for(Database.Error error : res.getErrors() ){
+						System.debug(error.getMessage());
+					}
+				}
+			}
+		}
+	}
 }

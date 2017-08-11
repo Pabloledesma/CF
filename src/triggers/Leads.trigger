@@ -1,51 +1,85 @@
-trigger Leads on Lead (after update) {
+trigger Leads on Lead (after insert) {
 
-    if(Trigger.isUpdate){
-    /**
-    * Actualización del número de candidatos asignados al asesor del canal digital
-    **/
-        List<User> lstUsuarios = new List<User>();
-        for(Lead lead : Trigger.new){
-            Lead oldLead = Trigger.oldMap.get(lead.Id);
-            if(oldLead.OwnerId != lead.OwnerId){
+    if(Trigger.isInsert){
+        //Seleccionar candidatos viables
+        List<Lead> lstCandidatosDisponibles = [
+            SELECT 
+                Id,
+                OwnerId,
+                Numero_del_Candidato__c
+            FROM Lead
+            WHERE Canal_digital__c = 'Si'
+            AND isConverted = false
+            AND Concepto_del_candidato__c = 'VIABLE' 
+        ];
+
+        System.debug('Candidatos viables: ' + lstCandidatosDisponibles.size());
+
+        //Seleccionar usuarios activos 
+        List<User> lstUsuarios = [
+            SELECT 
+                Id,
+                Name,
+                Numero_de_candidatos_asignados__c,
+                Meta_Canal_Digital__c
+            FROM User
+            WHERE Profile.Name = 'Asesor comercial canal digital'
+            AND Habilitado_Canal_Digital__c = true
+            AND isActive = true
+            ORDER BY Numero_de_candidatos_asignados__c ASC
+        ];
+        System.debug('LeadsTrigger->Usuarios activos: ' + lstCandidatosDisponibles.size());
+
+        /**
+        * Asigna el candidato solo si el número de candidatos asignados es menor que la meta asignada por el gerente
+        **/
+        List<Lead> leadsAsignados = new List<Lead>();
+        for(Lead lead : lstCandidatosDisponibles){
+            Integer numeroUsuario = Math.mod( Integer.valueOf(lead.Numero_del_Candidato__c), lstUsuarios.size() );
+            System.debug('Candidatos asignados: ' + lstUsuarios[ numeroUsuario ].Numero_de_candidatos_asignados__c + ' Meeta: ' + lstUsuarios[ numeroUsuario ].Meta_Canal_Digital__c);
+            if(lstUsuarios[ numeroUsuario ].Numero_de_candidatos_asignados__c < lstUsuarios[ numeroUsuario ].Meta_Canal_Digital__c){
+                System.debug('Asignando candidato a ' + lstUsuarios[numeroUsuario].Name);
+                lead.OwnerId = lstUsuarios[ numeroUsuario ].Id;
+                leadsAsignados.add(lead);
+            } else {
+                System.debug(lstUsuarios[numeroUsuario].Name + ' ya cumplió la meta!');
+            }
+        }
+
+        if(!leadsAsignados.isEmpty()){
+
+            Database.SaveResult[] lstResults = Database.update(leadsAsignados, false);
+            
+            for(Database.SaveResult result : lstResults){
+                if(!result.isSuccess()){
+                    for(Database.Error error : result.getErrors()){
+                        System.debug(
+                            'Errores al asignar el candidato: \n' +
+                            error.getMessage() + '\n' +
+                            error.getFields()
+                        );
+                    } 
+                }
+            }
+
+            /**
+            * Actualización del número de candidatos asignados al asesor del canal digital
+            **/
+            Map<Id, Integer> mapActualizarCandidatosAsignados = new Map<Id, Integer>(); 
+            for(Lead lead : leadsAsignados){
                 User user = new User();
-                user = [select Id, ProfileId, Email from User where Id = :lead.OwnerId];
-                Profile asesorCanalDigital = [SELECT Id FROM Profile WHERE Name = 'Asesor comercial canal digital'];
-               
-                if(user.ProfileId == asesorCanalDigital.Id){
-                    System.debug('Leads Trigger->Candidato asignado');
-                    lstUsuarios.add(user);
-                } else {
-                    System.debug('aún no se ha asignado el candidato.' + '\n' + 'OwnerId: ' + lead.OwnerId);   
-                }
-            }
-        }
-
-        if(!lstUsuarios.isEmpty()){
-            List<Asesor_Canal_Digital__c> lstAsesores = new List<Asesor_Canal_Digital__c>();
-            Map<String, Integer> candidatosAsignados = new Map<String, Integer>();
-            for(User user : lstUsuarios){
-                candidatosAsignados.put(user.Email, [select count() from Lead where OwnerId = :user.Id and IsConverted = false]);
+                user = [select Id, ProfileId, Email, Numero_de_candidatos_asignados__c from User where Id = :lead.OwnerId];
+                mapActualizarCandidatosAsignados.put(user.Id, [select count() from Lead where OwnerId = :user.Id and IsConverted = false]);
             }
 
-            lstAsesores = [
-                SELECT
-                    Id,
-                    Email__c,
-                    Candidatos_asignados__c
-                FROM Asesor_Canal_Digital__c
-                WHERE Email__c IN :candidatosAsignados.keySet()
-            ];
-            if(!lstAsesores.isEmpty()){
-                for(Asesor_Canal_Digital__c asesor : lstAsesores){
-                    asesor.Candidatos_asignados__c = candidatosAsignados.get(asesor.Email__c);
-                }
-                update lstAsesores;
-            }
-        }
-
+           if(!mapActualizarCandidatosAsignados.isEmpty()){
+                System.debug('LeadsTrigger->Actualizando candidatos');
+                UserHandler.actualizarCandidatosAsignados(mapActualizarCandidatosAsignados);
+           } 
+        } //if(!leadsAsignados.isEmpty()){
     }
- 
+
+  
 
     /*
     * Esta funcionalidad es parte del sprint 2 y esta pendiente por probar (09/08/2017)

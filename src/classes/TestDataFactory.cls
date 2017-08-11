@@ -167,7 +167,9 @@ public class TestDataFactory {
 			ProfileId = profileId,
 			TimeZoneSidKey='America/Bogota', 
 			UserName='testUserUnique'+i+'@testorg.com',
-			Habilitado_Canal_Digital__c = true
+			Habilitado_Canal_Digital__c = true,
+			Meta_canal_digital__c = 40,
+			Numero_de_candidatos_asignados__c = 0
 		);
 		return u;
 	}
