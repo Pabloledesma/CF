@@ -8,7 +8,21 @@ trigger UserTrigger on User (before insert, after update) {
 			}
 		}
 		if(! lstEmails.isEmpty()){
-			UserHandler.crearAsesoresCanalDigital(lstEmails);
+			List<Asesor_Canal_Digital__c> lstAsesores = new List<Asesor_Canal_Digital__c>();
+			for(String email : lstEmails){
+				lstAsesores.add(new Asesor_Canal_Digital__c(Email__c = email));
+			}
+			Database.SaveResult[] results = Database.Insert(lstAsesores, false);
+			for(Database.SaveResult result : results){
+				if( !result.isSuccess() ){
+					for(Database.Error error : result.getErrors()){
+						System.debug(
+							error.getMessage()
+						);
+					}
+				} 
+			}			
+
 		}
 	}
 

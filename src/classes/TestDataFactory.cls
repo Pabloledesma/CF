@@ -11,7 +11,8 @@ public class TestDataFactory {
             Telefono_Actividad_Economica__c = '123456789',
             Telefono_referencia_familiar__c = '12345678',
             Telefono_referencia_personal__c = '12345678',
-            Canal_digital__c = 'Si'
+            Canal_digital__c = 'Si',
+            Concepto_del_candidato__c = 'VIABLE'
 		);
 
 		return lead;
@@ -165,7 +166,8 @@ public class TestDataFactory {
 			LocaleSidKey='en_US', 
 			ProfileId = profileId,
 			TimeZoneSidKey='America/Bogota', 
-			UserName='testUserUnique'+i+'@testorg.com'
+			UserName='testUserUnique'+i+'@testorg.com',
+			Habilitado_Canal_Digital__c = true
 		);
 		return u;
 	}

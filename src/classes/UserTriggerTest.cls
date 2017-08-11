@@ -60,16 +60,17 @@ private class UserTriggerTest
 
 		insert user;
 		user.isActive = false;
+
 		System.runAs(admin){
-		Test.startTest();
-			update user;
-		Test.stopTest();
+			Test.startTest();
+				update user;
+			Test.stopTest();
+			System.assertEquals(
+				0,
+				[SELECT count() FROM Asesor_Canal_Digital__c],
+				'El asesor no fué eliminado'
+			);
 		}
-		System.assertEquals(
-			0,
-			[SELECT count() FROM Asesor_Canal_Digital__c],
-			'El asesor no fué eliminado'
-		);
 	}
 
 	@isTest
@@ -79,19 +80,19 @@ private class UserTriggerTest
 		Profile administrador = [SELECT Id FROM Profile WHERE Name = 'Administrador del sistema'];
 		User user = TestDataFactory.createUser(asesorCanalDigital.Id, 1);
 		User admin = TestDataFactory.createUser(administrador.Id, 2);
+		insert user;
 
 		System.runAs(admin){
-		Test.startTest();
-			insert user;
-			user.ProfileId = administrador.Id;
-			update user;
-		Test.stopTest();
+			Test.startTest();
+				user.ProfileId = administrador.Id;
+				update user;
+			Test.stopTest();
+			System.assertEquals(
+				0,
+				[SELECT count() FROM Asesor_Canal_Digital__c],
+				'El asesor no fué eliminado'
+			);
 		}
-		System.assertEquals(
-			0,
-			[SELECT count() FROM Asesor_Canal_Digital__c],
-			'El asesor no fué eliminado'
-		);
 	}
 
 	@isTest
