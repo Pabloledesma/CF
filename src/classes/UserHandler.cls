@@ -50,4 +50,60 @@ public class UserHandler {
 			}
 		}
 	}
+
+	@future
+	public static void habilitarUsuario(Map<Id, Boolean> mapUsuarios)
+	{
+		List<User> toUpdate = new List<User>();
+		Set<Id> idUsuarios = mapUsuarios.keySet();
+		for(Id userId : idUsuarios){
+			toUpdate.add( 
+				new User(
+					Id = userId,
+					Habilitado_canal_digital__c = mapUsuarios.get(userId)
+				)
+			);
+		}
+
+		if(!toUpdate.isEmpty()){
+			Database.SaveResult[] results = MixedDMLOps.up(toUpdate);
+			for(Database.SaveResult res : results){
+				if(res.isSuccess()){
+					System.debug('UserHandler->habilitando: ' + res.getId());
+				} else {
+					for(Database.Error error : res.getErrors() ){
+						System.debug(error.getMessage());
+					}
+				}
+			}
+		}
+	}
+
+	@future
+	public static void nuevaMeta(Map<Id, Integer> mapUsuarios)
+	{
+		List<User> toUpdate = new List<User>();
+		Set<Id> idUsuarios = mapUsuarios.keySet();
+		for(Id userId : idUsuarios){
+			toUpdate.add( 
+				new User(
+					Id = userId,
+					Meta_canal_digital__c = mapUsuarios.get(userId)
+				)
+			);
+		}
+
+		if(!toUpdate.isEmpty()){
+			Database.SaveResult[] results = MixedDMLOps.up(toUpdate);
+			for(Database.SaveResult res : results){
+				if(res.isSuccess()){
+					System.debug('UserHandler->actualizando meta: ' + res.getId());
+				} else {
+					for(Database.Error error : res.getErrors() ){
+						System.debug(error.getMessage());
+					}
+				}
+			}
+		}
+	}
 }
