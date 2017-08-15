@@ -685,6 +685,31 @@ public class TestDataFactory {
 		return op.Id;
 	}
 
+	public static Opportunity createRawOpportunity(Id deudorId)
+	{
+		Opportunity op = new Opportunity(
+			Name = 'Nombre',
+			AccountId = deudorId,
+			Tipo_de_producto__c = 'Crédito de vivienda usada',
+			Asignacion_de_cupo__c = 'No',
+			Tiene_convenio__c = 'No',
+			Canal_de_atencion__c = 'Sala de ventas',
+			Valor_del_inmueble__c = 200000,
+			Amount = 100000000,
+			Valor_del_credito__c = 100000000,
+			Tipo_de_vivienda__c = 'Vip',
+			Numero_de_vivienda__c = '1',
+			Ingresos_Familiares__c = 500000,
+			CloseDate = Date.newInstance(2200, 2, 2),
+			StageName = 'Radicado',
+			Excepcion__c = 'No',
+	      	Cliente_deudor__c = deudorId
+
+		);
+
+		return op;
+	}
+
 	public static Id createMeta(){
 
 		Meta__c meta = new Meta__c();

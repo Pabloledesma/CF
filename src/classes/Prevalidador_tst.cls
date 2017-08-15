@@ -24,7 +24,7 @@ private class Prevalidador_tst {
 			Prevalidador.ValidarConsultaInterna(oppId);
 			Prevalidador.ValidarDatosObligatorios(oppId);
 		Test.stopTest();
-	}
+	} 
 
 	@isTest
 	static void validar_datos_obligatorios_ok()
@@ -116,18 +116,20 @@ private class Prevalidador_tst {
 		Id codeudorId = TestDataFactory.createAccount(rt.id, cuenta.Id, '48621379');
 		Id codeudor2Id = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345677');
 		Id codeudor3Id = TestDataFactory.createAccount(rt.id, cuenta.Id, '12345676');
-		Id opp3Id = TestDataFactory.createOpportunity(cuenta.Id);
-		Opportunity opp3 = new Opportunity();
-		opp3.Id = opp3Id; 
+		
+		Opportunity opp3 = TestDataFactory.createRawOpportunity(cuenta.Id);
 		opp3.Codeudor_1__c = codeudorId;
 		opp3.Codeudor_2__c = codeudor2Id;
 		opp3.Codeudor_3__c = codeudor3Id;
+		opp3.Aporta_ingresos_Codeudor_1__c = 'Si';
+		opp3.Aporta_ingresos_Codeudor_2__c = 'Si';
+		opp3.Aporta_ingresos_Codeudor_3__c = 'Si';
 		opp3.Numero_de_vivienda__c = '1';
 		opp3.Ingresos_Familiares__c = 500000;
 		opp3.Resultado_del_Prevalidador__c = 'VIABLE';
 		opp3.Tipo_de_persona__c = 'Jurídica';
 		opp3.Tipo_de_producto__c = 'CDT';
-		Database.SaveResult result = Database.update(opp3, false);
+		Database.SaveResult result = Database.insert(opp3, false);
 		if(!result.isSuccess()){
 			System.debug('Error al insertar la oportunidad');
 			for(Database.Error error : result.getErrors()){
@@ -246,10 +248,14 @@ private class Prevalidador_tst {
 	static void validacion_exitosa_datos_codeudor()
 	{
 		Account cuenta = [select Id, Numero_de_documento__c from Account where Numero_de_documento__c = '12345678'];
+		Opportunity opp = TestDataFactory.createRawOpportunity(cuenta.Id);
 		RecordType rt = [select Id from RecordType where Name = 'Cliente deudor' and SobjectType = 'Account'];				   		
 		Id codeudorId = TestDataFactory.createAccount(rt.id, cuenta.Id, '85749612');
+		opp.Aporta_Ingresos_Codeudor_1__c = 'Si';
+		opp.Codeudor_1__c = codeudorId;
+		insert opp; 
 		Test.startTest();
-			String resultado = Prevalidador.ValidarDatosCodeudor(codeudorId);
+			String resultado = Prevalidador.ValidarDatosCodeudor(codeudorId, opp.Aporta_Ingresos_Codeudor_1__c);
 			System.debug(resultado);
 		Test.stopTest();
 	}	

@@ -116,7 +116,7 @@ trigger OpportunityTrigger on Opportunity (before insert, before update, after i
 			Opportunity oldOpp = Trigger.oldMap.get(op.Id);
 
 			/** Si fué enlazado un codeudor **/
-			if(op.Codeudor_1__c != oldOpp.Codeudor_1__c){
+			if((op.Codeudor_1__c != oldOpp.Codeudor_1__c) && op.Codeudor_1__c != null){
 				lstCodeudores.add(
 					new Account(
 						Id = op.Codeudor_1__c,
@@ -125,7 +125,7 @@ trigger OpportunityTrigger on Opportunity (before insert, before update, after i
 				);
 			}
 
-			if(op.Codeudor_2__c != oldOpp.Codeudor_2__c){ 
+			if((op.Codeudor_2__c != oldOpp.Codeudor_2__c) && op.Codeudor_2__c != null){ 
 				lstCodeudores.add(
 					new Account(
 						Id = op.Codeudor_2__c,
@@ -134,7 +134,7 @@ trigger OpportunityTrigger on Opportunity (before insert, before update, after i
 				);
 			}
 
-			if(op.Codeudor_3__c != oldOpp.Codeudor_3__c){
+			if((op.Codeudor_3__c != oldOpp.Codeudor_3__c) && op.Codeudor_3__c != null){
 				lstCodeudores.add(
 					new Account(
 						Id = op.Codeudor_3__c,

@@ -1,9 +1,9 @@
-trigger AccountUpdateField on Account (before insert, before update, after insert)
+}trigger AccountUpdateField on Account (before insert, before update, after insert)
 {
     /**
     * Ya se está actualizando el campo aporta ingresos en la cuenta 
     **/
-    //AccountUpdateField_cls.setAccountUpdate(trigger.new); 
+    AccountUpdateField_cls.setAccountUpdate(trigger.new); 
 
     /**
     * Actualización de los codeudores en la Radicación de crédito

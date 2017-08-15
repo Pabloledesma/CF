@@ -61,7 +61,7 @@ global class Prevalidador {
         List<Opportunity> lstOportunidades = [
             SELECT Tipo_de_producto__c, Asignacion_de_cupo__c, Valor_del_inmueble__c, Amount, Numero_de_vivienda__c,
                    Tipo_de_vivienda__c, Ingresos_Familiares__c, Estado_Consulta__c, AccountId, Valor_del_credito__c,
-                   Codeudor_1__c, Codeudor_2__c, Codeudor_3__c
+                   Codeudor_1__c, Codeudor_2__c, Codeudor_3__c, Aporta_Ingresos_Codeudor_1__c, Aporta_Ingresos_Codeudor_2__c, Aporta_Ingresos_Codeudor_3__c
             FROM Opportunity
             WHERE id =: idOportunidad
         ];
@@ -80,17 +80,17 @@ global class Prevalidador {
                 (opp.Valor_del_credito__c == null) ||
                 String.isBlank(opp.Tipo_de_vivienda__c)
                ){ 
-                System.debug(
-                    'Tipo de producto : ' + String.isBlank(opp.Tipo_de_producto__c) + '\n' + 
-                    'Asignacion_de_cupo__c: ' + String.isBlank(opp.Asignacion_de_cupo__c) + '\n' + 
-                    'Estado_Consulta__c: ' + String.isBlank(opp.Estado_Consulta__c) + '\n' + 
-                    'Numero_de_vivienda__c: ' + String.isBlank(opp.Numero_de_vivienda__c) + '\n' + 
-                    'Tipo_de_vivienda__c: ' + String.isBlank(opp.Tipo_de_vivienda__c) + '\n' + 
-                    'Valor_de_inmueble__c: ' + (opp.Valor_del_inmueble__c == 0 || opp.Valor_del_inmueble__c == null) + '\n' + 
-                    'Valor del credito: ' + (opp.Valor_del_credito__c == 0 || opp.Valor_del_credito__c == null) + '\n' + 
-                    'Amount: ' + (opp.Amount == 0 || opp.Amount == null) + '\n' + 
-                    'Ingresos_Familiares__c: ' + (opp.Ingresos_Familiares__c == 0 || opp.Ingresos_Familiares__c == null) 
-                );
+                //System.debug(
+                //    'Tipo de producto : ' + String.isBlank(opp.Tipo_de_producto__c) + '\n' + 
+                //    'Asignacion_de_cupo__c: ' + String.isBlank(opp.Asignacion_de_cupo__c) + '\n' + 
+                //    'Estado_Consulta__c: ' + String.isBlank(opp.Estado_Consulta__c) + '\n' + 
+                //    'Numero_de_vivienda__c: ' + String.isBlank(opp.Numero_de_vivienda__c) + '\n' + 
+                //    'Tipo_de_vivienda__c: ' + String.isBlank(opp.Tipo_de_vivienda__c) + '\n' + 
+                //    'Valor_de_inmueble__c: ' + (opp.Valor_del_inmueble__c == 0 || opp.Valor_del_inmueble__c == null) + '\n' + 
+                //    'Valor del credito: ' + (opp.Valor_del_credito__c == 0 || opp.Valor_del_credito__c == null) + '\n' + 
+                //    'Amount: ' + (opp.Amount == 0 || opp.Amount == null) + '\n' + 
+                //    'Ingresos_Familiares__c: ' + (opp.Ingresos_Familiares__c == 0 || opp.Ingresos_Familiares__c == null) 
+                //);
                 return 'Faltan datos de la oportunidad necesarios para realizar la consulta.';
             }
 
@@ -127,17 +127,17 @@ global class Prevalidador {
             // Validar datos de los codeudores
             String respuesta;
             if (opp.Codeudor_1__c != null) {
-                respuesta = ValidarDatosCodeudor(opp.Codeudor_1__c);
+                respuesta = ValidarDatosCodeudor(opp.Codeudor_1__c, opp.Aporta_Ingresos_Codeudor_1__c);
                 if (respuesta != 'ok')
                     return respuesta;
             }
             if (opp.Codeudor_2__c != null) {
-                respuesta = ValidarDatosCodeudor(opp.Codeudor_2__c);
+                respuesta = ValidarDatosCodeudor(opp.Codeudor_2__c, opp.Aporta_Ingresos_Codeudor_2__c);
                 if (respuesta != 'ok')
                     return respuesta;
             }
             if (opp.Codeudor_3__c != null) {
-                respuesta = ValidarDatosCodeudor(opp.Codeudor_3__c);
+                respuesta = ValidarDatosCodeudor(opp.Codeudor_3__c, opp.Aporta_Ingresos_Codeudor_3__c);
                 if (respuesta != 'ok')
                     return respuesta;
             }
@@ -146,11 +146,11 @@ global class Prevalidador {
         return 'La oportunidad referenciada no existe.';     
     }
 
-    public static String ValidarDatosCodeudor(Id idCodeudor) {
+    public static String ValidarDatosCodeudor(Id idCodeudor, String aportaIngresos) {
         
         List<Account> lstCuentas = [
             SELECT FirstName, LastName, Sexo__c, Tipo_de_documento__c, Numero_de_documento__c, Edad__c, Estado_civil__c,
-                   Ciudad_de_radicacion__c, Tipo_de_ocupacion__c, Lugar_de_nacimiento__c, Aporta_ingresos__c
+                   Ciudad_de_radicacion__c, Tipo_de_ocupacion__c, Lugar_de_nacimiento__c
             FROM Account
             WHERE id =: idCodeudor
         ];
@@ -166,7 +166,7 @@ global class Prevalidador {
                 String.isBlank(cuenta.Ciudad_de_radicacion__c) ||
                 String.isBlank(cuenta.Tipo_de_ocupacion__c) ||
                 String.isBlank(cuenta.Lugar_de_nacimiento__c) ||
-                String.isBlank(cuenta.Aporta_ingresos__c)
+                String.isBlank(aportaIngresos)
                )
                 return 'Faltan datos del codeudor necesarios para realizar la consulta.';
                 return 'ok';    
@@ -423,7 +423,10 @@ global class Prevalidador {
         // Buscar datos de la oportunidad
         List<Opportunity> lstOportunidades = [
             SELECT Amount, Tipo_de_producto__c, Valor_del_inmueble__c, AccountId, OwnerId, Tipo_de_vivienda__c,
-            Codeudor_1__c, Codeudor_2__c, Codeudor_3__c, Numero_de_vivienda__c, Ingresos_Familiares__c, Canal_de_atencion__c
+            Codeudor_1__c, Codeudor_2__c, Codeudor_3__c, Numero_de_vivienda__c, Ingresos_Familiares__c, Canal_de_atencion__c, 
+            Aporta_Ingresos_Codeudor_1__c,
+            Aporta_Ingresos_Codeudor_2__c,
+            Aporta_Ingresos_Codeudor_3__c 
             FROM Opportunity
             WHERE id =: idOportunidad
         ];
@@ -484,13 +487,13 @@ global class Prevalidador {
         
         // Construir nodos de los codeudores
         if (opp.Codeudor_1__c != null) {
-            ConstruirNodoCodeudor(opp.Codeudor_1__c, nodoInforme);
+            ConstruirNodoCodeudor(opp.Codeudor_1__c, nodoInforme, opp.Aporta_Ingresos_Codeudor_1__c);
         }
         if (opp.Codeudor_2__c != null) {
-            ConstruirNodoCodeudor(opp.Codeudor_2__c, nodoInforme);
+            ConstruirNodoCodeudor(opp.Codeudor_2__c, nodoInforme, opp.Aporta_Ingresos_Codeudor_2__c);
         }
         if (opp.Codeudor_3__c != null) {
-            ConstruirNodoCodeudor(opp.Codeudor_3__c, nodoInforme);
+            ConstruirNodoCodeudor(opp.Codeudor_3__c, nodoInforme, opp.Aporta_Ingresos_Codeudor_3__c);
         }
 
         ConfiguracionPrevalidador__c conf = ConfiguracionPrevalidador__c.getOrgDefaults();
@@ -511,11 +514,11 @@ global class Prevalidador {
         return req;
     }
     
-    public static void ConstruirNodoCodeudor(Id idCodeudor, dom.XmlNode nodoInformes) {
+    public static void ConstruirNodoCodeudor(Id idCodeudor, dom.XmlNode nodoInformes, String aportaIngresos) {
         
         // Buscar datos
         List<Account> lstCuentas = [
-            SELECT FirstName, LastName, Numero_de_documento__c, Tipo_de_documento__c, Aporta_ingresos__c,
+            SELECT FirstName, LastName, Numero_de_documento__c, Tipo_de_documento__c,
                    Check_VIGIA__c, Tipo_de_ocupacion__c, Edad__c, Ciudad_de_radicacion__c
             FROM Account
             WHERE id =: idCodeudor
@@ -529,7 +532,7 @@ global class Prevalidador {
         nodoCodeudor.setAttribute('numDocumento', cuenta.Numero_de_documento__c);
         nodoCodeudor.setAttribute('tipoOcupacion', EliminarCaracteresEspeciales(cuenta.Tipo_de_ocupacion__c));
         nodoCodeudor.setAttribute('tipoDocumento', EliminarCaracteresEspeciales(cuenta.Tipo_de_documento__c));
-        nodoCodeudor.setAttribute('aportaIngresos', cuenta.Aporta_ingresos__c == 'Si' ? 'true' : 'false');
+        nodoCodeudor.setAttribute('aportaIngresos', aportaIngresos == 'Si' ? 'true' : 'false');
         nodoCodeudor.setAttribute('consultaVigia', String.valueOf(cuenta.Check_VIGIA__c));
         nodoCodeudor.setAttribute('ciudadResidencia', cuenta.Ciudad_de_radicacion__c ==  null ? '' : cuenta.Ciudad_de_radicacion__c);
         nodoCodeudor.setAttribute('edad', String.valueOf(cuenta.Edad__c));

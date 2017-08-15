@@ -3,12 +3,13 @@ trigger AccountTrigger on Account (after insert)
     /**
     * Ya se está actualizando el campo aporta ingresos en la cuenta 
     **/
-    //AccountUpdateField_cls.setAccountUpdate(trigger.new); 
+    AccountUpdateField_cls.setAccountUpdate(trigger.new); 
 
     /**
     * Actualización de los codeudores en la Radicación de crédito
     **/
-	if( Trigger.isAfter && Trigger.isInsert ){
+	if( Trigger.isAfter && Trigger.isInsert && Trigger.new.size() == 1 && Trigger.new[0].Canal_Digital__c == 'Si' ){
+
     	RecordType rt = [select Id, Name from RecordType where Name = 'Cliente deudor' and SobjectType='Account'];
 
     	if(Trigger.new.size() == 1 && rt != null){
