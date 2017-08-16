@@ -752,9 +752,55 @@ public class TestDataFactory {
 			System.debug(e.getMessage());
 			return null;
 		}
+	}
 
+	public static Id createReferenciacion(Id idClienteDeudor, List<Id> codeudores){
+		Referenciacion_y_verificacion__c rv = new Referenciacion_y_verificacion__c();
+		for(Integer i = 0; i<codeudores.size(); i++){
+			if(i == 0)
+				rv.Codeudor_1__c = codeudores[i];
+			if(i == 1)
+				rv.Codeudor_2__c = codeudores[i];
+			if(i == 2)
+				rv.Codeudor_3__c = codeudores[i];
+		}
 
+		rv.Cliente_deudor__c = idClienteDeudor;
+		Database.SaveResult result = Database.insert(rv, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la Radicación de crédito: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+            return null;
+		}
+		return rv.Id; 
+	}
 
+	public static Id createRadicacion(Id idSolicitud, List<Id> codeudores){
+		Radicacion_de_credito__c rc = new Radicacion_de_credito__c();
+		for(Integer i = 0; i<codeudores.size(); i++){
+			if(i == 0)
+				rc.Codeudor_1__c = codeudores[i];
+			if(i == 1)
+				rc.Codeudor_2__c = codeudores[i];
+			if(i == 2)
+				rc.Codeudor_3__c = codeudores[i];
+		}
+
+		rc.Solicitud_de_credito__c = idSolicitud;
+		
+		Database.SaveResult result = Database.insert(rc, false);
+		if(!result.isSuccess()){
+            System.debug('Errores al insertar la Radicación de crédito: ');
+			for(Database.Error error : result.getErrors()){
+                System.debug(error.getStatusCode() + ': ' + error.getMessage());
+                System.debug('Verificar los siguientes campos: ' + error.getFields());
+            }
+            return null;
+		}
+		return rc.Id; 
 	}
 
 	public static Id createRadicacion(Id codeudorId){
@@ -803,6 +849,33 @@ public class TestDataFactory {
             }
 		}
 		return rc.Id; 
+	}
+
+	public static Id createSolicitudDeCredito(Id idOportunidad, String tipoDeRegistro){
+		Solicitud_de_credito__c sc = new Solicitud_de_credito__c();
+		List<RecordType> lstRt = [select id, name from RecordType where SobjectType = 'Solicitud_de_credito__c'];
+        Map<String, Id> mapRt = new Map<String, Id>();
+        for(RecordType rt : lstRt){
+            mapRt.put(rt.Name, rt.Id);
+        }
+
+        if(mapRt.containsKey(tipoDeRegistro)){
+        	sc.RecordTypeId = mapRt.get(tipoDeRegistro);
+        }
+
+        sc.Oportunidad__c = idOportunidad;
+        Database.SaveResult result = Database.insert(sc, false);
+        
+        if(result.isSuccess()){
+            //System.debug('createSolicitud -> Se creó la Solicitud de credito: ' + result.getId());
+            return result.getId();
+        } else {
+        	System.debug('Errores al crear la solicitud de credito: ');
+        	for(Database.Error error : result.getErrors()){
+        		System.debug(error.getMessage());
+        	}
+        } 
+        return null;
 	}
 
 	public static Id createInformacionComite(Id radicacionId){

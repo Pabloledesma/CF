@@ -1,4 +1,4 @@
-trigger Leads on Lead (after insert) {
+trigger Leads on Lead (after insert, before update) {
 
     if(Trigger.isInsert){
 
@@ -24,6 +24,8 @@ trigger Leads on Lead (after insert) {
         } 
     }
 
+    // Ejecutar el trigger cuando el concepto sea viable en la actualización
+        
   
 
     /*

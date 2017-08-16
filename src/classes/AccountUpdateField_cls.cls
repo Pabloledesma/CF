@@ -11,7 +11,7 @@ public class AccountUpdateField_cls
          //System.debug('Debuline 11: lstAccsize: 'lstAcc.size()', lstAcc: 'lstAcc);
          List<Account> lstcodeudores= new List<Account>();
          Set<String> stIds= new Set<String>();
-         Map<String,Account> mpAcc= new Map<String,Account>();
+         Map<Id, Account> mpAcc= new Map<Id, Account>();
          for(Account objAccount:lstAcc)
          {
              mpAcc.put(objAccount.Id,objAccount);
@@ -19,7 +19,8 @@ public class AccountUpdateField_cls
          for(Account objAccount:lstAcc)
          {
            //System.debug('1');
-             
+             System.debug('Label.AccountRecordTypeId: ' + Label.AccountRecordTypeId);
+             System.debug('objAccount.RecordTypeId: ' + objAccount.RecordTypeId);
              if(objAccount.RecordTypeId==Label.AccountRecordTypeId && !stIds.contains(objAccount.Cliente_deudor__c))
              {
                //System.debug('3');
@@ -39,7 +40,8 @@ public class AccountUpdateField_cls
              }
          }
          //System.debug('Debuline 24: lstcodeudores: 'lstcodeudores);
-         update lstcodeudores;
+         System.debug('lstcodeudores: ' + lstcodeudores);
+         //update lstcodeudores;
      }
      
  }
