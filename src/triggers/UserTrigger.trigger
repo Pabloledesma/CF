@@ -27,7 +27,11 @@ trigger UserTrigger on User (before insert, after update) {
 	}
 
 	if(Trigger.isUpdate){
-		List<String> lstEmails = new List<String>();
+		/**
+		* Map<Nombre, Correo>
+		**/
+		Map<String, String> mapAsesoresCD = new Map<String, String>();
+
 		Map<Id, String> mapUdate = new Map<Id, String>();
 		Set<Id> setDelete = new Set<Id>();	//Lista de asesores a eliminar
 		for(User u : Trigger.new){
@@ -52,9 +56,11 @@ trigger UserTrigger on User (before insert, after update) {
 						'u.isActive: ' + u.isActive + '\n' +
 						'u.Email: ' + u.Email + '\n' +
 						'lstAsesor.isEmpty(): ' + lstAsesor.isEmpty() + '\n' +
-						'u.isActive != oldUser.isActive: ' + String.valueOf(u.isActive != oldUser.isActive)
+						'u.isActive != oldUser.isActive: ' + String.valueOf(u.isActive != oldUser.isActive) + '\n' +
+						'u.ProfileId: ' + u.ProfileId + '\n' +
+						'uoldUser.ProfileId: ' + oldUser.ProfileId
 					);
-				if(
+				if( 
 					u.isActive != oldUser.isActive && !lstAsesor.isEmpty() && u.isActive == false ||
 					u.ProfileId != oldUser.ProfileId && u.ProfileId != asesorCanalDigital.Id && !lstAsesor.isEmpty() && u.Email == lstAsesor[0].Email__c
 					){
@@ -64,11 +70,12 @@ trigger UserTrigger on User (before insert, after update) {
 
 				//Agrerga un asesor
 				if(u.ProfileId != oldUser.ProfileId && u.ProfileId == asesorCanalDigital.Id && lstAsesor.isEmpty()){
-					lstEmails.add( u.Email ); 
+					System.debug('UserTrigger->Agregando el asesor: ' + u.Email);
+					mapAsesoresCD.put( u.FirstName + ' ' + u.LastName, u.Email ); 
 				}
 			}
 		}
-		if( ! lstEmails.isEmpty() ) UserHandler.crearAsesoresCanalDigital( lstEmails );
+		if( ! mapAsesoresCD.isEmpty() ) UserHandler.crearAsesoresCanalDigital( mapAsesoresCD );
 		if( ! setDelete.isEmpty() ) {
 			System.debug('agregando asesores para eliminar: ' + setDelete);			
 			UserHandler.eliminarAsesoresCanalDigital(setDelete); 

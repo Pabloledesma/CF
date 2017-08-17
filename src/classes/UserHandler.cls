@@ -1,15 +1,14 @@
 public class UserHandler {
 
 	@future
-	public static void crearAsesoresCanalDigital(List<String> lstEmails){
-		if(! lstEmails.isEmpty()){
-			List<Asesor_Canal_Digital__c> lstAsesores = new List<Asesor_Canal_Digital__c>();
-			for(String email : lstEmails){
-				lstAsesores.add(new Asesor_Canal_Digital__c(Email__c = email));
-			}
-			System.debug('UserHandler: ' + lstAsesores);
-			MixedDMLOps.ins(lstAsesores); 
+	public static void crearAsesoresCanalDigital(Map<String, String> mapAsesoresCD){
+		List<Asesor_Canal_Digital__c> lstAsesores = new List<Asesor_Canal_Digital__c>();
+		for(String name : mapAsesoresCD.keySet()){
+			lstAsesores.add(new Asesor_Canal_Digital__c(Name = name, Email__c = mapAsesoresCD.get(name)));
 		}
+	
+		System.debug('UserHandler: ' + lstAsesores);
+		MixedDMLOps.ins(lstAsesores); 
 	}
 
 	@future
