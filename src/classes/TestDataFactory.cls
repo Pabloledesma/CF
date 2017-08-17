@@ -12,7 +12,7 @@ public class TestDataFactory {
             Telefono_referencia_familiar__c = '12345678',
             Telefono_referencia_personal__c = '12345678',
             Canal_digital__c = 'Si',
-            Concepto_del_candidato__c = 'VIABLE'
+            Concepto_del_candidato__c = 'NO VIABLE'
 		);
 
 		return lead;

@@ -4,6 +4,9 @@ private class LeadsTest
 	@isTest
 	static void todos_los_usuarios_activos()
 	{
+		Profile asesorCanalDigital = [SELECT Id FROM Profile WHERE Name = 'Asesor comercial canal digital'];
+		Profile administrador = [SELECT Id FROM Profile WHERE Name = 'Administrador del sistema'];
+		
 		Test.startTest();
 		
 		List<User> lstUsuariosActivosBeforeTest = [
@@ -19,10 +22,7 @@ private class LeadsTest
 		for(User u : lstUsuariosActivosBeforeTest){
 			idUsuarios.add(u.Id);
 		}
-
-		Profile asesorCanalDigital = [SELECT Id FROM Profile WHERE Name = 'Asesor comercial canal digital'];
-		Profile administrador = [SELECT Id FROM Profile WHERE Name = 'Administrador del sistema'];
-
+		
 		Integer candidatosAsignadosAntesDelCorte = [
 			select 
         		count() 
@@ -46,6 +46,27 @@ private class LeadsTest
 			if( result.isSuccess() ){
 				candidatosInsertados.add(result.getId());
 			} else {
+				for(Database.Error error : result.getErrors()){
+					System.debug(
+						error.getMessage()
+					);
+				}
+			}
+		}
+
+		List<Lead> lstActualizarCandidatos = new List<Lead>();
+		for(Id idLead : candidatosInsertados){
+			lstActualizarCandidatos.add(
+				new Lead(
+					Id = idLead,
+					Concepto_del_candidato__c = 'VIABLE'
+				)
+			);
+		}
+
+		Database.SaveResult[] results = Database.update(lstActualizarCandidatos, false);
+		for(Database.SaveResult result : results){
+			if( ! result.isSuccess() ){
 				for(Database.Error error : result.getErrors()){
 					System.debug(
 						error.getMessage()
@@ -101,12 +122,6 @@ private class LeadsTest
         	'No se asignaron todos los candidatos'
         );
 
-        System.assertEquals(
-        	5,
-        	candidatosAsignadosDespuesDelCorte,
-        	'El número de candidatos asignados no corresponde a los candidatos creados'
-        );
-
 		Test.stopTest();
 
 		List<User> lstUsuariosSegundaRonda = [
@@ -127,5 +142,69 @@ private class LeadsTest
 			lstUsuariosSegundaRonda.isEmpty(),
 			'No se asignaron candidatos en la segunda ronda'
 		);
+	}
+
+	@isTest
+	static void asignacion_en_la_actualizacion_de_candidato_no_viable_a_viable()
+		{
+		List<User> lstUsuariosActivosBeforeTest = [
+			SELECT 
+				Id
+			FROM User
+			WHERE Profile.Name = 'Asesor comercial canal digital'
+			AND Habilitado_Canal_Digital__c = true
+			AND isActive = true
+		];
+
+		Set<Id> idUsuarios = new Set<Id>();
+		for(User u : lstUsuariosActivosBeforeTest){
+			idUsuarios.add(u.Id);
+		}
+		
+		Integer candidatosAsignadosAntes = [
+			select 
+        		count() 
+        	from Lead 
+        	where OwnerId IN :idUsuarios 
+        	AND Canal_digital__c = 'Si'
+			AND isConverted = false
+			AND Concepto_del_candidato__c = 'VIABLE'
+		];
+
+		Lead leadNoViable = TestDataFactory.createRawLead();
+		leadNoViable.Concepto_del_candidato__c = 'NO VIABLE';
+
+		Test.startTest();
+		Database.SaveResult result = Database.insert(leadNoViable, false);
+		if(!result.isSuccess()){
+			System.debug('Errores al insertar el candidato: ');
+			for(Database.Error error : result.getErrors()){
+				System.debug(error.getStatusCode() + ': ' + error.getMessage());
+				System.debug('Verificar los siguientes campos: ' + error.getFields());
+			}
+		}
+
+		System.assert(result.isSuccess(), 'No se pudo insertar el candidato');
+
+		Lead toUpdate = new Lead(Id = result.getId(), Concepto_del_candidato__c = 'VIABLE');
+		update toUpdate;
+		Test.stopTest();
+
+		Integer candidatosAsignadosDespues = [
+			select 
+        		count() 
+        	from Lead 
+        	where OwnerId IN :idUsuarios 
+        	AND Canal_digital__c = 'Si'
+			AND isConverted = false
+			AND Concepto_del_candidato__c = 'VIABLE'
+		];
+
+		System.assertEquals(
+			true, 
+			candidatosAsignadosDespues > candidatosAsignadosAntes,
+			'El candidato no fué asignado tras la actualización.'
+		);
+		
 	}
 }

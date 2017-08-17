@@ -1,32 +1,35 @@
-trigger Leads on Lead (after insert, before update) {
-
-    if(Trigger.isInsert){
-
-        List<Lead> candidatosViables = new List<Lead>();
+trigger Leads on Lead (after update) {
+   
+    if(LeadTriggerHandler.isFirstTime){
+        LeadTriggerHandler.isFirstTime = false;
         Set<Id> idCandidatosViables = new Set<Id>();
         for(Lead lead : Trigger.new){
-            if(lead.Concepto_del_candidato__c == 'VIABLE'){
+            Lead oldLead = Trigger.oldMap.get(lead.Id);
+            
+            if( oldLead.Concepto_del_candidato__c != lead.Concepto_del_candidato__c && lead.Concepto_del_candidato__c == 'VIABLE'){
                 idCandidatosViables.add(lead.Id);
             }
         }
 
+        System.debug('LeadsTrigger->idCandidatosViables.size(): ' +idCandidatosViables.size());
+
+        List<Lead> candidatosViables = new List<Lead>();
         candidatosViables = [
             SELECT
                 Id,
                 OwnerId,
-                Numero_del_candidato__c
+                Numero_del_candidato__c,
+                Concepto_del_candidato__c
             FROM Lead
             WHERE Id IN :idCandidatosViables 
         ];
+        System.debug('LeadsTrigger->candidatosViables.size(): ' +candidatosViables.size());
 
         if(!candidatosViables.isEmpty()){
             AsignacionDeCandidatos.asignar(candidatosViables);
         } 
     }
-
-    // Ejecutar el trigger cuando el concepto sea viable en la actualización
-        
-  
+    
 
     /*
     * Esta funcionalidad es parte del sprint 2 y esta pendiente por probar (09/08/2017)
