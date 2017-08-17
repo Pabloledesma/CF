@@ -1,39 +1,25 @@
 trigger UserTrigger on User (before insert, after update) {
 	Profile asesorCanalDigital = [SELECT Id FROM Profile WHERE Name = 'Asesor comercial canal digital'];
 	if(Trigger.isInsert){
-		List<String> lstEmails = new List<String>();
+		/**
+		* @mapAsesoresCD Información básica para crear el Asesor comercial canal digital Map<Nombre, Correo>
+		**/
+		Map<String, String> mapAsesoresCD = new Map<String, String>();
 		for(User u : Trigger.new){
 			if(u.isActive && u.ProfileId == asesorCanalDigital.Id){
-				lstEmails.add(u.Email);
+				mapAsesoresCD.put(u.FirstName + ' ' + u.LastName, u.Email);
 			}
 		}
-		if(! lstEmails.isEmpty()){
-			List<Asesor_Canal_Digital__c> lstAsesores = new List<Asesor_Canal_Digital__c>();
-			for(String email : lstEmails){
-				lstAsesores.add(new Asesor_Canal_Digital__c(Email__c = email));
-			}
-			Database.SaveResult[] results = Database.Insert(lstAsesores, false);
-			for(Database.SaveResult result : results){
-				if( !result.isSuccess() ){
-					for(Database.Error error : result.getErrors()){
-						System.debug(
-							error.getMessage()
-						);
-					}
-				} 
-			}			
-
-		}
+		
+		if(! mapAsesoresCD.isEmpty()) UserHandler.crearAsesoresCanalDigital( mapAsesoresCD );
 	}
 
 	if(Trigger.isUpdate){
-		/**
-		* Map<Nombre, Correo>
-		**/
+		
 		Map<String, String> mapAsesoresCD = new Map<String, String>();
 
 		Map<Id, String> mapUdate = new Map<Id, String>();
-		Set<Id> setDelete = new Set<Id>();	//Lista de asesores a eliminar
+		Set<String> setDelete = new Set<String>();	//Lista de asesores a eliminar
 		for(User u : Trigger.new){
 			User oldUser = Trigger.oldMap.get(u.Id);
 			//System.debug(
@@ -61,11 +47,11 @@ trigger UserTrigger on User (before insert, after update) {
 						'uoldUser.ProfileId: ' + oldUser.ProfileId
 					);
 				if( 
-					u.isActive != oldUser.isActive && !lstAsesor.isEmpty() && u.isActive == false ||
-					u.ProfileId != oldUser.ProfileId && u.ProfileId != asesorCanalDigital.Id && !lstAsesor.isEmpty() && u.Email == lstAsesor[0].Email__c
+					u.isActive != oldUser.isActive && u.isActive == false ||
+					u.ProfileId != oldUser.ProfileId && u.ProfileId != asesorCanalDigital.Id
 					){
 					System.debug('eliminando...');
-					setDelete.add(lstAsesor[0].Id);
+					setDelete.add(u.Email);
 				}
 
 				//Agrerga un asesor

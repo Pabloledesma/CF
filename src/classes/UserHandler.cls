@@ -12,14 +12,17 @@ public class UserHandler {
 	}
 
 	@future
-	public static void eliminarAsesoresCanalDigital(Set<Id> asesores)
+	public static void eliminarAsesoresCanalDigital(Set<String> asesores)
 	{
 		System.debug('Asesores para eliminar: ' + asesores);
-		List<Asesor_Canal_Digital__c> lstAsesores = new List<Asesor_Canal_Digital__c>();
-		for(Id asesorId : asesores){
-			lstAsesores.add(new Asesor_Canal_Digital__c(Id = asesorId));
-		}
-		MixedDMLOps.del(lstAsesores);
+		List<Asesor_Canal_Digital__c> lstAsesoresParaEliminar = [
+			select
+				Id
+			from Asesor_Canal_Digital__c
+			where Email__c IN :asesores
+		];
+		
+		MixedDMLOps.del(lstAsesoresParaEliminar);
 	}
 
 	@future
