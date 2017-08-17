@@ -1,4 +1,4 @@
-trigger UserTrigger on User (before insert, after update) {
+trigger UserTrigger on User (before insert, before update, after update) {
 	Profile asesorCanalDigital = [SELECT Id FROM Profile WHERE Name = 'Asesor comercial canal digital'];
 	if(Trigger.isInsert){
 		/**
@@ -14,11 +14,23 @@ trigger UserTrigger on User (before insert, after update) {
 		if(! mapAsesoresCD.isEmpty()) UserHandler.crearAsesoresCanalDigital( mapAsesoresCD );
 	}
 
-	if(Trigger.isUpdate){
+	/**
+	* Actualiza el campo Habilitado para el canal digital
+	**/
+	if(Trigger.isBefore && Trigger.isUpdate){
+		for(User u : Trigger.new){
+			User oldUser = Trigger.oldMap.get(u.Id);
+			if( u.ProfileId != oldUser.ProfileId && u.ProfileId == asesorCanalDigital.Id && u.isActive == true ){
+				u.Habilitado_Canal_Digital__c = true;
+				u.Numero_de_Candidatos_Asignados__c = 0;
+				u.Meta_Canal_Digital__c = 40;
+			}
+		}
+	}
+
+	if(Trigger.isAfter && Trigger.isUpdate){
 		
 		Map<String, String> mapAsesoresCD = new Map<String, String>();
-
-		Map<Id, String> mapUdate = new Map<Id, String>();
 		Set<String> setDelete = new Set<String>();	//Lista de asesores a eliminar
 		for(User u : Trigger.new){
 			User oldUser = Trigger.oldMap.get(u.Id);
@@ -29,19 +41,10 @@ trigger UserTrigger on User (before insert, after update) {
 			//	'oldUser.ProfileId' + oldUser.ProfileId
 			//);
 			if(u.isActive != oldUser.isActive || u.ProfileId != oldUser.ProfileId){
-				List<Asesor_Canal_Digital__c> lstAsesor = [
-					SELECT
-						Id,
-						Email__c,
-						Activo__c
-					FROM 
-						Asesor_Canal_Digital__c
-					WHERE Email__c = :u.Email 	
-				];
+				
 				System.debug(
 						'u.isActive: ' + u.isActive + '\n' +
 						'u.Email: ' + u.Email + '\n' +
-						'lstAsesor.isEmpty(): ' + lstAsesor.isEmpty() + '\n' +
 						'u.isActive != oldUser.isActive: ' + String.valueOf(u.isActive != oldUser.isActive) + '\n' +
 						'u.ProfileId: ' + u.ProfileId + '\n' +
 						'uoldUser.ProfileId: ' + oldUser.ProfileId
@@ -55,9 +58,9 @@ trigger UserTrigger on User (before insert, after update) {
 				}
 
 				//Agrerga un asesor
-				if(u.ProfileId != oldUser.ProfileId && u.ProfileId == asesorCanalDigital.Id && lstAsesor.isEmpty()){
+				if(u.ProfileId != oldUser.ProfileId && u.ProfileId == asesorCanalDigital.Id){
 					System.debug('UserTrigger->Agregando el asesor: ' + u.Email);
-					mapAsesoresCD.put( u.FirstName + ' ' + u.LastName, u.Email ); 
+					mapAsesoresCD.put( u.FirstName + ' ' + u.LastName, u.Email );
 				}
 			}
 		}
