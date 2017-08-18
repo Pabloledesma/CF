@@ -19,23 +19,27 @@ public without sharing class AsignacionDeCandidatos {
             ORDER BY Numero_de_candidatos_asignados__c ASC, Name
         ];
 
+        List<User> lstHabilitados = new List<User>();
+        for(User u : lstUsuariosActivos){
+            if(u.Numero_de_candidatos_asignados__c < u.Meta_Canal_Digital__c)
+                lstHabilitados.add(u);
+        }
+
+        System.debug('lstUsuariosActivos.size(): ' + lstUsuariosActivos.size());
         List<Lead> leadsPorAsignar = new List<Lead>();
 		Integer i = 0;
-        if(!lstUsuariosActivos.isEmpty()){
+        if(!lstHabilitados.isEmpty()){
 
     		for(Lead lead : candidatosViables){
-    			User asesor = lstUsuariosActivos[ i ];
-    	        if(asesor.Numero_de_candidatos_asignados__c < asesor.Meta_Canal_Digital__c){
+    			User asesor = lstHabilitados[ i ];
+    	       
     	        	System.debug('Candidatos asignados: ' + asesor.Numero_de_candidatos_asignados__c + ' Meta: ' + asesor.Meta_Canal_Digital__c);
     	            System.debug('Asignando candidato a ' + asesor.Name);
     	            lead.OwnerId = asesor.Id;
     	            leadsPorAsignar.add(lead);
-    	        } else {
-                    // Aqui es buena idea enviar un correo al gerente y al asesor
-                    System.debug(asesor.Name + ' ya cumplió la meta!');
-                }
+    	        
                 i++;
-                if(i == lstUsuariosActivos.size()) i = 0;
+                if(i == lstHabilitados.size()) i = 0;
     		}
         }
 
