@@ -54,6 +54,12 @@ private class LeadsTest
 			}
 		}
 
+		System.assertEquals(
+			6,
+			[select count() from Lead where Concepto_del_candidato__c = 'NO VIABLE'],
+			'No fué posible insertar los candidatos'
+		);
+
 		List<Lead> lstActualizarCandidatos = new List<Lead>();
 		for(Id idLead : candidatosInsertados){
 			lstActualizarCandidatos.add(
@@ -64,6 +70,12 @@ private class LeadsTest
 			);
 		}
 
+		System.assertEquals(
+			6,
+			lstActualizarCandidatos.size(),
+			'Se deben actualizar 6 candidatos'
+		);
+		
 		Database.SaveResult[] results = Database.update(lstActualizarCandidatos, false);
 		for(Database.SaveResult result : results){
 			if( ! result.isSuccess() ){

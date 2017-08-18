@@ -1,18 +1,19 @@
 trigger Leads on Lead (after update) {
    
-    if(LeadTriggerHandler.isFirstTime){
-        LeadTriggerHandler.isFirstTime = false;
-        Set<Id> idCandidatosViables = new Set<Id>();
-        for(Lead lead : Trigger.new){
-            Lead oldLead = Trigger.oldMap.get(lead.Id);
-            
-            if( oldLead.Concepto_del_candidato__c != lead.Concepto_del_candidato__c && lead.Concepto_del_candidato__c == 'VIABLE'){
-                idCandidatosViables.add(lead.Id);
-            }
+    Set<Id> idCandidatosViables = new Set<Id>();
+    for(Lead lead : Trigger.new){
+        Lead oldLead = Trigger.oldMap.get(lead.Id);
+        System.debug(
+            'oldLead.Concepto_del_candidato__c: ' + oldLead.Concepto_del_candidato__c + '\n' +
+            'lead.Concepto_del_candidato__c: ' + lead.Concepto_del_candidato__c 
+        );
+        if( oldLead.Concepto_del_candidato__c != lead.Concepto_del_candidato__c && lead.Concepto_del_candidato__c == 'VIABLE'){
+            idCandidatosViables.add(lead.Id);
         }
+    }
 
-        System.debug('LeadsTrigger->idCandidatosViables.size(): ' +idCandidatosViables.size());
-
+    System.debug('LeadsTrigger->idCandidatosViables.size(): ' +idCandidatosViables.size());
+    if(!idCandidatosViables.isEmpty()){
         List<Lead> candidatosViables = new List<Lead>();
         candidatosViables = [
             SELECT
@@ -29,7 +30,7 @@ trigger Leads on Lead (after update) {
             AsignacionDeCandidatos.asignar(candidatosViables);
         } 
     }
-    
+
 
     /*
     * Esta funcionalidad es parte del sprint 2 y esta pendiente por probar (09/08/2017)
