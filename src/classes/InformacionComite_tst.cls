@@ -12,6 +12,9 @@ private class InformacionComite_tst
     static void cliente_deudor_con_un_codeudor() 
     {
         Account codeudor1   = [select Id from account where Numero_de_documento__c = '98745621'];
+        Account deudor      = [select Id from account where Numero_de_documento__c = '12345678'];
+        Id oppId              = TestDataFactory.createOpportunity(deudor.Id);
+        Id scId               = TestDatafactory.createSolicitudDeCredito(oppId, 'Vivienda nueva');
         Id radicacionId     = TestDatafactory.createRadicacion(codeudor1.Id);
         Test.startTest();
              Radicacion_de_credito__c rc = [
@@ -70,9 +73,11 @@ private class InformacionComite_tst
    static void con_dos_codeudores()
    {
         RecordType rt          = [SELECT Id FROM RecordType where Name ='Cliente deudor' AND SobjectType = 'Account'];
-        Account clienteDedudor = [Select Id from Account where Numero_de_documento__c = '12345678'];
         Account codeudor1      = [select Id from Account where Numero_de_documento__c = '98745621'];
-        Id codeudor2Id         = TestDatafactory.createAccount(rt.Id, clienteDedudor.Id, '59146798');
+        Account deudor      = [select Id from account where Numero_de_documento__c = '12345678'];
+        Id oppId              = TestDataFactory.createOpportunity(deudor.Id);
+        Id scId               = TestDatafactory.createSolicitudDeCredito(oppId, 'Vivienda nueva');
+        Id codeudor2Id         = TestDatafactory.createAccount(rt.Id, deudor.Id, '59146798');
         Id radicacionId        = TestDatafactory.createRadicacion(codeudor1.Id, codeudor2Id);
         Test.startTest();
              Radicacion_de_credito__c rc = [
@@ -145,6 +150,8 @@ private class InformacionComite_tst
         Account codeudor1      = [select Id from Account where Numero_de_documento__c = '98745621'];
         Id codeudor2Id         = TestDatafactory.createAccount(rt.Id, clienteDedudor.Id, '78936973');
         Id codeudor3Id         = TestDatafactory.createAccount(rt.Id, clienteDedudor.Id, '78936974');
+        Id oppId               = TestDataFactory.createOpportunity(clienteDedudor.Id);
+        Id scId                = TestDatafactory.createSolicitudDeCredito(oppId, 'Vivienda nueva');
         Id radicacionId        = TestDatafactory.createRadicacion(codeudor1.Id, codeudor2Id, codeudor3Id);
         Test.startTest();
              Radicacion_de_credito__c rc = [

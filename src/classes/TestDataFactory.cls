@@ -864,6 +864,7 @@ public class TestDataFactory {
         }
 
         sc.Oportunidad__c = idOportunidad;
+        sc.Migrado__c = true;
         Database.SaveResult result = Database.insert(sc, false);
         
         if(result.isSuccess()){
